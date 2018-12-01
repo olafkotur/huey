@@ -51,6 +51,10 @@ export default class LoginScreen extends React.Component {
 					source = {logo} >
 				</Image>
 
+				<Text style = {styles.loginText}>
+					Please Sign up or Login
+				</Text>
+
 
 				{/* Login fields */}
 				<TextInput
