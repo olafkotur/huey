@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import * as firebase from "firebase";
 
 import styles from "../Styles";
 import logo from "../static/logo.png";
@@ -13,8 +14,10 @@ export default class LoginScreen extends React.Component {
 
 	state = {
 		
-		email: "olafkotur97@gmail.com",
-		password: "hueyTest123"
+		email: 'olafkotur97@gmail.com',
+		password: 'hueyTest123',
+
+		errorCode: '',
 	}
 
 	// Authenticates with firebase and sends user to home screen if successful
@@ -25,11 +28,10 @@ export default class LoginScreen extends React.Component {
 	// Creates a new user with firebase and sends user to home screen if successful
 	handleSignUp = async () => {
 		await firebase
-			.auth()
-			.createUserWithEmailAndPassword(this.state.email, this.state.password)
-			.then(() => this.props.navigation.navigate('HomeScreen'))
-			.catch(error => this.setState({errorCode: error.code}))
-		
+		.auth()
+		.createUserWithEmailAndPassword(this.state.email, this.state.password)
+		.then(() => this.props.navigation.navigate('HomeScreen'))
+		.catch(error => this.setState({errorCode: error.code}))
 		console.log(this.state.errorCode)
 	}
 
