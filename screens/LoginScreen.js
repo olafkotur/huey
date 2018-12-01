@@ -24,7 +24,13 @@ export default class LoginScreen extends React.Component {
 
 	// Creates a new user with firebase and sends user to home screen if successful
 	handleSignUp = async () => {
-
+		await firebase
+			.auth()
+			.createUserWithEmailAndPassword(this.state.email, this.state.password)
+			.then(() => this.props.navigation.navigate('HomeScreen'))
+			.catch(error => this.setState({errorCode: error.code}))
+		
+		console.log(this.state.errorCode)
 	}
 
 	render() {
