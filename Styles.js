@@ -14,11 +14,17 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	doubleButtonContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+	},
+
 
 	// 2. Login
 	loginLogo: {
 		width: deviceWidth * 0.35,
 		height: deviceWidth * 0.35,
+		marginBottom: deviceHeight * 0.15,
 	},
 
 	loginTextField: {
@@ -30,6 +36,30 @@ export default StyleSheet.create({
 		color: '#000',
 		fontWeight: '200',
 		textAlign: 'center',
-	}
+	},
+
+	loginButton: {
+		width: deviceWidth * 0.38,
+		height: deviceHeight * 0.06,
+		backgroundColor: '#50e3c1',
+		marginTop: deviceHeight * 0.05,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: deviceWidth * 0.02,
+		marginRight: deviceWidth * 0.02,
+		borderRadius: 5,
+	},
+
+	signupButton: {
+		width: deviceWidth * 0.38,
+		height: deviceHeight * 0.06,
+		backgroundColor: '#fff',
+		marginTop: deviceHeight * 0.05,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: deviceWidth * 0.02,
+		marginRight: deviceWidth * 0.02,
+		borderRadius: 5,
+	},
 
 })
