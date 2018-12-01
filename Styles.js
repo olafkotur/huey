@@ -24,6 +24,23 @@ export default StyleSheet.create({
 		marginRight: deviceWidth * 0.1,
 	},
 
+	blackButtonText: {
+		color: '#000',
+		fontWeight: '500',
+		textAlign: 'center',
+	},
+
+	whiteButtonText: {
+		color: '#fff',
+		fontWeight: '500',
+		textAlign: 'center',
+	},
+
+	textButton: {
+		color: '#fff',
+		marginTop: deviceHeight * 0.01,
+	},
+
 
 
 	// 2. Login
@@ -66,18 +83,6 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.02,
 		marginRight: deviceWidth * 0.02,
 		borderRadius: 5,
-	},
-
-	signupButtonText: {
-		color: '#000',
-		fontWeight: '500',
-		textAlign: 'center',
-	},
-
-	loginButtonText: {
-		color: '#fff',
-		fontWeight: '500',
-		textAlign: 'center',
 	},
 
 

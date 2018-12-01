@@ -13,8 +13,8 @@ export default class ForgotPassword extends React.Component {
 
 	state = {
 		
-		email: "olafkotur97@gmail.com",
-		password: "hueyTest123"
+		email: '',
+		password: ''
 	}
 
 	// Sends a request to firebase to reset password
@@ -64,8 +64,15 @@ export default class ForgotPassword extends React.Component {
 				<TouchableOpacity
 					onPress = {() => this.handleForgottenPassword()} 
 					style = {styles.resetButton}>
-					<Text style = {styles.resetButtonText}>Reset Password</Text>
+					<Text style = {styles.whiteButtonText}>Reset Password</Text>
 				</TouchableOpacity>
+
+				{/* Cancel */}
+				<Text 
+					style = {styles.textButton} 
+					onPress = {() => this.props.navigation.navigate('LoginScreen')}>
+					Cancel
+				</Text>
 
 
 
