@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import * as firebase from "firebase";
 
 import styles from "../Styles";
 import logo from "../static/logo.png";
@@ -19,19 +20,27 @@ export default class ForgotPassword extends React.Component {
 
 	// Sends a request to firebase to reset password
 	handleForgottenPassword = async () => {
-
+		firebase
+		.auth()
+		.sendPasswordResetEmail(this.state.email)
+		.then(this.props.navigation.navigate('LoginScreen'))
+		.catch(error => this.setState({errorCode: error.code}))
+		console.log(this.state.errorCode)
 	}
 
 	render() {
 		return (
 			<View style = {styles.container}>
 				
-
 				{/* Logo */}
 				<Image
 					style = {styles.loginLogo}
 					source = {logo} >
 				</Image>
+
+				<Text style = {styles.loginText}>
+					Enter your email, you will get a message shortly to reset your password
+				</Text>
 
 
 				{/* Login fields */}
@@ -47,18 +56,6 @@ export default class ForgotPassword extends React.Component {
 					autoCapitalize = 'none' >
 				</TextInput>
 
-				<TextInput
-					style = {styles.loginTextField}
-					secureTextEntry = {true}
-					placeholder = 'password'
-					placeholderTextColor = '#a9a9a9'
-					underlineColorAndroid = 'rgba(0,0,0,0)'
-					value = {this.state.password}
-					onChangeText = {(password) => this.setState({password})}
-					keyboardType = 'default'
-					autoCapitalize = 'none' >
-				</TextInput>
-
 
 				{/* Reset Password Button */}
 				<TouchableOpacity
@@ -67,14 +64,13 @@ export default class ForgotPassword extends React.Component {
 					<Text style = {styles.whiteButtonText}>Reset Password</Text>
 				</TouchableOpacity>
 
+
 				{/* Cancel */}
 				<Text 
 					style = {styles.textButton} 
 					onPress = {() => this.props.navigation.navigate('LoginScreen')}>
 					Cancel
 				</Text>
-
-
 
 			</View>
 		);

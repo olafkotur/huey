@@ -85,6 +85,14 @@ export default StyleSheet.create({
 		borderRadius: 5,
 	},
 
+	loginText: {
+		color: '#fff',
+		fontSize: 14,
+		width: deviceWidth * 0.8,
+		textAlign: 'center',
+		marginBottom: deviceHeight * 0.015,
+	},
+
 
 
 	// 3. Forgot Password
