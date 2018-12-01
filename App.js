@@ -4,9 +4,11 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import styles from "./Styles";
 import LoginScreen from './screens/LoginScreen';
+import ForgotPassword from './screens/ForgotPassword';
 
 const AppStack = createStackNavigator({
-	LoginScreen: {screen: LoginScreen}
+	LoginScreen: {screen: LoginScreen},
+	ForgotPassword: {screen: ForgotPassword},
 });
 
 const AppRouter = createAppContainer(AppStack);

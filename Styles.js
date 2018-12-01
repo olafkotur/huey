@@ -19,6 +19,12 @@ export default StyleSheet.create({
 		justifyContent: 'space-around',
 	},
 
+	textContainerRight: {
+		alignSelf: 'flex-end',
+		marginRight: deviceWidth * 0.1,
+	},
+
+
 
 	// 2. Login
 	loginLogo: {
@@ -42,7 +48,7 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
 		backgroundColor: '#50e3c1',
-		marginTop: deviceHeight * 0.05,
+		marginTop: deviceHeight * 0.04,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: deviceWidth * 0.02,
@@ -54,7 +60,39 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
 		backgroundColor: '#fff',
-		marginTop: deviceHeight * 0.05,
+		marginTop: deviceHeight * 0.04,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: deviceWidth * 0.02,
+		marginRight: deviceWidth * 0.02,
+		borderRadius: 5,
+	},
+
+	signupButtonText: {
+		color: '#000',
+		fontWeight: '500',
+		textAlign: 'center',
+	},
+
+	loginButtonText: {
+		color: '#fff',
+		fontWeight: '500',
+		textAlign: 'center',
+	},
+
+
+
+	// 3. Forgot Password
+	forgotPassword: {
+		color: '#fff',
+		marginBottom: deviceHeight * 0.02,
+	},
+
+	resetButton: {
+		width: deviceWidth * 0.38,
+		height: deviceHeight * 0.06,
+		backgroundColor: '#e74c3c',
+		marginTop: deviceHeight * 0.04,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: deviceWidth * 0.02,

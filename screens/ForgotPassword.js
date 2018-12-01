@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import styles from "../Styles";
 import logo from "../static/logo.png";
 
-export default class LoginScreen extends React.Component {
+export default class ForgotPassword extends React.Component {
 
 	static navigationOptions = {
 		header: null,
@@ -17,13 +17,8 @@ export default class LoginScreen extends React.Component {
 		password: "hueyTest123"
 	}
 
-	// Authenticates with firebase and sends user to home screen if successful
-	handleLogin = async () => {
-
-	}
-
-	// Creates a new user with firebase and sends user to home screen if successful
-	handleSignUp = async () => {
+	// Sends a request to firebase to reset password
+	handleForgottenPassword = async () => {
 
 	}
 
@@ -64,32 +59,14 @@ export default class LoginScreen extends React.Component {
 					autoCapitalize = 'none' >
 				</TextInput>
 
-				{/* Forgot Password */}
-				<View style = {styles.textContainerRight}>
-					<Text 
-						style = {styles.forgotPassword} 
-						onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
-						Forgot Password?
-					</Text>
-				</View>
 
+				{/* Reset Password Button */}
+				<TouchableOpacity
+					onPress = {() => this.handleForgottenPassword()} 
+					style = {styles.resetButton}>
+					<Text style = {styles.resetButtonText}>Reset Password</Text>
+				</TouchableOpacity>
 
-				{/* Sign up / Login */}
-				<View style = {styles.doubleButtonContainer}>
-
-					<TouchableOpacity
-						onPress = {() => this.handleSignUp()} 
-						style = {styles.signupButton}>
-						<Text style = {styles.signupButtonText}>Sign Up</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress = {() => this.handleLogin()} 
-						style = {styles.loginButton}>
-						<Text style = {styles.loginButtonText}>Login</Text>
-					</TouchableOpacity>
-
-				</View>
 
 
 			</View>
