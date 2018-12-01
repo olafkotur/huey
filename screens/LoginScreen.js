@@ -20,11 +20,6 @@ export default class LoginScreen extends React.Component {
 		errorCode: '',
 	}
 
-	// Authenticates with firebase and sends user to home screen if successful
-	handleLogin = async () => {
-
-	}
-
 	// Creates a new user with firebase and sends user to home screen if successful
 	handleSignUp = async () => {
 		await firebase
@@ -35,10 +30,20 @@ export default class LoginScreen extends React.Component {
 		console.log(this.state.errorCode)
 	}
 
+	// Authenticates with firebase and sends user to home screen if successful
+	handleLogin = async () => {
+		console.log("Hello");
+		await firebase
+		.auth()
+		.signInWithEmailAndPassword(this.state.email, this.state.password)
+		.then(() => this.props.navigation.navigate('HomeScreen'))
+		.catch(error => this.setState({errorCode: error.code}))
+		console.log(this.state.errorCode)
+	}
+
 	render() {
 		return (
 			<View style = {styles.container}>
-				
 
 				{/* Logo */}
 				<Image
@@ -72,6 +77,7 @@ export default class LoginScreen extends React.Component {
 					autoCapitalize = 'none' >
 				</TextInput>
 
+
 				{/* Forgot Password */}
 				<View style = {styles.textContainerRight}>
 					<Text 
@@ -98,7 +104,6 @@ export default class LoginScreen extends React.Component {
 					</TouchableOpacity>
 
 				</View>
-
 
 			</View>
 		);

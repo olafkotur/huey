@@ -6,11 +6,12 @@ import * as firebase from "firebase";
 import styles from "./Styles";
 import LoginScreen from './screens/LoginScreen';
 import ForgotPassword from './screens/ForgotPassword';
-import HomeScreen from './screens/ForgotPassword';
+import HomeScreen from './screens/HomeScreen';
 
 const AppStack = createStackNavigator({
 	LoginScreen: {screen: LoginScreen},
 	ForgotPassword: {screen: ForgotPassword},
+	HomeScreen: {screen: HomeScreen},
 });
 
 const AppRouter = createAppContainer(AppStack);
