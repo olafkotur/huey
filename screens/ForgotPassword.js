@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import * as firebase from "firebase";
 
 import styles from "../Styles";
-import logo from "../static/logo.png";
+import logo from "../assets/logo.png";
 
 export default class ForgotPassword extends React.Component {
 
@@ -30,7 +30,7 @@ export default class ForgotPassword extends React.Component {
 
 	render() {
 		return (
-			<View style = {styles.container}>
+			<View style = {styles.containerLight}>
 				
 				{/* Logo */}
 				<Image
@@ -39,7 +39,11 @@ export default class ForgotPassword extends React.Component {
 				</Image>
 
 				<Text style = {styles.loginText}>
-					Enter your email, you will get a message shortly to reset your password
+					Enter your email address below.
+				</Text>
+
+				<Text style = {styles.loginText}>
+					 You will get a message shortly to reset your password.
 				</Text>
 
 
@@ -47,7 +51,7 @@ export default class ForgotPassword extends React.Component {
 				<TextInput
 					style = {styles.loginTextField}
 					secureTextEntry = {false}
-					placeholder = 'email'
+					placeholder = 'Email Address'
 					placeholderTextColor = '#a9a9a9'
 					underlineColorAndroid = 'rgba(0,0,0,0)'
 					value = {this.state.email}

@@ -14,6 +14,13 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	containerLight: {
+		flex: 1,
+		backgroundColor: '#F6F6F6',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+
 	doubleButtonContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
@@ -28,6 +35,7 @@ export default StyleSheet.create({
 		color: '#000',
 		fontWeight: '500',
 		textAlign: 'center',
+
 	},
 
 	whiteButtonText: {
@@ -45,9 +53,10 @@ export default StyleSheet.create({
 
 	// 2. Login
 	loginLogo: {
-		width: deviceWidth * 0.35,
-		height: deviceWidth * 0.35,
+		width: deviceWidth * 0.7,
+		height: deviceWidth * 0.7,
 		marginBottom: deviceHeight * 0.15,
+		marginTop: deviceHeight * 0.05
 	},
 
 	loginTextField: {
@@ -64,7 +73,7 @@ export default StyleSheet.create({
 	loginButton: {
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
-		backgroundColor: '#50e3c1',
+		backgroundColor: '#27AE60',
 		marginTop: deviceHeight * 0.04,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -86,7 +95,7 @@ export default StyleSheet.create({
 	},
 
 	loginText: {
-		color: '#fff',
+		color: '#383838',
 		fontSize: 14,
 		width: deviceWidth * 0.8,
 		textAlign: 'center',
@@ -97,8 +106,10 @@ export default StyleSheet.create({
 
 	// 3. Forgot Password
 	forgotPassword: {
-		color: '#fff',
+		color: '#383838',
 		marginBottom: deviceHeight * 0.02,
+		textAlign: 'right',
+		marginLeft: deviceWidth * 0.65,
 	},
 
 	resetButton: {
