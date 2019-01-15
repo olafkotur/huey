@@ -1,0 +1,82 @@
+import React from 'react';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import * as firebase from "firebase";
+
+import styles from "../Styles";
+import logo from "../assets/logo.png";
+
+export default class ForgotPassword extends React.Component {
+
+	static navigationOptions = {
+		header: null,
+		gesturesEnabled: false,
+	}
+
+	state = {
+		
+		email: '',
+		password: ''
+	}
+
+	// Sends a request to firebase to reset password
+	handleForgottenPassword = async () => {
+		firebase
+		.auth()
+		.sendPasswordResetEmail(this.state.email)
+		.then(this.props.navigation.navigate('LoginScreen'))
+		.catch(error => this.setState({errorCode: error.code}))
+		console.log(this.state.errorCode)
+	}
+
+	render() {
+		return (
+			<View style = {styles.containerLight}>
+				
+				{/* Logo */}
+				<Image
+					style = {styles.loginLogo}
+					source = {logo} >
+				</Image>
+
+				<Text style = {styles.loginText}>
+					Enter your email address below.
+				</Text>
+
+				<Text style = {styles.loginText}>
+					 You will get a message shortly to reset your password.
+				</Text>
+
+
+				{/* Login fields */}
+				<TextInput
+					style = {styles.loginTextField}
+					secureTextEntry = {false}
+					placeholder = 'Email Address'
+					placeholderTextColor = '#a9a9a9'
+					underlineColorAndroid = 'rgba(0,0,0,0)'
+					value = {this.state.email}
+					onChangeText = {(email) => this.setState({email})}
+					keyboardType = 'email-address'
+					autoCapitalize = 'none' >
+				</TextInput>
+
+
+				{/* Reset Password Button */}
+				<TouchableOpacity
+					onPress = {() => this.handleForgottenPassword()} 
+					style = {styles.resetButton}>
+					<Text style = {styles.whiteButtonText}>Reset Password</Text>
+				</TouchableOpacity>
+
+
+				{/* Cancel */}
+				<Text 
+					style = {styles.textButton} 
+					onPress = {() => this.props.navigation.navigate('LoginScreen')}>
+					Cancel
+				</Text>
+
+			</View>
+		);
+	}
+}
