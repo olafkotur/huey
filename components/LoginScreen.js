@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import * as firebase from "firebase";
 import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import styles from "../Styles";
-import meme from "../static/logo.png";
+import logo from "../static/logo.png";
 
 export default class LoginScreen extends React.Component {
 
@@ -42,19 +43,25 @@ export default class LoginScreen extends React.Component {
 
 	render() {
 		return (
-			<View style = {styles.containerLight}>
+			<KeyboardAwareScrollView
+				contentContainerStyle = {styles.containerLight}
+				//keyboardDismissMode = 'on-drag'
+				//keyboardShouldPersistTaps = 'never'
+				scrollEnabled = {true} 
+				enableAutomaticScroll = {true}
+				>
 
 				<KeyboardAvoidingView style={styles.containerLight} behavior="padding" enabled>
+				
 				{/* Logo */}
 				<Image
 					style = {styles.loginLogo}
-					source = {meme} >
+					source = {logo} >
 				</Image>
+
 				<Text style = {styles.loginText}>
 					Please Sign up or Login.
 				</Text>
-
-
 
 					{/* Login fields */}
 					<TextInput
@@ -81,9 +88,8 @@ export default class LoginScreen extends React.Component {
 						autoCapitalize = 'none' >
 					</TextInput>
 
-
 				{/* Forgot Password */}
-				<View style = {styles.textContainerRight}>
+				<View>
 					<Text 
 						style = {styles.forgotPassword} 
 						onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
@@ -91,14 +97,13 @@ export default class LoginScreen extends React.Component {
 					</Text>
 				</View>
 
-
 				{/* Sign up / Login */}
 				<View style = {styles.doubleButtonContainer}>
 
 					<TouchableOpacity
 						onPress = {() => this.handleSignUp()} 
 						style = {styles.signupButton}>
-						<Text style = {styles.blackButtonText}>		Sign Up		</Text>
+						<Text style = {styles.darkButtonText}>		Sign Up		</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
@@ -109,7 +114,7 @@ export default class LoginScreen extends React.Component {
 
 				</View>
 				</KeyboardAvoidingView>
-			</View>
+			</KeyboardAwareScrollView>
 		);
 	}
 }
