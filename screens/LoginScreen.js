@@ -73,32 +73,15 @@ export default class LoginScreen extends React.Component {
 						style = {styles.loginTextField}
 						secureTextEntry = {true}
 						placeholder = 'Password'
-						placeholderTextColor = '#a9a9a9'
-						underlineColorAndroid = 'rgba(0,0,0,0)'
-						value = {this.state.password}
-						onChangeText = {(password) => this.setState({password})}
-						keyboardType = 'default'
-						autoCapitalize = 'none' >
-					</TextInput>
+						placeholder
 
-
-				{/* Forgot Password */}
-				<View style = {styles.textContainerRight}>
-					<Text 
-						style = {styles.forgotPassword} 
-						onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
-						Forgot Password?
-					</Text>
-				</View>
-
-
-				{/* Sign up / Login */}
+				{/* Sign up / Login */}s
 				<View style = {styles.doubleButtonContainer}>
 
 					<TouchableOpacity
 						onPress = {() => this.handleSignUp()} 
 						style = {styles.signupButton}>
-						<Text style = {styles.blackButtonText}>		Sign Up		</Text>
+						<Text style = {styles.df sdf dsblackButtonText}>		Sign Up		</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
