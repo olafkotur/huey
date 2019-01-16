@@ -44,6 +44,12 @@ export default StyleSheet.create({
 		textAlign: 'center',
 	},
 
+	darkButtonText: {
+		color: '#383838',
+		fontWeight: '500',
+		textAlign: 'center',
+	},
+
 	textButton: {
 		color: '#fff',
 		marginTop: deviceHeight * 0.01,
@@ -102,26 +108,34 @@ export default StyleSheet.create({
 		marginBottom: deviceHeight * 0.015,
 	},
 
-
-
-	// 3. Forgot Password
 	forgotPassword: {
 		color: '#383838',
 		marginBottom: deviceHeight * 0.02,
 		textAlign: 'right',
-		marginLeft: deviceWidth * 0.65,
+		marginLeft: deviceWidth * 0.5,
 	},
+
+
+
+	// 3. Forgot Password
 
 	resetButton: {
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
 		backgroundColor: '#e74c3c',
-		marginTop: deviceHeight * 0.04,
+		marginTop: deviceHeight * 0.01,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: deviceWidth * 0.02,
 		marginRight: deviceWidth * 0.02,
 		borderRadius: 5,
 	},
+
+	cancelText: {
+		color: '#383838',
+		marginBottom: deviceHeight * 0.02,
+		marginTop: deviceHeight * 0.02,
+		textAlign: 'center',
+	}
 
 })
