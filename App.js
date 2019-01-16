@@ -4,9 +4,9 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as firebase from "firebase";
 
 import styles from "./Styles";
-import LoginScreen from './screens/LoginScreen';
-import ForgotPassword from './screens/ForgotPassword';
-import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './components/LoginScreen';
+import ForgotPassword from './components/ForgotPassword';
+import HomeScreen from './components/HomeScreen';
 
 const AppStack = createStackNavigator({
 	LoginScreen: {screen: LoginScreen},
