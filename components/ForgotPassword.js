@@ -16,8 +16,7 @@ export default class ForgotPassword extends React.Component {
 
 	state = {
 		
-		email: '',
-		password: ''
+		email: ''
 	}
 
 	// Sends a request to firebase to reset password

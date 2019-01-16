@@ -21,12 +21,12 @@ export default class App extends React.Component {
 	// Firebase integration
 	componentDidMount = () => {
 		var config = {
-			apiKey: "AIzaSyDaXzKRSRaNQpNClm6BlQsnAVcejaB3Fek",
-			authDomain: "huey-638d9.firebaseapp.com",
-			databaseURL: "https://huey-638d9.firebaseio.com",
-			projectId: "huey-638d9",
-			storageBucket: "huey-638d9.appspot.com",
-			messagingSenderId: "421584069747"
+			apiKey: "AIzaSyA23wbAZnIDclHiMqF045vKWXXa1LdU-G0",
+			authDomain: "huey-f5674.firebaseapp.com",
+			databaseURL: "https://huey-f5674.firebaseio.com",
+			projectId: "huey-f5674",
+			storageBucket: "huey-f5674.appspot.com",
+			messagingSenderId: "219928889088"
 		};
 		firebase.initializeApp(config);
 	}
