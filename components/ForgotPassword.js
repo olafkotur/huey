@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import * as firebase from "firebase";
 
 import styles from "../Styles";
-import logo from "../assets/logo.png";
+import logo from "../static/logo.png";
 
 export default class ForgotPassword extends React.Component {
 
@@ -71,7 +71,7 @@ export default class ForgotPassword extends React.Component {
 
 				{/* Cancel */}
 				<Text 
-					style = {styles.textButton} 
+					style = {styles.forgotPassword} 
 					onPress = {() => this.props.navigation.navigate('LoginScreen')}>
 					Cancel
 				</Text>

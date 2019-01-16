@@ -4,7 +4,7 @@ import * as firebase from "firebase";
 import { KeyboardAvoidingView } from 'react-native';
 
 import styles from "../Styles";
-import meme from "../assets/logo.png";
+import meme from "../static/logo.png";
 
 export default class LoginScreen extends React.Component {
 
