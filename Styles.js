@@ -49,6 +49,14 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.01,
 	},
 
+	cameraContainer: {
+		flex: 1,
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		height: deviceHeight,
+		width: deviceWidth,
+
+	},
 
 
 	// 2. Login

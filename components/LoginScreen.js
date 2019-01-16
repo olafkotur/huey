@@ -33,7 +33,6 @@ export default class LoginScreen extends React.Component {
 
 	// Authenticates with firebase and sends user to home screen if successful
 	handleLogin = async () => {
-		console.log("Hello");
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
