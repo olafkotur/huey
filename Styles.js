@@ -55,7 +55,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		height: deviceHeight,
 		width: deviceWidth,
-
+		position: 'absolute'
 	},
 
 

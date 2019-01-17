@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Camera, Permissions } from 'expo';
 
 import styles from "../Styles";
@@ -7,7 +7,8 @@ import styles from "../Styles";
 export default class NativeCamera extends React.Component {
 
 	state = {
-		cameraPermission: null
+		cameraPermission: null,
+		cameraType: Camera.Constants.Type.front,
 	}
 
 
@@ -18,6 +19,19 @@ export default class NativeCamera extends React.Component {
 		// Camera Permissions
 		const { status } = await Permissions.askAsync(Permissions.CAMERA)
 		this.setState({cameraPermission: status === 'granted'});
+	}
+
+
+	// Toggles front and back cameras
+	toggleCamera = () => {
+		if (this.state.cameraType === 1) { // Back
+			this.setState({cameraType: Camera.Constants.Type.front})
+		}
+		else {
+			this.setState({cameraType: Camera.Constants.Type.back})
+		}
+
+		console.log(this.state.cameraType);
 	}
 
 
@@ -43,7 +57,13 @@ export default class NativeCamera extends React.Component {
 						style = { styles.cameraContainer } 
 						type = {this.state.cameraType} >
 					</Camera>
-					
+
+					{/* Toggle Camera */}
+					<TouchableOpacity
+						onPress = {() => this.toggleCamera()}>
+						<Text style = {{color: 'white'}}> Switch </Text>
+					</TouchableOpacity>
+
 				</View>
 			);
 		}
