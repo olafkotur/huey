@@ -39,8 +39,14 @@ export default class NativeCamera extends React.Component {
 	capturePhoto = async () => {
 		if (this.camera) {
 			let photo = await this.camera.takePictureAsync();
-			CameraRoll.saveToCameraRoll(photo.uri);
+			this.saveLocally(photo.uri);
 		}
+	}
+
+
+	// Saves specified uri to the camera roll
+	saveLocally = (uri) => {
+		CameraRoll.saveToCameraRoll(uri);
 	}
 
 
