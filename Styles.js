@@ -6,6 +6,55 @@ var deviceWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
 
+	// Dev
+	devButtonSmall: {
+		width: 30,
+		height: 30,
+		backgroundColor: '#fff',
+		borderRadius: 15,
+	},
+
+	cameraContainer: {
+		flex: 1,
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		height: deviceHeight,
+		width: deviceWidth,
+		position: 'absolute'
+	},
+
+	headingContainer: {
+		bottom: deviceHeight * 0.44,
+		left: deviceWidth * 0.42,
+	},
+
+	captureButton: {
+		width: deviceWidth * 0.16,
+		height: deviceWidth * 0.16,
+		opacity: 0.9,
+		borderRadius: deviceWidth * 0.08,
+		borderWidth: 3,
+		borderColor: '#fff',
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - (deviceHeight * 0.12),
+	},
+
+	/* 
+	*
+	*
+		The code above is made purely to get back end functionality to 
+		work please do move, modify, delete anything that is not needed 
+		for front end. Note that a lot of this is brute forced to speed
+		up backend so it will have to be changed.
+	*
+	*
+	*/
+
+
+
+
 	// 1. Global
 	container: {
 		flex: 1,
@@ -53,15 +102,6 @@ export default StyleSheet.create({
 	textButton: {
 		color: '#fff',
 		marginTop: deviceHeight * 0.01,
-	},
-
-	cameraContainer: {
-		flex: 1,
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-		height: deviceHeight,
-		width: deviceWidth,
-
 	},
 
 
