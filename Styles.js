@@ -28,7 +28,7 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.42,
 	},
 
-	captureButton: {
+	imageButton: {
 		width: deviceWidth * 0.16,
 		height: deviceWidth * 0.16,
 		opacity: 0.9,
@@ -39,6 +39,20 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		top: deviceHeight - (deviceHeight * 0.12),
+	},
+
+	videoButton: {
+		width: deviceWidth * 0.08,
+		height: deviceWidth * 0.08,
+		opacity: 0.9,
+		borderRadius: deviceWidth * 0.04,
+		borderWidth: 3,
+		borderColor: 'red',
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - (deviceHeight * 0.10),
+		left: deviceWidth * 0.15,
 	},
 
 	/* 

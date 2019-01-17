@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
-import { Camera, Permissions } from 'expo';
+import { Camera, Permissions, FileSystem } from 'expo';
 
 import styles from "../Styles";
 
@@ -8,7 +8,9 @@ export default class NativeCamera extends React.Component {
 
 	state = {
 		cameraPermission: null,
-		cameraType: Camera.Constants.Type.front,
+		cameraType: Camera.Constants.Type.back,
+		isRecording: false,
+		videoUri: null,
 	}
 
 
@@ -16,9 +18,11 @@ export default class NativeCamera extends React.Component {
 		// Orientation Lock
 		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
 
-		// Camera Permissions
-		const { status } = await Permissions.askAsync(Permissions.CAMERA)
-		this.setState({cameraPermission: status === 'granted'});
+		// Ask Permissions
+		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		this.setState({
+			cameraPermission: status === 'granted',
+		});
 	}
 
 
@@ -30,8 +34,6 @@ export default class NativeCamera extends React.Component {
 		else {
 			this.setState({cameraType: Camera.Constants.Type.back})
 		}
-
-		console.log(this.state.cameraType);
 	}
 
 
@@ -41,6 +43,21 @@ export default class NativeCamera extends React.Component {
 			let photo = await this.camera.takePictureAsync();
 			this.saveLocally(photo.uri);
 		}
+	}
+
+
+	// Takes a video and stores is
+	captureVideo = async () => {
+		if (this.state.isRecording === false) {
+			var video = this.camera.recordAsync().then((file) => {
+				this.saveLocally(file.uri);
+			});
+		}
+		else if (this.state.isRecording === true) {
+			this.camera.stopRecording();
+		}
+
+		this.setState({isRecording: !this.state.isRecording});
 	}
 
 
@@ -81,10 +98,16 @@ export default class NativeCamera extends React.Component {
 						</TouchableOpacity>
 					</View>
 
-					{/* Capture */}
+					{/* Capture Image */}
 					<TouchableOpacity
-						style = {styles.captureButton} 
+						style = {styles.imageButton} 
 						onPress = {() => this.capturePhoto()} >
+					</TouchableOpacity>
+
+					{/* Capture Video */}
+					<TouchableOpacity
+						style = {styles.videoButton} 
+						onPress = {() => this.captureVideo()} >
 					</TouchableOpacity>
 
 				</View>
