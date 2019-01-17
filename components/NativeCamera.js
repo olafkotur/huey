@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
 import { Camera, Permissions } from 'expo';
 
 import styles from "../Styles";
@@ -39,7 +39,7 @@ export default class NativeCamera extends React.Component {
 	capturePhoto = async () => {
 		if (this.camera) {
 			let photo = await this.camera.takePictureAsync();
-			// Error handling
+			CameraRoll.saveToCameraRoll(photo.uri);
 		}
 	}
 

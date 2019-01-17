@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import * as firebase from "firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { KeyboardAvoidingView } from 'react-native';
 
 import styles from "../Styles";
 import logo from "../static/logo.png";
