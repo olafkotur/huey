@@ -35,6 +35,15 @@ export default class NativeCamera extends React.Component {
 	}
 
 
+	// Takes a photo and stores it
+	capturePhoto = async () => {
+		if (this.camera) {
+			let photo = await this.camera.takePictureAsync();
+			// Error handling
+		}
+	}
+
+
 	render() {
 
 		// Camera Access Denied
@@ -59,9 +68,17 @@ export default class NativeCamera extends React.Component {
 					</Camera>
 
 					{/* Toggle Camera */}
+					<View style = {styles.headingContainer}>
+						<TouchableOpacity
+							style = {styles.devButtonSmall}
+							onPress = {() => this.toggleCamera()} >
+						</TouchableOpacity>
+					</View>
+
+					{/* Capture */}
 					<TouchableOpacity
-						onPress = {() => this.toggleCamera()}>
-						<Text style = {{color: 'white'}}> Switch </Text>
+						style = {styles.captureButton} 
+						onPress = {() => this.capturePhoto()} >
 					</TouchableOpacity>
 
 				</View>
