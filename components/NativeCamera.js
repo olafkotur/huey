@@ -56,7 +56,6 @@ export default class NativeCamera extends React.Component {
 		else if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 		}
-
 		this.setState({isRecording: !this.state.isRecording});
 	}
 
