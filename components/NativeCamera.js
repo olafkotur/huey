@@ -58,26 +58,27 @@ export default class NativeCamera extends React.Component {
 		// Camera Access Granted
 		else {
 			return (
-				<View style = {styles.container}>
+				<View style = {styles.nativeCameraParentContainer}>
 
 					{/* Camera Background */}
 					<Camera 
 						ref = { ref => { this.camera = ref; }} 
-						style = { styles.cameraContainer } 
-						type = {this.state.cameraType} >
+						style = { styles.testCameraContainer } 
+						type = {this.state.cameraType}
+						useCamera2Api = {true} >
 					</Camera>
 
 					{/* Toggle Camera */}
-					<View style = {styles.headingContainer}>
+					<View style = {styles.testHeadingContainer}>
 						<TouchableOpacity
-							style = {styles.devButtonSmall}
+							style = {styles.testDevButtonSmall}
 							onPress = {() => this.toggleCamera()} >
 						</TouchableOpacity>
 					</View>
 
 					{/* Capture */}
 					<TouchableOpacity
-						style = {styles.captureButton} 
+						style = {styles.testCaptureButton} 
 						onPress = {() => this.capturePhoto()} >
 					</TouchableOpacity>
 

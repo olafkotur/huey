@@ -16,11 +16,11 @@ export default StyleSheet.create({
 
 	cameraContainer: {
 		flex: 1,
+		backgroundColor: '#000',
 		justifyContent: 'flex-end',
-		alignItems: 'center',
+		alignSelf: 'stretch',
 		height: deviceHeight,
 		width: deviceWidth,
-		position: 'absolute'
 	},
 
 	headingContainer: {
@@ -51,6 +51,63 @@ export default StyleSheet.create({
 	*
 	*
 	*/
+
+
+
+	/*---------------------- Temp styles for solving camera scaling issues ------------------*/
+
+	testCameraContainer: {
+		flex: 1,
+		backgroundColor: '#000',
+		justifyContent: 'flex-end',
+		alignSelf: 'stretch',
+		marginBottom: -30,
+	},
+
+	nativeCameraParentContainer: {
+		flex: 1,
+		backgroundColor: '#F6F6F6',
+		justifyContent: 'flex-end',
+		alignItems: 'stretch',
+		height: deviceHeight,
+		width: deviceWidth,
+	},
+
+	testHeadingContainer: {
+		bottom: deviceHeight * 0.44,
+		left: deviceWidth * 0.42,
+		justifyContent: 'center', 
+		alignItems: '',
+		},
+
+	homeCameraParentContainer: {
+		flex: 1,
+		backgroundColor: '#000',
+		justifyContent: 'center',
+		alignItems: 'stretch',
+		height: deviceHeight,
+		width: deviceWidth,
+	},
+
+	testDevButtonSmall: {
+		width: deviceWidth * 0.07,
+		height: deviceWidth * 0.07,
+		backgroundColor: '#fff',
+		borderRadius: 9999,
+	},
+
+	testCaptureButton: {
+		width: deviceWidth * 0.18,
+		height: deviceWidth * 0.18,
+		opacity: 0.9,
+		borderRadius: 9999,
+		borderWidth: 5,
+		borderColor: '#fff',
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - 60,
+	},
 
 
 
