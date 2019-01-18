@@ -77,7 +77,6 @@ export default StyleSheet.create({
 		bottom: deviceHeight * 0.44,
 		left: deviceWidth * 0.42,
 		justifyContent: 'center', 
-		alignItems: '',
 		},
 
 	homeCameraParentContainer: {
