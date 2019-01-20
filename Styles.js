@@ -77,6 +77,24 @@ export default StyleSheet.create({
 	*/
 
 
+// folder button homepage
+  folderButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+			top: deviceHeight - ((deviceHeight * 0.05)+5),
+    left:10,
+	},
+
+  folderIcon: {
+    color: '#fff',
+    fontSize:30,
+  },
+
+
 
 
 	// 1. Global
