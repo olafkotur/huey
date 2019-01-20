@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-nati
 import { Camera, Permissions, FileSystem } from 'expo';
 
 import styles from "../Styles";
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class NativeCamera extends React.Component {
 
@@ -83,29 +84,27 @@ export default class NativeCamera extends React.Component {
 				<View style = {styles.container}>
 
 					{/* Camera Background */}
-					<Camera 
-						ref = { ref => { this.camera = ref; }} 
-						style = { styles.cameraContainer } 
+					<Camera
+						ref = { ref => { this.camera = ref; }}
+						style = { styles.cameraContainer }
 						type = {this.state.cameraType} >
 					</Camera>
 
 					{/* Toggle Camera */}
 					<View style = {styles.headingContainer}>
-						<TouchableOpacity
-							style = {styles.devButtonSmall}
-							onPress = {() => this.toggleCamera()} >
-						</TouchableOpacity>
+						<Icon name="autorenew" style = {styles.flipCamera}  size = {30}
+							onPress = {() => this.toggleCamera()} />
 					</View>
 
 					{/* Capture Image */}
 					<TouchableOpacity
-						style = {styles.imageButton} 
+						style = {styles.imageButton}
 						onPress = {() => this.capturePhoto()} >
 					</TouchableOpacity>
 
 					{/* Capture Video */}
 					<TouchableOpacity
-						style = {styles.videoButton} 
+						style = {styles.videoButton}
 						onPress = {() => this.captureVideo()} >
 					</TouchableOpacity>
 

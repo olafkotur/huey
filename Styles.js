@@ -14,6 +14,11 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
+  flipCamera: {
+  	color: '#fff',
+    backgroundColor: 'transparent',
+	},
+
 	cameraContainer: {
 		flex: 1,
 		justifyContent: 'flex-end',
@@ -55,11 +60,11 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.15,
 	},
 
-	/* 
+	/*
 	*
 	*
-		The code above is made purely to get back end functionality to 
-		work please do move, modify, delete anything that is not needed 
+		The code above is made purely to get back end functionality to
+		work please do move, modify, delete anything that is not needed
 		for front end. Note that a lot of this is brute forced to speed
 		up backend so it will have to be changed.
 	*
