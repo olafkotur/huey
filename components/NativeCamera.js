@@ -80,7 +80,7 @@ export default class NativeCamera extends React.Component {
 		// Camera Access Granted
 		else {
 			return (
-				<View style = {styles.container}>
+				<View style = {styles.cameraParentContainer}>
 
 					{/* Camera Background */}
 					<Camera 
