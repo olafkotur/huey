@@ -39,12 +39,17 @@ export default StyleSheet.create({
 		opacity: 0.9,
 		borderRadius: deviceWidth * 0.08,
 		borderWidth: 3,
-		borderColor: '#fff',
+		borderColor: '#00B158',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		top: deviceHeight - (deviceHeight * 0.12),
 	},
+
+  shutterIcon: {
+    color: '#fff',
+    fontSize:deviceWidth * 0.145,
+  },
 
 	videoButton: {
 		width: deviceWidth * 0.08,

@@ -100,6 +100,7 @@ export default class NativeCamera extends React.Component {
 					<TouchableOpacity
 						style = {styles.imageButton}
 						onPress = {() => this.capturePhoto()} >
+            <Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
 					{/* Capture Video */}
