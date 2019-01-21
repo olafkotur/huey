@@ -32,7 +32,6 @@ export default class LoginScreen extends React.Component {
 		/*.then(() => {
 			this.props.navigation.navigate('HomeScreen'),
 			this.dropdown.alertWithType('success', 'Welcome',"Love Is At The Root Of Our Resistance - CK"););*/
-		}
 	}
 
 	// Authenticates with firebase and sends user to home screen if successful
@@ -45,7 +44,6 @@ export default class LoginScreen extends React.Component {
 		/*.then(() => {
 			this.props.navigation.navigate('HomeScreen'),
 			this.dropdown.alertWithType('success', 'Success',"You Can't Jail The Revolustion - FH"););*/
-		}
 	}
 
 	render() {
