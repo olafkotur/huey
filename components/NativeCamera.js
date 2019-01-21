@@ -40,24 +40,56 @@ export default class NativeCamera extends React.Component {
 
 	// Takes a photo and stores it
 	capturePhoto = async () => {
-		if (this.camera) {
-			let photo = await this.camera.takePictureAsync();
-			this.saveLocally(photo.uri);
-		}
+		// if (this.camera) {
+		// 	let photo = await this.camera.takePictureAsync();
+		// 	this.saveLocally(photo.uri);
+		// }
+		console.log('Taking Photo');
 	}
 
 
 	// Takes a video and stores is
 	captureVideo = async () => {
-		if (this.state.isRecording === false) {
-			var video = this.camera.recordAsync().then((file) => {
-				this.saveLocally(file.uri);
-			});
-		}
-		else if (this.state.isRecording === true) {
+		// if (this.state.isRecording === false) {
+		// 	var video = this.camera.recordAsync().then((file) => {
+		// 		this.saveLocally(file.uri);
+		// 	});
+		// }
+		// else if (this.state.isRecording === true) {
+		// 	this.camera.stopRecording();
+		// }
+		// this.setState({isRecording: !this.state.isRecording});
+		console.log('Recording Video');
+	}
+
+	capture = async (action) => {
+		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
+			this.setState({isRecording: false});
 		}
-		this.setState({isRecording: !this.state.isRecording});
+		else if (action === 'photo') {
+			if (this.camera) {
+				try {
+					await this.camera.takePictureAsync().then((file) => {
+						this.saveLocally(file.uri);
+					});
+				} catch (error) {
+					console.log(error.message);
+				}
+ 			}
+		}
+		else if (action === 'video') {
+			if (this.state.isRecording === false) {
+				try {
+					await this.camera.recordAsync().then((file) => {
+						this.saveLocally(file.uri);
+					});
+					this.setState({isRecording: true});
+				} catch (error) {
+					console.log(error.message);
+				}
+			}
+		}
 	}
 
 
@@ -98,10 +130,11 @@ export default class NativeCamera extends React.Component {
 						</TouchableOpacity>
 					</View>
 
-					{/* Capture Image */}
+					{/* Capture */}
 					<TouchableOpacity
 						style = {styles.imageButton}
-						onPress = {() => this.capturePhoto()} >
+						onPress = {() => this.capture('photo')} 
+						onLongPress = {() => this.capture('video')} >
             			<Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
