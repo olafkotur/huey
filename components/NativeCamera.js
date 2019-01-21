@@ -11,7 +11,7 @@ export default class NativeCamera extends React.Component {
 		cameraPermission: null,
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
-		videoUri: null,
+		cameraStyle: styles.cameraContainer,
 	}
 
 
@@ -49,8 +49,14 @@ export default class NativeCamera extends React.Component {
 		// Capture photo
 		else if (action === 'photo' && this.camera) {
 			try {
+				this.setState({cameraStyle: styles.cameraBlank});
 				await this.camera.takePictureAsync().then((file) => {
+					// Flashes screen
+					setTimeout(() => {
+						this.setState({cameraStyle: styles.cameraContainer});
+					}, 150);
 					this.saveLocally(file.uri);
+
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -96,7 +102,7 @@ export default class NativeCamera extends React.Component {
 					{/* Camera Background */}
 					<Camera
 						ref = { ref => { this.camera = ref; }}
-						style = { styles.cameraContainer }
+						style = {this.state.cameraStyle}
 						type = {this.state.cameraType} >
 					</Camera>
 
@@ -110,16 +116,10 @@ export default class NativeCamera extends React.Component {
 
 					{/* Capture */}
 					<TouchableOpacity
-						style = {styles.imageButton}
+						style = {styles.captureButton}
 						onPress = {() => this.captureMedia('photo')} 
 						onLongPress = {() => this.captureMedia('video')} >
             			<Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
-					</TouchableOpacity>
-
-					{/* Capture Video */}
-					<TouchableOpacity
-						style = {styles.videoButton}
-						onPress = {() => this.captureVideo()} >
 					</TouchableOpacity>
 
 				</View>

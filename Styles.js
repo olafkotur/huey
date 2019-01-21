@@ -17,6 +17,7 @@ export default StyleSheet.create({
   	flipCamera: {
 	  	color: '#fff',
 	    backgroundColor: 'transparent',
+	    zIndex: 100,
 	},
 
 	cameraContainer: {
@@ -43,6 +44,7 @@ export default StyleSheet.create({
 	headingContainer: {
 		bottom: deviceHeight - (deviceHeight * 0.0925),
 		left: deviceWidth - (deviceWidth * 0.1),
+		zIndex: 100,
 	},
 
 	devButtonSmall: {
@@ -53,7 +55,7 @@ export default StyleSheet.create({
 	},
 
 
-	imageButton: {
+	captureButton: {
 		width: deviceWidth * 0.16,
 		height: deviceWidth * 0.16,
 		opacity: 0.9,
@@ -66,23 +68,19 @@ export default StyleSheet.create({
 		top: deviceHeight - (deviceHeight * 0.075),
 	},
 
-  shutterIcon: {
-    color: '#fff',
-    fontSize:deviceWidth * 0.145,
-  },
+	shutterIcon: {
+		color: '#fff',
+		fontSize:deviceWidth * 0.145,
+	},
 
-	videoButton: {
-		width: deviceWidth * 0.08,
-		height: deviceWidth * 0.08,
-		opacity: 0.9,
-		borderRadius: deviceWidth * 0.04,
-		borderWidth: 3,
-		borderColor: 'red',
-		zIndex: 100,
+
+	cameraBlank: {
+		flex: 1,
+		backgroundColor: 'red',
+		height: deviceHeight,
+		width: deviceHeight * 0.75,
 		position: 'absolute',
-		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.055),
-		left: deviceWidth - (deviceWidth * 0.4),
+		zIndex: 50,
 	},
 
 	/*
@@ -98,21 +96,21 @@ export default StyleSheet.create({
 
 
 // folder button homepage
-  folderButton: {
+	folderButton: {
 		width: 30,
 		height: 30,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-			top: deviceHeight - ((deviceHeight * 0.05)+5),
-    left:10,
+		top: deviceHeight - ((deviceHeight * 0.05)+5),
+		left:10,
 	},
 
-  folderIcon: {
-    color: '#fff',
-    fontSize:30,
-  },
+	folderIcon: {
+		color: '#fff',
+		fontSize:30,
+	},
 
 
 
