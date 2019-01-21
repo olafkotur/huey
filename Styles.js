@@ -21,16 +21,20 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
-	// folder button homepage
-	folderButton: {
-		width: 30,
-		height: 30,
-		opacity: 0.9,
+
+	captureButton: {
+		width: deviceWidth * 0.16,
+		height: deviceWidth * 0.16,
+		opacity: 0.5,
+		borderRadius: deviceWidth * 0.08,
+		borderWidth: 3,
+		borderColor: '#fff',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-			top: deviceHeight - ((deviceHeight * 0.05)+5),
-	left:10,
+		//top: deviceHeight - (deviceHeight * 0.075),
+    bottom: (deviceHeight / 30),
+  
 	},
 
 	folderIcon: {
@@ -48,7 +52,6 @@ export default StyleSheet.create({
 	*
 	*
 	*/
-
 
 
 	/*
