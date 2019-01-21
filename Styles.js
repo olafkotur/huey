@@ -7,12 +7,6 @@ var deviceWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
 
 	// Dev
-	devButtonSmall: {
-		width: 30,
-		height: 30,
-		backgroundColor: '#fff',
-		borderRadius: 15,
-	},
 
 	devButtonSmall: {
 		width: 30,
@@ -21,22 +15,9 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
-
-	// folder button homepage
-	folderButton: {
-		width: 30,
-		height: 30,
-		opacity: 0.9,
-		zIndex: 100,
-		position: 'absolute',
-		alignSelf: 'center',
-		top: deviceHeight - ((deviceHeight * 0.05)+5),
-		left:10,
-	},
-
-	folderIcon: {
-		color: '#fff',
-		fontSize:30,
+	headingContainer: {
+		bottom: deviceHeight - (deviceHeight * 0.0925),
+		left: deviceWidth - (deviceWidth * 0.1),
 	},
 
 	/*
@@ -46,23 +27,19 @@ export default StyleSheet.create({
 		work please do move, modify, delete anything that is not needed
 		for front end. Note that a lot of this is brute forced to speed
 		up backend so it will have to be changed.
-	*
-	*
-	*/
 
-
-	/*
-		TABLE OF CONTENTS
+	----- TABLE OF CONTENTS -----
 
 			1. Global
 			2. Login
 			3. Forgot Password
 			4. Camera
+			5. HomeScreen
 	*/
 
 
+// 1. Global
 
-	// 1. Global
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
@@ -118,7 +95,8 @@ export default StyleSheet.create({
 
 
 
-	// 2. Login
+// 2. Login
+
 	loginLogo: {
 		width: deviceWidth * 0.7,
 		height: deviceWidth * 0.7,
@@ -178,8 +156,8 @@ export default StyleSheet.create({
 
 
 
+// 3. Forgot Password
 
-	// 3. Forgot Password
 	resetButton: {
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
@@ -201,23 +179,73 @@ export default StyleSheet.create({
 
 
 
+//	4. Camera
 
-	// 4. Camera
+	flipCameraButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		bottom: deviceHeight * 0.94,
+		left: deviceWidth * 0.89,
+	},
+
+  	flipCamera: {
+	  	color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	},
+
+	cameraContainer: {
+		flex: 1,
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		backgroundColor: '#000',
+		justifyContent: 'flex-end',
+		alignSelf: 'stretch',
+		height: deviceHeight,
+		width: (deviceHeight * 0.75),
+		position: 'absolute',
+	},
+
+	cameraParentContainer: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'stretch',
+		justifyContent: 'flex-end',
+		height: deviceHeight,
+		width: deviceWidth,
+	},
+
 	captureButton: {
-		width: deviceWidth * 0.16,
-		height: deviceWidth * 0.16,
+		width: deviceWidth * 0.18,
+		height: deviceWidth * 0.18,
 		opacity: 0.5,
-		borderRadius: deviceWidth * 0.08,
-		borderWidth: 3,
+		borderRadius: deviceWidth * 0.09,
+		borderWidth: 4,
 		borderColor: '#fff',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-    	bottom: (deviceHeight / 30),	},
+		top: deviceHeight - (deviceHeight * 0.075),
+    	bottom: (deviceHeight / 30),
+	},
 
-	shutterIcon: {
-		color: '#fff',
-		fontSize:deviceWidth * 0.145,
+  	shutterIcon: {
+    	color: '#fff',
+    	fontSize:deviceWidth * 0.145,
+  	},
+
+	videoButton: {
+		width: deviceWidth * 0.08,
+		height: deviceWidth * 0.08,
+		opacity: 0.9,
+		borderRadius: deviceWidth * 0.04,
+		borderWidth: 3,
+		borderColor: 'red',
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - (deviceHeight * 0.055),
+		left: deviceWidth - (deviceWidth * 0.4),
 	},
 
 	blinkTrue: {
@@ -240,21 +268,24 @@ export default StyleSheet.create({
 		width: deviceWidth,
 	},
 
-	flipCamera: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
+
+//	5. HomeScreen
+
+ 	folderButton: {
+    	width: deviceWidth * 0.08,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.03, 
+    	left:	deviceWidth * 0.06,
 	},
 
-	cameraContainer: {
-		flex: 1,
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		backgroundColor: '#000',
-		justifyContent: 'flex-end',
-		alignSelf: 'stretch',
-		height: deviceHeight,
-		width: (deviceHeight * 0.75),
-		position: 'absolute',
+  	folderIcon: {
+	  	color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.08,
 	},
 
 })
