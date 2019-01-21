@@ -24,11 +24,11 @@ export default class HomeScreen extends React.Component {
 
 				<NativeCamera />
 
-        <TouchableOpacity
-          style = {styles.folderButton}
-          onPress = {() => console.log("FolderPressed")} >
-          <Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
-        </TouchableOpacity>
+				<TouchableOpacity
+					style = {styles.folderButton}
+					onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+					<Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
+				</TouchableOpacity>
 
 			</View>
 		);

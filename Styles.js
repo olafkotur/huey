@@ -14,9 +14,9 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
-  flipCamera: {
-  	color: '#fff',
-    backgroundColor: 'transparent',
+  	flipCamera: {
+	  	color: '#fff',
+	    backgroundColor: 'transparent',
 	},
 
 	cameraContainer: {
@@ -41,7 +41,7 @@ export default StyleSheet.create({
 	},
 
 	headingContainer: {
-		bottom: deviceHeight - (deviceHeight * 0.055),
+		bottom: deviceHeight - (deviceHeight * 0.0925),
 		left: deviceWidth - (deviceWidth * 0.1),
 	},
 

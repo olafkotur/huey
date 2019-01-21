@@ -7,11 +7,13 @@ import styles from "./Styles";
 import LoginScreen from './components/LoginScreen';
 import ForgotPassword from './components/ForgotPassword';
 import HomeScreen from './components/HomeScreen';
+import MediaGallery from './components/MediaGallery';
 
 const AppStack = createStackNavigator({
 	LoginScreen: {screen: LoginScreen},
 	ForgotPassword: {screen: ForgotPassword},
 	HomeScreen: {screen: HomeScreen},
+	MediaGallery: {screen: MediaGallery},
 });
 
 const AppRouter = createAppContainer(AppStack);
