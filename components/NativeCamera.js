@@ -92,15 +92,17 @@ export default class NativeCamera extends React.Component {
 
 					{/* Toggle Camera */}
 					<View style = {styles.headingContainer}>
-						<Icon name="autorenew" style = {styles.flipCamera}  size = {30}
-							onPress = {() => this.toggleCamera()} />
+						<TouchableOpacity
+							onPress = {() => this.toggleCamera()} >
+							<Icon name="autorenew" style = {styles.flipCamera}  size = {30} />
+						</TouchableOpacity>
 					</View>
 
 					{/* Capture Image */}
 					<TouchableOpacity
 						style = {styles.imageButton}
 						onPress = {() => this.capturePhoto()} >
-            <Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
+            			<Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
 					{/* Capture Video */}
