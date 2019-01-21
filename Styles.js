@@ -56,14 +56,15 @@ export default StyleSheet.create({
 	imageButton: {
 		width: deviceWidth * 0.16,
 		height: deviceWidth * 0.16,
-		opacity: 0.9,
+		opacity: 0.5,
 		borderRadius: deviceWidth * 0.08,
 		borderWidth: 3,
-		borderColor: '#00B158',
+		borderColor: '#fff',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.075),
+		//top: deviceHeight - (deviceHeight * 0.075),
+    bottom: (deviceHeight / 30),
 	},
 
   shutterIcon: {
@@ -105,7 +106,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-			top: deviceHeight - ((deviceHeight * 0.05)+5),
+			bottom: (deviceHeight / 30), 
     left:10,
 	},
 
