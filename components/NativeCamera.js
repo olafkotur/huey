@@ -11,7 +11,7 @@ export default class NativeCamera extends React.Component {
 		cameraPermission: null,
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
-		videoUri: null,
+		blinkStyle: styles.blinkFalse,
 	}
 
 
@@ -21,9 +21,7 @@ export default class NativeCamera extends React.Component {
 
 		// Ask Permissions
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
-		this.setState({
-			cameraPermission: status === 'granted',
-		});
+		this.setState({cameraPermission: status === 'granted'});
 	}
 
 
@@ -38,26 +36,42 @@ export default class NativeCamera extends React.Component {
 	}
 
 
-	// Takes a photo and stores it
-	capturePhoto = async () => {
-		if (this.camera) {
-			let photo = await this.camera.takePictureAsync();
-			this.saveLocally(photo.uri);
-		}
-	}
-
-
-	// Takes a video and stores is
-	captureVideo = async () => {
-		if (this.state.isRecording === false) {
-			var video = this.camera.recordAsync().then((file) => {
-				this.saveLocally(file.uri);
-			});
-		}
-		else if (this.state.isRecording === true) {
+	// Capture video or photo
+	captureMedia = async (action) => {
+		// Stop Recording if active
+		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
+			this.setState({isRecording: false});
 		}
-		this.setState({isRecording: !this.state.isRecording});
+
+		// Capture photo
+		else if (action === 'photo' && this.camera) {
+			try {
+				this.setState({blinkStyle: styles.blinkTrue});
+				await this.camera.takePictureAsync().then((file) => {
+					// Flashes screen
+					setTimeout(() => {
+						this.setState({blinkStyle: styles.blinkFalse});
+					}, 150);
+					this.saveLocally(file.uri);
+
+				});
+			} catch (error) {
+				console.log(error.message);
+			}
+		}
+
+		// Capture video
+		else if (action === 'video' && this.state.isRecording === false && this.camera) {
+			try {
+				await this.camera.recordAsync().then((file) => {
+					this.saveLocally(file.uri);
+				});
+				this.setState({isRecording: true});
+			} catch (error) {
+				console.log(error.message);
+			}
+		}
 	}
 
 
@@ -81,12 +95,12 @@ export default class NativeCamera extends React.Component {
 		// Camera Access Granted
 		else {
 			return (
-				<View style = {styles.cameraParentContainer}>
+				<View style = {this.state.blinkStyle}>
 
 					{/* Camera Background */}
 					<Camera
 						ref = { ref => { this.camera = ref; }}
-						style = { styles.cameraContainer }
+						style = {styles.cameraContainer}
 						type = {this.state.cameraType} >
 					</Camera>
 
@@ -98,16 +112,12 @@ export default class NativeCamera extends React.Component {
 						</TouchableOpacity>
 					</View>
 
-					{/* Capture Image */}
+					{/* Capture */}
 					<TouchableOpacity
-						style = {styles.imageButton}
-						onPress = {() => this.capturePhoto()} >
-					</TouchableOpacity>
-
-					{/* Capture Video */}
-					<TouchableOpacity
-						style = {styles.videoButton}
-						onPress = {() => this.captureVideo()} >
+						style = {styles.captureButton}
+						onPress = {() => this.captureMedia('photo')} 
+						onLongPress = {() => this.captureMedia('video')} >
+            <Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
 				</View>

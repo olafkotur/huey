@@ -14,37 +14,6 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
-  	flipCamera: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	},
-
-	cameraContainer: {
-		flex: 1,
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		backgroundColor: '#000',
-		justifyContent: 'flex-end',
-		alignSelf: 'stretch',
-		height: deviceHeight,
-		width: (deviceHeight * 0.75),
-		position: 'absolute',
-	},
-
-	cameraParentContainer: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'stretch',
-		justifyContent: 'flex-end',
-		height: deviceHeight,
-		width: deviceWidth,
-	},
-
-	headingContainer: {
-		bottom: deviceHeight - (deviceHeight * 0.0925),
-		left: deviceWidth - (deviceWidth * 0.1),
-	},
-
 	devButtonSmall: {
 		width: 30,
 		height: 30,
@@ -53,7 +22,7 @@ export default StyleSheet.create({
 	},
 
 
-	imageButton: {
+	captureButton: {
 		width: deviceWidth * 0.16,
 		height: deviceWidth * 0.16,
 		opacity: 0.5,
@@ -65,25 +34,12 @@ export default StyleSheet.create({
 		alignSelf: 'center',
 		//top: deviceHeight - (deviceHeight * 0.075),
     bottom: (deviceHeight / 30),
+  
 	},
 
-  shutterIcon: {
-    color: '#fff',
-    fontSize:deviceWidth * 0.145,
-  },
-
-	videoButton: {
-		width: deviceWidth * 0.08,
-		height: deviceWidth * 0.08,
-		opacity: 0.9,
-		borderRadius: deviceWidth * 0.04,
-		borderWidth: 3,
-		borderColor: 'red',
-		zIndex: 100,
-		position: 'absolute',
-		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.055),
-		left: deviceWidth - (deviceWidth * 0.4),
+	folderIcon: {
+		color: '#fff',
+		fontSize:30,
 	},
 
 	/*
@@ -98,30 +54,21 @@ export default StyleSheet.create({
 	*/
 
 
-// folder button homepage
-  folderButton: {
-		width: 30,
-		height: 30,
-		opacity: 0.9,
-		zIndex: 100,
-		position: 'absolute',
-		alignSelf: 'center',
-			bottom: (deviceHeight / 30), 
-    left:10,
-	},
+	/*
+		TABLE OF CONTENTS
 
-  folderIcon: {
-    color: '#fff',
-    fontSize:30,
-  },
-
+			1. Global
+			2. Login
+			3. Forgot Password
+			4. Camera
+	*/
 
 
 
 	// 1. Global
 	container: {
 		flex: 1,
-		backgroundColor: '#273c75',
+		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -166,6 +113,12 @@ export default StyleSheet.create({
 		color: '#fff',
 		marginTop: deviceHeight * 0.01,
 	},
+
+	headingContainer: {
+		bottom: deviceHeight - (deviceHeight * 0.0925),
+		left: deviceWidth - (deviceWidth * 0.1),
+	},
+
 
 
 	// 2. Login
@@ -228,8 +181,8 @@ export default StyleSheet.create({
 
 
 
-	// 3. Forgot Password
 
+	// 3. Forgot Password
 	resetButton: {
 		width: deviceWidth * 0.38,
 		height: deviceHeight * 0.06,
@@ -247,6 +200,65 @@ export default StyleSheet.create({
 		marginBottom: deviceHeight * 0.02,
 		marginTop: deviceHeight * 0.02,
 		textAlign: 'center',
-	}
+	},
+
+
+
+
+	// 4. Camera
+	captureButton: {
+		width: deviceWidth * 0.16,
+		height: deviceWidth * 0.16,
+		opacity: 0.9,
+		borderRadius: deviceWidth * 0.08,
+		borderWidth: 3,
+		borderColor: '#00B158',
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - (deviceHeight * 0.075),
+	},
+
+	shutterIcon: {
+		color: '#fff',
+		fontSize:deviceWidth * 0.145,
+	},
+
+	blinkTrue: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'stretch',
+		justifyContent: 'flex-end',
+		height: deviceHeight,
+		width: deviceWidth,
+		opacity: 0.5,
+		zIndex: 50,
+	},
+
+	blinkFalse: {
+		flex: 1,
+		backgroundColor: 'transparent',
+		alignItems: 'stretch',
+		justifyContent: 'flex-end',
+		height: deviceHeight,
+		width: deviceWidth,
+	},
+
+	flipCamera: {
+	  	color: '#fff',
+	    backgroundColor: 'transparent',
+	},
+
+	cameraContainer: {
+		flex: 1,
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		backgroundColor: '#000',
+		justifyContent: 'flex-end',
+		alignSelf: 'stretch',
+		height: deviceHeight,
+		width: (deviceHeight * 0.75),
+		position: 'absolute',
+	},
 
 })
