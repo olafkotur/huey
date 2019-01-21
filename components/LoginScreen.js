@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import * as firebase from "firebase";
 import { KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DropdownAlert from 'react-native-dropdownalert';
 
 import styles from "../Styles";
 import logo from "../static/logo.png";
@@ -19,7 +20,6 @@ export default class LoginScreen extends React.Component {
 		email: 'hueyyapp@gmail.com',
 		password: 'Testing1123',
 
-		errorCode: '',
 	}
 
 	// Creates a new user with firebase and sends user to home screen if successful
@@ -27,9 +27,8 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.createUserWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => this.props.navigation.navigate('HomeScreen'))
-		.catch(error => this.setState({errorCode: error.code}))
-		console.log(this.state.errorCode)
+		.then(() => {this.props.navigation.navigate('HomeScreen')})
+		.catch((error) => {this.dropdown.alertWithType('error', 'Error', error.message)})
 	}
 
 	// Authenticates with firebase and sends user to home screen if successful
@@ -37,9 +36,8 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => this.props.navigation.navigate('HomeScreen'))
-		.catch(error => this.setState({errorCode: error.code}))
-		console.log(this.state.errorCode)
+		.then(() => {this.props.navigation.navigate('HomeScreen')})
+		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 	}
 
 	render() {
@@ -48,12 +46,12 @@ export default class LoginScreen extends React.Component {
 				contentContainerStyle = {styles.containerLight}
 				//keyboardDismissMode = 'on-drag'
 				//keyboardShouldPersistTaps = 'never'
-				scrollEnabled = {true} 
+				scrollEnabled = {true}
 				enableAutomaticScroll = {true}
 				>
 
 				<KeyboardAvoidingView style={styles.containerLight} behavior="padding" enabled>
-				
+
 				{/* Logo */}
 				<Image
 					style = {styles.loginLogo}
@@ -91,8 +89,8 @@ export default class LoginScreen extends React.Component {
 
 				{/* Forgot Password */}
 				<View>
-					<Text 
-						style = {styles.forgotPassword} 
+					<Text
+						style = {styles.forgotPassword}
 						onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
 						Forgot Password?
 					</Text>
@@ -102,19 +100,22 @@ export default class LoginScreen extends React.Component {
 				<View style = {styles.doubleButtonContainer}>
 
 					<TouchableOpacity
-						onPress = {() => this.handleSignUp()} 
+						onPress = {() => this.handleSignUp()}
 						style = {styles.signupButton}>
 						<Text style = {styles.darkButtonText}>		Sign Up		</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
-						onPress = {() => this.handleLogin()} 
+						onPress = {() => this.handleLogin()}
 						style = {styles.loginButton}>
 						<Text style = {styles.whiteButtonText}>		Login 		</Text>
 					</TouchableOpacity>
 
 				</View>
 				</KeyboardAvoidingView>
+
+				<DropdownAlert ref={ref => this.dropdown = ref} />
+
 			</KeyboardAwareScrollView>
 		);
 	}

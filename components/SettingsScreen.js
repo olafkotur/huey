@@ -20,7 +20,7 @@ export default class SettingsScreen extends React.Component {
 			<View style = {styles.container}>
 
 				<TouchableOpacity
-					style = {styles.topLeftButton} 
+					style = {styles.topLeftButton}
 					onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 					<Icon name="arrow-back" style = {{color: '#000'}}  size = {30} />
 				</TouchableOpacity>
