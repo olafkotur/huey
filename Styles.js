@@ -26,7 +26,7 @@ export default StyleSheet.create({
 		left:10,
 	},
 
-	
+
 
 	folderIcon: {
 		color: '#fff',
@@ -249,8 +249,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.075),
-    	bottom: (deviceHeight / 30),
+    bottom: (deviceHeight / 30),
 	},
 
   	shutterIcon: {
@@ -302,7 +301,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.03, 
+		bottom: deviceHeight * 0.03,
     	left:	deviceWidth * 0.06,
 	},
 
@@ -319,7 +318,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.94, 
+		bottom: deviceHeight * 0.94,
 		left: deviceWidth * 0.04,
 	},
 
