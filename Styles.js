@@ -14,9 +14,35 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
+	headingContainer: {
+		bottom: deviceHeight - (deviceHeight * 0.0925),
+		left: deviceWidth - (deviceWidth * 0.1),
+	},
+
+	/*
+	*
+	*
+		The code above is made purely to get back end functionality to
+		work please do move, modify, delete anything that is not needed
+		for front end. Note that a lot of this is brute forced to speed
+		up backend so it will have to be changed.
+	*
+	*
+	*/
+
+	//	4. Camera
+
+	flipCameraButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		bottom: deviceHeight * 0.94,
+		left: deviceWidth * 0.89,
+	},
+
   	flipCamera: {
 	  	color: '#fff',
 	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -40,37 +66,24 @@ export default StyleSheet.create({
 		width: deviceWidth,
 	},
 
-	headingContainer: {
-		bottom: deviceHeight - (deviceHeight * 0.0925),
-		left: deviceWidth - (deviceWidth * 0.1),
-	},
-
-	devButtonSmall: {
-		width: 30,
-		height: 30,
-		backgroundColor: '#fff',
-		borderRadius: 15,
-	},
-
-
-	imageButton: {
-		width: deviceWidth * 0.16,
-		height: deviceWidth * 0.16,
+	captureButton: {
+		width: deviceWidth * 0.18,
+		height: deviceWidth * 0.18,
 		opacity: 0.5,
-		borderRadius: deviceWidth * 0.08,
-		borderWidth: 3,
+		borderRadius: deviceWidth * 0.09,
+		borderWidth: 4,
 		borderColor: '#fff',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		//top: deviceHeight - (deviceHeight * 0.075),
-    bottom: (deviceHeight / 30),
+		top: deviceHeight - (deviceHeight * 0.075),
+    	bottom: (deviceHeight / 30),
 	},
 
-  shutterIcon: {
-    color: '#fff',
-    fontSize:deviceWidth * 0.145,
-  },
+  	shutterIcon: {
+    	color: '#fff',
+    	fontSize:deviceWidth * 0.145,
+  	},
 
 	videoButton: {
 		width: deviceWidth * 0.08,
@@ -86,36 +99,29 @@ export default StyleSheet.create({
 		left: deviceWidth - (deviceWidth * 0.4),
 	},
 
-	/*
-	*
-	*
-		The code above is made purely to get back end functionality to
-		work please do move, modify, delete anything that is not needed
-		for front end. Note that a lot of this is brute forced to speed
-		up backend so it will have to be changed.
-	*
-	*
-	*/
+	//	5. HomeScreen
 
-
-// folder button homepage
-  folderButton: {
-		width: 30,
-		height: 30,
+ 	folderButton: {
+    	width: deviceWidth * 0.07,
+		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-			bottom: (deviceHeight / 30), 
-    left:10,
+		bottom: deviceHeight * 0.03, 
+    	left:	deviceWidth * 0.06,
 	},
 
-  folderIcon: {
-    color: '#fff',
-    fontSize:30,
-  },
+  	flipCamera: {
+	  	color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	},
 
-
+ 	folderIcon: {
+    	color: '#fff',
+    	fontSize:30,
+  	},
 
 
 	// 1. Global

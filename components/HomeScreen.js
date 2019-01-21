@@ -21,14 +21,15 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-
-				<NativeCamera />
-
+			
 				<TouchableOpacity
 					style = {styles.folderButton}
 					onPress = {() => this.props.navigation.navigate('MediaGallery')}>
 					<Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
 				</TouchableOpacity>
+
+				<NativeCamera />
+
 
 			</View>
 		);
