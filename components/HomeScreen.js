@@ -21,9 +21,7 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-
-				<NativeCamera />
-
+			
 				<TouchableOpacity
 					style = {styles.folderButton}
 					onPress = {() => this.props.navigation.navigate('MediaGallery')}>
@@ -35,6 +33,8 @@ export default class HomeScreen extends React.Component {
 					onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
 					<Icon name="settings" style = {styles.folderIcon} allowFontScaling={false} />
 				</TouchableOpacity>
+
+				<NativeCamera />
 
 			</View>
 		);
