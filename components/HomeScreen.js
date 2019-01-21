@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image,TouchableOpacity, } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import NativeCamera from './NativeCamera.js';
 import styles from "../Styles";
 import logo from "../static/logo.png";
+
 
 export default class HomeScreen extends React.Component {
 
@@ -13,7 +15,7 @@ export default class HomeScreen extends React.Component {
 	}
 
 	state = {
-		
+
 	}
 
 	render() {
@@ -21,6 +23,12 @@ export default class HomeScreen extends React.Component {
 			<View style = {styles.container}>
 
 				<NativeCamera />
+
+        <TouchableOpacity
+          style = {styles.folderButton}
+          onPress = {() => console.log("FolderPressed")} >
+          <Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
+        </TouchableOpacity>
 
 			</View>
 		);

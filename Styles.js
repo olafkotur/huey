@@ -14,6 +14,11 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
+  flipCamera: {
+  	color: '#fff',
+    backgroundColor: 'transparent',
+	},
+
 	cameraContainer: {
 		flex: 1,
 		justifyContent: 'flex-start',
@@ -54,12 +59,17 @@ export default StyleSheet.create({
 		opacity: 0.9,
 		borderRadius: deviceWidth * 0.08,
 		borderWidth: 3,
-		borderColor: '#fff',
+		borderColor: '#00B158',
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		top: deviceHeight - (deviceHeight * 0.075),
 	},
+
+  shutterIcon: {
+    color: '#fff',
+    fontSize:deviceWidth * 0.145,
+  },
 
 	videoButton: {
 		width: deviceWidth * 0.08,
@@ -75,16 +85,34 @@ export default StyleSheet.create({
 		left: deviceWidth - (deviceWidth * 0.4),
 	},
 
-	/* 
+	/*
 	*
 	*
-		The code above is made purely to get back end functionality to 
-		work please do move, modify, delete anything that is not needed 
+		The code above is made purely to get back end functionality to
+		work please do move, modify, delete anything that is not needed
 		for front end. Note that a lot of this is brute forced to speed
 		up backend so it will have to be changed.
 	*
 	*
 	*/
+
+
+// folder button homepage
+  folderButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+			top: deviceHeight - ((deviceHeight * 0.05)+5),
+    left:10,
+	},
+
+  folderIcon: {
+    color: '#fff',
+    fontSize:30,
+  },
 
 
 
