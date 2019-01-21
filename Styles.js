@@ -16,17 +16,37 @@ export default StyleSheet.create({
 
 	cameraContainer: {
 		flex: 1,
-		justifyContent: 'flex-end',
+		justifyContent: 'flex-start',
 		alignItems: 'center',
+		backgroundColor: '#000',
+		justifyContent: 'flex-end',
+		alignSelf: 'stretch',
+		height: deviceHeight,
+		width: (deviceHeight * 0.75),
+		position: 'absolute',
+	},
+
+	cameraParentContainer: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'stretch',
+		justifyContent: 'flex-end',
 		height: deviceHeight,
 		width: deviceWidth,
-		position: 'absolute'
 	},
 
 	headingContainer: {
-		bottom: deviceHeight * 0.44,
-		left: deviceWidth * 0.42,
+		bottom: deviceHeight - (deviceHeight * 0.055),
+		left: deviceWidth - (deviceWidth * 0.1),
 	},
+
+	devButtonSmall: {
+		width: 30,
+		height: 30,
+		backgroundColor: '#fff',
+		borderRadius: 15,
+	},
+
 
 	imageButton: {
 		width: deviceWidth * 0.16,
@@ -38,7 +58,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.12),
+		top: deviceHeight - (deviceHeight * 0.075),
 	},
 
 	videoButton: {
@@ -51,8 +71,8 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.10),
-		left: deviceWidth * 0.15,
+		top: deviceHeight - (deviceHeight * 0.055),
+		left: deviceWidth - (deviceWidth * 0.4),
 	},
 
 	/* 
