@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import NativeCamera from './NativeCamera.js';
@@ -21,7 +21,7 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-				<StatusBar hidden = {true} />
+				<StatusBar hidden = {(Platform.OS === 'ios') ? true : false} />
 			
 				<TouchableOpacity
 					style = {styles.folderButton}
