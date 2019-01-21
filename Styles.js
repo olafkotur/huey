@@ -312,4 +312,21 @@ export default StyleSheet.create({
 	    fontSize: deviceWidth * 0.08,
 	},
 
+	settingsButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.94, 
+		left: deviceWidth * 0.04,
+	},
+
+	settingsIcon: {
+		color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	},
+
 })

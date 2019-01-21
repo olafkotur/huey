@@ -29,9 +29,9 @@ export default class HomeScreen extends React.Component {
 				</TouchableOpacity>
 
 				<TouchableOpacity
-					style = {styles.topLeftButton} 
+					style = {styles.settingsButton} 
 					onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
-					<Icon name="settings" style = {styles.folderIcon} allowFontScaling={false} />
+					<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
 				</TouchableOpacity>
 
 				<NativeCamera />
