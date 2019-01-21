@@ -208,7 +208,7 @@ export default StyleSheet.create({
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
-		bottom: deviceHeight * 0.98,
+		bottom: deviceHeight * 0.94,
 		left: deviceWidth * 0.89,
 	},
 
@@ -318,7 +318,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.98,
+		bottom: deviceHeight * 0.94,
 		left: deviceWidth * 0.04,
 	},
 
