@@ -117,7 +117,6 @@ export default class NativeCamera extends React.Component {
 						style = {styles.captureButton}
 						onPress = {() => this.captureMedia('photo')} 
 						onLongPress = {() => this.captureMedia('video')} >
-            <Icon name="camera" style = {styles.shutterIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
 				</View>
