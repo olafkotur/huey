@@ -30,7 +30,7 @@ export default class LoginScreen extends React.Component {
 		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 		.then(() => {
 			this.props.navigation.navigate('HomeScreen'),
-			this.dropdown.alertWithType('success', 'Welcome',"Love Is At The Root Of Our Resistance - CK"));
+			this.dropdown.alertWithType('success', 'Welcome',"Love Is At The Root Of Our Resistance - CK"););
 		}
 	}
 
@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component {
 		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 		.then(() => {
 			this.props.navigation.navigate('HomeScreen'),
-			this.dropdown.alertWithType('success', 'Success',"You Can't Jail The Revolustion - FH"));
+			this.dropdown.alertWithType('success', 'Success',"You Can't Jail The Revolustion - FH"););
 		}
 	}
 
