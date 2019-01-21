@@ -208,7 +208,7 @@ export default StyleSheet.create({
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
-		bottom: deviceHeight * 0.94,
+		bottom: deviceHeight * 0.98,
 		left: deviceWidth * 0.89,
 	},
 
@@ -225,8 +225,8 @@ export default StyleSheet.create({
 		backgroundColor: '#000',
 		justifyContent: 'flex-end',
 		alignSelf: 'stretch',
-		height: deviceHeight,
-		width: (deviceHeight * 0.75),
+		height: deviceHeight * 1.1,
+		width: ((deviceHeight * 1.1) * 0.75),
 		position: 'absolute',
 	},
 
@@ -318,7 +318,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.94,
+		bottom: deviceHeight * 0.98,
 		left: deviceWidth * 0.04,
 	},
 
