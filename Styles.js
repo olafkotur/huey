@@ -15,9 +15,22 @@ export default StyleSheet.create({
 		borderRadius: 15,
 	},
 
-	headingContainer: {
-		bottom: deviceHeight - (deviceHeight * 0.0925),
-		left: deviceWidth - (deviceWidth * 0.1),
+	folderButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		top: deviceHeight - ((deviceHeight * 0.05)+5),
+		left:10,
+	},
+
+	
+
+	folderIcon: {
+		color: '#fff',
+		fontSize:30,
 	},
 
 	/*
@@ -91,6 +104,17 @@ export default StyleSheet.create({
 	headingContainer: {
 		bottom: deviceHeight - (deviceHeight * 0.0925),
 		left: deviceWidth - (deviceWidth * 0.1),
+	},
+
+	topLeftButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight - (deviceHeight * 0.0925),
+		left:10,
 	},
 
 
