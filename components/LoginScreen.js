@@ -27,11 +27,8 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.createUserWithEmailAndPassword(this.state.email, this.state.password)
-		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 		.then(() => {this.props.navigation.navigate('HomeScreen')})
-		/*.then(() => {
-			this.props.navigation.navigate('HomeScreen'),
-			this.dropdown.alertWithType('success', 'Welcome',"Love Is At The Root Of Our Resistance - CK"););*/
+		.catch((error) => {this.dropdown.alertWithType('error', 'Error', error.message)})
 	}
 
 	// Authenticates with firebase and sends user to home screen if successful
@@ -39,11 +36,8 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 		.then(() => {this.props.navigation.navigate('HomeScreen')})
-		/*.then(() => {
-			this.props.navigation.navigate('HomeScreen'),
-			this.dropdown.alertWithType('success', 'Success',"You Can't Jail The Revolustion - FH"););*/
+		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 	}
 
 	render() {
