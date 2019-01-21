@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
 import { Camera, Permissions, FileSystem } from 'expo';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
-import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class NativeCamera extends React.Component {
 
