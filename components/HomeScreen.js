@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import NativeCamera from './NativeCamera.js';
@@ -21,6 +21,7 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
+				<StatusBar hidden = {true} />
 			
 				<TouchableOpacity
 					style = {styles.folderButton}
@@ -29,9 +30,9 @@ export default class HomeScreen extends React.Component {
 				</TouchableOpacity>
 
 				<TouchableOpacity
-					style = {styles.topLeftButton} 
+					style = {styles.settingsButton} 
 					onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
-					<Icon name="settings" style = {styles.folderIcon} allowFontScaling={false} />
+					<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
 				</TouchableOpacity>
 
 				<NativeCamera />

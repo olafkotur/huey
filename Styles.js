@@ -26,7 +26,7 @@ export default StyleSheet.create({
 		left:10,
 	},
 
-	
+
 
 	folderIcon: {
 		color: '#fff',
@@ -225,8 +225,8 @@ export default StyleSheet.create({
 		backgroundColor: '#000',
 		justifyContent: 'flex-end',
 		alignSelf: 'stretch',
-		height: deviceHeight,
-		width: (deviceHeight * 0.75),
+		height: deviceHeight * 1.1,
+		width: ((deviceHeight * 1.1) * 0.75),
 		position: 'absolute',
 	},
 
@@ -249,8 +249,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		top: deviceHeight - (deviceHeight * 0.075),
-    	bottom: (deviceHeight / 30),
+    bottom: (deviceHeight / 30),
 	},
 
   	shutterIcon: {
@@ -302,7 +301,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.03, 
+		bottom: deviceHeight * 0.03,
     	left:	deviceWidth * 0.06,
 	},
 
@@ -310,6 +309,23 @@ export default StyleSheet.create({
 	  	color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.08,
+	},
+
+	settingsButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.94,
+		left: deviceWidth * 0.04,
+	},
+
+	settingsIcon: {
+		color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
 	},
 
 })
