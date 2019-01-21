@@ -27,7 +27,7 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.createUserWithEmailAndPassword(this.state.email, this.state.password)
-		.catch((error) => this.dropdown.alertWithType('error', 'Error' error.message))
+		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 		.then(() => {
 			this.props.navigation.navigate('HomeScreen'),
 			this.dropdown.alertWithType('success', 'Welcome',"Love Is At The Root Of Our Resistance - CK"))
