@@ -11,7 +11,7 @@ export default class NativeCamera extends React.Component {
 		cameraPermission: null,
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
-		cameraStyle: styles.cameraContainer,
+		blinkStyle: styles.blinkFalse,
 	}
 
 
@@ -21,9 +21,7 @@ export default class NativeCamera extends React.Component {
 
 		// Ask Permissions
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
-		this.setState({
-			cameraPermission: status === 'granted',
-		});
+		this.setState({cameraPermission: status === 'granted'});
 	}
 
 
@@ -49,11 +47,11 @@ export default class NativeCamera extends React.Component {
 		// Capture photo
 		else if (action === 'photo' && this.camera) {
 			try {
-				this.setState({cameraStyle: styles.cameraBlank});
+				this.setState({blinkStyle: styles.blinkTrue});
 				await this.camera.takePictureAsync().then((file) => {
 					// Flashes screen
 					setTimeout(() => {
-						this.setState({cameraStyle: styles.cameraContainer});
+						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
 
@@ -97,12 +95,12 @@ export default class NativeCamera extends React.Component {
 		// Camera Access Granted
 		else {
 			return (
-				<View style = {styles.cameraParentContainer}>
+				<View style = {this.state.blinkStyle}>
 
 					{/* Camera Background */}
 					<Camera
 						ref = { ref => { this.camera = ref; }}
-						style = {this.state.cameraStyle}
+						style = {styles.cameraContainer}
 						type = {this.state.cameraType} >
 					</Camera>
 
