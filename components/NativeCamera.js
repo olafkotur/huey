@@ -4,6 +4,7 @@ import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
+import FileHandler from './FileHandler';
 
 export default class NativeCamera extends React.Component {
 
@@ -54,6 +55,8 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
+
+					Handler = new FileHandler().uploadMedia(file.uri);
 
 				});
 			} catch (error) {
