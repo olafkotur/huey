@@ -4,6 +4,7 @@ import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
+import FileHandler from './FileHandler';
 
 export default class NativeCamera extends React.Component {
 
@@ -48,9 +49,10 @@ export default class NativeCamera extends React.Component {
 
 		// Capture photo
 		else if (action === 'photo' && this.camera) {
+			let options = {quality: 0.1}
 			try {
 				this.setState({blinkStyle: styles.blinkTrue});
-				await this.camera.takePictureAsync().then((file) => {
+				await this.camera.takePictureAsync(options).then((file) => {
 					// Flashes screen
 					setTimeout(() => {
 						this.setState({blinkStyle: styles.blinkFalse});
@@ -79,6 +81,9 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
+		const name = Date.now().toString() + '.png' ;
+		Handler = new FileHandler();
+		Handler.uploadMedia(uri, name);
 		CameraRoll.saveToCameraRoll(uri);
 	}
 

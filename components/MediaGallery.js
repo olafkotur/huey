@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
+import FileHandler from './FileHandler';
 
 export default class MediaGallery extends React.Component {
 
@@ -15,6 +16,10 @@ export default class MediaGallery extends React.Component {
 
 	}
 
+	componentWillMount = () => {
+		Handler = new FileHandler();
+	}
+
 	render() {
 		return (
 			<View style = {styles.container}>
@@ -23,7 +28,7 @@ export default class MediaGallery extends React.Component {
 					style = {styles.topLeftButton} 
 					onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 					<Icon name="arrow-back" style = {{color: '#000'}}  size = {30} />
-				</TouchableOpacity>	
+				</TouchableOpacity>
 
 			</View>
 		);
