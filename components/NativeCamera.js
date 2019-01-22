@@ -20,6 +20,8 @@ export default class NativeCamera extends React.Component {
 		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
 
 		// Ask Permissions
+		await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+		await Permissions.askAsync(Permissions.CAMERA_ROLL);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({cameraPermission: status === 'granted'});
 	}
@@ -101,6 +103,7 @@ export default class NativeCamera extends React.Component {
 					<Camera
 						ref = { ref => { this.camera = ref; }}
 						style = {styles.cameraContainer}
+						ratio = {"16:9"}
 						type = {this.state.cameraType} >
 					</Camera>
 
