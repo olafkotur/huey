@@ -47,9 +47,10 @@ export default class NativeCamera extends React.Component {
 
 		// Capture photo
 		else if (action === 'photo' && this.camera) {
+			let options = {quality: 0.1}
 			try {
 				this.setState({blinkStyle: styles.blinkTrue});
-				await this.camera.takePictureAsync().then((file) => {
+				await this.camera.takePictureAsync(options).then((file) => {
 					// Flashes screen
 					setTimeout(() => {
 						this.setState({blinkStyle: styles.blinkFalse});
@@ -80,7 +81,6 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
-		// const name = (new Date().now()) + '.png';
 		const name = Date.now().toString() + '.png' ;
 		Handler = new FileHandler();
 		Handler.uploadMedia(uri, name);

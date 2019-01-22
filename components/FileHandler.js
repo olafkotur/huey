@@ -20,6 +20,7 @@ export default class FileHandler extends React.Component {
 
 	// Uploads URI to firebase
 	uploadMedia = async (uri, name) => {
+		console.log(uri);
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -37,6 +38,12 @@ export default class FileHandler extends React.Component {
 
 		// Upload to firebase
 		const uid = await firebase.auth().currentUser.uid;
-		await firebase.storage().ref('users/' + uid + 'media/' + name).put(blob).catch((error) => console.log(error));
+		console.log(blob);
+		// await firebase
+		// 	.storage()
+		// 	.ref('users/' + uid + 'media/' + name)
+		// 	.put(blob)
+		// 	.then(() => console.log('Uploaded to firebase. REF: ' + name))
+		// 	.catch((error) => console.log(error));
 	}
 }
