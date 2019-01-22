@@ -101,6 +101,7 @@ export default class NativeCamera extends React.Component {
 					<Camera
 						ref = { ref => { this.camera = ref; }}
 						style = {styles.cameraContainer}
+						ratio = {"16:9"}
 						type = {this.state.cameraType} >
 					</Camera>
 
