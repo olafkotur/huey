@@ -18,7 +18,6 @@ export default class MediaGallery extends React.Component {
 
 	componentWillMount = () => {
 		Handler = new FileHandler();
-		Handler.getMedia();
 	}
 
 	render() {

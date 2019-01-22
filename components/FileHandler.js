@@ -1,11 +1,6 @@
 import React from 'react';
-import RNFetchBlob from 'react-native-fetch-blob';
+import uuid from 'uuid';
 import * as firebase from "firebase";
-
-const Blob = RNFetchBlob.polyfill.Blob;
-const fs = RNFetchBlob.fs;
-window.XMLHttpRequest= RNFetchBlob.polyfill.XMLHttpRequest;
-window.Blob = Blob;
 
 export default class FileHandler extends React.Component {
 
@@ -14,7 +9,7 @@ export default class FileHandler extends React.Component {
 
 	}
 
-	getMedia = async () => {
+	getMediaAsync = async () => {
 		const uid = await firebase.auth().currentUser.uid;
 
 		// Get images and videos
@@ -22,13 +17,23 @@ export default class FileHandler extends React.Component {
 	}
 
 
-	uploadMedia = async (uri) => {
-		fs.readFile(uri, 'base64');
+	uploadMediaAsync = async (uri) => {
+		const blob = await new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				resolve(xhr.response);
+			};
+			xhr.onerror = function(e) {
+				console.log(e);
+				reject(new TypeError('Network request failed'));
+			};
+			xhr.responseType = 'blob';
+			xhr.open('GET', uri, true);
+			xhr.send(null);
+		});
+
+
 		const uid = await firebase.auth().currentUser.uid;
-		await firebase
-			.storage()
-			.ref('users/' + uid + 'media/test.jpg')
-			.put(file)
-			.catch((error) => console.log(error));
+		await firebase.storage().ref('users/' + uid + 'media/test.jpg').put(blob);
 	}
 }
