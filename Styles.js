@@ -10,7 +10,8 @@ import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 	Flat Blue: 		#0097e6
 	Flat Red: 		#e84118
 	Flat Yellow: 	#fbc531
-
+	Black Text: 	#22292f
+	Dark Grey: 		#4B4B4B
 *
 *
 */
@@ -389,5 +390,28 @@ export default StyleSheet.create({
 		borderBottomColor: "#F1F1F1",
 		borderBottomWidth: 2,
 	},
+
+	settingsMenuTitleText: {
+		fontSize: deviceHeight * 0.024,
+		left: deviceWidth * 0.1,
+	    top: deviceHeight * 0.015,
+	    fontWeight: "bold",
+	    fontFamily: "Roboto",
+	    color: '#22292f',
+	},
+
+	settingsMenuSubtitleText: {
+		fontSize: deviceHeight * 0.02,
+		left: deviceWidth * 0.1,
+		top: deviceHeight * 0.0125,
+		color: '#4B4B4B',
+		marginRight: deviceWidth * 0.2,
+	},
+
+	settingsRightArrow: {
+		left: deviceWidth * 0.725,
+		top: -deviceHeight * 0.05,
+		color: '#4B4B4B',
+	}
 
 })
