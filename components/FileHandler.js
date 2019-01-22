@@ -10,11 +10,17 @@ export default class FileHandler extends React.Component {
 	}
 
 	// Returns media from firebase
-	getMediaAsync = async () => {
+	getMedia = async () => {
 		const uid = await firebase.auth().currentUser.uid;
 
 		// Get images and videos
+		let url = await firebase
+			.storage()
+			.ref('users/' + uid + 'media/')
+			.getDownloadURL()
 
+		let images = [];
+		images.push({url});
 	}
 
 
@@ -35,13 +41,16 @@ export default class FileHandler extends React.Component {
 			xhr.send(null);
 		});
 
-		// Upload to firebase
+		// Create references
 		const uid = await firebase.auth().currentUser.uid;
-		await firebase
-			.storage()
-			.ref('users/' + uid + 'media/' + name)
-			.put(blob)
-			.then(() => blob.close())
-			.catch((error) => console.log(error));
+		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + name);
+		const databaseRef = await firebase.database().ref('users/' + uid + '/media/');
+		
+		// Upload image to firebase storage and url to database
+		await storageRef.put(blob).then(async () => {
+			await databaseRef.push({
+				url: await storageRef.getDownloadURL()
+			})
+		}).catch((error) => console.log(error));
 	}
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
@@ -15,28 +15,18 @@ export default class MediaGallery extends React.Component {
 	state = {
 		imageData: [
 			{
-				key: 'A'
+				key: 'a'
 			},
-			{
-				key: 'B'
-			},
-			{
-				key: 'C'
-			},
-			{
-				key: 'A'
-			},
-			{
-				key: 'B'
-			},
-
 		]
 	}
 
 	renderImage = (item) => {
 		return (
 			<View style = {styles.singleImageContainer}>
-				<Text style = {{fontSize: 30}}>{item.key}</Text>
+				<Image 
+					style = {styles.singleImage}
+					source = {{uri: 'https://firebasestorage.googleapis.com/v0/b/huey-f5674.appspot.com/o/users%2FwA1j8gOFmSP1tWJf8iENLod7pG23media%2F1548160297848.png?alt=media&token=9a7da041-c025-43d2-aa63-d4ca3ca2e58f'}} >
+				</Image>
 			</View>
 		);
 	}

@@ -343,12 +343,12 @@ export default StyleSheet.create({
 	singleImageContainer: {
 		width: deviceWidth * 0.2,
 		height: deviceWidth * 0.2,
-		marginTop: deviceWidth * 0.05,
-		marginBottom: deviceWidth * 0.05,
-		marginLeft: deviceWidth * 0.05,
-		marginRight: deviceWidth * 0.05,
 		backgroundColor: 'blue',
 	},
 
+	singleImage: {
+		width: deviceWidth * 0.3,
+		height: deviceWidth * 0.3,
+	}
 
 })

@@ -58,7 +58,7 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
-					// this.saveInCloud(file.uri);
+					this.saveInCloud(file.uri);
 
 				});
 			} catch (error) {
@@ -71,7 +71,7 @@ export default class NativeCamera extends React.Component {
 			try {
 				await this.camera.recordAsync().then((file) => {
 					this.saveLocally(file.uri);
-					// this.saveInCloud(file.uri);
+					this.saveInCloud(file.uri);
 				});
 				this.setState({isRecording: true});
 			} catch (error) {
@@ -92,6 +92,7 @@ export default class NativeCamera extends React.Component {
 		const name = Date.now().toString() + '.png' ;
 		Handler = new FileHandler();
 		Handler.uploadMedia(uri, name);
+		// Handler.getMedia();
 	}
 
 
