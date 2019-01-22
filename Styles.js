@@ -232,7 +232,7 @@ export default StyleSheet.create({
 
 	cameraParentContainer: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#000',
 		alignItems: 'stretch',
 		justifyContent: 'flex-end',
 		height: deviceHeight,
