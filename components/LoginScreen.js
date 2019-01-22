@@ -27,8 +27,11 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.createUserWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => {this.dropdown.alertWithType('success', 'Account Registered', "Welcome To The Movement").then(this.props.navigation.navigate('HomeScreen'))})
-		.catch((error) => {this.dropdown.alertWithType('error', 'Error', error.message)})
+		.then(() => {
+			this.dropdown.alertWithType('success', 'Account Registered', "Welcome To The Movement"),
+			this.props.navigation.navigate('HomeScreen')
+		})
+		.catch((error) => {this.dropdown.alertWithType('error', 'Uh Oh', error.message)})
 	}
 
 	// Authenticates with firebase and sends user to home screen if successful
@@ -36,8 +39,11 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => {this.dropdown.alertWithType('success', 'Welcome Back', "Love Is The Root Of Our Revolution").then(this.props.navigation.navigate('HomeScreen'))})
-		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
+		.then(() => {
+			this.dropdown.alertWithType('success', 'Welcome Back', "Love Is The Root Of Our Revolution"),
+			this.props.navigation.navigate('HomeScreen')
+		})
+		.catch((error) => {this.dropdown.alertWithType('error', 'Have You Registered', error.message)})
 	}
 
 	render() {
