@@ -49,6 +49,7 @@ export default class SettingsScreen extends React.Component {
 						<Icon name="photo-size-select-actual" style = {styles.settingsLibraryIcon}  size = {30} />
 												<Text style = {styles.settingsMenuTitleText}>Library</Text>
 						<Text style = {styles.settingsMenuSubtitleText}>Storage Settings, Tags, Album Settings...</Text>
+						<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 					</TouchableOpacity>
 
 					{/* Appearance Settings */}
@@ -58,6 +59,7 @@ export default class SettingsScreen extends React.Component {
 						<Icon name="brush" style = {styles.settingsAppearanceIcon}  size = {30} />
 						<Text style = {styles.settingsMenuTitleText}>Appearance</Text>
 						<Text style = {styles.settingsMenuSubtitleText}>Theme, Custom Colours, Accessibility...</Text>
+						<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 					</TouchableOpacity>
 
 					{/* Security Settings */}
@@ -67,6 +69,7 @@ export default class SettingsScreen extends React.Component {
 						<Icon name="lock" style = {styles.settingsSecurityIcon}  size = {30} />
 						<Text style = {styles.settingsMenuTitleText}>Security</Text>
 						<Text style = {styles.settingsMenuSubtitleText}>Passcode, Encryption...</Text>
+						<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 					</TouchableOpacity>
 
 					{/* About */}
@@ -76,6 +79,7 @@ export default class SettingsScreen extends React.Component {
 						<Icon name="info" style = {styles.settingsAboutIcon}  size = {30} />
 						<Text style = {styles.settingsMenuTitleText}>About</Text>
 						<Text style = {styles.settingsMenuSubtitleText}>Application Info, Terms & Conditions...</Text>
+						<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 					</TouchableOpacity>
 
 				</View>

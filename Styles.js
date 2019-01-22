@@ -396,7 +396,6 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.1,
 	    top: deviceHeight * 0.015,
 	    fontWeight: "bold",
-	    fontFamily: "Roboto",
 	    color: '#22292f',
 	},
 
@@ -405,7 +404,7 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.1,
 		top: deviceHeight * 0.0125,
 		color: '#4B4B4B',
-		marginRight: deviceWidth * 0.2,
+		marginRight: deviceWidth * 0.25,
 	},
 
 	settingsRightArrow: {
