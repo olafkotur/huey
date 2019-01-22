@@ -9,6 +9,7 @@ export default class FileHandler extends React.Component {
 
 	}
 
+	// Returns media from firebase
 	getMediaAsync = async () => {
 		const uid = await firebase.auth().currentUser.uid;
 
@@ -17,7 +18,9 @@ export default class FileHandler extends React.Component {
 	}
 
 
-	uploadMediaAsync = async (uri) => {
+	// Uploads URI to firebase
+	uploadMedia = async (uri, name) => {
+		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 			xhr.onload = function() {
@@ -32,8 +35,8 @@ export default class FileHandler extends React.Component {
 			xhr.send(null);
 		});
 
-
+		// Upload to firebase
 		const uid = await firebase.auth().currentUser.uid;
-		await firebase.storage().ref('users/' + uid + 'media/test.jpg').put(blob);
+		await firebase.storage().ref('users/' + uid + 'media/' + name).put(blob).catch((error) => console.log(error));
 	}
 }

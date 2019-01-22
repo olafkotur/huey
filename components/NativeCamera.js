@@ -80,8 +80,10 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
+		// const name = (new Date().now()) + '.png';
+		const name = Date.now().toString() + '.png' ;
 		Handler = new FileHandler();
-		Handler.uploadMediaAsync(uri);
+		Handler.uploadMedia(uri, name);
 		CameraRoll.saveToCameraRoll(uri);
 	}
 
