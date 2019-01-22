@@ -225,14 +225,14 @@ export default StyleSheet.create({
 		backgroundColor: '#000',
 		justifyContent: 'flex-end',
 		alignSelf: 'stretch',
-		height: deviceHeight * 1.1,
-		width: ((deviceHeight * 1.1) * 0.75),
+		height: deviceHeight,
+		width: (deviceHeight * 0.5625),
 		position: 'absolute',
 	},
 
 	cameraParentContainer: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#000',
 		alignItems: 'stretch',
 		justifyContent: 'flex-end',
 		height: deviceHeight,
