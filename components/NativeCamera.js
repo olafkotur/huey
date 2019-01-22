@@ -92,7 +92,6 @@ export default class NativeCamera extends React.Component {
 		const name = Date.now().toString() + '.png' ;
 		Handler = new FileHandler();
 		Handler.uploadMedia(uri, name);
-		// Handler.getMedia();
 	}
 
 

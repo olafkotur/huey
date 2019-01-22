@@ -13,21 +13,26 @@ export default class MediaGallery extends React.Component {
 	}
 
 	state = {
-		imageData: [
-			{
-				key: 'a'
-			},
-		]
+		mediaData: []
+	}
+
+	componentDidMount = () => {
+		this.fetchData();
+	}
+
+
+	// Fetches image gallery data
+	fetchData = async () => {
+		Handler = new FileHandler();
+		await Handler.getMedia().then((data) => this.setState({mediaData: data}));
 	}
 
 	renderImage = (item) => {
 		return (
-			<View style = {styles.singleImageContainer}>
-				<Image 
-					style = {styles.singleImage}
-					source = {{uri: 'https://firebasestorage.googleapis.com/v0/b/huey-f5674.appspot.com/o/users%2FwA1j8gOFmSP1tWJf8iENLod7pG23media%2F1548160297848.png?alt=media&token=9a7da041-c025-43d2-aa63-d4ca3ca2e58f'}} >
-				</Image>
-			</View>
+			<Image 
+				style = {styles.singleGalleryImage}
+				source = {{uri: item.url}} >
+			</Image>
 		);
 	}
 
@@ -43,7 +48,7 @@ export default class MediaGallery extends React.Component {
 
 				<View style = {styles.galleryContainer}>
 					<FlatList
-						data = {this.state.imageData}
+						data = {this.state.mediaData}
 						extraData = {this.state}
 						horiztonal = {false}
 						numColumns = {3}

@@ -12,15 +12,15 @@ export default class FileHandler extends React.Component {
 	// Returns media from firebase
 	getMedia = async () => {
 		const uid = await firebase.auth().currentUser.uid;
+		const databaseRef = await firebase.database().ref('users/' + uid + '/media/');
+		let media = [];
 
-		// Get images and videos
-		let url = await firebase
-			.storage()
-			.ref('users/' + uid + 'media/')
-			.getDownloadURL()
+		// Get URLs from database
+		await databaseRef.once('value', snapshot => {
+			media = Object.values(snapshot.val());
+		});
 
-		let images = [];
-		images.push({url});
+		return media;
 	}
 
 

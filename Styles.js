@@ -340,13 +340,7 @@ export default StyleSheet.create({
 		backgroundColor: 'red'
 	},
 
-	singleImageContainer: {
-		width: deviceWidth * 0.2,
-		height: deviceWidth * 0.2,
-		backgroundColor: 'blue',
-	},
-
-	singleImage: {
+	singleGalleryImage: {
 		width: deviceWidth * 0.3,
 		height: deviceWidth * 0.3,
 	}
