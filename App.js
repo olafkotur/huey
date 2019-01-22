@@ -9,6 +9,7 @@ import ForgotPassword from './components/ForgotPassword';
 import HomeScreen from './components/HomeScreen';
 import MediaGallery from './components/MediaGallery';
 import SettingsScreen from './components/SettingsScreen';
+import NativeAudio from './components/SettingsScreen';
 
 const AppStack = createStackNavigator({
 	LoginScreen: {screen: LoginScreen},
@@ -16,6 +17,7 @@ const AppStack = createStackNavigator({
 	HomeScreen: {screen: HomeScreen},
 	MediaGallery: {screen: MediaGallery},
 	SettingsScreen: {screen: SettingsScreen},
+  NativeAudio: {screen: NativeAudio},
 });
 
 const AppRouter = createAppContainer(AppStack);

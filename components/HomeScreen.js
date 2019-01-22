@@ -22,7 +22,7 @@ export default class HomeScreen extends React.Component {
 		return (
 			<View style = {styles.container}>
 				<StatusBar hidden = {(Platform.OS === 'ios') ? true : false} />
-			
+
 				<TouchableOpacity
 					style = {styles.folderButton}
 					onPress = {() => this.props.navigation.navigate('MediaGallery')}>
@@ -30,10 +30,17 @@ export default class HomeScreen extends React.Component {
 				</TouchableOpacity>
 
 				<TouchableOpacity
-					style = {styles.settingsButton} 
+					style = {styles.settingsButton}
 					onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
 					<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
 				</TouchableOpacity>
+
+        <TouchableOpacity
+          style = {styles.audioButton}
+          onPress = {() => this.props.navigation.navigate('NativeAudio')} >
+          <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
+        </TouchableOpacity>
+
 
 				<NativeCamera />
 

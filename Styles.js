@@ -302,16 +302,27 @@ export default StyleSheet.create({
 
 
 //	5. HomeScreen
-
- 	folderButton: {
-    	width: deviceWidth * 0.08,
+  audioButton: {
+    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    	left:	deviceWidth * 0.06,
+    left:	deviceWidth * 0.06,
+  },
+
+
+ 	folderButton: {
+    width: deviceWidth * 0.08,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.03,
+    left:	deviceWidth * 0.06,
 	},
 
   	folderIcon: {
@@ -339,7 +350,7 @@ export default StyleSheet.create({
 
 
 
-//	6. Settings 
+//	6. Settings
 
 	settingsMenuContainer: {
 		flex: 1,
