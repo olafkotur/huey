@@ -22,7 +22,14 @@ export default class MediaGallery extends React.Component {
 			},
 			{
 				key: 'C'
-			}
+			},
+			{
+				key: 'A'
+			},
+			{
+				key: 'B'
+			},
+
 		]
 	}
 
@@ -48,7 +55,8 @@ export default class MediaGallery extends React.Component {
 					<FlatList
 						data = {this.state.imageData}
 						extraData = {this.state}
-						horiztonal = {true}
+						horiztonal = {false}
+						numColumns = {3}
 						keyExtractor = {(item, index) => index.toString()}
       					renderItem = {({item}) => this.renderImage(item)}>
 					</FlatList>
