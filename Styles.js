@@ -1,5 +1,20 @@
 import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 
+/* --------- Colour Chart ---------
+*
+*
+	Huey Green: 	#27ae60
+	Almost White: 	#F6F6F6
+	Almost Black: 	#2f3640
+	Divider Grey: 	#F1F1F1
+	Flat Blue: 		#0097e6
+	Flat Red: 		#e84118
+	Flat Yellow: 	#fbc531
+
+*
+*
+*/
+
 // Device dimension declaration
 var deviceHeight = Dimensions.get('window').height;
 var deviceWidth = Dimensions.get('window').width;
@@ -24,13 +39,6 @@ export default StyleSheet.create({
 		alignSelf: 'center',
 		top: deviceHeight - ((deviceHeight * 0.05)+5),
 		left:10,
-	},
-
-
-
-	folderIcon: {
-		color: '#fff',
-		fontSize:30,
 	},
 
 	/*
@@ -326,6 +334,60 @@ export default StyleSheet.create({
 		color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
+	},
+
+
+
+//	6. Settings 
+
+	settingsMenuContainer: {
+		flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+	},
+
+	settingsRecordingIcon: {
+		color: '#27ae60',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsLibraryIcon: {
+		color: '#0097e6',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsAppearanceIcon: {
+		color: '#e84118',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsSecurityIcon: {
+		color: '#fbc531',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsAboutIcon: {
+		color: '#2f3640',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsMenuButton: {
+		width: deviceWidth * 0.8,
+		height: deviceHeight * 0.15,
+		backgroundColor: "#0000",
+		borderBottomColor: "#F1F1F1",
+		borderBottomWidth: 2,
 	},
 
 })
