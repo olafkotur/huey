@@ -57,8 +57,6 @@ export default class NativeCamera extends React.Component {
 					}, 150);
 					this.saveLocally(file.uri);
 
-					Handler = new FileHandler().uploadMedia(file.uri);
-
 				});
 			} catch (error) {
 				console.log(error.message);
