@@ -33,6 +33,7 @@ export default StyleSheet.create({
 		fontSize:30,
 	},
 
+
 	/*
 	*
 	*
@@ -48,10 +49,11 @@ export default StyleSheet.create({
 			3. Forgot Password
 			4. Camera
 			5. HomeScreen
+			6. Gallery 
 	*/
 
 
-// 1. Global
+	// 1. Global
 
 	container: {
 		flex: 1,
@@ -119,7 +121,7 @@ export default StyleSheet.create({
 
 
 
-// 2. Login
+	// 2. Login
 
 	loginLogo: {
 		width: deviceWidth * 0.7,
@@ -180,7 +182,7 @@ export default StyleSheet.create({
 
 
 
-// 3. Forgot Password
+	// 3. Forgot Password
 
 	resetButton: {
 		width: deviceWidth * 0.38,
@@ -203,7 +205,7 @@ export default StyleSheet.create({
 
 
 
-//	4. Camera
+	//	4. Camera
 
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
@@ -292,7 +294,8 @@ export default StyleSheet.create({
 	},
 
 
-//	5. HomeScreen
+	
+	//	5. HomeScreen
 
  	folderButton: {
     	width: deviceWidth * 0.08,
@@ -327,5 +330,25 @@ export default StyleSheet.create({
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
 	},
+
+
+
+	// 6. Gallery
+	galleryContainer: {
+		height: deviceHeight * 0.8,
+		width: deviceWidth * 0.9,
+		backgroundColor: 'red'
+	},
+
+	singleImageContainer: {
+		width: deviceWidth * 0.2,
+		height: deviceWidth * 0.2,
+		marginTop: deviceWidth * 0.05,
+		marginBottom: deviceWidth * 0.05,
+		marginLeft: deviceWidth * 0.05,
+		marginRight: deviceWidth * 0.05,
+		backgroundColor: 'blue',
+	},
+
 
 })
