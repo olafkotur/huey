@@ -41,7 +41,8 @@ export default StyleSheet.create({
 		top: deviceHeight - ((deviceHeight * 0.05)+5),
 		left:10,
 	},
-
+  
+  
 	/*
 	*
 	*
@@ -57,10 +58,12 @@ export default StyleSheet.create({
 			3. Forgot Password
 			4. Camera
 			5. HomeScreen
+			6. Settings
+      7. Gallery 
 	*/
 
 
-// 1. Global
+	// 1. Global
 
 	container: {
 		flex: 1,
@@ -128,7 +131,7 @@ export default StyleSheet.create({
 
 
 
-// 2. Login
+	// 2. Login
 
 	loginLogo: {
 		width: deviceWidth * 0.7,
@@ -189,7 +192,7 @@ export default StyleSheet.create({
 
 
 
-// 3. Forgot Password
+	// 3. Forgot Password
 
 	resetButton: {
 		width: deviceWidth * 0.38,
@@ -212,7 +215,7 @@ export default StyleSheet.create({
 
 
 
-//	4. Camera
+	//	4. Camera
 
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
@@ -221,10 +224,10 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.89,
 	},
 
-  	flipCamera: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	    fontSize: deviceWidth * 0.065,
+  flipCamera: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -301,23 +304,24 @@ export default StyleSheet.create({
 	},
 
 
-//	5. HomeScreen
+	
+	//	5. HomeScreen
 
  	folderButton: {
-    	width: deviceWidth * 0.08,
+    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    	left:	deviceWidth * 0.06,
+    left:	deviceWidth * 0.06,
 	},
 
-  	folderIcon: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	    fontSize: deviceWidth * 0.08,
+  folderIcon: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: deviceWidth * 0.08,
 	},
 
 	settingsButton: {
@@ -337,8 +341,7 @@ export default StyleSheet.create({
 	    fontSize: deviceWidth * 0.065,
 	},
 
-
-
+    
 //	6. Settings 
 
 	settingsMenuContainer: {
@@ -412,5 +415,18 @@ export default StyleSheet.create({
 		top: -deviceHeight * 0.05,
 		color: '#4B4B4B',
 	}
+    
+   
+  // 7. Gallery
+	galleryContainer: {
+		height: deviceHeight * 0.8,
+		width: deviceWidth * 0.9,
+		backgroundColor: 'red'
+	},
+
+	singleGalleryImage: {
+		width: deviceWidth * 0.3,
+		height: deviceWidth * 0.3,
+  },
 
 })

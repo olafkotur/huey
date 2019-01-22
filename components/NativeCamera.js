@@ -16,7 +16,7 @@ export default class NativeCamera extends React.Component {
 	}
 
 
-	componentWillMount = async () => {
+	componentDidMount = async () => {
 		// Orientation Lock
 		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
 
@@ -58,6 +58,7 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
+					this.saveInCloud(file.uri);
 
 				});
 			} catch (error) {
@@ -70,6 +71,7 @@ export default class NativeCamera extends React.Component {
 			try {
 				await this.camera.recordAsync().then((file) => {
 					this.saveLocally(file.uri);
+					this.saveInCloud(file.uri);
 				});
 				this.setState({isRecording: true});
 			} catch (error) {
@@ -81,10 +83,15 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
+		CameraRoll.saveToCameraRoll(uri);
+	}
+
+
+	// Sends to firebase as backup
+	saveInCloud = (uri) => {
 		const name = Date.now().toString() + '.png' ;
 		Handler = new FileHandler();
-		Handler.uploadMedia(uri, name);
-		CameraRoll.saveToCameraRoll(uri);
+		// Handler.uploadMedia(uri, name);
 	}
 
 
