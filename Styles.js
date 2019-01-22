@@ -1,5 +1,21 @@
 import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 
+/* --------- Colour Chart ---------
+*
+*
+	Huey Green: 	#27ae60
+	Almost White: 	#F6F6F6
+	Almost Black: 	#2f3640
+	Divider Grey: 	#F1F1F1
+	Flat Blue: 		#0097e6
+	Flat Red: 		#e84118
+	Flat Yellow: 	#fbc531
+	Black Text: 	#22292f
+	Dark Grey: 		#4B4B4B
+*
+*
+*/
+
 // Device dimension declaration
 var deviceHeight = Dimensions.get('window').height;
 var deviceWidth = Dimensions.get('window').width;
@@ -25,15 +41,8 @@ export default StyleSheet.create({
 		top: deviceHeight - ((deviceHeight * 0.05)+5),
 		left:10,
 	},
-
-
-
-	folderIcon: {
-		color: '#fff',
-		fontSize:30,
-	},
-
-
+  
+  
 	/*
 	*
 	*
@@ -49,7 +58,8 @@ export default StyleSheet.create({
 			3. Forgot Password
 			4. Camera
 			5. HomeScreen
-			6. Gallery 
+			6. Settings
+      7. Gallery 
 	*/
 
 
@@ -214,10 +224,10 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.89,
 	},
 
-  	flipCamera: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	    fontSize: deviceWidth * 0.065,
+  flipCamera: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -298,20 +308,20 @@ export default StyleSheet.create({
 	//	5. HomeScreen
 
  	folderButton: {
-    	width: deviceWidth * 0.08,
+    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    	left:	deviceWidth * 0.06,
+    left:	deviceWidth * 0.06,
 	},
 
-  	folderIcon: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	    fontSize: deviceWidth * 0.08,
+  folderIcon: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: deviceWidth * 0.08,
 	},
 
 	settingsButton: {
@@ -331,9 +341,83 @@ export default StyleSheet.create({
 	    fontSize: deviceWidth * 0.065,
 	},
 
+    
+//	6. Settings 
 
+	settingsMenuContainer: {
+		flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+	},
 
-	// 6. Gallery
+	settingsRecordingIcon: {
+		color: '#27ae60',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsLibraryIcon: {
+		color: '#0097e6',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsAppearanceIcon: {
+		color: '#e84118',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsSecurityIcon: {
+		color: '#fbc531',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsAboutIcon: {
+		color: '#2f3640',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
+	    top: deviceHeight * 0.06,
+	},
+
+	settingsMenuButton: {
+		width: deviceWidth * 0.8,
+		height: deviceHeight * 0.15,
+		backgroundColor: "#0000",
+		borderBottomColor: "#F1F1F1",
+		borderBottomWidth: 2,
+	},
+
+	settingsMenuTitleText: {
+		fontSize: deviceHeight * 0.024,
+		left: deviceWidth * 0.1,
+	    top: deviceHeight * 0.015,
+	    fontWeight: "bold",
+	    color: '#22292f',
+	},
+
+	settingsMenuSubtitleText: {
+		fontSize: deviceHeight * 0.02,
+		left: deviceWidth * 0.1,
+		top: deviceHeight * 0.0125,
+		color: '#4B4B4B',
+		marginRight: deviceWidth * 0.25,
+	},
+
+	settingsRightArrow: {
+		left: deviceWidth * 0.725,
+		top: -deviceHeight * 0.05,
+		color: '#4B4B4B',
+	}
+    
+   
+  // 7. Gallery
 	galleryContainer: {
 		height: deviceHeight * 0.8,
 		width: deviceWidth * 0.9,
@@ -343,6 +427,6 @@ export default StyleSheet.create({
 	singleGalleryImage: {
 		width: deviceWidth * 0.3,
 		height: deviceWidth * 0.3,
-	}
+  },
 
 })
