@@ -27,7 +27,7 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.createUserWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => {this.dropdown.alertWithType('success', 'SUCCESS', "Welcome").then(this.props.navigation.navigate('HomeScreen'))})
+		.then(() => {this.dropdown.alertWithType('success', 'Account Registered', "Welcome To The Movement").then(this.props.navigation.navigate('HomeScreen'))})
 		.catch((error) => {this.dropdown.alertWithType('error', 'Error', error.message)})
 	}
 
@@ -36,7 +36,7 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => {this.props.navigation.navigate('HomeScreen')})
+		.then(() => {this.dropdown.alertWithType('success', 'Welcome Back', "Love Is The Root Of Our Revolution").then(this.props.navigation.navigate('HomeScreen'))})
 		.catch((error) => this.dropdown.alertWithType('error', 'Error', error.message))
 	}
 
