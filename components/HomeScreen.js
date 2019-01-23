@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import DropdownAlert from 'react-native-dropdownalert';
 
 import NativeCamera from './NativeCamera.js';
 import styles from "../Styles";
@@ -15,7 +16,12 @@ export default class HomeScreen extends React.Component {
 	}
 
 	state = {
+		welcomeMessage: 'Love Is The Root Of Our Resistance'
+	}
 
+	// Authenticates with firebase and sends user to home screen if successful
+	loadingMessage = async () => {
+		(messageForUser) => this.dropdown.alertWithType('success', 'Welcome', 'Love Is The Root Of Our Resistance - CP')
 	}
 
 	render() {
@@ -46,6 +52,8 @@ export default class HomeScreen extends React.Component {
 
 
 				<NativeCamera />
+
+				<DropdownAlert ref={ref => this.dropdown = ref} />
 
 			</View>
 		);

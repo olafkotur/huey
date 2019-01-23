@@ -42,6 +42,7 @@ export default StyleSheet.create({
 		left:10,
 	},
 
+
 	/*
 	*
 	*
@@ -57,10 +58,12 @@ export default StyleSheet.create({
 			3. Forgot Password
 			4. Camera
 			5. HomeScreen
+			6. Settings
+      7. Gallery
 	*/
 
 
-// 1. Global
+	// 1. Global
 
 	container: {
 		flex: 1,
@@ -128,7 +131,7 @@ export default StyleSheet.create({
 
 
 
-// 2. Login
+	// 2. Login
 
 	loginLogo: {
 		width: deviceWidth * 0.7,
@@ -189,7 +192,7 @@ export default StyleSheet.create({
 
 
 
-// 3. Forgot Password
+	// 3. Forgot Password
 
 	resetButton: {
 		width: deviceWidth * 0.38,
@@ -212,7 +215,7 @@ export default StyleSheet.create({
 
 
 
-//	4. Camera
+	//	4. Camera
 
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
@@ -221,10 +224,10 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.89,
 	},
 
-  	flipCamera: {
-	  	color: '#fff',
-	    backgroundColor: 'transparent',
-	    fontSize: deviceWidth * 0.065,
+  flipCamera: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -328,7 +331,7 @@ export default StyleSheet.create({
 	},
 
   	folderIcon: {
-	  	color: '#fff',
+	    color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.08,
 	},
@@ -351,8 +354,7 @@ export default StyleSheet.create({
 	},
 
 
-
-//	6. Settings
+	//	6. Settings
 
 	settingsMenuContainer: {
 		flex: 1,
@@ -427,7 +429,20 @@ export default StyleSheet.create({
 	},
 
 
-// 6. audo Recording
+
+// 7. Gallery
+galleryContainer: {
+height: deviceHeight * 0.8,
+width: deviceWidth * 0.9,
+backgroundColor: 'red'
+},
+
+singleGalleryImage: {
+width: deviceWidth * 0.3,
+height: deviceWidth * 0.3,
+},
+
+// 8. audo Recording
 
 buttonContainer: {
   width: deviceWidth * 0.4,
@@ -478,6 +493,5 @@ hideButton: {
   top:deviceHeight/39,
   right:10,
 },
-
 
 })
