@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
@@ -42,6 +42,7 @@ export default class NativeCamera extends React.Component {
 
 	// Capture video or photo
 	captureMedia = async (action) => {
+		console.log(this.state.isRecording);
 		// Stop Recording if active
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
@@ -60,7 +61,6 @@ export default class NativeCamera extends React.Component {
 					}, 150);
 					this.saveLocally(file.uri);
 					this.saveInCloud(file.uri);
-
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -70,11 +70,11 @@ export default class NativeCamera extends React.Component {
 		// Capture video
 		else if (action === 'video' && this.state.isRecording === false && this.camera) {
 			try {
+				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
 					this.saveLocally(file.uri);
 					this.saveInCloud(file.uri);
 				});
-				this.setState({isRecording: true});
 			} catch (error) {
 				console.log(error.message);
 			}
@@ -84,7 +84,7 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
-		CameraRoll.saveToCameraRoll(uri);
+		// CameraRoll.saveToCameraRoll(uri);
 	}
 
 
@@ -123,7 +123,8 @@ export default class NativeCamera extends React.Component {
 					{/* Toggle Camera */}
 					<View style = {styles.flipCameraButton}>
 						<TouchableOpacity
-							onPress = {() => this.toggleCamera()} >
+							// onPress = {() => this.toggleCamera()} >
+							onPress = {() => this.setState({isRecording: !this.state.isRecording})}>
 							<Icon name="switch-camera" style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
@@ -134,16 +135,17 @@ export default class NativeCamera extends React.Component {
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
-				<View style={styles.circles}>
-					<Progress.CircleSnail
-						style={styles.progress}
-						color={['#F44336', '#2196F3', '#009688']}
-						spinDuration = {1}
-						duration = {650}
-						animating = {this.state.isRecording}
-						size = {100}
-						//endAngle = {15}
-					/>
+					<View style = {styles.captureProgressContainer}>
+						<Progress.CircleSnail
+							style = {styles.captureProgressCircle}
+							color={['#F44336', '#2196F3', '#009688']}
+							spinDuration = {1}
+							thickness = {4}
+							hidesWhenStopped = {true}
+							duration = {650}
+							animating = {this.state.isRecording}
+							size = {Dimensions.get('window').width * 0.18 + 20} >
+						</Progress.CircleSnail>
 					</View>
 
 				</View>

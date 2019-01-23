@@ -352,13 +352,13 @@ export default StyleSheet.create({
 		width: deviceWidth,
 	},
 
-		circles: {
-	 //flexDirection: 'row',
-	 alignItems: 'center',
-	 },
-	 progress: {
-		 margin: 5,
+	captureProgressContainer: {
+		alignItems: 'center',
 	},
+
+	captureProgressCircle: {
+		 bottom: (deviceHeight / 30) - 10,
+	 },
 
 
 
