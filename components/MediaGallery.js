@@ -10,7 +10,7 @@ export default class MediaGallery extends React.Component {
 
 	static navigationOptions = {
 		header: null,
-		gesturesEnabled: false,
+		gesturesEnabled: true,
 	}
 
 	state = {

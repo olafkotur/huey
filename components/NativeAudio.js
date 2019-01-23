@@ -7,7 +7,7 @@ export default class NativeAudio extends React.Component {
 
     static navigationOptions = {
         header: null,
-        gesturesEnabled: false,
+        gesturesEnabled: true,
     }
 
     render() {
