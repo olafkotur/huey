@@ -41,8 +41,8 @@ export default StyleSheet.create({
 		top: deviceHeight - ((deviceHeight * 0.05)+5),
 		left:10,
 	},
-  
-  
+
+
 	/*
 	*
 	*
@@ -59,7 +59,7 @@ export default StyleSheet.create({
 			4. Camera
 			5. HomeScreen
 			6. Settings
-      7. Gallery 
+      7. Gallery
 	*/
 
 
@@ -168,10 +168,16 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight - (deviceHeight * 0.0925),
-		left:10,
+    fontSize:50,
+    top:deviceHeight/59,
+		left:(deviceWidth / 35),
 	},
 
+  topLeftButtonIcon: {
+    fontSize:50,
+    fontSize:deviceHeight/25,
+
+	},
 
 
 	// 2. Login
@@ -347,18 +353,30 @@ export default StyleSheet.create({
 	},
 
 
-	
-	//	5. HomeScreen
 
- 	folderButton: {
-    	width: deviceWidth * 0.08,
+
+//	5. HomeScreen
+  audioButton: {
+    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    	left: deviceWidth * 0.06,
+    left:	deviceWidth * 0.30,
+  },
+
+
+ 	folderButton: {
+    width: deviceWidth * 0.08,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.03,
+    left:	deviceWidth * 0.06,
 	},
 
   	folderIcon: {
@@ -384,8 +402,8 @@ export default StyleSheet.create({
 	    fontSize: deviceWidth * 0.065,
 	},
 
-    
-	//	6. Settings 
+
+	//	6. Settings
 
 	settingsMenuContainer: {
 		flex: 1,
@@ -458,18 +476,84 @@ export default StyleSheet.create({
 		top: -deviceHeight * 0.05,
 		color: '#4B4B4B',
 	},
-    
-   
+
+
+
   	// 7. Gallery
 	galleryContainer: {
-		height: deviceHeight * 0.8,
+		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
-		backgroundColor: 'red'
+		backgroundColor: 'red',
+    position:'absolute',
+    top:deviceHeight / 10,
 	},
 
 	singleGalleryImage: {
-		width: deviceWidth * 0.3,
-		height: deviceWidth * 0.3,
-  	},
+		width: (deviceWidth * 0.3)-4,
+		height: (deviceWidth * 0.3) - 4,
+    margin:2,
+  },
+
+  bottomBar: {
+    width: deviceWidth,
+    height: deviceHeight / 15,
+    bottom:0,
+    position:'absolute',
+    zIndex:100,
+    backgroundColor: '#27AE60'
+  },
+
+// 8. audo Recording
+
+buttonContainer: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
+
+},
+
+audioRecordButton: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+},
+
+audioRecordButtonMic: {
+  fontSize: deviceWidth /5,
+  alignSelf: 'center',
+  top:(deviceWidth / 13),
+},
+
+audioRecordingButton: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+  backgroundColor:'red',
+},
+
+hideButton: {
+  opacity: 0.9,
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  fontSize:deviceHeight/25,
+  top:deviceHeight/90,
+  right:(deviceWidth / 50),
+},
+
 
 })

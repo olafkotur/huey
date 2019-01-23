@@ -45,7 +45,6 @@ export default class SettingsScreen extends React.Component {
 						</TouchableOpacity>
 					</View>
 				</View>
-				
 
 				<View style = {styles.settingsMenuContainer}>
 

@@ -30,7 +30,7 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-			<GalleryImage 
+			<GalleryImage
 				uri = {item.url} >
 			</GalleryImage>
 		);
@@ -69,7 +69,6 @@ export default class MediaGallery extends React.Component {
 					</View>
 				</View>
 
-
 				<View style = {styles.galleryContainer}>
 					<FlatList
 						data = {this.state.mediaData}
@@ -80,6 +79,11 @@ export default class MediaGallery extends React.Component {
       					renderItem = {({item}) => this.renderImage(item)}>
 					</FlatList>
 				</View>
+
+        <View style = {styles.bottomBar}>
+
+        </View>
+
 
 			</View>
 		);
