@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -129,9 +130,21 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.captureMedia('photo')} 
+						onPress = {() => this.captureMedia('photo')}
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
+
+				<View style={styles.circles}>
+					<Progress.CircleSnail
+						style={styles.progress}
+						color={['#F44336', '#2196F3', '#009688']}
+						spinDuration = {1}
+						duration = {650}
+						animating = {this.state.isRecording}
+						size = {100}
+						//endAngle = {15}
+					/>
+					</View>
 
 				</View>
 			);
