@@ -305,17 +305,29 @@ export default StyleSheet.create({
 
 
 
-	//	5. HomeScreen
 
- 	folderButton: {
-    	width: deviceWidth * 0.08,
+//	5. HomeScreen
+  audioButton: {
+    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    	left: deviceWidth * 0.06,
+    left:	deviceWidth * 0.30,
+  },
+
+
+ 	folderButton: {
+    width: deviceWidth * 0.08,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.03,
+    left:	deviceWidth * 0.06,
 	},
 
   	folderIcon: {
@@ -417,6 +429,7 @@ export default StyleSheet.create({
 	},
 
 
+
   	// 7. Gallery
 	galleryContainer: {
 		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
@@ -440,5 +453,58 @@ export default StyleSheet.create({
     zIndex:100,
     backgroundColor: '#27AE60'
   },
+
+// 8. audo Recording
+
+buttonContainer: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
+
+},
+
+audioRecordButton: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+},
+
+audioRecordButtonMic: {
+  fontSize: deviceWidth /5,
+  alignSelf: 'center',
+  top:(deviceWidth / 13),
+},
+
+audioRecordingButton: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+  backgroundColor:'red',
+},
+
+hideButton: {
+  opacity: 0.9,
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  fontSize:deviceHeight/25,
+  top:deviceHeight/39,
+  right:10,
+},
+
 
 })
