@@ -17,12 +17,12 @@ export default class HomeScreen extends React.Component {
 	}
 
 	state = {
-		welcomeMessage: 'Love Is The Root Of Our Resistance'
+		dailyStatus: 'Love Is The Root Of Our Resistance - CP'
 	}
 
-	// Authenticates with firebase and sends user to home screen if successful
-	loadingMessage = async () => {
-		(messageForUser) => this.dropdown.alertWithType('success', 'Welcome', 'Love Is The Root Of Our Resistance - CP')
+	//Send UserMessage
+	componentDidMount(){
+		this.dropdown.alertWithType('success', 'Quote For The Week', this.state.dailyStatus)
 	}
 
 	render() {
