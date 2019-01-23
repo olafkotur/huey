@@ -125,10 +125,16 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight - (deviceHeight * 0.0925),
-		left:10,
+    fontSize:50,
+    top:deviceHeight/59,
+		left:(deviceWidth / 35),
 	},
 
+  topLeftButtonIcon: {
+    fontSize:50,
+    fontSize:deviceHeight/25,
+
+	},
 
 
 	// 2. Login
@@ -502,8 +508,8 @@ hideButton: {
   position: 'absolute',
   alignSelf: 'center',
   fontSize:deviceHeight/25,
-  top:deviceHeight/39,
-  right:10,
+  top:deviceHeight/90,
+  right:(deviceWidth / 50),
 },
 
 
