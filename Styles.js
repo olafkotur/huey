@@ -434,14 +434,25 @@ audioRecordButton: {
   opacity: 1,
   borderRadius: deviceWidth * 0.09,
   borderWidth: 4,
+  borderColor: '#4B4B4B',
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  bottom: ((deviceHeight / 2) - ((deviceWidth * 0.18)/2)),
+},
+
+audioRecordingButton: {
+  width: deviceWidth * 0.18,
+  height: deviceWidth * 0.18,
+  opacity: 1,
+  borderRadius: deviceWidth * 0.09,
+  borderWidth: 4,
   borderColor: 'red',
   zIndex: 100,
   position: 'absolute',
   alignSelf: 'center',
   bottom: ((deviceHeight / 2) - ((deviceWidth * 0.18)/2)),
 }
-
-
 
 
 })

@@ -27,7 +27,9 @@ export default class NativeAudio extends React.Component {
 
         <TouchableOpacity
           style = {styles.audioRecordButton}
-          onPress = {() => console.log("Audio Record Pressed")} >
+          onPress = {() =>
+            this.captureMedia('photo'),
+            console.log("Audio Record Pressed")} >
         </TouchableOpacity>
 
       </View>
