@@ -510,6 +510,11 @@ export default StyleSheet.create({
 		backgroundColor: '#27AE60'
 	},
 
+	focusedGalleryImage: {
+		width: deviceWidth,
+		height: deviceHeight
+	},
+
 
 
 	// 8. Audio Recording

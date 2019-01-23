@@ -8,7 +8,7 @@ export default class SettingsScreen extends React.Component {
 
 	static navigationOptions = {
 		header: null,
-		gesturesEnabled: false,
+		gesturesEnabled: true,
 	}
 
 	state = {

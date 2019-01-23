@@ -10,7 +10,7 @@ export default class MediaGallery extends React.Component {
 
 	static navigationOptions = {
 		header: null,
-		gesturesEnabled: false,
+		gesturesEnabled: true,
 	}
 
 	state = {
@@ -30,9 +30,10 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-			<GalleryImage
-				uri = {item.url} >
-			</GalleryImage>
+			<TouchableOpacity 
+				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url})} >
+				<GalleryImage uri = {item.url} />
+			</TouchableOpacity>
 		);
 	}
 
