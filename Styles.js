@@ -428,6 +428,6 @@ export default StyleSheet.create({
 		width: (deviceWidth * 0.3)-4,
 		height: (deviceWidth * 0.3) - 4,
     margin:2,
-  	},
+  },
 
 })
