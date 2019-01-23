@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
+import GalleryImage from './GalleryImage';
 
 export default class MediaGallery extends React.Component {
 
@@ -29,10 +30,16 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
+<<<<<<< HEAD
 			<Image
 				style = {styles.singleGalleryImage}
 				source = {{uri: item.url}} >
 			</Image>
+=======
+			<GalleryImage 
+				uri = {item.url} >
+			</GalleryImage>
+>>>>>>> master
 		);
 	}
 
