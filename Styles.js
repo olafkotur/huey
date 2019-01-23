@@ -41,8 +41,8 @@ export default StyleSheet.create({
 		top: deviceHeight - ((deviceHeight * 0.05)+5),
 		left:10,
 	},
-  
-  
+
+
 	/*
 	*
 	*
@@ -59,7 +59,7 @@ export default StyleSheet.create({
 			4. Camera
 			5. HomeScreen
 			6. Settings
-      7. Gallery 
+      7. Gallery
 	*/
 
 
@@ -304,7 +304,7 @@ export default StyleSheet.create({
 	},
 
 
-	
+
 	//	5. HomeScreen
 
  	folderButton: {
@@ -341,8 +341,8 @@ export default StyleSheet.create({
 	    fontSize: deviceWidth * 0.065,
 	},
 
-    
-	//	6. Settings 
+
+	//	6. Settings
 
 	settingsMenuContainer: {
 		flex: 1,
@@ -415,18 +415,19 @@ export default StyleSheet.create({
 		top: -deviceHeight * 0.05,
 		color: '#4B4B4B',
 	},
-    
-   
+
+
   	// 7. Gallery
 	galleryContainer: {
 		height: deviceHeight * 0.8,
 		width: deviceWidth * 0.9,
-		backgroundColor: 'red'
+		backgroundColor: '#fff'
 	},
 
 	singleGalleryImage: {
-		width: deviceWidth * 0.3,
-		height: deviceWidth * 0.3,
+		width: (deviceWidth * 0.3)-4,
+		height: (deviceWidth * 0.3) - 4,
+    margin:2,
   	},
 
 })
