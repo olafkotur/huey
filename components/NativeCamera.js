@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll } from 'react-native';
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -129,7 +130,7 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.captureMedia('photo')} 
+						onPress = {() => this.captureMedia('photo')}
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
