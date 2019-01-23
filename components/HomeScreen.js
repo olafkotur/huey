@@ -41,6 +41,16 @@ export default class HomeScreen extends React.Component {
 					<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
 				</TouchableOpacity>
 
+        <TouchableOpacity
+          style = {styles.audioButton}
+          onPress = {() => {
+            this.props.navigation.navigate('NativeAudio'),
+            console.log('hello')
+          }}>
+          <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
+        </TouchableOpacity>
+
+
 				<NativeCamera />
 
 				<DropdownAlert ref={ref => this.dropdown = ref} />
