@@ -301,6 +301,8 @@ export default StyleSheet.create({
 	},
 
 
+
+
 //	5. HomeScreen
   audioButton: {
     width: deviceWidth * 0.08,
@@ -310,7 +312,7 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    left:	deviceWidth * 0.06,
+    left:	deviceWidth * 0.30,
   },
 
 
@@ -422,6 +424,24 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.725,
 		top: -deviceHeight * 0.05,
 		color: '#4B4B4B',
-	}
+	},
+
+
+// 6. audo Recording
+audioRecordButton: {
+  width: deviceWidth * 0.18,
+  height: deviceWidth * 0.18,
+  opacity: 1,
+  borderRadius: deviceWidth * 0.09,
+  borderWidth: 4,
+  borderColor: 'red',
+  zIndex: 100,
+  position: 'absolute',
+  alignSelf: 'center',
+  bottom: ((deviceHeight / 2) - ((deviceWidth * 0.18)/2)),
+}
+
+
+
 
 })
