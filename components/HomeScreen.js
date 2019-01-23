@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import DropdownAlert from 'react-native-dropdownalert';
+import * as Progress from 'react-native-progress';
 
 import NativeCamera from './NativeCamera.js';
 import styles from "../Styles";
@@ -49,7 +50,6 @@ export default class HomeScreen extends React.Component {
           }}>
           <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
         </TouchableOpacity>
-
 
 				<NativeCamera />
 

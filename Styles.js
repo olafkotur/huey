@@ -352,6 +352,14 @@ export default StyleSheet.create({
 		width: deviceWidth,
 	},
 
+		circles: {
+	 //flexDirection: 'row',
+	 alignItems: 'center',
+	 },
+	 progress: {
+		 margin: 5,
+	},
+
 
 
 
