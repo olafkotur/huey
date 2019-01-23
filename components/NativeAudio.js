@@ -25,12 +25,20 @@ export default class NativeAudio extends React.Component {
           <Icon name="arrow-back" style = {{color: "#000"}}  size = {30} />
         </TouchableOpacity>
 
+        <View style = {styles.buttonContainer}>
+          <TouchableOpacity
+            style = {styles.audioRecordButton}
+            onPress = {() => console.log("Audio Record Pressed")} >
+              <Icon name="mic" style = {styles.audioRecordButtonMic} />
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
-          style = {styles.audioRecordButton}
-          onPress = {() =>
-            this.captureMedia('photo'),
-            console.log("Audio Record Pressed")} >
+          style = {styles.hideButton}
+          onPress = {() => console.log("Hide Button Pressed")} >
+          <Icon name="remove-red-eye" style = {styles.hideButton} />
         </TouchableOpacity>
+
 
       </View>
     );

@@ -428,31 +428,56 @@ export default StyleSheet.create({
 
 
 // 6. audo Recording
-audioRecordButton: {
-  width: deviceWidth * 0.18,
-  height: deviceWidth * 0.18,
+
+buttonContainer: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
   opacity: 1,
-  borderRadius: deviceWidth * 0.09,
-  borderWidth: 4,
-  borderColor: '#4B4B4B',
   zIndex: 100,
   position: 'absolute',
   alignSelf: 'center',
-  bottom: ((deviceHeight / 2) - ((deviceWidth * 0.18)/2)),
+  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
+
+},
+
+audioRecordButton: {
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
+  opacity: 1,
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+},
+
+audioRecordButtonMic: {
+  fontSize: deviceWidth /5,
+  alignSelf: 'center',
+  top:(deviceWidth / 13),
 },
 
 audioRecordingButton: {
-  width: deviceWidth * 0.18,
-  height: deviceWidth * 0.18,
+  width: deviceWidth * 0.4,
+  height: deviceWidth * 0.4,
   opacity: 1,
-  borderRadius: deviceWidth * 0.09,
-  borderWidth: 4,
-  borderColor: 'red',
+  borderRadius: deviceWidth,
+  borderWidth: 10,
+  borderColor: '#4B4B4B',
+  position: 'absolute',
+  alignSelf: 'center',
+  backgroundColor:'red',
+},
+
+hideButton: {
+  opacity: 0.9,
   zIndex: 100,
   position: 'absolute',
   alignSelf: 'center',
-  bottom: ((deviceHeight / 2) - ((deviceWidth * 0.18)/2)),
-}
+  fontSize:deviceHeight/25,
+  top:deviceHeight/39,
+  right:10,
+},
 
 
 })
