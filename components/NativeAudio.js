@@ -22,7 +22,7 @@ export default class NativeAudio extends React.Component {
         <TouchableOpacity
           style = {styles.topLeftButton}
           onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-          <Icon name="arrow-back" style = {{color: "#000"}}  size = {30} />
+          <Icon name="arrow-back" style = {styles.topLeftButtonIcon} />
         </TouchableOpacity>
 
         <View style = {styles.buttonContainer}>
