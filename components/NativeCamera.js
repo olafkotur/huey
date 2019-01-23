@@ -134,6 +134,13 @@ export default class NativeCamera extends React.Component {
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
+				<View style={styles.circles}>
+					<Progress.CircleSnail
+						style={styles.progress}
+						color={['#F44336', '#2196F3', '#009688']}
+					/>
+					</View>
+
 				</View>
 			);
 		}
