@@ -79,6 +79,49 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	navbarContainer: {
+		width: deviceWidth,
+		height: deviceHeight * 0.075,
+		backgroundColor: '#27AE60',
+		flexDirection: 'row',
+		alignItems: 'flex-end',
+	},
+
+	navbarBackContainer: {
+		backgroundColor: 'transparent',
+		width: deviceWidth * 0.15,
+		height: deviceHeight * 0.075,
+	},
+
+	navbarRightContainer: {
+		backgroundColor: 'transparent',
+		flexDirection: 'row-reverse',
+		width: deviceWidth * 0.75,
+		height: deviceWidth * 0.075,
+		top: -deviceHeight * 0.0175,
+		left: deviceWidth * 0.12,
+		backgroundColor: 'transparent',	
+	},
+
+	navbarButton: {
+		backgroundColor: "transparent",
+		left: deviceWidth * 0.03,
+		marginRight: 10,
+		marginLeft: 10,
+	},
+
+	navbarIcon: {
+		fontSize: deviceHeight * 0.0375,
+		color: "#fff",
+	},
+
+	navbarBackIcon: {
+		fontSize: deviceHeight * 0.045,
+		color: "#fff",
+		top: deviceHeight * 0.015,
+		right: deviceWidth * 0.025,
+	},
+
 	doubleButtonContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
