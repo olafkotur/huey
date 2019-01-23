@@ -139,6 +139,8 @@ export default class NativeCamera extends React.Component {
 						style={styles.progress}
 						color={['#F44336', '#2196F3', '#009688']}
 						spinDuration = {1}
+						duration = {650}
+						animating = {this.state.isRecording}
 						size = {100}
 						//endAngle = {15}
 					/>
