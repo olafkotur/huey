@@ -138,6 +138,9 @@ export default class NativeCamera extends React.Component {
 					<Progress.CircleSnail
 						style={styles.progress}
 						color={['#F44336', '#2196F3', '#009688']}
+						spinDuration = {1}
+						size = {100}
+						//endAngle = {15}
 					/>
 					</View>
 
