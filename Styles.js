@@ -168,15 +168,14 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-    fontSize:50,
-    top:deviceHeight/59,
+	    fontSize:50,
+	    top:deviceHeight/59,
 		left:(deviceWidth / 35),
 	},
 
-  topLeftButtonIcon: {
-    fontSize:50,
-    fontSize:deviceHeight/25,
-
+	topLeftButtonIcon: {
+	    fontSize:50,
+	    fontSize:deviceHeight/25,
 	},
 
 
@@ -273,10 +272,10 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.89,
 	},
 
-  flipCamera: {
-    color: '#fff',
-    backgroundColor: 'transparent',
-    fontSize: deviceWidth * 0.065,
+	flipCamera: {
+	    color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -310,7 +309,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-    bottom: (deviceHeight / 30),
+	    bottom: (deviceHeight / 30),
 	},
 
   	shutterIcon: {
@@ -365,26 +364,26 @@ export default StyleSheet.create({
 
 //	5. HomeScreen
   audioButton: {
-    width: deviceWidth * 0.08,
+	    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    left:	deviceWidth * 0.30,
+	    left: deviceWidth * 0.30,
   },
 
 
- 	folderButton: {
-    width: deviceWidth * 0.08,
+	folderButton: {
+	    width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-    left:	deviceWidth * 0.06,
+	    left: deviceWidth * 0.06,
 	},
 
   	folderIcon: {
@@ -492,76 +491,77 @@ export default StyleSheet.create({
 		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
 		backgroundColor: 'red',
-    position:'absolute',
-    top:deviceHeight / 10,
+	    position: 'absolute',
+	    top: deviceHeight / 10,
 	},
 
 	singleGalleryImage: {
 		width: (deviceWidth * 0.3)-4,
 		height: (deviceWidth * 0.3) - 4,
-    margin:2,
+	    margin:2,
   },
 
-  bottomBar: {
-    width: deviceWidth,
-    height: deviceHeight / 15,
-    bottom:0,
-    position:'absolute',
-    zIndex:100,
-    backgroundColor: '#27AE60'
-  },
+	bottomBar: {
+		width: deviceWidth,
+		height: deviceHeight / 15,
+		bottom:0,
+		position:'absolute',
+		zIndex:100,
+		backgroundColor: '#27AE60'
+	},
 
-// 8. audo Recording
 
-buttonContainer: {
-  width: deviceWidth * 0.4,
-  height: deviceWidth * 0.4,
-  opacity: 1,
-  zIndex: 100,
-  position: 'absolute',
-  alignSelf: 'center',
-  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
 
-},
+	// 8. Audio Recording
 
-audioRecordButton: {
-  width: deviceWidth * 0.4,
-  height: deviceWidth * 0.4,
-  opacity: 1,
-  borderRadius: deviceWidth,
-  borderWidth: 10,
-  borderColor: '#4B4B4B',
-  position: 'absolute',
-  alignSelf: 'center',
-},
+	buttonContainer: {
+	  width: deviceWidth * 0.4,
+	  height: deviceWidth * 0.4,
+	  opacity: 1,
+	  zIndex: 100,
+	  position: 'absolute',
+	  alignSelf: 'center',
+	  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
 
-audioRecordButtonMic: {
-  fontSize: deviceWidth /5,
-  alignSelf: 'center',
-  top:(deviceWidth / 13),
-},
+	},
 
-audioRecordingButton: {
-  width: deviceWidth * 0.4,
-  height: deviceWidth * 0.4,
-  opacity: 1,
-  borderRadius: deviceWidth,
-  borderWidth: 10,
-  borderColor: '#4B4B4B',
-  position: 'absolute',
-  alignSelf: 'center',
-  backgroundColor:'red',
-},
+	audioRecordButton: {
+	  width: deviceWidth * 0.4,
+	  height: deviceWidth * 0.4,
+	  opacity: 1,
+	  borderRadius: deviceWidth,
+	  borderWidth: 10,
+	  borderColor: '#4B4B4B',
+	  position: 'absolute',
+	  alignSelf: 'center',
+	},
 
-hideButton: {
-  opacity: 0.9,
-  zIndex: 100,
-  position: 'absolute',
-  alignSelf: 'center',
-  fontSize:deviceHeight/25,
-  top:deviceHeight/90,
-  right:(deviceWidth / 50),
-},
+	audioRecordButtonMic: {
+	  fontSize: deviceWidth /5,
+	  alignSelf: 'center',
+	  top:(deviceWidth / 13),
+	},
 
+	audioRecordingButton: {
+	  width: deviceWidth * 0.4,
+	  height: deviceWidth * 0.4,
+	  opacity: 1,
+	  borderRadius: deviceWidth,
+	  borderWidth: 10,
+	  borderColor: '#4B4B4B',
+	  position: 'absolute',
+	  alignSelf: 'center',
+	  backgroundColor:'red',
+	},
+
+	hideButton: {
+	  opacity: 0.9,
+	  zIndex: 100,
+	  position: 'absolute',
+	  alignSelf: 'center',
+	  fontSize:deviceHeight/25,
+	  top:deviceHeight/90,
+	  right:(deviceWidth / 50),
+	},
 
 })

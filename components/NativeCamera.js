@@ -42,7 +42,6 @@ export default class NativeCamera extends React.Component {
 
 	// Capture video or photo
 	captureMedia = async (action) => {
-		console.log(this.state.isRecording);
 		// Stop Recording if active
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
@@ -123,8 +122,7 @@ export default class NativeCamera extends React.Component {
 					{/* Toggle Camera */}
 					<View style = {styles.flipCameraButton}>
 						<TouchableOpacity
-							// onPress = {() => this.toggleCamera()} >
-							onPress = {() => this.setState({isRecording: !this.state.isRecording})}>
+							onPress = {() => this.toggleCamera()} >
 							<Icon name="switch-camera" style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
