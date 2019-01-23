@@ -79,6 +79,23 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	navbarContainer: {
+		width: deviceWidth,
+		height: deviceHeight * 0.075,
+		backgroundColor: '#27AE60',
+	},
+
+	navbarBackButton: {
+		backgroundColor: "transparent",
+		top: deviceHeight * 0.015,
+		left: deviceWidth * 0.03,
+	},
+
+	navbarBackIcon: {
+		fontSize: deviceHeight * 0.0425,
+		color: "#fff",
+	},
+
 	doubleButtonContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',

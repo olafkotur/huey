@@ -19,12 +19,13 @@ export default class SettingsScreen extends React.Component {
 		return (
 			<View style = {styles.container}>
 
-				<TouchableOpacity
-					style = {styles.topLeftButton}
-					onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-					<Icon name="arrow-back" style = {{color: "#000"}}  size = {30} />
-				</TouchableOpacity>
-
+				<View style = {styles.navbarContainer}> 
+					<TouchableOpacity
+						style = {styles.navbarBackButton}
+						onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+						<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+					</TouchableOpacity>
+				</View>
 				
 
 				<View style = {styles.settingsMenuContainer}>
