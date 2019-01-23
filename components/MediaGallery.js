@@ -39,12 +39,32 @@ export default class MediaGallery extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
+				<View style = {styles.navbarContainer}> 
+					<View style = {styles.navbarBackContainer}> 
+						<TouchableOpacity
+							style = {styles.navbarButton}
+							onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+							<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+						</TouchableOpacity>
+					</View>
 
-				<TouchableOpacity
-					style = {styles.topLeftButton} 
-					onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-					<Icon name="arrow-back" style = {{color: '#000'}}  size = {30} />
-				</TouchableOpacity>
+					<View style = {styles.navbarRightContainer}>
+						<TouchableOpacity
+							style = {styles.navbarButton}>
+							<Icon name="more-vert" style = {styles.navbarIcon}  size = {30} />
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							style = {styles.navbarButton}>
+							<Icon name="info" style = {styles.navbarIcon}  size = {30} />
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							style = {styles.navbarButton}>
+							<Icon name="sort" style = {styles.navbarIcon}  size = {30} />
+						</TouchableOpacity>
+					</View>
+				</View>
 
 				<View style = {styles.galleryContainer}>
 					<FlatList
