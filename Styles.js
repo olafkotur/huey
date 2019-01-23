@@ -419,15 +419,26 @@ export default StyleSheet.create({
 
   	// 7. Gallery
 	galleryContainer: {
-		height: deviceHeight * 0.8,
+		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
-		backgroundColor: '#fff'
+		backgroundColor: 'red',
+    position:'absolute',
+    top:deviceHeight / 10,
 	},
 
 	singleGalleryImage: {
 		width: (deviceWidth * 0.3)-4,
 		height: (deviceWidth * 0.3) - 4,
     margin:2,
+  },
+
+  bottomBar: {
+    width: deviceWidth,
+    height: deviceHeight / 15,
+    bottom:0,
+    position:'absolute',
+    zIndex:100,
+    backgroundColor: '#27AE60'
   },
 
 })

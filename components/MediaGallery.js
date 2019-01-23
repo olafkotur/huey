@@ -29,7 +29,7 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-			<Image 
+			<Image
 				style = {styles.singleGalleryImage}
 				source = {{uri: item.url}} >
 			</Image>
@@ -41,7 +41,7 @@ export default class MediaGallery extends React.Component {
 			<View style = {styles.container}>
 
 				<TouchableOpacity
-					style = {styles.topLeftButton} 
+					style = {styles.topLeftButton}
 					onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 					<Icon name="arrow-back" style = {{color: '#000'}}  size = {30} />
 				</TouchableOpacity>
@@ -56,6 +56,11 @@ export default class MediaGallery extends React.Component {
       					renderItem = {({item}) => this.renderImage(item)}>
 					</FlatList>
 				</View>
+
+        <View style = {styles.bottomBar}>
+
+        </View>
+
 
 			</View>
 		);
