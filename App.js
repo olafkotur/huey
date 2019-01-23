@@ -10,6 +10,8 @@ import HomeScreen from './components/HomeScreen';
 import MediaGallery from './components/MediaGallery';
 import SettingsScreen from './components/SettingsScreen';
 import NativeAudio from './components/NativeAudio';
+import FocusedImage from './components/FocusedImage';
+
 
 const AppStack = createStackNavigator({
 	LoginScreen: {screen: LoginScreen},
@@ -17,7 +19,8 @@ const AppStack = createStackNavigator({
 	HomeScreen: {screen: HomeScreen},
 	MediaGallery: {screen: MediaGallery},
 	SettingsScreen: {screen: SettingsScreen},
-  NativeAudio: {screen: NativeAudio},
+	NativeAudio: {screen: NativeAudio},
+	FocusedImage: {screen: FocusedImage},
 });
 
 const AppRouter = createAppContainer(AppStack);
