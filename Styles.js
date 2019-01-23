@@ -430,17 +430,29 @@ export default StyleSheet.create({
 
 
 
-// 7. Gallery
-galleryContainer: {
-height: deviceHeight * 0.8,
-width: deviceWidth * 0.9,
-backgroundColor: 'red'
-},
+  	// 7. Gallery
+	galleryContainer: {
+		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
+		width: deviceWidth * 0.9,
+		backgroundColor: 'red',
+    position:'absolute',
+    top:deviceHeight / 10,
+	},
 
-singleGalleryImage: {
-width: deviceWidth * 0.3,
-height: deviceWidth * 0.3,
-},
+	singleGalleryImage: {
+		width: (deviceWidth * 0.3)-4,
+		height: (deviceWidth * 0.3) - 4,
+    margin:2,
+  },
+
+  bottomBar: {
+    width: deviceWidth,
+    height: deviceHeight / 15,
+    bottom:0,
+    position:'absolute',
+    zIndex:100,
+    backgroundColor: '#27AE60'
+  },
 
 // 8. audo Recording
 
@@ -493,5 +505,6 @@ hideButton: {
   top:deviceHeight/39,
   right:10,
 },
+
 
 })

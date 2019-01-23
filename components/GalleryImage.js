@@ -7,7 +7,7 @@ export default class GalleryImage extends React.Component {
 
 	render() {
 		return (
-			<Image 
+			<Image
 				style = {styles.singleGalleryImage}
 				source = {{uri: this.props.uri}} >
 			</Image>
