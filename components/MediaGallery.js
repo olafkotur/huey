@@ -30,16 +30,9 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-<<<<<<< HEAD
-			<Image
-				style = {styles.singleGalleryImage}
-				source = {{uri: item.url}} >
-			</Image>
-=======
-			<GalleryImage 
+			<GalleryImage
 				uri = {item.url} >
 			</GalleryImage>
->>>>>>> master
 		);
 	}
 
