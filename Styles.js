@@ -178,6 +178,11 @@ export default StyleSheet.create({
 	    fontSize:deviceHeight/25,
 	},
 
+	hide: {
+		opacity: 0,
+		zIndex: -10000,
+	},
+
 
 	// 2. Login
 
@@ -363,16 +368,16 @@ export default StyleSheet.create({
 
 
 //	5. HomeScreen
-  audioButton: {
-	    width: deviceWidth * 0.08,
+	audioButton: {
+		width: deviceWidth * 0.08,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-	    left: deviceWidth * 0.30,
-  },
+		left: deviceWidth * 0.30,
+	},
 
 
 	folderButton: {
