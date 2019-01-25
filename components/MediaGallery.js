@@ -14,7 +14,8 @@ export default class MediaGallery extends React.Component {
 	}
 
 	state = {
-		mediaData: []
+		mediaData: [],
+		singleImageUri: ''
 	}
 
 	componentDidMount = () => {
