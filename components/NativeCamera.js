@@ -90,8 +90,8 @@ export default class NativeCamera extends React.Component {
 	// Sends to firebase as backup
 	saveInCloud = (uri) => {
 		const name = Date.now().toString() + '.png' ;
-		Handler = new FileHandler();
-		Handler.uploadMedia(uri, name);
+		// Handler = new FileHandler();
+		// Handler.uploadMedia(uri, name);
 	}
 
 

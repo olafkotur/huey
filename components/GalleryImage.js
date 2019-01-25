@@ -19,18 +19,12 @@ export default class GalleryImage extends React.Component {
 		await FileSystem.getInfoAsync(fileUri, {}).then((information) => {
 			// Use existing
 			if (information.exists) {
-				this.setState({
-					uri: information.uri,
-					isProcessing: false
-				});
+				this.setState({uri: information.uri, isProcessing: false});
 			}
 			// Download and cache
 			else {
 				FileSystem.downloadAsync(this.props.uri, fileUri).then((info) => {
-					this.setState({
-						uri: info.uri,
-						isProcessing: false
-					});
+					this.setState({uri: info.uri, isProcessing: false});
 				});
 			}
 		});
