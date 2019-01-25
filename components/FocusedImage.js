@@ -12,22 +12,26 @@ export default class FocusedImage extends React.Component {
 	}
 
 	state = {
-		uri: ''
+		uri: '',
+		isProccesing: true
 	}
 
 	componentWillMount = async () => {
 		// Grabs image from local storage
 		const fileName = this.props.navigation.getParam('uri', '').split('media%2F').pop().split('?')[0];
-		const fileUri = FileSystem.documentDirectory + fileName;
-		this.setState({uri: fileUri});
+		const uri = FileSystem.documentDirectory + fileName;
+		this.setState({uri: uri, isProcessing: false});
 	}
 
 	render() {
-		return (
-			<Image
-				style = {styles.focusedGalleryImage}
-				source = {{uri: this.state.uri}} >
-			</Image>
-		);
+		if (this.state.isProcessing) return null;
+		else {
+			return (
+				<Image
+					style = {styles.focusedGalleryImage}
+					source = {{uri: this.state.uri}} >
+				</Image>
+			);
+		}
 	}
 }
