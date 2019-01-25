@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import DropdownAlert from 'react-native-dropdownalert';
 import * as Progress from 'react-native-progress';
+import * as firebase from "firebase";
 
 import NativeCamera from './NativeCamera.js';
 import styles from "../Styles";
@@ -20,8 +21,17 @@ export default class HomeScreen extends React.Component {
 		dailyStatus: 'Love Is The Root Of Our Resistance - CP'
 	}
 
-	//Send UserMessage
-	componentDidMount(){
+	// Quote of the day
+	componentDidMount = async () => {
+		// Grab all quotes
+		await firebase.database().ref('messages').once('value', snapshot => {
+			if (snapshot) {
+				const messages = Object.values(snapshot.val());
+				const random = Math.floor((Math.random() * messages.length) + 0);
+				this.setState({dailyStatus: messages[random]});
+
+			}
+		});
 		this.dropdown.alertWithType('success', 'Quote For The Week', this.state.dailyStatus)
 	}
 
