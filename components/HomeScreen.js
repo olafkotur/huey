@@ -44,10 +44,7 @@ export default class HomeScreen extends React.Component {
 
         <TouchableOpacity
           style = {styles.audioButton}
-          onPress = {() => {
-            this.props.navigation.navigate('NativeAudio'),
-            console.log('hello')
-          }}>
+          onPress = {() => this.props.navigation.navigate('NativeAudio')}>
           <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
         </TouchableOpacity>
 

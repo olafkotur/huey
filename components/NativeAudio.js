@@ -10,6 +10,34 @@ export default class NativeAudio extends React.Component {
         gesturesEnabled: true,
     }
 
+    state = {
+        isRecording: false,
+        isHidden: false,
+        audioRecordingButtonStyle: styles.audioRecordButton,
+        buttonContainerStyle: styles.buttonContainer
+    }
+
+    // Toggle the recoridng button between active and inactive styles
+    toggleRecording = async (action) => {
+        (action === 'recording') ? await this.setState({isRecording: !this.state.isRecording}) : await this.setState({isHidden: !this.state.isHidden});
+
+        // Record button styling
+        if (this.state.isRecording) {
+            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton});
+        }
+        else {
+            this.setState({audioRecordingButtonStyle: styles.audioRecordButton});
+        }
+
+        // Hide button styling
+        if (this.state.isHidden) {
+            this.setState({buttonContainerStyle: styles.hide});
+        }
+        else {
+            this.setState({buttonContainerStyle: styles.buttonContainer});
+        }
+    }
+
     render() {
         return (
             <View style = {styles.container}>
@@ -20,17 +48,17 @@ export default class NativeAudio extends React.Component {
                     <Icon name="arrow-back" style = {styles.topLeftButtonIcon} />
                 </TouchableOpacity>
 
-                <View style = {styles.buttonContainer}>
+                <View style = {this.state.buttonContainerStyle}>
                     <TouchableOpacity
-                        style = {styles.audioRecordButton}
-                        onPress = {() => console.log("Audio Record Pressed")} >
+                        style = {this.state.audioRecordingButtonStyle}
+                        onPress = {async () => this.toggleRecording('recording')}>
                         <Icon name="mic" style = {styles.audioRecordButtonMic} />
                     </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity
                     style = {styles.hideButton}
-                    onPress = {() => console.log("Hide Button Pressed")} >
+                    onPress = {async () => this.toggleRecording('hidden')}>
                     <Icon name="remove-red-eye" style = {styles.hideButton} />
                 </TouchableOpacity>
 
