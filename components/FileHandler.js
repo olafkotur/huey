@@ -1,4 +1,5 @@
 import React from 'react';
+import { FileSystem } from 'expo';
 import uuid from 'uuid';
 import * as firebase from "firebase";
 
@@ -7,6 +8,23 @@ export default class FileHandler extends React.Component {
 
 	state = {
 
+	}
+
+	getLocalFile = async (fileName, url) => {
+		let uri = FileSystem.documentDirectory + fileName;
+
+		// Check if file exists
+		await FileSystem.getInfoAsync(uri).then((information) => {
+			if (information.exists) { 
+				uri = information.uri; // Use existing
+			}
+			else {
+				FileSystem.downloadAsync(url, uri).then((info) => {
+					uri = info.uri; // Download and cache
+				});
+			}
+		});
+		return uri;
 	}
 
 	// Returns media from firebase
@@ -21,7 +39,6 @@ export default class FileHandler extends React.Component {
 				media = Object.values(snapshot.val());
 			}
 		});
-
 		return media;
 	}
 
