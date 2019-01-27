@@ -87,6 +87,15 @@ export default StyleSheet.create({
 		alignItems: 'flex-end',
 	},
 
+	navbarGalleryContainer: {
+		width: deviceWidth,
+		height: deviceHeight * 0.075,
+		backgroundColor: '#27AE60',
+		flexDirection: 'row',
+		alignItems: 'flex-end',
+		bottom: (deviceHeight * 0.465),
+	},
+
 	navbarBackContainer: {
 		backgroundColor: 'transparent',
 		width: deviceWidth * 0.15,

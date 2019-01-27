@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
@@ -40,10 +40,10 @@ export default class MediaGallery extends React.Component {
 
 	render() {
 		return (
-			<View style = {styles.container}>
-				
-				<View style = {{marginTop: -100}}>
-					<View style = {styles.navbarContainer}> 
+			<SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+				<View style = {styles.container}>
+
+					<View style = {styles.navbarGalleryContainer}> 
 						<View style = {styles.navbarBackContainer}> 
 							<TouchableOpacity
 								style = {styles.navbarButton}
@@ -69,25 +69,23 @@ export default class MediaGallery extends React.Component {
 							</TouchableOpacity>
 						</View>
 					</View>
+
+					<View style = {styles.galleryContainer}>
+						<FlatList
+							data = {this.state.mediaData}
+							extraData = {this.state}
+							horiztonal = {false}
+							numColumns = {3}
+							keyExtractor = {(item, index) => index.toString()}
+	      					renderItem = {({item}) => this.renderImage(item)}>
+						</FlatList>
+					</View>
+
+					<View style = {styles.bottomBar}>
+					</View>
+
 				</View>
-
-				<View style = {styles.galleryContainer}>
-					<FlatList
-						data = {this.state.mediaData}
-						extraData = {this.state}
-						horiztonal = {false}
-						numColumns = {3}
-						keyExtractor = {(item, index) => index.toString()}
-      					renderItem = {({item}) => this.renderImage(item)}>
-					</FlatList>
-				</View>
-
-        <View style = {styles.bottomBar}>
-
-        </View>
-
-
-			</View>
+			</SafeAreaView>
 		);
 	}
 }
