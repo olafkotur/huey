@@ -94,6 +94,7 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'flex-end',
 		bottom: (deviceHeight * 0.465),
+    zIndex:100,
 	},
 
 	navbarBackContainer: {
@@ -109,7 +110,7 @@ export default StyleSheet.create({
 		height: deviceWidth * 0.075,
 		top: -deviceHeight * 0.0175,
 		left: deviceWidth * 0.12,
-		backgroundColor: 'transparent',	
+		backgroundColor: 'transparent',
 	},
 
 	navbarButton: {
@@ -502,11 +503,11 @@ export default StyleSheet.create({
 
   	// 7. Gallery
 	galleryContainer: {
-		height: deviceHeight - ((deviceHeight / 10) + (deviceHeight / 15)),
+		height: deviceHeight - ((deviceHeight / 8) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
 		backgroundColor: 'red',
-	    position: 'absolute',
-	    top: deviceHeight / 10,
+	  position: 'absolute',
+	  bottom: 0 + (deviceHeight / 15),
 	},
 
 	singleGalleryImage: {

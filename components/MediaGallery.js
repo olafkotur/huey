@@ -31,7 +31,7 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-			<TouchableOpacity 
+			<TouchableOpacity
 				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url})} >
 				<GalleryImage uri = {item.url} />
 			</TouchableOpacity>
@@ -40,11 +40,11 @@ export default class MediaGallery extends React.Component {
 
 	render() {
 		return (
-			<SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+			<SafeAreaView style={{flex: 1, backgroundColor: '#27ae60'}}>
 				<View style = {styles.container}>
 
-					<View style = {styles.navbarGalleryContainer}> 
-						<View style = {styles.navbarBackContainer}> 
+					<View style = {styles.navbarGalleryContainer}>
+						<View style = {styles.navbarBackContainer}>
 							<TouchableOpacity
 								style = {styles.navbarButton}
 								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
