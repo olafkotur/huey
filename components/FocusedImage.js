@@ -17,7 +17,6 @@ export default class FocusedImage extends React.Component {
 		fileType: '',
 		isProccesing: true,
 		shouldPlay: '',
-		playIcon: '',
 	}
 
 	componentWillMount = async () => {
@@ -30,6 +29,15 @@ export default class FocusedImage extends React.Component {
 			fileType: this.props.navigation.getParam('fileType', ''),
 			shouldPlay: true,
 		});
+	}
+
+	playPauseVideo = () => {
+		if (this.state.shouldPlay === false) {
+			this.setState({shouldPlay: true});
+		}
+		else {
+			this.setState({shouldPlay: false})
+		}
 	}
 
 	render() {
@@ -51,6 +59,19 @@ export default class FocusedImage extends React.Component {
 						</TouchableOpacity>
 						<TouchableOpacity>
 							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
+					<View style = {styles.imageButtonContainer}>
+						<TouchableOpacity>
+							<Icon name= "edit" style = {styles.imageControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress =	{() => this.playPauseVideo} >
+							<Icon name = "delete-forever" style = {styles.imageControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "vpn-lock" style = {styles.imageControl} size = {30} />
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -87,8 +108,9 @@ export default class FocusedImage extends React.Component {
 						<TouchableOpacity>
 							<Icon name= "fast-rewind" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Icon name= "play-circle-filled" style = {styles.playPauseButton}  size = {30} />
+						<TouchableOpacity
+							onPress =	{() => this.playPauseVideo} >
+							<Icon name = "play-circle-filled" style = {styles.playPauseButton}  size = {30} />
 						</TouchableOpacity>
 						<TouchableOpacity>
 							<Icon name= "fast-forward" style = {styles.videoControl}  size = {30} />

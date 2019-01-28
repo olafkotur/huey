@@ -555,13 +555,33 @@ export default StyleSheet.create({
 		position: 'absolute',
 	},
 
+	imageButtonContainer: {
+		zIndex: 100,
+		flexDirection: 'row',
+		alignSelf: 'center',
+		top: deviceHeight * 0.925,
+		position: 'absolute',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: deviceWidth,
+		height: deviceHeight * 0.075,
+		backgroundColor: '#0005',
+	},
+
+	imageControl: {
+		color: 'white',
+		fontSize: deviceWidth * 0.075,
+		marginRight: deviceWidth * 0.1,
+		marginLeft: deviceWidth * 0.1,
+	},
+
 	galleryViewTopButtons: {
 		zIndex: 100,
 		flexDirection: 'row',
 		alignSelf: 'center',
 		width: deviceWidth,
 		position: 'absolute',
-		backgroundColor: '#0003',
+		backgroundColor: '#0005',
 		height: deviceHeight * 0.07,
 	},
 
