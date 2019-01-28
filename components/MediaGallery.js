@@ -30,10 +30,14 @@ export default class MediaGallery extends React.Component {
 	}
 
 	renderImage = (item) => {
+		let fileType = '';
+		const fileName = item.url.split('media%2F').pop().split('?')[0];
+		(fileName.includes('.png')) ? (fileType = 'photo') : (fileType = 'video');
+
 		return (
 			<TouchableOpacity
-				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url})}>
-				<GalleryImage uri = {item.url} />
+				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url, fileType: fileType})} >
+				<GalleryImage uri = {item.url} fileType = {fileType} />
 			</TouchableOpacity>
 		);
 	}

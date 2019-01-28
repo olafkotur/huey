@@ -16,9 +16,8 @@
     "react-native-dropdownalert": "^3.9.1",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-progress": "^3.5.0",
-    "react-native-reanimated": "^1.0.0-alpha.11",
-    "react-navigation": "^3.0.9",
-    "webpack": "^4.0.0"
+    "react-native-video": "^4.3.1",
+    "react-navigation": "^3.0.9"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
