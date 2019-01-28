@@ -523,7 +523,8 @@ export default StyleSheet.create({
 
 	focusedGalleryImage: {
 		width: deviceWidth,
-		height: deviceHeight
+		height: deviceHeight,
+		position: 'absolute',
 	},
 
 	imageSelected: {
@@ -531,6 +532,71 @@ export default StyleSheet.create({
     	backgroundColor: "#000066",
     	borderWidth: 10,
     	borderRadius: 10
+	},
+
+	videoControl: {
+		color: 'white',
+		fontSize: deviceWidth * 0.1,
+		marginRight: deviceWidth * 0.075,
+		marginLeft: deviceWidth * 0.075,
+		marginTop: deviceHeight * 0.02,
+	},
+
+	playPauseButton: {
+		fontSize: deviceWidth * 0.175,
+		color: '#fff',
+	},
+
+	videoButtonContainer: {
+		zIndex: 100,
+		flexDirection: 'row',
+		alignSelf: 'center',
+		top: deviceHeight * 0.89,
+		position: 'absolute',
+	},
+
+	imageButtonContainer: {
+		zIndex: 100,
+		flexDirection: 'row',
+		alignSelf: 'center',
+		top: deviceHeight * 0.925,
+		position: 'absolute',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: deviceWidth,
+		height: deviceHeight * 0.075,
+		backgroundColor: '#0005',
+	},
+
+	imageControl: {
+		color: 'white',
+		fontSize: deviceWidth * 0.075,
+		marginRight: deviceWidth * 0.1,
+		marginLeft: deviceWidth * 0.1,
+	},
+
+	galleryViewTopButtons: {
+		zIndex: 100,
+		flexDirection: 'row',
+		alignSelf: 'center',
+		width: deviceWidth,
+		position: 'absolute',
+		backgroundColor: '#0005',
+		height: deviceHeight * 0.07,
+	},
+
+	galleryBackButton: {
+		color: '#fff',
+		fontSize: deviceWidth * 0.1,
+		marginTop: deviceHeight * 0.01,
+		marginLeft: deviceWidth * 0.01,
+	},
+
+	galleryMenuButton: {
+		color: '#fff',
+		fontSize: deviceWidth * 0.075,
+		marginTop: deviceHeight * 0.0175,
+		marginLeft: deviceWidth * 0.775,
 	},
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { FileSystem, Video } from 'expo';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
 
@@ -14,7 +15,8 @@ export default class FocusedImage extends React.Component {
 	state = {
 		uri: '',
 		fileType: '',
-		isProccesing: true
+		isProccesing: true,
+		shouldPlay: '',
 	}
 
 	componentWillMount = async () => {
@@ -24,8 +26,18 @@ export default class FocusedImage extends React.Component {
 		this.setState({
 			uri: uri, 
 			isProcessing: false,
-			fileType: this.props.navigation.getParam('fileType', '')
+			fileType: this.props.navigation.getParam('fileType', ''),
+			shouldPlay: true,
 		});
+	}
+
+	playPauseVideo = () => {
+		if (this.state.shouldPlay === false) {
+			this.setState({shouldPlay: true});
+		}
+		else {
+			this.setState({shouldPlay: false})
+		}
 	}
 
 	render() {
@@ -34,25 +46,77 @@ export default class FocusedImage extends React.Component {
 		// Display photo
 		else if (this.state.fileType === 'photo') {
 			return (
-				<Image
-					style = {styles.focusedGalleryImage}
-					source = {{uri: this.state.uri}} >
-				</Image>
+				<View>
+					<Image
+						style = {styles.focusedGalleryImage}
+						source = {{uri: this.state.uri}} >
+					</Image>
+
+					<View style = {styles.galleryViewTopButtons}>
+						<TouchableOpacity
+							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
+					<View style = {styles.imageButtonContainer}>
+						<TouchableOpacity>
+							<Icon name= "edit" style = {styles.imageControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress =	{() => this.playPauseVideo} >
+							<Icon name = "delete-forever" style = {styles.imageControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "vpn-lock" style = {styles.imageControl} size = {30} />
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		}
 
 		// Display video
 		else if (this.state.fileType === 'video') {
 			return (
-				<Video
-					source = {{ uri: this.state.uri }}
-					rate = {1.0}
-					volume = {1.0}
-					isMuted = {true}
-					shouldPlay
-					resizeMode = 'cover'
-					style = {styles.focusedGalleryImage} >
-				</Video>
+				<View>
+
+					<Video
+						source = {{ uri: this.state.uri }}
+						rate = {1.0}
+						volume = {1.0}
+						isMuted = {true}
+						shouldPlay = {this.state.shouldPlay}
+						resizeMode = 'cover'
+						isLooping
+						style = {styles.focusedGalleryImage} >
+					</Video>
+
+					<View style = {styles.galleryViewTopButtons}>
+						<TouchableOpacity
+							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
+					<View style = {styles.videoButtonContainer}>
+						<TouchableOpacity>
+							<Icon name= "fast-rewind" style = {styles.videoControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress =	{() => this.playPauseVideo} >
+							<Icon name = "play-circle-filled" style = {styles.playPauseButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "fast-forward" style = {styles.videoControl}  size = {30} />
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		}
 	}
