@@ -14,7 +14,8 @@ export default class FocusedImage extends React.Component {
 	state = {
 		uri: '',
 		fileType: '',
-		isProccesing: true
+		isProccesing: true,
+		shouldPlay: '',
 	}
 
 	componentWillMount = async () => {
@@ -24,7 +25,8 @@ export default class FocusedImage extends React.Component {
 		this.setState({
 			uri: uri, 
 			isProcessing: false,
-			fileType: this.props.navigation.getParam('fileType', '')
+			fileType: this.props.navigation.getParam('fileType', ''),
+			shouldPlay: true,
 		});
 	}
 
@@ -49,7 +51,7 @@ export default class FocusedImage extends React.Component {
 					rate = {1.0}
 					volume = {1.0}
 					isMuted = {true}
-					shouldPlay
+					shouldPlay = {this.state.shouldPlay}
 					resizeMode = 'cover'
 					style = {styles.focusedGalleryImage} >
 				</Video>
