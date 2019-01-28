@@ -38,10 +38,22 @@ export default class FocusedImage extends React.Component {
 		// Display photo
 		else if (this.state.fileType === 'photo') {
 			return (
-				<Image
-					style = {styles.focusedGalleryImage}
-					source = {{uri: this.state.uri}} >
-				</Image>
+				<View>
+					<Image
+						style = {styles.focusedGalleryImage}
+						source = {{uri: this.state.uri}} >
+					</Image>
+
+					<View style = {styles.galleryViewTopButtons}>
+						<TouchableOpacity
+							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		}
 
@@ -49,6 +61,7 @@ export default class FocusedImage extends React.Component {
 		else if (this.state.fileType === 'video') {
 			return (
 				<View>
+
 					<Video
 						source = {{ uri: this.state.uri }}
 						rate = {1.0}
@@ -60,9 +73,25 @@ export default class FocusedImage extends React.Component {
 						style = {styles.focusedGalleryImage} >
 					</Video>
 
+					<View style = {styles.galleryViewTopButtons}>
+						<TouchableOpacity
+							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
 					<View style = {styles.videoButtonContainer}>
 						<TouchableOpacity>
-							<Icon name= "play-circle-filled" style = {styles.videoControl}  size = {30} />
+							<Icon name= "fast-rewind" style = {styles.videoControl}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "play-circle-filled" style = {styles.playPauseButton}  size = {30} />
+						</TouchableOpacity>
+						<TouchableOpacity>
+							<Icon name= "fast-forward" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 					</View>
 				</View>

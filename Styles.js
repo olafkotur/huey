@@ -536,16 +536,47 @@ export default StyleSheet.create({
 
 	videoControl: {
 		color: 'white',
+		fontSize: deviceWidth * 0.1,
+		marginRight: deviceWidth * 0.075,
+		marginLeft: deviceWidth * 0.075,
+		marginTop: deviceHeight * 0.02,
 	},
 
 	playPauseButton: {
-		fontSize: deviceWidth * 0.2,
+		fontSize: deviceWidth * 0.175,
+		color: '#fff',
 	},
 
 	videoButtonContainer: {
 		zIndex: 100,
+		flexDirection: 'row',
 		alignSelf: 'center',
-		top: deviceHeight * 0.925,
+		top: deviceHeight * 0.89,
+		position: 'absolute',
+	},
+
+	galleryViewTopButtons: {
+		zIndex: 100,
+		flexDirection: 'row',
+		alignSelf: 'center',
+		width: deviceWidth,
+		position: 'absolute',
+		backgroundColor: '#0003',
+		height: deviceHeight * 0.07,
+	},
+
+	galleryBackButton: {
+		color: '#fff',
+		fontSize: deviceWidth * 0.1,
+		marginTop: deviceHeight * 0.01,
+		marginLeft: deviceWidth * 0.01,
+	},
+
+	galleryMenuButton: {
+		color: '#fff',
+		fontSize: deviceWidth * 0.075,
+		marginTop: deviceHeight * 0.0175,
+		marginLeft: deviceWidth * 0.775,
 	},
 
 
