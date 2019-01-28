@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, SafeAreaView, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
@@ -31,10 +31,10 @@ export default class MediaGallery extends React.Component {
 
 	renderImage = (item) => {
 		return (
-			<TouchableHighlight
+			<TouchableOpacity
 				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url})}>
 				<GalleryImage uri = {item.url} />
-			</TouchableHighlight>
+			</TouchableOpacity>
 		);
 	}
 

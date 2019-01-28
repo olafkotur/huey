@@ -22,7 +22,7 @@ var deviceWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
 
-	// Dev
+// Dev
 
 	devButtonSmall: {
 		width: 30,
@@ -51,7 +51,7 @@ export default StyleSheet.create({
 		for front end. Note that a lot of this is brute forced to speed
 		up backend so it will have to be changed.
 
-	----- TABLE OF CONTENTS -----
+----- TABLE OF CONTENTS -----
 
 			1. Global
 			2. Login
@@ -59,11 +59,11 @@ export default StyleSheet.create({
 			4. Camera
 			5. HomeScreen
 			6. Settings
-      7. Gallery
-	*/
+      		7. Gallery
+*/
 
 
-	// 1. Global
+// 1. Global
 
 	container: {
 		flex: 1,
@@ -194,7 +194,7 @@ export default StyleSheet.create({
 	},
 
 
-	// 2. Login
+// 2. Login
 
 	loginLogo: {
 		width: deviceWidth * 0.7,
@@ -254,8 +254,7 @@ export default StyleSheet.create({
 	},
 
 
-
-	// 3. Forgot Password
+// 3. Forgot Password
 
 	resetButton: {
 		width: deviceWidth * 0.38,
@@ -277,8 +276,7 @@ export default StyleSheet.create({
 	},
 
 
-
-	//	4. Camera
+//	4. Camera
 
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
@@ -375,8 +373,6 @@ export default StyleSheet.create({
 	 },
 
 
-
-
 //	5. HomeScreen
 	audioButton: {
 		width: deviceWidth * 0.08,
@@ -425,7 +421,7 @@ export default StyleSheet.create({
 	},
 
 
-	//	6. Settings
+//	6. Settings
 
 	settingsMenuContainer: {
 		flex: 1,
@@ -500,8 +496,8 @@ export default StyleSheet.create({
 	},
 
 
+// 7. Gallery
 
-  	// 7. Gallery
 	galleryContainer: {
 		height: deviceHeight - ((deviceHeight / 8) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
@@ -530,9 +526,15 @@ export default StyleSheet.create({
 		height: deviceHeight
 	},
 
+	imageSelected: {
+		borderColor: "#000066",
+    	backgroundColor: "#000066",
+    	borderWidth: 10,
+    	borderRadius: 10
+	},
 
 
-	// 8. Audio Recording
+// 8. Audio Recording
 
 	buttonContainer: {
 	  width: deviceWidth * 0.4,
@@ -560,6 +562,7 @@ export default StyleSheet.create({
 	  fontSize: deviceWidth /5,
 	  alignSelf: 'center',
 	  top:(deviceWidth / 13),
+	  color: '#2f3640',
 	},
 
 	audioRecordingButton: {
@@ -568,10 +571,10 @@ export default StyleSheet.create({
 	  opacity: 1,
 	  borderRadius: deviceWidth,
 	  borderWidth: 10,
-	  borderColor: '#4B4B4B',
+	  borderColor: 'red',
+	  color: 'red',
 	  position: 'absolute',
 	  alignSelf: 'center',
-	  backgroundColor:'red',
 	},
 
 	hideButton: {
