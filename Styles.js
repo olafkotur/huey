@@ -505,9 +505,9 @@ export default StyleSheet.create({
 	galleryContainer: {
 		height: deviceHeight - ((deviceHeight / 8) + (deviceHeight / 15)),
 		width: deviceWidth * 0.9,
-		backgroundColor: 'red',
-	  position: 'absolute',
-	  bottom: 0 + (deviceHeight / 15),
+		backgroundColor: 'transparent',
+		position: 'absolute',
+		bottom: 0 + (deviceHeight / 15),
 	},
 
 	singleGalleryImage: {
