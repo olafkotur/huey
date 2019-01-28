@@ -59,7 +59,7 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
-					this.saveInCloud(file.uri);
+					this.saveInCloud(file.uri, action);
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -88,8 +88,9 @@ export default class NativeCamera extends React.Component {
 
 
 	// Sends to firebase as backup
-	saveInCloud = (uri) => {
-		const name = Date.now().toString() + '.png' ;
+	saveInCloud = (uri, action) => {
+		const extension = (action === 'photo') ? '.png' : '.mp4';
+		const name = Date.now().toString() + extension;
 		// Handler = new FileHandler();
 		// Handler.uploadMedia(uri, name);
 	}
