@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { FileSystem, Video } from 'expo';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from "../Styles";
 
@@ -16,6 +17,7 @@ export default class FocusedImage extends React.Component {
 		fileType: '',
 		isProccesing: true,
 		shouldPlay: '',
+		playIcon: '',
 	}
 
 	componentWillMount = async () => {
@@ -46,15 +48,24 @@ export default class FocusedImage extends React.Component {
 		// Display video
 		else if (this.state.fileType === 'video') {
 			return (
-				<Video
-					source = {{ uri: this.state.uri }}
-					rate = {1.0}
-					volume = {1.0}
-					isMuted = {true}
-					shouldPlay = {this.state.shouldPlay}
-					resizeMode = 'cover'
-					style = {styles.focusedGalleryImage} >
-				</Video>
+				<View>
+					<Video
+						source = {{ uri: this.state.uri }}
+						rate = {1.0}
+						volume = {1.0}
+						isMuted = {true}
+						shouldPlay = {this.state.shouldPlay}
+						resizeMode = 'cover'
+						isLooping
+						style = {styles.focusedGalleryImage} >
+					</Video>
+
+					<View style = {styles.videoButtonContainer}>
+						<TouchableOpacity>
+							<Icon name= "play-circle-filled" style = {styles.videoControl}  size = {30} />
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		}
 	}

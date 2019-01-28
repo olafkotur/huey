@@ -523,7 +523,8 @@ export default StyleSheet.create({
 
 	focusedGalleryImage: {
 		width: deviceWidth,
-		height: deviceHeight
+		height: deviceHeight,
+		position: 'absolute',
 	},
 
 	imageSelected: {
@@ -531,6 +532,20 @@ export default StyleSheet.create({
     	backgroundColor: "#000066",
     	borderWidth: 10,
     	borderRadius: 10
+	},
+
+	videoControl: {
+		color: 'white',
+	},
+
+	playPauseButton: {
+		fontSize: deviceWidth * 0.2,
+	},
+
+	videoButtonContainer: {
+		zIndex: 100,
+		alignSelf: 'center',
+		top: deviceHeight * 0.925,
 	},
 
 
