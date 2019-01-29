@@ -428,6 +428,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
+        top: -deviceHeight * 0.075,
 	},
 
 	settingsRecordingIcon: {
@@ -493,6 +494,29 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.75,
 		marginTop: -deviceHeight * 0.06,
 		color: '#4B4B4B',
+	},
+
+	settingsSearchField: {
+		width: deviceWidth * 0.8,
+		height: deviceHeight * 0.05,
+		marginBottom: deviceHeight * 0.015,
+		borderRadius: 999,
+		borderColor: '#a9a9a9',
+		borderWidth: 1,
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		color: '#000',
+		fontWeight: '200',
+		textAlign: 'center',
+		marginTop: deviceHeight * 0.05,
+	},
+
+	settingsSearchIcon: {
+		color: '#a9a9a9',
+		position: 'absolute',
+		top: deviceHeight * 0.1325,
+		left: deviceWidth * 0.12,
+		fontSize: deviceWidth * 0.06,
+		backgroundColor: '#fff',
 	},
 
 
