@@ -428,46 +428,47 @@ export default StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
+        top: -deviceHeight * 0.075,
 	},
 
 	settingsRecordingIcon: {
 		color: '#27ae60',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    top: deviceHeight * 0.06,
+	    marginTop: deviceHeight * 0.05,
 	},
 
 	settingsLibraryIcon: {
 		color: '#0097e6',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    top: deviceHeight * 0.06,
+	    marginTop: deviceHeight * 0.05,
 	},
 
 	settingsAppearanceIcon: {
 		color: '#e84118',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    top: deviceHeight * 0.06,
+	    marginTop: deviceHeight * 0.05,	
 	},
 
 	settingsSecurityIcon: {
 		color: '#fbc531',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    top: deviceHeight * 0.06,
+	    marginTop: deviceHeight * 0.05,	
 	},
 
 	settingsAboutIcon: {
 		color: '#2f3640',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    top: deviceHeight * 0.06,
+	    marginTop: deviceHeight * 0.05,
 	},
 
 	settingsMenuButton: {
 		width: deviceWidth * 0.8,
-		height: deviceHeight * 0.15,
+		height: deviceHeight * 0.125,
 		backgroundColor: "#0000",
 		borderBottomColor: "#F1F1F1",
 		borderBottomWidth: 2,
@@ -476,23 +477,46 @@ export default StyleSheet.create({
 	settingsMenuTitleText: {
 		fontSize: deviceHeight * 0.024,
 		left: deviceWidth * 0.1,
-	    top: deviceHeight * 0.015,
+	    marginTop: -deviceHeight * 0.055,
 	    fontWeight: "bold",
 	    color: '#22292f',
 	},
 
 	settingsMenuSubtitleText: {
 		fontSize: deviceHeight * 0.02,
-		left: deviceWidth * 0.1,
-		top: deviceHeight * 0.0125,
+		marginLeft: deviceWidth * 0.1,
+		marginTop: -deviceHeight * 0.001,
 		color: '#4B4B4B',
 		marginRight: deviceWidth * 0.25,
 	},
 
 	settingsRightArrow: {
-		left: deviceWidth * 0.725,
-		top: -deviceHeight * 0.05,
+		marginLeft: deviceWidth * 0.75,
+		marginTop: -deviceHeight * 0.06,
 		color: '#4B4B4B',
+	},
+
+	settingsSearchField: {
+		width: deviceWidth * 0.8,
+		height: deviceHeight * 0.05,
+		marginBottom: deviceHeight * 0.015,
+		borderRadius: 999,
+		borderColor: '#a9a9a9',
+		borderWidth: 1,
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		color: '#000',
+		fontWeight: '200',
+		textAlign: 'center',
+		marginTop: deviceHeight * 0.05,
+	},
+
+	settingsSearchIcon: {
+		color: '#a9a9a9',
+		position: 'absolute',
+		top: deviceHeight * 0.1325,
+		left: deviceWidth * 0.12,
+		fontSize: deviceWidth * 0.06,
+		backgroundColor: '#fff',
 	},
 
 
