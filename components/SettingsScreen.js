@@ -33,16 +33,6 @@ export default class SettingsScreen extends React.Component {
 							style = {styles.navbarButton}>
 							<Icon name="more-vert" style = {styles.navbarIcon}  size = {30} />
 						</TouchableOpacity>
-
-						<TouchableOpacity
-							style = {styles.navbarButton}>
-							<Icon name="info" style = {styles.navbarIcon}  size = {30} />
-						</TouchableOpacity>
-
-						<TouchableOpacity
-							style = {styles.navbarButton}>
-							<Icon name="sort" style = {styles.navbarIcon}  size = {30} />
-						</TouchableOpacity>
 					</View>
 				</View>
 
