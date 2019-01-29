@@ -87,7 +87,7 @@ export default class SettingsScreen extends React.Component {
 						onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
 						<Icon name="lock" style = {styles.settingsSecurityIcon}  size = {30} />
 						<Text style = {styles.settingsMenuTitleText}>Security</Text>
-						<Text style = {styles.settingsMenuSubtitleText}>Passcode, Encryption...</Text>
+						<Text style = {styles.settingsMenuSubtitleText}>Passcode, Encryption, Upload Security...</Text>
 						<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 					</TouchableOpacity>
 
