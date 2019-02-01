@@ -58,7 +58,7 @@ export default class FileHandler extends React.Component {
 
 		// Get URLs from database
 		await databaseRef.once('value', snapshot => {
-			if (snapshot) {
+			if (snapshot.exists()) {
 				media = Object.values(snapshot.val());
 			}
 		});

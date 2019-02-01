@@ -91,8 +91,8 @@ export default class NativeCamera extends React.Component {
 	saveInCloud = (uri, action) => {
 		const extension = (action === 'photo') ? '.png' : '.mp4';
 		const name = Date.now().toString() + extension;
-		// Handler = new FileHandler();
-		// Handler.uploadMedia(uri, name);
+		Handler = new FileHandler();
+		Handler.uploadMedia(uri, name);
 	}
 
 
