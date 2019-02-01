@@ -10,6 +10,29 @@ export default class FileHandler extends React.Component {
 
 	}
 
+	// Deletes media from firebase
+	deleteFileDB = async (fileName) => {
+		const uid = await firebase.auth().currentUser.uid;
+		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + fileName);
+		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
+
+		// Delete from storage and database
+		await databaseRef.once('value', async snapshot => {
+			snapshot.forEach((child) => {
+				if (child.val().url.includes(fileName)) {
+					databaseRef.update({[child.key]: null});
+					storageRef.delete();
+					return true;
+				}
+			});
+		});
+	}
+
+	deleteFileLocal = async (fileName) => {
+		let uri = FileSystem.documentDirectory + fileName;
+		FileSystem.deleteAsync(uri, {});
+	}
+
 	getLocalFile = async (fileName, url) => {
 		let uri = FileSystem.documentDirectory + fileName;
 

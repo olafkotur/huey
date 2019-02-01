@@ -3,6 +3,7 @@ import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { FileSystem, Video } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import FileHandler from './FileHandler';
 import styles from "../Styles";
 
 export default class FocusedImage extends React.Component {
@@ -14,6 +15,7 @@ export default class FocusedImage extends React.Component {
 
 	state = {
 		uri: '',
+		fileName: '',
 		fileType: '',
 		isProccesing: true,
 		shouldPlay: '',
@@ -24,7 +26,8 @@ export default class FocusedImage extends React.Component {
 		const fileName = this.props.navigation.getParam('uri', '').split('media%2F').pop().split('?')[0];
 		const uri = FileSystem.documentDirectory + fileName;
 		this.setState({
-			uri: uri, 
+			uri: uri,
+			fileName: fileName,
 			isProcessing: false,
 			fileType: this.props.navigation.getParam('fileType', ''),
 			shouldPlay: true,
@@ -38,6 +41,12 @@ export default class FocusedImage extends React.Component {
 		else {
 			this.setState({shouldPlay: false})
 		}
+	}
+
+	deleteMedia = () => {
+		const Handler = new FileHandler();
+		Handler.deleteFileDB(this.state.fileName);
+		Handler.deleteFileLocal(this.state.fileName);
 	}
 
 	render() {
@@ -66,10 +75,12 @@ export default class FocusedImage extends React.Component {
 						<TouchableOpacity>
 							<Icon name= "edit" style = {styles.imageControl}  size = {30} />
 						</TouchableOpacity>
+
 						<TouchableOpacity
-							onPress =	{() => this.playPauseVideo} >
+							onPress =	{() => this.deleteMedia()} >
 							<Icon name = "delete-forever" style = {styles.imageControl}  size = {30} />
 						</TouchableOpacity>
+
 						<TouchableOpacity>
 							<Icon name= "vpn-lock" style = {styles.imageControl} size = {30} />
 						</TouchableOpacity>
