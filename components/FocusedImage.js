@@ -47,6 +47,7 @@ export default class FocusedImage extends React.Component {
 		const Handler = new FileHandler();
 		Handler.deleteFileDB(this.state.fileName);
 		Handler.deleteFileLocal(this.state.fileName);
+		this.props.navigation.navigate('MediaGallery');
 	}
 
 	render() {
@@ -85,6 +86,7 @@ export default class FocusedImage extends React.Component {
 							<Icon name= "vpn-lock" style = {styles.imageControl} size = {30} />
 						</TouchableOpacity>
 					</View>
+
 				</View>
 			);
 		}
