@@ -15,7 +15,8 @@ export default class MediaGallery extends React.Component {
 
 	state = {
 		mediaData: [],
-		singleImageUri: ''
+		singleImageUri: '',
+		refreshing: false,
 	}
 
 	componentDidMount = () => {
@@ -25,8 +26,10 @@ export default class MediaGallery extends React.Component {
 
 	// Fetches image gallery data
 	fetchData = async () => {
+		this.setState({refreshing: true});
 		Handler = new FileHandler();
 		await Handler.getMedia().then((data) => this.setState({mediaData: data}));
+		this.setState({refreshing: false});
 	}
 
 	renderImage = (item) => {
@@ -81,7 +84,9 @@ export default class MediaGallery extends React.Component {
 							horiztonal = {false}
 							numColumns = {3}
 							keyExtractor = {(item, index) => index.toString()}
-	      					renderItem = {({item}) => this.renderImage(item)}>
+	      					renderItem = {({item}) => this.renderImage(item)}
+	      					refreshing = {this.state.refreshing}
+	      					onRefresh = {() => this.fetchData()} >
 						</FlatList>
 					</View>
 
