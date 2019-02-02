@@ -278,8 +278,8 @@ export default StyleSheet.create({
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
-		bottom: deviceHeight * 0.94,
-		left: deviceWidth * 0.89,
+		bottom: deviceHeight * 0.9375,
+		left: deviceWidth * 0.88,
 	},
 
 	flipCamera: {
@@ -336,6 +336,14 @@ export default StyleSheet.create({
 		height: deviceWidth * 0.065,
 		bottom: deviceHeight * 0.905,
 		left: deviceWidth * 0.75,
+  	},
+
+  	cameraFlashDisabled: {
+  		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		bottom: deviceHeight * 0.905,
+		left: deviceWidth * 0.75,
+		opacity: 0.5,
   	},
 
 	videoButton: {
