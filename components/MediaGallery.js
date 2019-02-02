@@ -101,7 +101,7 @@ export default class MediaGallery extends React.Component {
 			        navigationState={this.state}
 			        renderScene={SceneMap({
 			        	first: () => (
-			          		<View style = {styles.container}>						
+			          		<View style = {styles.galleryTabViewContainer}>						
 			          			<FlatList
 									data = {this.state.mediaData}
 									extraData = {this.state}
