@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -16,6 +17,7 @@ const FirstRoute = () => (
 		</View>
 	</View>
 );
+
 
 const SecondRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#fff' }]} />
@@ -42,6 +44,20 @@ export default class MediaGallery extends React.Component {
 	componentDidMount = () => {
 		this.fetchData();
 	}
+
+	_menu = null;
+	 
+	setMenuRef = ref => {
+	this._menu = ref;
+	};
+
+	hideMenu = () => {
+		this._menu.hide();
+	};
+
+	showMenu = () => {
+		this._menu.show();
+	};
 
 
 	// Fetches image gallery data
@@ -80,11 +96,21 @@ export default class MediaGallery extends React.Component {
 					</View>
 
 					<View style = {styles.navbarRightContainer}>
-						<TouchableOpacity
-							style = {styles.navbarButton}>
-							<Icon name="more-vert" style = {styles.navbarIcon}  size = {30} />
-						</TouchableOpacity>
-
+						<Menu
+								ref={this.setMenuRef}
+								button={ 				
+										<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
+									}
+								>
+								<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
+								<MenuItem onPress={() => {
+									this.fetchData();
+									this.hideMenu();
+								}}>Refresh</MenuItem>
+								<MenuItem onPress={this.hideMenu} disabled>Share</MenuItem>
+								<MenuDivider />
+								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
+								</Menu>
 						<TouchableOpacity
 							style = {styles.navbarButton}>
 							<Icon name="info" style = {styles.navbarIcon}  size = {30} />

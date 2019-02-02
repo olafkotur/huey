@@ -54,19 +54,18 @@ export default class SettingsScreen extends React.Component {
 
 						<View style = {styles.navbarRightContainer}>
 							<Menu
-								ref={this.setMenuRef}
-								button={							
-									<TouchableOpacity
-										style = {styles.navbarButton}>
-										<Icon name="more-vert" style = {styles.navbarIcon} onPress={this.showMenu} size = {30} />
-									</TouchableOpacity>}
-								>
-								<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
-								<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
-								<MenuItem onPress={this.hideMenu} disabled>Menu item 3</MenuItem>
-								<MenuDivider />
-								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
-								</Menu>
+									ref={this.setMenuRef}
+									button={ 				
+											<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
+										}
+									>
+									<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
+									<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
+									<MenuItem onPress={this.hideMenu} disabled>Menu item 3</MenuItem>
+									<MenuDivider />
+									<MenuItem onPress={this.hideMenu}>Help</MenuItem>
+							</Menu>
+
 						</View>
 					</View>
 
