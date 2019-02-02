@@ -14,6 +14,7 @@ export default class NativeCamera extends React.Component {
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
 		blinkStyle: styles.blinkFalse,
+		cameraFlash: Camera.Constants.FlashMode.off,
 	}
 
 
@@ -36,6 +37,19 @@ export default class NativeCamera extends React.Component {
 		}
 		else {
 			this.setState({cameraType: Camera.Constants.Type.back})
+		}
+	}
+
+	// Toggles flash
+	toggleFlash = () => {
+		if (this.state.cameraFlash === Camera.Constants.FlashMode.off) { // Back
+			this.setState({cameraFlash: Camera.Constants.FlashMode.auto})
+		}
+		else if (this.state.cameraFlash === Camera.Constants.FlashMode.auto){
+			this.setState({cameraFlash: Camera.Constants.FlashMode.on})
+		}
+		else {
+			this.setState({cameraFlash: Camera.Constants.FlashMode.off})
 		}
 	}
 
@@ -117,8 +131,17 @@ export default class NativeCamera extends React.Component {
 						ref = { ref => { this.camera = ref; }}
 						style = {styles.cameraContainer}
 						ratio = {"16:9"}
-						type = {this.state.cameraType} >
+						type = {this.state.cameraType}
+						flashMode = {this.state.cameraFlash} >
 					</Camera>
+
+					{/*Toggle Flash*/}
+					<View style = {styles.cameraFlash}>
+						<TouchableOpacity
+							onPress = {() => this.toggleFlash()} >
+							<Icon name="flash-on" style = {styles.flipCamera}  size = {30} />
+						</TouchableOpacity>
+					</View>
 
 					{/* Toggle Camera */}
 					<View style = {styles.flipCameraButton}>
@@ -127,6 +150,7 @@ export default class NativeCamera extends React.Component {
 							<Icon name="switch-camera" style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
+
 
 					<TouchableOpacity
 						style = {styles.captureButton}

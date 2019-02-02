@@ -327,6 +327,17 @@ export default StyleSheet.create({
     	fontSize:deviceWidth * 0.145,
   	},
 
+  	flashButton: {
+  		color: '#fff',
+  	},
+
+  	cameraFlash: {
+  		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		bottom: deviceHeight * 0.9,
+		left: deviceWidth * 0.75,
+  	},
+
 	videoButton: {
 		width: deviceWidth * 0.08,
 		height: deviceWidth * 0.08,
