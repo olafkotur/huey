@@ -6,12 +6,6 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import styles from "../Styles";
 
-const FirstRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-);
-const SecondRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
 
 export default class SettingsScreen extends React.Component {
 
@@ -21,11 +15,6 @@ export default class SettingsScreen extends React.Component {
 	}
 
 	state = {
-		index: 0,
-   		routes: [
-      		{ key: 'first', title: 'First' },
-      		{ key: 'second', title: 'Second' },
-    	],
 	}
 
 	render() {
@@ -38,16 +27,6 @@ export default class SettingsScreen extends React.Component {
 					scrollEnabled = {false}
 					enableAutomaticScroll = {false}
 				>
-
-					<TabView
-			        navigationState={this.state}
-			        renderScene={SceneMap({
-			        	first: FirstRoute,
-			          	second: SecondRoute,
-			        })}
-			        onIndexChange={index => this.setState({ index })}
-			        initialLayout={{ width: Dimensions.get('window').width }}
-			      	/>
 
 					<View style = {styles.navbarContainer}> 
 						<View style = {styles.navbarBackContainer}> 
