@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, } from 'reac
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 import styles from "../Styles";
 
@@ -16,6 +17,20 @@ export default class SettingsScreen extends React.Component {
 
 	state = {
 	}
+
+	_menu = null;
+	 
+	setMenuRef = ref => {
+	this._menu = ref;
+	};
+
+	hideMenu = () => {
+		this._menu.hide();
+	};
+
+	showMenu = () => {
+		this._menu.show();
+	};
 
 	render() {
 		return (
@@ -38,10 +53,19 @@ export default class SettingsScreen extends React.Component {
 						</View>
 
 						<View style = {styles.navbarRightContainer}>
-							<TouchableOpacity
-								style = {styles.navbarButton}>
-								<Icon name="more-vert" style = {styles.navbarIcon}  size = {30} />
-							</TouchableOpacity>
+							<Menu
+									ref={this.setMenuRef}
+									button={ 				
+											<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
+										}
+									>
+									<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
+									<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
+									<MenuItem onPress={this.hideMenu} disabled>Menu item 3</MenuItem>
+									<MenuDivider />
+									<MenuItem onPress={this.hideMenu}>Help</MenuItem>
+							</Menu>
+
 						</View>
 					</View>
 

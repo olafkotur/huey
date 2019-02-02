@@ -101,6 +101,7 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		width: deviceWidth * 0.15,
 		height: deviceHeight * 0.075,
+		left: deviceWidth * 0.1,
 	},
 
 	navbarRightContainer: {
@@ -109,15 +110,23 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.75,
 		height: deviceWidth * 0.075,
 		top: -deviceHeight * 0.0175,
-		left: deviceWidth * 0.12,
+		left: deviceWidth * 0.075,
 		backgroundColor: 'transparent',
+	},
+
+	navbarMenu: {
+		marginRight: 10,
+		marginLeft: 25,
+		color: '#fff',
 	},
 
 	navbarButton: {
 		backgroundColor: "transparent",
-		left: deviceWidth * 0.03,
+		right: deviceWidth * 0.05,
 		marginRight: 10,
 		marginLeft: 10,
+		height: deviceWidth * 0.075,
+		width: deviceWidth * 0.075,
 	},
 
 	navbarIcon: {
