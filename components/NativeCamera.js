@@ -168,12 +168,14 @@ export default class NativeCamera extends React.Component {
 					<View style = {styles.captureProgressContainer}>
 						<Progress.CircleSnail
 							style = {styles.captureProgressCircle}
-							color={['#F44336', '#2196F3', '#009688']}
+							color={['#27ae60']}
 							spinDuration = {1}
 							thickness = {4}
 							hidesWhenStopped = {true}
-							duration = {650}
+							duration = {1000}
 							animating = {this.state.isRecording}
+							indeterminate = {true}
+							spinDuration = {900}
 							size = {Dimensions.get('window').width * 0.18 + 20} >
 						</Progress.CircleSnail>
 					</View>
