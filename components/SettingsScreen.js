@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import styles from "../Styles";
+
 
 export default class SettingsScreen extends React.Component {
 
@@ -13,7 +15,6 @@ export default class SettingsScreen extends React.Component {
 	}
 
 	state = {
-
 	}
 
 	render() {

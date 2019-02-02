@@ -93,8 +93,8 @@ export default StyleSheet.create({
 		backgroundColor: '#27AE60',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
-		bottom: (deviceHeight * 0.465),
-    zIndex:100,
+		//bottom: (deviceHeight * 0.465),
+    	zIndex:100,
 	},
 
 	navbarBackContainer: {
@@ -193,7 +193,6 @@ export default StyleSheet.create({
 		zIndex: -10000,
 	},
 
-
 // 2. Login
 
 	loginLogo: {
@@ -253,7 +252,6 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.5,
 	},
 
-
 // 3. Forgot Password
 
 	resetButton: {
@@ -274,7 +272,6 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.02,
 		textAlign: 'center',
 	},
-
 
 //	4. Camera
 
@@ -372,7 +369,6 @@ export default StyleSheet.create({
 		 bottom: (deviceHeight / 30) - 10,
 	 },
 
-
 //	5. HomeScreen
 	audioButton: {
 		width: deviceWidth * 0.08,
@@ -394,7 +390,7 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-	    left: deviceWidth * 0.06,
+	    left: deviceWidth * 0.875,
 	},
 
   	folderIcon: {
@@ -419,7 +415,6 @@ export default StyleSheet.create({
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
 	},
-
 
 //	6. Settings
 
@@ -519,7 +514,6 @@ export default StyleSheet.create({
 		backgroundColor: '#fff',
 	},
 
-
 // 7. Gallery
 
 	galleryContainer: {
@@ -534,7 +528,13 @@ export default StyleSheet.create({
 		width: (deviceWidth * 0.3)-4,
 		height: (deviceWidth * 0.3) - 4,
 	    margin:2,
-  },
+  	},
+
+  	galleryTabViewContainer: {
+  		marginTop: 40,
+  		alignSelf: 'center',
+  		
+  	},
 
 	bottomBar: {
 		width: deviceWidth,
@@ -622,7 +622,6 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.0175,
 		marginLeft: deviceWidth * 0.775,
 	},
-
 
 // 8. Audio Recording
 
