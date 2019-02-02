@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { Audio, Permissions, FileSystem } from 'expo';
 import styles from "../Styles";
 
 export default class NativeAudio extends React.Component {
@@ -21,13 +22,13 @@ export default class NativeAudio extends React.Component {
     // Toggle the recoridng button between active and inactive styles
     toggleRecording = async (action) => {
         //If the hit record event is called, flip the is recording state
-
+        console.log('anything bro'),
         (action === 'recording') ? await this.setState({isRecording: !this.state.isRecording}) : await this.setState({isHidden: !this.state.isHidden});
-        const status = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+        const {status} = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
         this.setState({microphonePermission: status === 'granted'});
 
-        console.log(await Permissions.askAsync(Permissions.AUDIO_RECORDING))
-        console.log(this.state.microphonePermission)
+        console.log(await Permissions.askAsync(Permissions.AUDIO_RECORDING));
+        console.log(this.state.microphonePermission);
 
         // Record button styling
         if (this.state.isRecording) {
