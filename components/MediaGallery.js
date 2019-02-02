@@ -98,7 +98,7 @@ export default class MediaGallery extends React.Component {
 				</View>
 
 				<TabView
-			        navigationState={this.state}
+
 			        renderScene={SceneMap({
 			        	first: () => (
 			          		<View style = {styles.galleryTabViewContainer}>						
@@ -115,15 +115,29 @@ export default class MediaGallery extends React.Component {
 							</View>
 			          	),
 			          	second: () => (
-			          		<View style = {styles.container}>						
+			          		<View style = {styles.galleryTabViewContainer}>						
 			          			<Text>Memelist for audio files here</Text>
 							</View>
 			          	)
 			        })}
+
+			        navigationState={this.state}
 			        onIndexChange={index => this.setState({ index })}
 			        initialLayout={{ width: 100, height:500}}
 			        tabBarPosition={'bottom'}
 					style={{backgroundColor: '#fff'}}
+
+					renderTabBar={props =>
+						<TabBar
+							{...props}
+
+						    tabStyle={{ backgroundColor: '#27ae60', color: '#fff', marginBottom: 4}}
+						    style={{backgroundColor: '#27ae60'}}
+						    pressColor = {'transparent'}
+						    renderIndicator={this._renderIndicator}
+						    indicatorStyle={{backgroundColor: '#fff', height: 4}}
+						/>
+					}
 		     	/>
 			</SafeAreaView>
 		);
