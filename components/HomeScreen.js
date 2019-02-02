@@ -29,10 +29,9 @@ export default class HomeScreen extends React.Component {
 				const messages = Object.values(snapshot.val());
 				const random = Math.floor((Math.random() * messages.length) + 0);
 				this.setState({dailyStatus: messages[random]});
-
 			}
 		});
-		this.dropdown.alertWithType('success', 'Quote For The Week', this.state.dailyStatus)
+		this.dropdown.alertWithType('custom', 'Quote For The Week', this.state.dailyStatus)
 	}
 
 	render() {
@@ -60,7 +59,11 @@ export default class HomeScreen extends React.Component {
 
 				<NativeCamera />
 
-				<DropdownAlert ref={ref => this.dropdown = ref} />
+				<DropdownAlert 
+					ref={ref => this.dropdown = ref} 
+					containerStyle = {{backgroundColor: '#27ae60'}} 
+					activeStatusBarBackgroundColor = {'#27ae60'}
+				/>
 
 			</View>
 		);
