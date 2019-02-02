@@ -93,8 +93,8 @@ export default StyleSheet.create({
 		backgroundColor: '#27AE60',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
-		bottom: (deviceHeight * 0.465),
-    zIndex:100,
+		//bottom: (deviceHeight * 0.465),
+    	zIndex:100,
 	},
 
 	navbarBackContainer: {
@@ -193,7 +193,6 @@ export default StyleSheet.create({
 		zIndex: -10000,
 	},
 
-
 // 2. Login
 
 	loginLogo: {
@@ -253,7 +252,6 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.5,
 	},
 
-
 // 3. Forgot Password
 
 	resetButton: {
@@ -274,7 +272,6 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.02,
 		textAlign: 'center',
 	},
-
 
 //	4. Camera
 
@@ -372,7 +369,6 @@ export default StyleSheet.create({
 		 bottom: (deviceHeight / 30) - 10,
 	 },
 
-
 //	5. HomeScreen
 	audioButton: {
 		width: deviceWidth * 0.08,
@@ -419,7 +415,6 @@ export default StyleSheet.create({
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
 	},
-
 
 //	6. Settings
 
@@ -518,7 +513,6 @@ export default StyleSheet.create({
 		fontSize: deviceWidth * 0.06,
 		backgroundColor: '#fff',
 	},
-
 
 // 7. Gallery
 
@@ -622,7 +616,6 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.0175,
 		marginLeft: deviceWidth * 0.775,
 	},
-
 
 // 8. Audio Recording
 
