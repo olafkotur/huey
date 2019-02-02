@@ -334,7 +334,7 @@ export default StyleSheet.create({
   	cameraFlash: {
   		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
-		bottom: deviceHeight * 0.9,
+		bottom: deviceHeight * 0.905,
 		left: deviceWidth * 0.75,
   	},
 
