@@ -11,7 +11,7 @@ export default class NativeAudio extends React.Component {
     }
 
     state = {
-        microphonePermission: null
+        microphonePermission: null,
         isRecording: false,
         isHidden: false,
         audioRecordingButtonStyle: styles.audioRecordButton,
@@ -21,7 +21,7 @@ export default class NativeAudio extends React.Component {
     // Toggle the recoridng button between active and inactive styles
     toggleRecording = async (action) => {
         //If the hit record event is called, flip the is recording state
-        
+
         (action === 'recording') ? await this.setState({isRecording: !this.state.isRecording}) : await this.setState({isHidden: !this.state.isHidden});
         const status = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
         this.setState({microphonePermission: status === 'granted'});
