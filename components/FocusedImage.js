@@ -122,14 +122,14 @@ export default class FocusedImage extends React.Component {
 
 					<View style = {styles.videoButtonContainer}>
 						<TouchableOpacity>
-							<Icon name= "fast-rewind" style = {styles.videoControl}  size = {30} />
+							<Icon name= "replay-10" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 						<TouchableOpacity
 							onPress =	{() => this.playPauseVideo()} >
 							<Icon name = {this.state.pausePlayIcon} style = {styles.playPauseButton}  size = {30} />
 						</TouchableOpacity>
 						<TouchableOpacity>
-							<Icon name= "fast-forward" style = {styles.videoControl}  size = {30} />
+							<Icon name= "forward-10" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 					</View>
 				</View>
