@@ -18,7 +18,7 @@ export default class FocusedImage extends React.Component {
 		fileName: '',
 		fileType: '',
 		isProccesing: true,
-		shouldPlay: '',
+		shouldPlay: true,
 	}
 
 	componentWillMount = async () => {
@@ -35,11 +35,13 @@ export default class FocusedImage extends React.Component {
 	}
 
 	playPauseVideo = () => {
-		if (this.state.shouldPlay === false) {
-			this.setState({shouldPlay: true});
+		if (this.state.shouldPlay === true) {
+			this.setState({shouldPlay: false})
+			console.log(this.state.shouldPlay)
 		}
 		else {
-			this.setState({shouldPlay: false})
+			this.setState({shouldPlay: true})
+			console.log(this.state.shouldPlay)
 		}
 	}
 
@@ -122,7 +124,7 @@ export default class FocusedImage extends React.Component {
 							<Icon name= "fast-rewind" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 						<TouchableOpacity
-							onPress =	{() => this.playPauseVideo} >
+							onPress =	{() => this.playPauseVideo()} >
 							<Icon name = "play-circle-filled" style = {styles.playPauseButton}  size = {30} />
 						</TouchableOpacity>
 						<TouchableOpacity>
