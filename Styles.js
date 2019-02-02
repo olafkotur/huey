@@ -390,7 +390,7 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-	    left: deviceWidth * 0.06,
+	    left: deviceWidth * 0.875,
 	},
 
   	folderIcon: {
