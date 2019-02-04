@@ -204,6 +204,18 @@ export default StyleSheet.create({
 		right:(deviceWidth / 35),
 	},
 
+	topMiddleButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+	    fontSize:50,
+	    top:deviceHeight/59,
+		right:(deviceWidth / 2),
+	},
+
 	topLeftButtonIcon: {
 	    fontSize:50,
 	    fontSize:deviceHeight/25,
