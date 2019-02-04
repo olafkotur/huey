@@ -11,6 +11,7 @@ import MediaGallery from './components/MediaGallery';
 import SettingsScreen from './components/SettingsScreen';
 import NativeAudio from './components/NativeAudio';
 import FocusedImage from './components/FocusedImage';
+import ConsentScreen from './components/ConsentScreen';
 
 
 const AppStack = createStackNavigator({
@@ -21,6 +22,7 @@ const AppStack = createStackNavigator({
 	SettingsScreen: {screen: SettingsScreen},
 	NativeAudio: {screen: NativeAudio},
 	FocusedImage: {screen: FocusedImage},
+	ConsentScreen: {screen: ConsentScreen},
 });
 
 const AppRouter = createAppContainer(AppStack);
