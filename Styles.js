@@ -192,6 +192,18 @@ export default StyleSheet.create({
 		left:(deviceWidth / 35),
 	},
 
+	topRightButton: {
+		width: 30,
+		height: 30,
+		opacity: 0.9,
+		zIndex: 100,
+		position: 'absolute',
+		alignSelf: 'center',
+	    fontSize:50,
+	    top:deviceHeight/59,
+		right:(deviceWidth / 35),
+	},
+
 	topLeftButtonIcon: {
 	    fontSize:50,
 	    fontSize:deviceHeight/25,
@@ -472,14 +484,14 @@ export default StyleSheet.create({
 		color: '#e84118',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    marginTop: deviceHeight * 0.05,	
+	    marginTop: deviceHeight * 0.05,
 	},
 
 	settingsSecurityIcon: {
 		color: '#fbc531',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-	    marginTop: deviceHeight * 0.05,	
+	    marginTop: deviceHeight * 0.05,
 	},
 
 	settingsAboutIcon: {
@@ -561,7 +573,7 @@ export default StyleSheet.create({
   	galleryTabViewContainer: {
   		marginTop: 40,
   		alignSelf: 'center',
-  		
+
   	},
 
 	bottomBar: {

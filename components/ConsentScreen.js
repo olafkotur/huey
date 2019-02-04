@@ -84,27 +84,17 @@ export default class NativeCamera extends React.Component {
 	render() {
 			return (
         <View style = {styles.container}>
-
             <TouchableOpacity
                 style = {styles.topLeftButton}
-                onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+                onPress = {() => this.props.navigation.navigate('LoginScreen')} >
                 <Icon name="arrow-back" style = {styles.topLeftButtonIcon} />
             </TouchableOpacity>
 
-            <View style = {this.state.buttonContainerStyle}>
-                <TouchableOpacity
-                    style = {this.state.audioRecordingButtonStyle}
-                    onPress = {async () => this.toggleRecording('recording')}>
-                    <Icon name="mic" style = {styles.audioRecordButtonMic} />
-                </TouchableOpacity>
-            </View>
-
             <TouchableOpacity
-                style = {styles.hideButton}
-                onPress = {async () => this.toggleRecording('hidden')}>
-                <Icon name="remove-red-eye" style = {styles.hideButton} />
+                style = {styles.topRightButton}
+                onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+                <Icon name="rocket" style = {styles.topLeftButtonIcon} />
             </TouchableOpacity>
-
         </View>
 			);
 	}
