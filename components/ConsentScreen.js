@@ -95,6 +95,11 @@ export default class NativeCamera extends React.Component {
                 onPress = {() => this.props.navigation.navigate('HomeScreen')} >
                 <Icon name="rocket" style = {styles.topLeftButtonIcon} />
             </TouchableOpacity>
+            <Text>
+            {
+            "https://thehueyproject.wordpress.com/2019/02/02/huey-pre-registration-policy/"
+            }
+            </Text>
         </View>
 			);
 	}
