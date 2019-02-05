@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import {fromLeft, fromRight, fromBottom, fromTop} from 'react-navigation-transitions'
 import * as firebase from "firebase";
 
 import styles from "./Styles";
@@ -22,8 +23,30 @@ const AppStack = createStackNavigator({
 	SettingsScreen: {screen: SettingsScreen},
 	NativeAudio: {screen: NativeAudio},
 	FocusedImage: {screen: FocusedImage},
-	ConsentScreen: {screen: ConsentScreen},
-});
+	ConsentScreen: {screen: ConsentScreen}, },
+	{transitionConfig: (nav) => handleCustomTransition(nav)}
+);
+
+const handleCustomTransition = ({ scenes }) => {
+	const prevScene = scenes[scenes.length - 2];
+	const nextScene = scenes[scenes.length - 1];
+
+	// Custom transitions go there
+	if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'SettingsScreen') {
+		return fromTop();
+	} else if (prevScene && prevScene.route.routeName === 'SettingsScreen' && nextScene.route.routeName === 'HomeScreen'){
+		return fromBotto
+		();
+	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'MediaGallery'){
+		return fromRight();
+	} else if (prevScene && prevScene.route.routeName === 'MediaGallery' && nextScene.route.routeName === 'HomeScreen'){
+		return fromLeft();
+	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'NativeAudio'){
+		return fromBottom();
+	} else if (prevScene && prevScene.route.routeName === 'NativeAudio' && nextScene.route.routeName === 'HomeScreen'){
+		return fromTop();
+	}
+}
 
 const AppRouter = createAppContainer(AppStack);
 

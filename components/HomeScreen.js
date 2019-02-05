@@ -20,27 +20,22 @@ export default class HomeScreen extends React.Component {
 
 	state = {
 		dailyStatus: 'Love Is The Root Of Our Resistance - CP',
-		myText: 'Im ready to get swiped!',
 	 	gestureName: 'none',
-	  	backgroundColor: '#fff'
 	}
 
+
+	//Swipe Gesture Control
 	onSwipeUp(gestureState) {
 		this.props.navigation.navigate('NativeAudio');
 	}
-
 	onSwipeDown(gestureState) {
 		this.props.navigation.navigate('SettingsScreen');
 	}
-
 	onSwipeLeft(gestureState) {
 		this.props.navigation.navigate('MediaGallery');
 	}
-
 	onSwipeRight(gestureState) {
-
 	}
-
 	onSwipe(gestureName, gestureState) {
 		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
 		this.setState({gestureName: gestureName});
