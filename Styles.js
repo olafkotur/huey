@@ -362,6 +362,16 @@ export default StyleSheet.create({
 		alignSelf: 'center',
 	},
 
+	touchableOpacityAccept: {
+		width: deviceWidth * 0.86,
+		height: deviceHeight * 0.06,
+		backgroundColor: 'transparent',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 5,
+		alignSelf: 'center',
+	},
+
 	consentCancelText: {
 		color: '#383838',
 		marginBottom: deviceHeight * 0.02,
