@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
+import * as firebase from "firebase";
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -16,7 +17,9 @@ export default class NativeCamera extends React.Component {
 		blinkStyle: styles.blinkFalse,
 		cameraFlash: Camera.Constants.FlashMode.off,
 		flashIcon: "flash-off",
-		flipCameraIcon: "camera-rear"
+		flipCameraIcon: "camera-rear",
+		oneTimePWValidated: false,
+		renewableQRValidated: false
 	}
 
 
@@ -31,6 +34,69 @@ export default class NativeCamera extends React.Component {
 		this.setState({cameraPermission: status === 'granted'});
 	}
 
+	checkQRagainstfirebase = async (QRdata) => {
+		//Check The Given QR Code against The One Time Expected PW only on Firebase & See If It Matches a List of Unpspecified Codes
+		//Call Firebase for Registered One Time PW
+
+		//Call Firebase To QR Code Tree & Check The QR Code Against THe ID of All The Registered Organisers
+			//If confirmed, update state of native camera & update the sign-in log so we have a log of who verified who in the worst-case
+	}
+
+	processQRCode = async (scanneroutput) =>
+	{
+		//Extract URL From QR Code //Date Form -> NameOfHosst - NumberUID
+		codeportion = scanneroutput.data
+
+		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
+		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
+		output2original = output2//(0,output2.length)
+		output3 = ((codeportion.slice(0,13)))
+		output4 = ((codeportion.slice(13,33)))
+
+		console.log('00')
+		console.log(codeportion)
+		console.log(1)
+		console.log(output1.val())
+		console.log(2)
+		console.log(output2original.val())
+		console.log(3)
+		console.log(output3)
+		console.log(4)
+		console.log(output4)
+		//const uid = await firebase.auth().currentUser.uid;
+
+		//If the first 13 characters in the QR Code link to a Protest Organiser && The the Tailing 20 Character Map to that Protest Organisers Key then Renewable QR Code Is Valid
+		//console.log('Scanned Code Data = ' + (codeportion).toString())
+			//output1 = firebase.database().ref('/organisers/' + codeportion.slice(0,13)).once('value')
+		//console.log(firebase.database().ref('organisers/' + codeportion.slice(0,13)).once('value'))
+		//console.log('Renewable QR Code = ' + (await firebase.database().ref('/organisers/' + codeportion.slice(0,13)).once('value')).toString())
+		//console.log('One Time QR Code = ' + (await firebase.database().ref('/protestpassword').once('value')).toString())
+
+		//output2 = ((await firebase.database().ref('/protestpassword').once('value')))
+		//console.log(output2)
+
+		if(output1.val() == output4)
+		{
+			this.state.renewableQRValidated = true
+			console.log('FOUND INDIVIDUAL QR CODE')
+		}
+		//if all 64 characters of the QR Code Text Match The Standard Password then Validate
+		if(output2.val() == codeportion)
+		{
+			this.state.oneTimePWValidated = true
+			console.log('AUTHORISED BY ' + output3 + QR)
+		}
+		console.log("QR NOT SEEN AS VALID")
+
+
+		//Validate QR Code From Firebase
+
+	}
+
+	checkOrganiserQR = async (scanneroutput) =>
+	{
+
+	}
 
 	// Toggles front and back cameras
 	toggleCamera = () => {
@@ -139,7 +205,8 @@ export default class NativeCamera extends React.Component {
 						style = {styles.cameraContainer}
 						ratio = {"16:9"}
 						type = {this.state.cameraType}
-						flashMode = {this.state.cameraFlash} >
+						flashMode = {this.state.cameraFlash}
+						onBarCodeScanned = {(result) => this.processQRCode(result)} >
 					</Camera>
 
 					<View style = {styles.swipeOverlay}>
