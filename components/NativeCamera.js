@@ -63,33 +63,21 @@ export default class NativeCamera extends React.Component {
 		console.log(output3)
 		console.log(4)
 		console.log(output4)
-		//const uid = await firebase.auth().currentUser.uid;
-
-		//If the first 13 characters in the QR Code link to a Protest Organiser && The the Tailing 20 Character Map to that Protest Organisers Key then Renewable QR Code Is Valid
-		//console.log('Scanned Code Data = ' + (codeportion).toString())
-			//output1 = firebase.database().ref('/organisers/' + codeportion.slice(0,13)).once('value')
-		//console.log(firebase.database().ref('organisers/' + codeportion.slice(0,13)).once('value'))
-		//console.log('Renewable QR Code = ' + (await firebase.database().ref('/organisers/' + codeportion.slice(0,13)).once('value')).toString())
-		//console.log('One Time QR Code = ' + (await firebase.database().ref('/protestpassword').once('value')).toString())
-
-		//output2 = ((await firebase.database().ref('/protestpassword').once('value')))
-		//console.log(output2)
 
 		if(output1.val() == output4)
 		{
 			this.state.renewableQRValidated = true
 			console.log('FOUND INDIVIDUAL QR CODE')
 		}
-		//if all 64 characters of the QR Code Text Match The Standard Password then Validate
-		if(output2.val() == codeportion)
+		else if(output2.val() == codeportion)
 		{
 			this.state.oneTimePWValidated = true
-			console.log('AUTHORISED BY ' + output3 + QR)
+			console.log('AUTHORISED BY ' + output3 + "QR")
 		}
-		console.log("QR NOT SEEN AS VALID")
-
-
-		//Validate QR Code From Firebase
+		else
+		{
+				console.log("JUNK QR CODE")
+		}
 
 	}
 
