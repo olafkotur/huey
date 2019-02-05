@@ -46,6 +46,10 @@ const handleCustomTransition = ({ scenes }) => {
 		return fromTop(500);
 	} else if (prevScene && (prevScene.route.routeName === 'LoginScreen' || prevScene.route.routeName === 'ConsentScreen') && nextScene.route.routeName === 'HomeScreen'){
 		return fromRight(500);
+	} else if (prevScene && prevScene.route.routeName === 'LoginScreen' && nextScene.route.routeName === 'ConsentScreen'){
+		return fromRight(500);
+	} else if (prevScene && prevScene.route.routeName === 'ConsentScreen' && nextScene.route.routeName === 'LoginScreen'){
+		return fromLeft(500);
 	} else {
 		return fromTop(500);
 	}
