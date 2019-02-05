@@ -100,7 +100,7 @@ export default class MediaGallery extends React.Component {
 								button = {<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />} >
 
 								<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
-								<MenuItem onPress={() => { this.fetchData(); this.hideMenu();}}>Refresh</MenuItem>
+								{/*<MenuItem onPress={() => { this.fetchData(); this.hideMenu();}}>Refresh</MenuItem>*/}
 								<MenuItem onPress={this.hideMenu} disabled>Share</MenuItem>
 								<MenuDivider />
 								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
