@@ -97,6 +97,13 @@ export default StyleSheet.create({
     	zIndex:100,
 	},
 
+	swipeOverlay: {
+		width: deviceWidth,
+		height: deviceHeight,
+		backgroundColor: 'transparent',
+		position: 'absolute',
+	},
+
 	navbarBackContainer: {
 		backgroundColor: 'transparent',
 		width: deviceWidth * 0.15,

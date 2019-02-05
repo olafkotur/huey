@@ -7,6 +7,7 @@ import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import styles from "../Styles";
 import FileHandler from './FileHandler';
 import GalleryImage from './GalleryImage';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 const FirstRoute = () => (
@@ -39,6 +40,32 @@ export default class MediaGallery extends React.Component {
       		{ key: 'first', title: 'Media' },
       		{ key: 'second', title: 'Audio' },
     	],
+    	gestureName: 'none',
+	}
+
+	//Swipe Gesture Control
+	onSwipeUp(gestureState) {
+	}
+	onSwipeDown(gestureState) {
+	}
+	onSwipeLeft(gestureState) {
+	}
+	onSwipeRight(gestureState) {
+		this.props.navigation.navigate('HomeScreen');
+	}
+	onSwipe(gestureName, gestureState) {
+		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+		this.setState({gestureName: gestureName});
+		switch (gestureName) {
+		  case SWIPE_UP:
+		    break;
+		  case SWIPE_DOWN:
+		    break;
+		  case SWIPE_LEFT:
+		    break;
+		  case SWIPE_RIGHT:
+		    break;
+		}
 	}
 
 	componentDidMount = () => {
@@ -82,7 +109,23 @@ export default class MediaGallery extends React.Component {
 	}
 
 	render() {
+
+		const config = {
+	    	velocityThreshold: 0.3,
+	      	directionalOffsetThreshold: 80
+	    };
+
 		return (
+
+			<GestureRecognizer
+				onSwipe={(direction, state) => this.onSwipe(direction, state)}
+				onSwipeUp={(state) => this.onSwipeUp(state)}
+				onSwipeDown={(state) => this.onSwipeDown(state)}
+				onSwipeLeft={(state) => this.onSwipeLeft(state)}
+				onSwipeRight={(state) => this.onSwipeRight(state)}
+				config={config}
+				style = {{flex:1, backgroundColor: "#27ae60"}}
+			>
 
 			<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
 					
@@ -166,6 +209,7 @@ export default class MediaGallery extends React.Component {
 					}
 		     	/>
 			</SafeAreaView>
+		</GestureRecognizer>
 		);
 	}
 }

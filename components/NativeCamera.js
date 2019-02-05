@@ -142,6 +142,9 @@ export default class NativeCamera extends React.Component {
 						flashMode = {this.state.cameraFlash} >
 					</Camera>
 
+					<View style = {styles.swipeOverlay}>
+					</View>
+
 					{/*Toggle Flash*/}
 					<View style = {this.state.cameraType == Camera.Constants.Type.back ? styles.cameraFlash : styles.cameraFlashDisabled} pointerEvents = {this.state.cameraType == Camera.Constants.Type.back ? 'auto' : 'none'}>
 						<TouchableOpacity
