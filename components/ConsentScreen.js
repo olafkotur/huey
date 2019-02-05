@@ -9,7 +9,12 @@ import * as firebase from "firebase";
 import styles from "../Styles";
 import FileHandler from './FileHandler';
 
-export default class NativeCamera extends React.Component {
+export default class ConsentScreen extends React.Component {
+
+	static navigationOptions = {
+		header: null,
+		gesturesEnabled: false,
+	}
 
 	state = {
 		consentGiven: false,
@@ -20,23 +25,23 @@ export default class NativeCamera extends React.Component {
 	componentDidMount = async () => {
 		// Orientation Lock
 		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
-    this.state.consentGiven = True
-    this.state.hasInfoBeenClicked = True
+    this.state.consentGiven = false
+    this.state.hasInfoBeenClicked = false
     this.dropdown.alertWithType('success', 'Consent Is Required', 'Please Take The Time To Read Our Prviacy & Ethics Policy')
 	}
 
 
-	// Toggles front and back cameras
+	// Handles Pressing The Info Button
 	infoRequest = async () => {
     this.setState({hasInfoBeenClicked: true})
     Linking.openURL('https://thehueyproject.wordpress.com/2019/02/02/huey-pre-registration-policy/').catch((err) => console.error('An error occurred', err));
 	}
 
+	// Handles The Account Deletion & Pressing Of The Return
   returnHomeandDelete = async() => {
     await firebase
     .auth().currentUser.delete().then(function() {}).catch(function(error) {});
-    this.props.navigation.navigate('LoginScreen').catch((err) = > console.log(err))
-    //.auth().currentUser.delete().then(function() {}).catch(function(error) {})
+    this.props.navigation.navigate('LoginScreen')
   }
 
   processNextStep = async() => {
@@ -46,23 +51,9 @@ export default class NativeCamera extends React.Component {
     }
     else
     {
-      dropdown.alertWithType('error', 'This Is Important Friend', "We Need You To Check Out The Privacy & Ethic Policy First")
+      this.dropdown.alertWithType('error', 'This Is Important Friend', "We Need You To Check Out The Privacy & Ethic Policy First")
     }
   }
-
-	// Saves specified uri to the camera roll
-	saveLocally = (uri) => {
-		// CameraRoll.saveToCameraRoll(uri);
-	}
-
-	// Sends to firebase as backup
-	saveInCloud = (uri, action) => {
-		const extension = (action === 'photo') ? '.png' : '.mp4';
-		const name = Date.now().toString() + extension;
-		Handler = new FileHandler();
-		Handler.uploadMedia(uri, name);
-	}
-
 
 	render() {
 			return (
@@ -81,15 +72,17 @@ export default class NativeCamera extends React.Component {
 
             <TouchableOpacity
                 style = {styles.topRightButton}
-                //onPress = {() => this.processNextStep().then(() => this.dropdown.alertWithType('success', 'Have You Registered', 'Ey')} >
-								onPress = {() => this.processNextStep()} >
-                <Icon name="tick" style = {styles.topLeftButtonIcon} />
+                onPress = {() => this.processNextStep()} >
+                <Icon name="stars" style = {styles.topLeftButtonIcon} />
             </TouchableOpacity>
             <Text>
             {
-            "We'll Need Your Consent Now: Hit Info Above To Head Through To Our Ethics & Prviacy Policy"
+            "We'll Need Your Consent Now: Hit Info Above To Head Through To Our Ethics "
             }
             </Text>
+
+						<DropdownAlert ref={ref => this.dropdown = ref} />
+
         </View>
 			);
 	}
