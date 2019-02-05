@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import DropdownAlert from 'react-native-dropdownalert';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
 
@@ -18,7 +19,41 @@ export default class HomeScreen extends React.Component {
 	}
 
 	state = {
-		dailyStatus: 'Love Is The Root Of Our Resistance - CP'
+		dailyStatus: 'Love Is The Root Of Our Resistance - CP',
+		myText: 'Im ready to get swiped!',
+	 	gestureName: 'none',
+	  	backgroundColor: '#fff'
+	}
+
+	onSwipeUp(gestureState) {
+		this.props.navigation.navigate('NativeAudio');
+	}
+
+	onSwipeDown(gestureState) {
+		this.props.navigation.navigate('SettingsScreen');
+	}
+
+	onSwipeLeft(gestureState) {
+		this.props.navigation.navigate('MediaGallery');
+	}
+
+	onSwipeRight(gestureState) {
+
+	}
+
+	onSwipe(gestureName, gestureState) {
+		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+		this.setState({gestureName: gestureName});
+		switch (gestureName) {
+		  case SWIPE_UP:
+		    break;
+		  case SWIPE_DOWN:
+		    break;
+		  case SWIPE_LEFT:
+		    break;
+		  case SWIPE_RIGHT:
+		    break;
+		}
 	}
 
 	// Quote of the day
@@ -35,37 +70,53 @@ export default class HomeScreen extends React.Component {
 	}
 
 	render() {
+
+		const config = {
+	      velocityThreshold: 0.3,
+	      directionalOffsetThreshold: 80
+	    };
+
 		return (
-			<View style = {styles.container}>
-				<StatusBar hidden = {(Platform.OS === 'ios') ? true : false} />
+			<GestureRecognizer
+				onSwipe={(direction, state) => this.onSwipe(direction, state)}
+				onSwipeUp={(state) => this.onSwipeUp(state)}
+				onSwipeDown={(state) => this.onSwipeDown(state)}
+				onSwipeLeft={(state) => this.onSwipeLeft(state)}
+				onSwipeRight={(state) => this.onSwipeRight(state)}
+				config={config}
+				style = {{flex:1, backgroundColor: "#27ae60"}}
+			>
+				<View style = {styles.container}>
+					<StatusBar hidden = {(Platform.OS === 'ios') ? true : false} />
 
-				<TouchableOpacity
-					style = {styles.folderButton}
-					onPress = {() => this.props.navigation.navigate('MediaGallery')}>
-					<Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
-				</TouchableOpacity>
+					<TouchableOpacity
+						style = {styles.folderButton}
+						onPress = {() => this.props.navigation.navigate('MediaGallery')}>
+						<Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
+					</TouchableOpacity>
 
-				<TouchableOpacity
-					style = {styles.settingsButton}
-					onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
-					<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
-				</TouchableOpacity>
+					<TouchableOpacity
+						style = {styles.settingsButton}
+						onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
+						<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
+					</TouchableOpacity>
 
-        <TouchableOpacity
-          style = {styles.audioButton}
-          onPress = {() => this.props.navigation.navigate('NativeAudio')}>
-          <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
-        </TouchableOpacity>
+			        <TouchableOpacity
+			          style = {styles.audioButton}
+			          onPress = {() => this.props.navigation.navigate('NativeAudio')}>
+			          <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
+			        </TouchableOpacity>
 
-				<NativeCamera />
+					<NativeCamera/>
 
-				<DropdownAlert 
-					ref={ref => this.dropdown = ref} 
-					containerStyle = {{backgroundColor: '#27ae60'}} 
-					activeStatusBarBackgroundColor = {'#27ae60'}
-				/>
+					<DropdownAlert 
+						ref={ref => this.dropdown = ref} 
+						containerStyle = {{backgroundColor: '#27ae60'}} 
+						activeStatusBarBackgroundColor = {'#27ae60'}
+					/>
 
-			</View>
+				</View> 
+			</GestureRecognizer>
 		);
 	}
 }
