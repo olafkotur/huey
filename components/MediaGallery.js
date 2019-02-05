@@ -1,16 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
-
-import styles from "../Styles";
-import FileHandler from './FileHandler';
-import GalleryImage from './GalleryImage';
-import ImageList from './ImageList';
-import AudioList from './AudioList';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
+import styles from "../Styles";
+import ImageList from './ImageList';
+import AudioList from './AudioList';
 
 
 export default class MediaGallery extends React.Component {
@@ -29,29 +26,8 @@ export default class MediaGallery extends React.Component {
     	gestureName: 'none',
 	}
 
-	//Swipe Gesture Control
-	onSwipeUp(gestureState) {
-	}
-	onSwipeDown(gestureState) {
-	}
-	onSwipeLeft(gestureState) {
-	}
 	onSwipeRight(gestureState) {
 		this.props.navigation.navigate('HomeScreen');
-	}
-	onSwipe(gestureName, gestureState) {
-		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-		this.setState({gestureName: gestureName});
-		switch (gestureName) {
-		  case SWIPE_UP:
-		    break;
-		  case SWIPE_DOWN:
-		    break;
-		  case SWIPE_LEFT:
-		    break;
-		  case SWIPE_RIGHT:
-		    break;
-		}
 	}
 
 	_menu = null;
@@ -73,12 +49,8 @@ export default class MediaGallery extends React.Component {
 		return (
 
 			<GestureRecognizer
-				onSwipe={(direction, state) => this.onSwipe(direction, state)}
-				onSwipeUp={(state) => this.onSwipeUp(state)}
-				onSwipeDown={(state) => this.onSwipeDown(state)}
-				onSwipeLeft={(state) => this.onSwipeLeft(state)}
-				onSwipeRight={(state) => this.onSwipeRight(state)}
-				config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
+				onSwipeRight = {(state) => this.onSwipeRight(state)}
+				config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
 				style = {{flex:1, backgroundColor: "#27ae60"}} >
 
 				<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>

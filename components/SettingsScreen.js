@@ -38,53 +38,22 @@ export default class SettingsScreen extends React.Component {
 	onSwipeUp(gestureState) {
 		this.props.navigation.navigate('HomeScreen');
 	}
-	onSwipeDown(gestureState) {
-	}
-	onSwipeLeft(gestureState) {
-	}
-	onSwipeRight(gestureState) {
-	}
-	onSwipe(gestureName, gestureState) {
-		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-		this.setState({gestureName: gestureName});
-		switch (gestureName) {
-		  case SWIPE_UP:
-		    break;
-		  case SWIPE_DOWN:
-		    break;
-		  case SWIPE_LEFT:
-		    break;
-		  case SWIPE_RIGHT:
-		    break;
-		}
-	}
 
 	render() {
-
-		const config = {
-	    	velocityThreshold: 0.3,
-	      	directionalOffsetThreshold: 80
-	    };
 
 		return (
 
 			<GestureRecognizer
-				onSwipe={(direction, state) => this.onSwipe(direction, state)}
 				onSwipeUp={(state) => this.onSwipeUp(state)}
-				onSwipeDown={(state) => this.onSwipeDown(state)}
-				onSwipeLeft={(state) => this.onSwipeLeft(state)}
-				onSwipeRight={(state) => this.onSwipeRight(state)}
-				config={config}
-				style = {{flex:1, backgroundColor: "#27ae60"}}
-			>
+				config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
+				style = {{flex:1, backgroundColor: "#27ae60"}} >
 
 				<KeyboardAwareScrollView
 					contentContainerStyle = {styles.container}
 					keyboardDismissMode = 'on-drag'
 					keyboardShouldPersistTaps = 'never'
 					scrollEnabled = {false}
-					enableAutomaticScroll = {false}
-				>
+					enableAutomaticScroll = {false} >
 
 					<View style = {styles.navbarContainer}> 
 						<View style = {styles.navbarBackContainer}> 

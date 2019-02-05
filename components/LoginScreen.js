@@ -17,8 +17,6 @@ export default class LoginScreen extends React.Component {
 
 	state = {
 
-		// email: 'hueyyapp@gmail.com',
-		// password: 'Testing1123',
 		email: 'olafkotur97@gmail.com',
 		password: 'Testing1123',
 
@@ -38,7 +36,7 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => this.props.navigation.navigate('ConsentScreen'))
+		.then(() => this.props.navigation.navigate('HomeScreen'))
 		.catch((error) => {this.dropdown.alertWithType('error', 'Have You Registered', error.message)})
 	}
 
@@ -47,71 +45,68 @@ export default class LoginScreen extends React.Component {
 			<KeyboardAwareScrollView
 				contentContainerStyle = {styles.containerLight}
 				scrollEnabled = {true}
-				enableAutomaticScroll = {true}
-				>
+				enableAutomaticScroll = {true} >
 
 				<KeyboardAvoidingView style={styles.containerLight} behavior="padding" enabled>
 
-				{/* Logo */}
-				<Image
-					style = {styles.loginLogo}
-					source = {logo} >
-				</Image>
+					{/* Logo */}
+					<Image
+						style = {styles.loginLogo}
+						source = {logo} >
+					</Image>
 
-				<Text style = {styles.loginText}>
-					Please Sign up or Login.
-				</Text>
-
-					{/* Login fields */}
-					<TextInput
-						style = {styles.loginTextField}
-						secureTextEntry = {false}
-						placeholder = 'Email'
-						placeholderTextColor = '#a9a9a9'
-						underlineColorAndroid = 'rgba(0,0,0,0)'
-						value = {this.state.email}
-						onChangeText = {(email) => this.setState({email})}
-						keyboardType = 'email-address'
-						autoCapitalize = 'none' >
-					</TextInput>
-
-					<TextInput
-						style = {styles.loginTextField}
-						secureTextEntry = {true}
-						placeholder = 'Password'
-						placeholderTextColor = '#a9a9a9'
-						underlineColorAndroid = 'rgba(0,0,0,0)'
-						value = {this.state.password}
-						onChangeText = {(password) => this.setState({password})}
-						keyboardType = 'default'
-						autoCapitalize = 'none' >
-					</TextInput>
-
-				{/* Forgot Password */}
-				<View>
-					<Text
-						style = {styles.forgotPassword}
-						onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
-						Forgot Password?
+					<Text style = {styles.loginText}>
+						Please Sign up or Login.
 					</Text>
-				</View>
 
-				{/* Sign up / Login */}
-				<View style = {styles.doubleButtonContainer}>
+						{/* Login fields */}
+						<TextInput
+							style = {styles.loginTextField}
+							secureTextEntry = {false}
+							placeholder = 'Email'
+							placeholderTextColor = '#a9a9a9'
+							underlineColorAndroid = 'rgba(0,0,0,0)'
+							value = {this.state.email}
+							onChangeText = {(email) => this.setState({email})}
+							keyboardType = 'email-address'
+							autoCapitalize = 'none' >
+						</TextInput>
 
-					<TouchableOpacity
-						onPress = {() => this.handleSignUp()}
-						style = {styles.signupButton}>
-						<Text style = {styles.darkButtonText}>		Sign Up		</Text>
-					</TouchableOpacity>
+						<TextInput
+							style = {styles.loginTextField}
+							secureTextEntry = {true}
+							placeholder = 'Password'
+							placeholderTextColor = '#a9a9a9'
+							underlineColorAndroid = 'rgba(0,0,0,0)'
+							value = {this.state.password}
+							onChangeText = {(password) => this.setState({password})}
+							keyboardType = 'default'
+							autoCapitalize = 'none' >
+						</TextInput>
 
-					<TouchableOpacity
-						onPress = {() => this.handleLogin()}
-						style = {styles.loginButton}>
-						<Text style = {styles.whiteButtonText}>		Login 		</Text>
-					</TouchableOpacity>
+					{/* Forgot Password */}
+					<View>
+						<Text
+							style = {styles.forgotPassword}
+							onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
+							Forgot Password?
+						</Text>
+					</View>
 
-				</View>
+					{/* Sign up / Login */}
+					<View style = {styles.doubleButtonContainer}>
+						<TouchableOpacity
+							onPress = {() => this.handleSignUp()}
+							style = {styles.signupButton}>
+							<Text style = {styles.darkButtonText}>Sign Up</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							onPress = {() => this.handleLogin()}
+							style = {styles.loginButton}>
+							<Text style = {styles.whiteButtonText}>Login</Text>
+						</TouchableOpacity>
+					</View>
 				</KeyboardAvoidingView>
 
 				<DropdownAlert ref={ref => this.dropdown = ref} />
