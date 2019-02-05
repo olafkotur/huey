@@ -292,7 +292,7 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.5,
 	},
 
-// 3. Forgot Password
+// 3. Login Extended Screens (Forgot Password, Consent/Privacy Policy)
 
 	resetButton: {
 		width: deviceWidth * 0.38,
@@ -312,6 +312,71 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.02,
 		textAlign: 'center',
 	},
+
+	consentScrollView: {
+		width: deviceWidth * 0.85,
+		height: deviceHeight * 0.75,
+		marginRight: deviceWidth * 0.025,
+		marginLeft: deviceWidth * 0.025,
+		marginBottom: -deviceHeight * 0.025,
+		backgroundColor: '#fff8',
+		borderRadius: 15,
+	},
+
+	consentText: {
+		fontSize: deviceHeight * 0.0225,
+		backgroundColor: '#FFF8',
+		margin: deviceWidth * 0.05,
+	},
+
+	consentButtons: {
+		width: deviceWidth,
+		flexDirection: 'column'
+	},
+
+	consentAccept: {
+		width: deviceWidth * 0.86,
+		height: deviceHeight * 0.06,
+		backgroundColor: '#27AE60',
+		marginTop: deviceHeight * 0.04,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: deviceWidth * 0.02,
+		marginRight: deviceWidth * 0.02,
+		borderRadius: 5,
+		alignSelf: 'center',
+		opacity: 1,
+	},
+
+	consentAcceptDisabled: {
+		width: deviceWidth * 0.86,
+		height: deviceHeight * 0.06,
+		backgroundColor: '#27AE60',
+		opacity: 0.3,
+		marginTop: deviceHeight * 0.04,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: deviceWidth * 0.02,
+		marginRight: deviceWidth * 0.02,
+		borderRadius: 5,
+		alignSelf: 'center',
+	},
+
+	consentCancelText: {
+		color: '#383838',
+		marginBottom: deviceHeight * 0.02,
+		marginTop: deviceHeight * 0.05,
+		textAlign: 'center',
+
+	},
+
+	consentTopText: {
+		color: '#383838',
+		marginTop: deviceHeight * 0.02,
+		marginBottom: deviceHeight * 0.02,
+		textAlign: 'center',
+	},
+
 
 //	4. Camera
 

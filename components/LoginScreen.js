@@ -36,7 +36,7 @@ export default class LoginScreen extends React.Component {
 		await firebase
 		.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
-		.then(() => this.props.navigation.navigate('HomeScreen'))
+		.then(() => this.props.navigation.navigate('ConsentScreen'))
 		.catch((error) => {this.dropdown.alertWithType('error', 'Have You Registered', error.message)})
 	}
 

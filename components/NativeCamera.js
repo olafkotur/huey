@@ -146,7 +146,7 @@ export default class NativeCamera extends React.Component {
 					</View>
 
 					{/*Toggle Flash*/}
-					<View style = {this.state.cameraType == Camera.Constants.Type.back ? styles.cameraFlash : styles.cameraFlashDisabled} pointerEvents = {this.state.cameraType == Camera.Constants.Type.back ? 'auto' : 'none'}>
+					<View style = {this.state.cameraType === Camera.Constants.Type.back ? styles.cameraFlash : styles.cameraFlashDisabled} pointerEvents = {this.state.cameraType == Camera.Constants.Type.back ? 'auto' : 'none'}>
 						<TouchableOpacity
 							onPress = {() => this.toggleFlash()} >
 							<Icon name={this.state.flashIcon} style = {styles.flipCamera}  size = {30} />
