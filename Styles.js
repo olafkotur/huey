@@ -592,6 +592,8 @@ export default StyleSheet.create({
   	galleryTabViewContainer: {
   		marginTop: 40,
   		alignSelf: 'center',
+  		flexDirection: 'row',
+  		alignItems: 'center',
 
   	},
 
