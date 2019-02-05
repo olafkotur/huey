@@ -31,23 +31,23 @@ const handleCustomTransition = ({ scenes }) => {
 	const prevScene = scenes[scenes.length - 2];
 	const nextScene = scenes[scenes.length - 1];
 
-	// Custom transitions go there
+	// Custom transitions
 	if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'SettingsScreen') {
-		return fromTop(800);
+		return fromTop(500);
 	} else if (prevScene && prevScene.route.routeName === 'SettingsScreen' && nextScene.route.routeName === 'HomeScreen'){
-		return fromBottom(800);
+		return fromBottom(500);
 	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'MediaGallery'){
-		return fromRight(800);
+		return fromRight(500);
 	} else if (prevScene && prevScene.route.routeName === 'MediaGallery' && nextScene.route.routeName === 'HomeScreen'){
-		return fromLeft(800);
+		return fromLeft(500);
 	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'NativeAudio'){
-		return fromBottom(800);
+		return fromBottom(500);
 	} else if (prevScene && prevScene.route.routeName === 'NativeAudio' && nextScene.route.routeName === 'HomeScreen'){
-		return fromTop(800);
+		return fromTop(500);
 	} else if (prevScene && (prevScene.route.routeName === 'LoginScreen' || prevScene.route.routeName === 'ConsentScreen') && nextScene.route.routeName === 'HomeScreen'){
-		return fromRight(800);
+		return fromRight(500);
 	} else {
-		return fromTop(800);
+		return fromTop(500);
 	}
 }
 

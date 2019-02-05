@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class NativeAudio extends React.Component {
 
@@ -14,7 +15,33 @@ export default class NativeAudio extends React.Component {
         isRecording: false,
         isHidden: false,
         audioRecordingButtonStyle: styles.audioRecordButton,
-        buttonContainerStyle: styles.buttonContainer
+        buttonContainerStyle: styles.buttonContainer,
+        gestureName: 'none',
+    }
+
+    //Swipe Gesture Control
+    onSwipeUp(gestureState) {
+    }
+    onSwipeDown(gestureState) {
+        this.props.navigation.navigate('HomeScreen');
+    }
+    onSwipeLeft(gestureState) {
+    }
+    onSwipeRight(gestureState) {
+    }
+    onSwipe(gestureName, gestureState) {
+        const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+        this.setState({gestureName: gestureName});
+        switch (gestureName) {
+          case SWIPE_UP:
+            break;
+          case SWIPE_DOWN:
+            break;
+          case SWIPE_LEFT:
+            break;
+          case SWIPE_RIGHT:
+            break;
+        }
     }
 
     // Toggle the recoridng button between active and inactive styles
@@ -39,7 +66,22 @@ export default class NativeAudio extends React.Component {
     }
 
     render() {
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80
+        };
+
         return (
+
+            <GestureRecognizer
+                onSwipe={(direction, state) => this.onSwipe(direction, state)}
+                onSwipeUp={(state) => this.onSwipeUp(state)}
+                onSwipeDown={(state) => this.onSwipeDown(state)}
+                onSwipeLeft={(state) => this.onSwipeLeft(state)}
+                onSwipeRight={(state) => this.onSwipeRight(state)}
+                config={config}
+                style = {{flex:1, backgroundColor: "#27ae60"}}
+            >
             <View style = {styles.container}>
 
                 <TouchableOpacity
@@ -63,6 +105,7 @@ export default class NativeAudio extends React.Component {
                 </TouchableOpacity>
 
             </View>
+            </GestureRecognizer>
         );
     }
 }
