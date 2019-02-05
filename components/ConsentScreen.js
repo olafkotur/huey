@@ -86,7 +86,7 @@ export default class NativeCamera extends React.Component {
             </TouchableOpacity>
             <Text>
             {
-            "https://thehueyproject.wordpress.com/2019/02/02/huey-pre-registration-policy/"
+            "We'll Need Your Consent Now: Hit Info Above To Head Through To Our Ethics & Prviacy Policy"
             }
             </Text>
         </View>
