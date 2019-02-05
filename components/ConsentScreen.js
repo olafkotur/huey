@@ -114,8 +114,10 @@ export default class ConsentScreen extends React.Component {
 
                 {/* Accepts */}
                 <View pointerEvents = {this.state.acceptEnabled ? 'auto' : 'none'}
-                    style = {this.state.acceptButtonStyle}>
+                    style = {this.state.acceptButtonStyle}
+                    >
                     <TouchableOpacity
+                        style = {styles.touchableOpacityAccept}
                         onPress = {() => this.props.navigation.navigate('HomeScreen')}
                         >
                         <Text style = {styles.whiteButtonText}>      Accept     </Text>
