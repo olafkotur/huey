@@ -16,7 +16,9 @@ export default class NativeCamera extends React.Component {
 		blinkStyle: styles.blinkFalse,
 		cameraFlash: Camera.Constants.FlashMode.off,
 		flashIcon: "flash-off",
-		flipCameraIcon: "camera-rear"
+		flipCameraIcon: "camera-rear",
+		oneTimePWValidated: false,
+		renewableQRValidated: false
 	}
 
 
@@ -42,6 +44,14 @@ export default class NativeCamera extends React.Component {
 			this.setState({cameraType: Camera.Constants.Type.back})
 			this.setState({flipCameraIcon: "camera-rear"})
 		}
+	}
+
+	checkQRagainstfirebase = async (QRdata) => {
+		//Check The Given QR Code against The One Time Expected PW only on Firebase & See If It Matches a List of Unpspecified Codes
+		//Call Firebase for Registered One Time PW
+
+		//Call Firebase To QR Code Tree & Check The QR Code Against THe ID of All The Registered Organisers
+			//If confirmed, update state of native camera & update the sign-in log so we have a log of who verified who in the worst-case
 	}
 
 	// Toggles flash
@@ -116,11 +126,15 @@ export default class NativeCamera extends React.Component {
 		Handler.uploadMedia(uri, name);
 	}
 
+	confirmOneTime
 	processQRCode = async (scanneroutput) =>
 	{
-		//Extract URL From QR Code
-		//Date Form -> NameOfHosst - NumberUID
+		//Extract URL From QR Code //Date Form -> NameOfHosst - NumberUID
 		scannerouput.data
+
+		const uid = await firebase.auth().currentUser.uid;
+		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
+
 		//Validate QR Code From Firebase
 		console.log(data)
 	}
