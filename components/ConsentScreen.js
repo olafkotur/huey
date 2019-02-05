@@ -35,7 +35,7 @@ export default class NativeCamera extends React.Component {
   returnHomeandDelete = async() => {
     await firebase
     .auth().currentUser.delete().then(function() {}).catch(function(error) {});
-    this.props.navigation.navigate('LoginScreen')
+    this.props.navigation.navigate('LoginScreen').catch((err) = > console.log(err))
     //.auth().currentUser.delete().then(function() {}).catch(function(error) {})
   }
 
@@ -46,7 +46,7 @@ export default class NativeCamera extends React.Component {
     }
     else
     {
-      this.dropdown.alertWithType('error', 'This Is Important Friend', "We Need You To Check Out The Privacy & Ethic Policy First")
+      dropdown.alertWithType('error', 'This Is Important Friend', "We Need You To Check Out The Privacy & Ethic Policy First")
     }
   }
 
@@ -81,7 +81,8 @@ export default class NativeCamera extends React.Component {
 
             <TouchableOpacity
                 style = {styles.topRightButton}
-                onPress = {() => this.processNextStep()} >
+                //onPress = {() => this.processNextStep().then(() => this.dropdown.alertWithType('success', 'Have You Registered', 'Ey')} >
+								onPress = {() => this.processNextStep()} >
                 <Icon name="tick" style = {styles.topLeftButtonIcon} />
             </TouchableOpacity>
             <Text>
