@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import {fromLeft, fromRight, fromBottom, fromTop} from 'react-navigation-transitions'
+import {fromLeft, fromRight, fromBottom, fromTop, zoomIn,zoomOut, flipX, flipY} from 'react-navigation-transitions'
 import * as firebase from "firebase";
 
 import styles from "./Styles";
@@ -33,18 +33,21 @@ const handleCustomTransition = ({ scenes }) => {
 
 	// Custom transitions go there
 	if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'SettingsScreen') {
-		return fromTop();
+		return fromTop(800);
 	} else if (prevScene && prevScene.route.routeName === 'SettingsScreen' && nextScene.route.routeName === 'HomeScreen'){
-		return fromBotto
-		();
+		return fromBottom(800);
 	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'MediaGallery'){
-		return fromRight();
+		return fromRight(800);
 	} else if (prevScene && prevScene.route.routeName === 'MediaGallery' && nextScene.route.routeName === 'HomeScreen'){
-		return fromLeft();
+		return fromLeft(800);
 	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'NativeAudio'){
-		return fromBottom();
+		return fromBottom(800);
 	} else if (prevScene && prevScene.route.routeName === 'NativeAudio' && nextScene.route.routeName === 'HomeScreen'){
-		return fromTop();
+		return fromTop(800);
+	} else if (prevScene && (prevScene.route.routeName === 'LoginScreen' || prevScene.route.routeName === 'ConsentScreen') && nextScene.route.routeName === 'HomeScreen'){
+		return fromRight(800);
+	} else {
+		return fromTop(800);
 	}
 }
 
