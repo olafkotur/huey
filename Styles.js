@@ -101,7 +101,6 @@ export default StyleSheet.create({
 		width: deviceWidth,
 		height: deviceHeight,
 		backgroundColor: 'transparent',
-		zIndex: 1,
 		position: 'absolute',
 	},
 
