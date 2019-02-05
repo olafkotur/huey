@@ -116,6 +116,15 @@ export default class NativeCamera extends React.Component {
 		Handler.uploadMedia(uri, name);
 	}
 
+	processQRCode = async (scanneroutput) =>
+	{
+		//Extract URL From QR Code
+		//Date Form -> NameOfHosst - NumberUID
+		scannerouput.data
+		//Validate QR Code From Firebase
+		console.log(data)
+	}
+
 
 	render() {
 
@@ -139,7 +148,8 @@ export default class NativeCamera extends React.Component {
 						style = {styles.cameraContainer}
 						ratio = {"16:9"}
 						type = {this.state.cameraType}
-						flashMode = {this.state.cameraFlash} >
+						flashMode = {this.state.cameraFlash}
+						onBarCodeScanned = {(result) => this.processQRCode(result)} >
 					</Camera>
 
 					<View style = {styles.swipeOverlay}>
