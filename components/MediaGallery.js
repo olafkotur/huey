@@ -7,22 +7,11 @@ import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import styles from "../Styles";
 import FileHandler from './FileHandler';
 import GalleryImage from './GalleryImage';
+import ImageList from './ImageList';
+import AudioList from './AudioList';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
-const FirstRoute = () => (
-	<View style = {styles.container}>
-
-		<View style = {styles.galleryContainer}>
-
-		</View>
-	</View>
-);
-
-
-const SecondRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#fff' }]} />
-);
 
 export default class MediaGallery extends React.Component {
 
@@ -32,9 +21,6 @@ export default class MediaGallery extends React.Component {
 	}
 
 	state = {
-		mediaData: [],
-		singleImageUri: '',
-		refreshing: false,
 		index: 0,
    		routes: [
       		{ key: 'first', title: 'Media' },
@@ -68,10 +54,6 @@ export default class MediaGallery extends React.Component {
 		}
 	}
 
-	componentDidMount = () => {
-		this.fetchData();
-	}
-
 	_menu = null;
 	 
 	setMenuRef = ref => {
@@ -86,34 +68,7 @@ export default class MediaGallery extends React.Component {
 		this._menu.show();
 	};
 
-
-	// Fetches image gallery data
-	fetchData = async () => {
-		this.setState({refreshing: true});
-		Handler = new FileHandler();
-		await Handler.getMedia().then((data) => this.setState({mediaData: data}));
-		this.setState({refreshing: false});
-	}
-
-	renderImage = (item) => {
-		let fileType = '';
-		const fileName = item.url.split('media%2F').pop().split('?')[0];
-		(fileName.includes('.png')) ? (fileType = 'photo') : (fileType = 'video');
-
-		return (
-			<TouchableOpacity
-				onPress = {() => this.props.navigation.navigate('FocusedImage', {uri: item.url, fileType: fileType})} >
-				<GalleryImage uri = {item.url} fileType = {fileType} />
-			</TouchableOpacity>
-		);
-	}
-
 	render() {
-
-		const config = {
-	    	velocityThreshold: 0.3,
-	      	directionalOffsetThreshold: 80
-	    };
 
 		return (
 
@@ -123,93 +78,70 @@ export default class MediaGallery extends React.Component {
 				onSwipeDown={(state) => this.onSwipeDown(state)}
 				onSwipeLeft={(state) => this.onSwipeLeft(state)}
 				onSwipeRight={(state) => this.onSwipeRight(state)}
-				config={config}
-				style = {{flex:1, backgroundColor: "#27ae60"}}
-			>
+				config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
+				style = {{flex:1, backgroundColor: "#27ae60"}} >
 
-			<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
-					
-				<View style = {styles.navbarGalleryContainer}>
-					<View style = {styles.navbarBackContainer}>
-						<TouchableOpacity
-							style = {styles.navbarButton}
-							onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-							<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
-						</TouchableOpacity>
-					</View>
+				<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
+						
+					<View style = {styles.navbarGalleryContainer}>
 
-					<View style = {styles.navbarRightContainer}>
-						<Menu
-								ref={this.setMenuRef}
-								button={ 				
-										<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
-									}
-								>
+						<View style = {styles.navbarBackContainer}>
+							<TouchableOpacity
+								style = {styles.navbarButton}
+								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+								<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+							</TouchableOpacity>
+						</View>
+
+						<View style = {styles.navbarRightContainer}>
+
+							<Menu
+								ref = {this.setMenuRef}
+								button = {<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />} >
+
 								<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
-								<MenuItem onPress={() => {
-									this.fetchData();
-									this.hideMenu();
-								}}>Refresh</MenuItem>
+								{/*<MenuItem onPress={() => { this.fetchData(); this.hideMenu();}}>Refresh</MenuItem>*/}
 								<MenuItem onPress={this.hideMenu} disabled>Share</MenuItem>
 								<MenuDivider />
 								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
-								</Menu>
-						<TouchableOpacity
-							style = {styles.navbarButton}>
-							<Icon name="info" style = {styles.navbarIcon}  size = {30} />
-						</TouchableOpacity>
+							</Menu>
 
-						<TouchableOpacity
-							style = {styles.navbarButton}>
-							<Icon name="sort" style = {styles.navbarIcon}  size = {30} />
-						</TouchableOpacity>
+							<TouchableOpacity
+								style = {styles.navbarButton}>
+								<Icon name="info" style = {styles.navbarIcon}  size = {30} />
+							</TouchableOpacity>
+
+							<TouchableOpacity
+								style = {styles.navbarButton}>
+								<Icon name="sort" style = {styles.navbarIcon}  size = {30} />
+							</TouchableOpacity>
+						</View>
+
 					</View>
-				</View>
 
-				<TabView
+					<TabView
+				        renderScene = {SceneMap({first: ImageList, second: AudioList})}
+				        navigationState = {this.state}
+				        onIndexChange = {index => this.setState({ index })}
+				        initialLayout = {{ width: 100, height:500}}
+				        tabBarPosition = {'bottom'}
+						style = {{backgroundColor: '#fff'}}
+						renderTabBar = {props =>
+							<TabBar
+								{...props}
+							    tabStyle={{ backgroundColor: '#27ae60', color: '#fff', marginBottom: 4}}
+							    style={{backgroundColor: '#27ae60'}}
+							    pressColor = {'transparent'}
+							    renderIndicator={this._renderIndicator}
+							    indicatorStyle={{backgroundColor: '#fff', height: 4}} >
+						   </TabBar>
+						} >
 
-			        renderScene={SceneMap({
-			        	first: () => (
-			          		<View style = {styles.galleryTabViewContainer}>						
-			          			<FlatList
-									data = {this.state.mediaData}
-									extraData = {this.state}
-									horiztonal = {false}
-									numColumns = {3}
-									keyExtractor = {(item, index) => index.toString()}
-			      					renderItem = {({item}) => this.renderImage(item)}
-			      					refreshing = {this.state.refreshing}
-			      					onRefresh = {() => this.fetchData()} >
-								</FlatList>
-							</View>
-			          	),
-			          	second: () => (
-			          		<View style = {styles.galleryTabViewContainer}>						
-			          			<Text>Memelist for audio files here</Text>
-							</View>
-			          	)
-			        })}
+			     	</TabView>
 
-			        navigationState={this.state}
-			        onIndexChange={index => this.setState({ index })}
-			        initialLayout={{ width: 100, height:500}}
-			        tabBarPosition={'bottom'}
-					style={{backgroundColor: '#fff'}}
+				</SafeAreaView>
 
-					renderTabBar={props =>
-						<TabBar
-							{...props}
-
-						    tabStyle={{ backgroundColor: '#27ae60', color: '#fff', marginBottom: 4}}
-						    style={{backgroundColor: '#27ae60'}}
-						    pressColor = {'transparent'}
-						    renderIndicator={this._renderIndicator}
-						    indicatorStyle={{backgroundColor: '#fff', height: 4}}
-						/>
-					}
-		     	/>
-			</SafeAreaView>
-		</GestureRecognizer>
+			</GestureRecognizer>
 		);
 	}
 }

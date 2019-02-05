@@ -17,7 +17,9 @@ export default class LoginScreen extends React.Component {
 
 	state = {
 
-		email: 'hueyyapp@gmail.com',
+		// email: 'hueyyapp@gmail.com',
+		// password: 'Testing1123',
+		email: 'olafkotur97@gmail.com',
 		password: 'Testing1123',
 
 	}
@@ -44,8 +46,6 @@ export default class LoginScreen extends React.Component {
 		return (
 			<KeyboardAwareScrollView
 				contentContainerStyle = {styles.containerLight}
-				//keyboardDismissMode = 'on-drag'
-				//keyboardShouldPersistTaps = 'never'
 				scrollEnabled = {true}
 				enableAutomaticScroll = {true}
 				>
