@@ -21,7 +21,8 @@ export default class NativeCamera extends React.Component {
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
-		locationValidated: false
+		locationValidated: false,
+		locationdata: null
 	}
 
 	componentDidMount = async () => {
@@ -102,39 +103,65 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 
+	readCurrnetLatLong = async () => {
+		const lat = await firebase.database().ref('/locationcoordinates/lat').once('value')
+		const long = await firebase.database().ref('/locationcoordinates/long').once('value')
+		console({lat,long})
+		return {lat,long}
 
+	}
 	// Capture video or photo
 	captureMedia = async (action) => {
 			const { locstatus } = await Permissions.askAsync(Permissions.LOCATION)
 			this.state.locationPermission = true
 			console.log(this.state.locationPermission)
 			console.log(this.state.locationValidated)
-
+			longitude = 9999
+			latitude = 9999
+			positionouter = 9999
 		// Stop Recording if active
-		  position = navigator.geolocation.getCurrentPosition()
-			console.log("II")
-			console.log(position)
-			latitude = position.coords.latitude
-		 	longtitude: position.coords.longitude
-			lat = (firebase.database().ref('/locationcoordinates/lat').once('value'))
-			long = (firebase.database().ref('/locationcoordinates/long').once('value'))
-			
-					// Test DataSet
-					//	locationDataExport = {latitude: 1, longtitude: 1}
-					//	long = 1
-				  //	lat = 1
+		  //position = navigator.geolocation.getCurrentPosition((position) => {this.longitude = position.coords.longitude
+			await navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const initialPosition = await JSON.stringify(position.coords);
+						const longreading = await JSON.stringify(position.coords.longitude);
+						const latreading = await JSON.stringify(position.coords.latitude)
+						const lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+					  const long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
 
-			console.log("III")
-			console.log(locationDataExport.longitude)
-			console.log(locationDataExport.latitude)
-			console.log(long)
-			console.log(lat)
-			console.log("this.state.locationValidated = " + this.state.locationValidated)
+						ublat = (lat.val() + 1)
+						lblat = (lat.val() - 1)
+						ublong = (long.val() + 1)
+  					lblong = (long.val() - 1)
 
-			if((lat-1 >= locationDataExport.latitude <= lat+1) && (long-1 >= locationDataExport.longtitude <= long+1))
-			{
-				this.state.locationValidated = true
-			}
+//	console.log(ublat,lblat,lat,latreading)
+//	console.log(ublong,lblong,long,longreading)
+// [16:55:04] 55.02212 53.02212 54.02212 54.0080839
+// [16:55:04] -1.72398 -3.72398 -2.72398 -2.7846637
+// [16:55:04] number number object string
+// [16:55:04] number number object number
+
+						console.log(ublat,lblat,lat,latreading)
+						console.log(ublong,lblong,long,longreading)
+						console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
+						console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
+					//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
+					//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
+						console.log(lblat >= latreading.val())
+						console.log(latreading.val() <= ublat)
+						console.log(lblong >= longreading.val())
+						console.log(longreading.val() <= ublong)
+
+						if((lblat >= latreading.val() <= ublat) && (lblong >= longreading.val() <= ublong))
+						{
+							this.state.locationValidated = true
+							console.log(this.state.locationValidated)
+						}
+         },
+         (error) => alert(error.message),
+         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
+
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
