@@ -19,9 +19,9 @@ export default class NativeCamera extends React.Component {
 		flashIcon: "flash-off",
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
-		renewableQRValidated: false
+		renewableQRValidated: false,
+		locationDataExport: null
 	}
-
 
 	componentDidMount = async () => {
 		// Orientation Lock
@@ -32,14 +32,6 @@ export default class NativeCamera extends React.Component {
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({cameraPermission: status === 'granted'});
-	}
-
-	checkQRagainstfirebase = async (QRdata) => {
-		//Check The Given QR Code against The One Time Expected PW only on Firebase & See If It Matches a List of Unpspecified Codes
-		//Call Firebase for Registered One Time PW
-
-		//Call Firebase To QR Code Tree & Check The QR Code Against THe ID of All The Registered Organisers
-			//If confirmed, update state of native camera & update the sign-in log so we have a log of who verified who in the worst-case
 	}
 
 	processQRCode = async (scanneroutput) =>
@@ -81,11 +73,6 @@ export default class NativeCamera extends React.Component {
 
 	}
 
-	checkOrganiserQR = async (scanneroutput) =>
-	{
-
-	}
-
 	// Toggles front and back cameras
 	toggleCamera = () => {
 		if (this.state.cameraType === Camera.Constants.Type.back) { // Back
@@ -118,6 +105,9 @@ export default class NativeCamera extends React.Component {
 	// Capture video or photo
 	captureMedia = async (action) => {
 		// Stop Recording if active
+		navigator.geolocation.getCurrentPosition((position) => {
+			this.locationDataExport = {latitude: position.coords.latitude, longtitude: position.coords.longitude}
+		})
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
