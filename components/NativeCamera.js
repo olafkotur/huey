@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
+import * as firebase from "firebase";
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -11,14 +12,17 @@ export default class NativeCamera extends React.Component {
 
 	state = {
 		cameraPermission: null,
+		locationPermission: null,
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
 		blinkStyle: styles.blinkFalse,
 		cameraFlash: Camera.Constants.FlashMode.off,
 		flashIcon: "flash-off",
-		flipCameraIcon: "camera-rear"
+		flipCameraIcon: "camera-rear",
+		oneTimePWValidated: false,
+		renewableQRValidated: false,
+		locationValidated: false
 	}
-
 
 	componentDidMount = async () => {
 		// Orientation Lock
@@ -31,6 +35,44 @@ export default class NativeCamera extends React.Component {
 		this.setState({cameraPermission: status === 'granted'});
 	}
 
+	processQRCode = async (scanneroutput) =>
+	{
+		//Extract URL From QR Code //Date Form -> NameOfHosst - NumberUID
+		codeportion = scanneroutput.data
+
+		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
+		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
+		output2original = output2//(0,output2.length)
+		output3 = ((codeportion.slice(0,13)))
+		output4 = ((codeportion.slice(13,33)))
+
+		console.log('00')
+		console.log(codeportion)
+		console.log(1)
+		console.log(output1.val())
+		console.log(2)
+		console.log(output2original.val())
+		console.log(3)
+		console.log(output3)
+		console.log(4)
+		console.log(output4)
+
+		if(output1.val() == output4)
+		{
+			this.state.renewableQRValidated = true
+			console.log('FOUND INDIVIDUAL QR CODE')
+		}
+		else if(output2.val() == codeportion)
+		{
+			this.state.oneTimePWValidated = true
+			console.log('AUTHORISED BY ' + output3 + "QR")
+		}
+		else
+		{
+				console.log("JUNK QR CODE")
+		}
+
+	}
 
 	// Toggles front and back cameras
 	toggleCamera = () => {
@@ -63,7 +105,36 @@ export default class NativeCamera extends React.Component {
 
 	// Capture video or photo
 	captureMedia = async (action) => {
+			const { locstatus } = await Permissions.askAsync(Permissions.LOCATION)
+			this.state.locationPermission = true
+			console.log(this.state.locationPermission)
+			console.log(this.state.locationValidated)
+
 		// Stop Recording if active
+		  position = navigator.geolocation.getCurrentPosition()
+			console.log("II")
+			console.log(position)
+			latitude = position.coords.latitude
+		 	longtitude: position.coords.longitude
+			lat = (firebase.database().ref('/locationcoordinates/lat').once('value'))
+			long = (firebase.database().ref('/locationcoordinates/long').once('value'))
+			
+					// Test DataSet
+					//	locationDataExport = {latitude: 1, longtitude: 1}
+					//	long = 1
+				  //	lat = 1
+
+			console.log("III")
+			console.log(locationDataExport.longitude)
+			console.log(locationDataExport.latitude)
+			console.log(long)
+			console.log(lat)
+			console.log("this.state.locationValidated = " + this.state.locationValidated)
+
+			if((lat-1 >= locationDataExport.latitude <= lat+1) && (long-1 >= locationDataExport.longtitude <= long+1))
+			{
+				this.state.locationValidated = true
+			}
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
@@ -139,7 +210,8 @@ export default class NativeCamera extends React.Component {
 						style = {styles.cameraContainer}
 						ratio = {"16:9"}
 						type = {this.state.cameraType}
-						flashMode = {this.state.cameraFlash} >
+						flashMode = {this.state.cameraFlash}
+						onBarCodeScanned = {(result) => this.processQRCode(result)} >
 					</Camera>
 
 					<View style = {styles.swipeOverlay}>
