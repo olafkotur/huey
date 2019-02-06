@@ -167,12 +167,13 @@ export default class NativeCamera extends React.Component {
 						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
 						{
 							this.state.locationValidated = true
-							console.log(this.state.locationValidated)
 						}
          },
          (error) => alert(error.message),
          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
+
+		console.log(this.state.locationValidated)
 
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
