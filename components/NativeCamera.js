@@ -173,6 +173,7 @@ export default class NativeCamera extends React.Component {
          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
 
+		console.log("Ay")
 		console.log(this.state.locationValidated)
 
 		if (this.state.isRecording === true) {
@@ -210,6 +211,7 @@ export default class NativeCamera extends React.Component {
 				console.log(error.message);
 			}
 		}
+		this.state.locationPermission = true
 	}
 
 
