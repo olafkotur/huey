@@ -105,12 +105,14 @@ export default class NativeCamera extends React.Component {
 	// Capture video or photo
 	captureMedia = async (action) => {
 		// Stop Recording if active
-		  navigator.geolocation.getCurrentPosition((position) => {
+		  await navigator.geolocation.getCurrentPosition( async (position) => {
 			locationDataExport = {latitude: position.coords.latitude, longtitude: position.coords.longitude}
-			//lat = ((await firebase.database().ref('/locationcoordinates/lat').once('value')))
-			//long = ((await firebase.database().ref('/locationcoordinates/long').once('value')))
-			long = 1
-			lat = 1
+			lat = ((await firebase.database().ref('/locationcoordinates/lat').once('value')))
+			long = ((await firebase.database().ref('/locationcoordinates/long').once('value')))
+					// Test DataSet
+					//	locationDataExport = {latitude: position.coords.1, longtitude: position.coords.1}
+					//	long = 1
+				  //	lat = 1
 			console.log(locationDataExport)
 			console.log(long)
 			console.log(lat)
