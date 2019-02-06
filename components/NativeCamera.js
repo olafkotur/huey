@@ -124,15 +124,20 @@ export default class NativeCamera extends React.Component {
 			await navigator.geolocation.getCurrentPosition(
         async (position) => {
             const initialPosition = await JSON.stringify(position.coords);
-						const longreading = await JSON.stringify(position.coords.longitude);
-						const latreading = await JSON.stringify(position.coords.latitude)
-						const lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-					  const long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+						let longreading = await JSON.stringify(position.coords.longitude);
+						let latreading = await JSON.stringify(position.coords.latitude)
+						let lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+					  let long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
 
 						ublat = (lat.val() + 1)
 						lblat = (lat.val() - 1)
+						lat = lat.val()
+						latreading = parseFloat(latreading)
+
 						ublong = (long.val() + 1)
   					lblong = (long.val() - 1)
+						long = long.val()
+						longreading = parseFloat(longreading)
 
 //	console.log(ublat,lblat,lat,latreading)
 //	console.log(ublong,lblong,long,longreading)
@@ -143,16 +148,23 @@ export default class NativeCamera extends React.Component {
 
 						console.log(ublat,lblat,lat,latreading)
 						console.log(ublong,lblong,long,longreading)
-						console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
-						console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
-					//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
-					//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
-						console.log(lblat >= latreading.val())
-						console.log(latreading.val() <= ublat)
-						console.log(lblong >= longreading.val())
-						console.log(longreading.val() <= ublong)
+						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
+						console.log(typeof ublong, typeof lblong, typeof long,typeof longreading)
+						//console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
+						//console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
+						console.log(" " + lblat + "<=" + latreading)
+						console.log(lblat <= latreading)
+						console.log(" " + latreading + "<=" + ublat)
+						console.log(latreading <= ublat)
+						console.log(" " + lblong + "<=" + longreading)
+						console.log(lblong <= longreading)
+						console.log(" " + longreading + "<="  + ublong)
+						console.log(longreading <= ublong)
 
-						if((lblat >= latreading.val() <= ublat) && (lblong >= longreading.val() <= ublong))
+						//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
+						//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
+
+						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
 						{
 							this.state.locationValidated = true
 							console.log(this.state.locationValidated)
