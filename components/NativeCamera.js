@@ -133,7 +133,7 @@ export default class NativeCamera extends React.Component {
 						lblat = (lat.val() - 1)
 						ublong = (long.val() + 1)
   					lblong = (long.val() - 1)
-						
+
 //	console.log(ublat,lblat,lat,latreading)
 //	console.log(ublong,lblong,long,longreading)
 // [16:55:04] 55.02212 53.02212 54.02212 54.0080839
@@ -143,8 +143,8 @@ export default class NativeCamera extends React.Component {
 
 						console.log(ublat,lblat,lat,latreading)
 						console.log(ublong,lblong,long,longreading)
-						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
-						console.log(typeof ublong, typeof lblong, typeof long,typeof parseFloat(longreading))
+						console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
+						console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
 					//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
 					//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
 						console.log(lblat >= latreading.val())
