@@ -129,13 +129,30 @@ export default class NativeCamera extends React.Component {
 						const lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
 					  const long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
 
-						console.log(lat, latreading, long, longreading)
+						ublat = (lat.val() + 1)
+						lblat = (lat.val() - 1)
+						ublong = (long.val() + 1)
+  					lblong = (long.val() - 1)
+						
+//	console.log(ublat,lblat,lat,latreading)
+//	console.log(ublong,lblong,long,longreading)
+// [16:55:04] 55.02212 53.02212 54.02212 54.0080839
+// [16:55:04] -1.72398 -3.72398 -2.72398 -2.7846637
+// [16:55:04] number number object string
+// [16:55:04] number number object number
+
+						console.log(ublat,lblat,lat,latreading)
+						console.log(ublong,lblong,long,longreading)
+						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
+						console.log(typeof ublong, typeof lblong, typeof long,typeof parseFloat(longreading))
 					//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
 					//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
-					  console.log(lat.toString(),lat.toString(),(typeof lat))
-						console.log(long.toString(),long.toString(),(typeof long))
+						console.log(lblat >= latreading.val())
+						console.log(latreading.val() <= ublat)
+						console.log(lblong >= longreading.val())
+						console.log(longreading.val() <= ublong)
 
-						if((lat-1 >= latreading <= lat+1) && (long-1 >= longreading <= long+1))
+						if((lblat >= latreading.val() <= ublat) && (lblong >= longreading.val() <= ublong))
 						{
 							this.state.locationValidated = true
 							console.log(this.state.locationValidated)
@@ -144,37 +161,6 @@ export default class NativeCamera extends React.Component {
          (error) => alert(error.message),
          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
-		//	console.log("III")
-		//	console.log(this.state.locationdata)
-		//	console.log(this.state.locationdata)
-//			this.positionouter = position})
-//			console.log("II")
-//			console.log(positionouter)
-//			//latitude = position.coords.latitude
-//		 	//longitude: position.coords.longitude
-
-	//		lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-	//		long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
-
-			//console.log(lat, latreading, long, longreading)
-//
-//			console.log("III")
-//			console.log(longitude)
-//			console.log(latitude)
-//			console.log(long)
-//			console.log(lat)
-//			// console.log("this.state.locationValidated = " + this.state.locationValidated)
-
-
-//					// Test DataSet
-					//	locationDataExport = {latitude: 1, longtitude: 1}
-					//	long = 1
-				  //	lat = 1
-
-		//	if((lat-1 >= locationDataExport.latitude <= lat+1) && (long-1 >= locationDataExport.longtitude <= long+1))
-	//		{
-	//			this.state.locationValidated = true
-	//		}
 
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
