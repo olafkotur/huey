@@ -20,7 +20,7 @@ export default class NativeCamera extends React.Component {
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
-		locationDataExport: null
+		locationValidated: false
 	}
 
 	componentDidMount = async () => {
@@ -105,8 +105,21 @@ export default class NativeCamera extends React.Component {
 	// Capture video or photo
 	captureMedia = async (action) => {
 		// Stop Recording if active
-		navigator.geolocation.getCurrentPosition((position) => {
-			this.locationDataExport = {latitude: position.coords.latitude, longtitude: position.coords.longitude}
+		  navigator.geolocation.getCurrentPosition((position) => {
+			locationDataExport = {latitude: position.coords.latitude, longtitude: position.coords.longitude}
+			//lat = ((await firebase.database().ref('/locationcoordinates/lat').once('value')))
+			//long = ((await firebase.database().ref('/locationcoordinates/long').once('value')))
+			long = 1
+			lat = 1
+			console.log(locationDataExport)
+			console.log(long)
+			console.log(lat)
+			console.log("this.state.locationValidated = " + this.state.locationValidated)
+
+			if((lat-1 >= locationDataExport.latitude <= lat+1) && (long-1 >= locationDataExport.longtitude <= long+1))
+			{
+				this.state.locationValidated = true
+			}
 		})
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
