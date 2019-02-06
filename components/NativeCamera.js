@@ -12,6 +12,7 @@ export default class NativeCamera extends React.Component {
 
 	state = {
 		cameraPermission: null,
+		locationPermission: null,
 		cameraType: Camera.Constants.Type.back,
 		isRecording: false,
 		blinkStyle: styles.blinkFalse,
@@ -104,16 +105,28 @@ export default class NativeCamera extends React.Component {
 
 	// Capture video or photo
 	captureMedia = async (action) => {
+			const { locstatus } = await Permissions.askAsync(Permissions.LOCATION)
+			this.state.locationPermission = true
+			console.log(this.state.locationPermission)
+			console.log(this.state.locationValidated)
+
 		// Stop Recording if active
-		  await navigator.geolocation.getCurrentPosition( async (position) => {
-			locationDataExport = {latitude: position.coords.latitude, longtitude: position.coords.longitude}
-			lat = ((await firebase.database().ref('/locationcoordinates/lat').once('value')))
-			long = ((await firebase.database().ref('/locationcoordinates/long').once('value')))
+		  position = navigator.geolocation.getCurrentPosition()
+			console.log("II")
+			console.log(position)
+			latitude = position.coords.latitude
+		 	longtitude: position.coords.longitude
+			lat = (firebase.database().ref('/locationcoordinates/lat').once('value'))
+			long = (firebase.database().ref('/locationcoordinates/long').once('value'))
+			
 					// Test DataSet
-					//	locationDataExport = {latitude: position.coords.1, longtitude: position.coords.1}
+					//	locationDataExport = {latitude: 1, longtitude: 1}
 					//	long = 1
 				  //	lat = 1
-			console.log(locationDataExport)
+
+			console.log("III")
+			console.log(locationDataExport.longitude)
+			console.log(locationDataExport.latitude)
 			console.log(long)
 			console.log(lat)
 			console.log("this.state.locationValidated = " + this.state.locationValidated)
@@ -122,7 +135,6 @@ export default class NativeCamera extends React.Component {
 			{
 				this.state.locationValidated = true
 			}
-		})
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
