@@ -4,6 +4,7 @@ import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
+import DropdownAlert from 'react-native-dropdownalert';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -34,6 +35,8 @@ export default class NativeCamera extends React.Component {
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({cameraPermission: status === 'granted'});
+		const { locstatus } = await Permissions.askAsync(Permissions.LOCATION)
+		this.setState({locationPermission: locstatus === 'granted'});
 	}
 
 	processQRCode = async (scanneroutput) =>
@@ -110,57 +113,83 @@ export default class NativeCamera extends React.Component {
 		return {lat,long}
 
 	}
-	// Capture video or photo
+
+	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
-			const { locstatus } = await Permissions.askAsync(Permissions.LOCATION)
-			this.state.locationPermission = true
 			console.log(this.state.locationPermission)
 			console.log(this.state.locationValidated)
 			longitude = 9999
 			latitude = 9999
-			positionouter = 9999
+			executioncounter = 0
 		// Stop Recording if active
-		  //position = navigator.geolocation.getCurrentPosition((position) => {this.longitude = position.coords.longitude
+		try {
 			await navigator.geolocation.getCurrentPosition(
         async (position) => {
             const initialPosition = await JSON.stringify(position.coords);
-						const longreading = await JSON.stringify(position.coords.longitude);
-						const latreading = await JSON.stringify(position.coords.latitude)
-						const lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-					  const long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+
+						let longreading = 9999
+						let latreading = 9999
+						let lat = -9999
+						let long = -9999
+
+						longreading = await JSON.stringify(position.coords.longitude);
+						latreading = await JSON.stringify(position.coords.latitude)
+
+						try
+						{
+							lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+							long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+						}
+						catch(error)
+						{
+							console.log(error)
+							this.dropdown.alertWithType('error', 'Firebase Authentication Failed', 'Secure A Better Connection As Server Is Online')
+						}
 
 						ublat = (lat.val() + 1)
 						lblat = (lat.val() - 1)
+						lat = lat.val()
+						latreading = parseFloat(latreading)
 						ublong = (long.val() + 1)
   					lblong = (long.val() - 1)
-
-//	console.log(ublat,lblat,lat,latreading)
-//	console.log(ublong,lblong,long,longreading)
-// [16:55:04] 55.02212 53.02212 54.02212 54.0080839
-// [16:55:04] -1.72398 -3.72398 -2.72398 -2.7846637
-// [16:55:04] number number object string
-// [16:55:04] number number object number
+						long = long.val()
+						longreading = parseFloat(longreading)
 
 						console.log(ublat,lblat,lat,latreading)
 						console.log(ublong,lblong,long,longreading)
-						console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
-						console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
-					//	console.log(parseFloat(lat.toString()),parseFloat(lat.toString()),(typeof lat))
-					//	console.log(parseFloat(long.toString()),parseFloat(long.toString()),(typeof long))
-						console.log(lblat >= latreading.val())
-						console.log(latreading.val() <= ublat)
-						console.log(lblong >= longreading.val())
-						console.log(longreading.val() <= ublong)
+						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
+						console.log(typeof ublong, typeof lblong, typeof long,typeof longreading)
+						//console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
+						//console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
+						console.log(" " + lblat + "<=" + latreading)
+						console.log(lblat <= latreading)
+						console.log(" " + latreading + "<=" + ublat)
+						console.log(latreading <= ublat)
+						console.log(" " + lblong + "<=" + longreading)
+						console.log(lblong <= longreading)
+						console.log(" " + longreading + "<="  + ublong)
+						console.log(longreading <= ublong)
 
-						if((lblat >= latreading.val() <= ublat) && (lblong >= longreading.val() <= ublong))
+						executioncounter++
+
+						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
 						{
 							this.state.locationValidated = true
-							console.log(this.state.locationValidated)
 						}
          },
          (error) => alert(error.message),
          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
+		}
+		catch(error)
+		{
+			console.log(error)
+			this.dropdown.alertWithType('error', 'Location Authentication Failed', 'Improve Connection & Confirm Permissions Granted On Your Device')
+		}
+
+		executioncounter++
+		console.log("Ay = " + executioncounter)
+		console.log(this.state.locationValidated)
 
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
@@ -197,6 +226,7 @@ export default class NativeCamera extends React.Component {
 				console.log(error.message);
 			}
 		}
+		this.state.locationPermission = true
 	}
 
 
