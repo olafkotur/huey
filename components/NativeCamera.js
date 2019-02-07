@@ -114,7 +114,7 @@ export default class NativeCamera extends React.Component {
 		return {latread,longread}
 	}
 
-	locationReadingWrapper = async (actionpass) =>
+	locationReadingWrapper = async (pathtofile, action) =>
 	{
 		let longread = 0
 		let latread = 0
@@ -137,16 +137,16 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.handleRecording(actionpass, true)
+						this.saveInCloud(pathtofile, action);
 					}
 				}
 			},
-				(error) => this.handleRecording(actionpass, false),
+				(error) => console.log(error),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF CALL TO READ")
 	}
 
-	handleRecording = async (action, eligibility) => {
+	handleRecording = async (action) => {
 		// Capture photo
 		if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
@@ -157,11 +157,8 @@ export default class NativeCamera extends React.Component {
 					setTimeout(() => {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
-					this.saveLocally(file.uri);
-					if(eligibility == true)
-					{
-						this.saveInCloud(file.uri, action);
-					}
+						this.saveLocally(file.uri);
+						this.locationReadingWrapper(file.uri, action)
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -173,11 +170,8 @@ export default class NativeCamera extends React.Component {
 			try {
 				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
-					this.saveLocally(file.uri);
-					if(eligibility == false)
-					{
-						this.saveInCloud(file.uri);
-					}
+						this.saveLocally(file.uri);
+						this.locationReadingWrapper(file.uri, action)
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -190,18 +184,19 @@ export default class NativeCamera extends React.Component {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
 		}
-		await this.locationReadingWrapper(action)
+		await this.handleRecording(action)
 	}
 
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
-		// CameraRoll.saveToCameraRoll(uri);
+		CameraRoll.saveToCameraRoll(uri);
 	}
 
 
 	// Sends to firebase as backup
 	saveInCloud = (uri, action) => {
+		console.log("Cloud Save Push For -> " + action)
 		const extension = (action === 'photo') ? '.png' : '.mp4';
 		const name = Date.now().toString() + extension;
 		Handler = new FileHandler();
