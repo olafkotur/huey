@@ -41,7 +41,7 @@ export default class NativeCamera extends React.Component {
 
 	processQRCode = async (scanneroutput) =>
 	{
-		//Extract URL From QR Code //Date Form -> NameOfHosst - NumberUID
+		//Extract Critical Data Portion From QR Code //Date Form -> NameOfHosst - NumberUID
 		codeportion = scanneroutput.data
 
 		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
@@ -50,6 +50,7 @@ export default class NativeCamera extends React.Component {
 		output3 = ((codeportion.slice(0,13)))
 		output4 = ((codeportion.slice(13,33)))
 
+		//Terminal Logging Feedback
 		console.log('00')
 		console.log(codeportion)
 		console.log(1)
@@ -61,18 +62,15 @@ export default class NativeCamera extends React.Component {
 		console.log(4)
 		console.log(output4)
 
-		if(output1.val() == output4)
-		{
+		if(output1.val() == output4){
 			this.state.renewableQRValidated = true
 			console.log('FOUND INDIVIDUAL QR CODE')
 		}
-		else if(output2.val() == codeportion)
-		{
+		else if(output2.val() == codeportion){
 			this.state.oneTimePWValidated = true
 			console.log('AUTHORISED BY ' + output3 + "QR")
 		}
-		else
-		{
+		else{
 				console.log("JUNK QR CODE")
 		}
 
@@ -106,6 +104,7 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 
+	//Returns The Co-ordinates Of The Protest Rally Point
 	readLocationFromFirebase = async () => {
 		let latraw = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
 		let longraw = await (firebase.database().ref('/locationcoordinates/long').once('value'))
@@ -114,10 +113,9 @@ export default class NativeCamera extends React.Component {
 		return {latread,longread}
 	}
 
+	//Wraps All Location Data Calls to Firebase & Local Device GPS - Geolocation Calls Are Made Within
 	locationReadingWrapper = async (pathtofile, action) =>
 	{
-		let longread = 0
-		let latread = 0
 		console.log("Before Await getCurrent Position Call")
 		navigator.geolocation.getCurrentPosition(
 			async (position) =>
@@ -126,8 +124,8 @@ export default class NativeCamera extends React.Component {
 				console.log(JSON.stringify(position))
 				const longrawreading = await JSON.stringify(position.coords.longitude)
 				const latrawreading = await JSON.stringify(position.coords.latitude)
-				longread = await parseFloat(longrawreading)
-				latread = await parseFloat(latrawreading)
+				const longread = await parseFloat(longrawreading)
+				const latread = await parseFloat(latrawreading)
 
 				externalreadingtuple = await this.readLocationFromFirebase()
 
@@ -143,15 +141,17 @@ export default class NativeCamera extends React.Component {
 			},
 				(error) => console.log(error),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
-					console.log("REACHED END OF CALL TO READ")
+					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
 
 	handleRecording = async (action) => {
+		//Switch Off Recording
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
 		}
 
+		// Capture Photo & Store Locally
 		else if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
 			try {
@@ -169,7 +169,7 @@ export default class NativeCamera extends React.Component {
 			}
 		}
 
-		// Capture video
+		// Capture video & Store Locally
 		else if (action === 'video' && this.state.isRecording === false && this.camera) {
 			try {
 				this.setState({isRecording: true});
@@ -251,8 +251,8 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.captureMedia('photo')}
-						onLongPress = {() => this.captureMedia('video')} >
+						onPress = {() => this.handleRecording('photo')}
+						onLongPress = {() => this.handleRecording('video')} >
 					</TouchableOpacity>
 
 					<View style = {styles.captureProgressContainer}>
@@ -275,22 +275,3 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 }
-
-//	console.log(this.state.locationPermission)
-//	console.log(this.state.locationValidated)
-//	console.log('1. Before Call To Location Reading Wrapper')
-//	localreadingtuple = await this.locationReadingWrapper()
-//	console.log('2. After Call To Location Reading Wrapper')
-//	console.log('3. Before Call To Firebase Location')
-//	externalreadingtuple = await this.readLocationFromFirebase()
-//	console.log('4. After Call To Firebase Location')
-//	console.log('5. PRINTING RESULTS OF ALL LOCATION CALLS')
-//	console.log("Reading Tuple")
-//	console.log(localreadingtuple)
-//	console.log(localreadingtuple.latread)
-//	console.log(localreadingtuple.longread)
-//	console.log("External Info")
-//	console.log(externalreadingtuple)
-//	console.log(externalreadingtuple.latread)
-//	console.log(externalreadingtuple.longread)
-//	console.log('6. FINISHED PRINTING RESULTS OF ALL LOCATION CALLS')
