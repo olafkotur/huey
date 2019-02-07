@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
-import { Camera, Permissions, FileSystem } from 'expo';
+import { Camera, Permissions, Location, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
@@ -109,117 +109,53 @@ export default class NativeCamera extends React.Component {
 	readLocationFromFirebase = async () => {
 		let latraw = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
 		let longraw = await (firebase.database().ref('/locationcoordinates/long').once('value'))
-		const lat = latraw.val()
-		const long = longraw.val()
-		return {lat,long}
+		const latread = latraw.val()
+		const longread = longraw.val()
+		return {latread,longread}
 	}
 
-	locationReadingWrapper = async() => {
+	locationReadingWrapper = async () =>
+	{
 		let longread = 0
 		let latread = 0
-		await navigator.geolocation.getCurrentPosition(
-			async (position) => {
-				console.log("Running Correctly")
+		console.log("Before Await getCurrent Position Call")
+		navigator.geolocation.getCurrentPosition(
+			async (position) =>
+			{
+				console.log("Enters getCurrent Position")
 				console.log(JSON.stringify(position))
 				const longrawreading = await JSON.stringify(position.coords.longitude)
 				const latrawreading = await JSON.stringify(position.coords.latitude)
-				longread = parseFloat(longrawreading)
-				latread = parseFloat(latrawreading)
-			});
-			console.log("Returns Here 1")
-			return {latread, longread}
-			console.log("Returns Here 2")
+				longread = await parseFloat(longrawreading)
+				latread = await parseFloat(latrawreading)
+
+				externalreadingtuple = await this.readLocationFromFirebase()
+
+				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
+				{
+					console.log("Latitude In Tolerance")
+					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
+					{
+						console.log("Longitude In Tolerance")
+						this.state.locationValidated = true
+					}
+				}
+			},
+				(error) => this.dropdown.alertWithType('error', 'Local Location Information Failed', error),
+				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
+					console.log("REACHED END OF CALL TO READ")
 	}
 
 
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
-			console.log(this.state.locationPermission)
-			console.log(this.state.locationValidated)
-			console.log('1')
-			readingtuple = this.locationReadingWrapper()
-			console.log(readingtuple)
-			console.log(readingtuple.latread)
-			console.log(readingtuple.longread)
-
-
-		// Stop Recording if active
-		try {
-			await navigator.geolocation.getCurrentPosition(
-        async (position) => {
-            const initialPosition = await JSON.stringify(position.coords);
-
-						let longreading = 9999
-						let latreading = 9999
-						let lat = -9999
-						let long = -9999
-
-						longreading = await JSON.stringify(position.coords.longitude);
-						latreading = await JSON.stringify(position.coords.latitude)
-
-						//const {yo1,yo} = readLocationFromFirebase()
-					//	try
-					//	{
-					//		//Extract Protest Location Information From FB
-					//		lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-					//		long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
-					//	}
-					//	catch(error)
-					//	{
-					//		console.log(error)
-					//		this.dropdown.alertWithType('error', 'Firebase Authentication Failed', 'Secure A Better Connection As Server Is Online')
-					//	}
-
-						//Foramting All Local/Remote Location Data Stream to the common Number/Float Format for Comparison
-						ublat = (lat.val() + 1)
-						lblat = (lat.val() - 1)
-						lat = lat.val()
-						latreading = parseFloat(latreading)
-						ublong = (long.val() + 1)
-  					lblong = (long.val() - 1)
-						long = long.val()
-						longreading = parseFloat(longreading)
-
-						console.log(ublat,lblat,lat,latreading)
-						console.log(ublong,lblong,long,longreading)
-						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
-						console.log(typeof ublong, typeof lblong, typeof long,typeof longreading)
-						//console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
-						//console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
-						console.log(" " + lblat + "<=" + latreading)
-						console.log(lblat <= latreading)
-						console.log(" " + latreading + "<=" + ublat)
-						console.log(latreading <= ublat)
-						console.log(" " + lblong + "<=" + longreading)
-						console.log(lblong <= longreading)
-						console.log(" " + longreading + "<="  + ublong)
-						console.log(longreading <= ublong)
-
-						//executioncounter++
-
-						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
-						{
-							this.state.locationValidated = true
-						}
-         },
-         (error) => alert(error.message),
-         { enableHighAccuracy: true, timeout: 100000, maximumAge: 1000 }
-      );
-		}
-		catch(error)
-		{
-			console.log(error)
-			this.dropdown.alertWithType('error', 'Location Authentication Failed', 'Improve Connection & Confirm Permissions Granted On Your Device')
-		}
-
-		//executioncounter++
-		//console.log("Ay = " + executioncounter)
-		console.log(this.state.locationValidated)
 
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
 		}
+		await this.LocationReadingWrapper
+		console.log(this.state.locationValidated)
 
 		// Capture photo
 		else if (action === 'photo' && this.camera) {
@@ -265,8 +201,8 @@ export default class NativeCamera extends React.Component {
 	saveInCloud = (uri, action) => {
 		const extension = (action === 'photo') ? '.png' : '.mp4';
 		const name = Date.now().toString() + extension;
-		Handler = new FileHandler();
-		Handler.uploadMedia(uri, name);
+	//	Handler = new FileHandler();
+	//	Handler.uploadMedia(uri, name);
 	}
 
 
@@ -342,3 +278,22 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 }
+
+//	console.log(this.state.locationPermission)
+//	console.log(this.state.locationValidated)
+//	console.log('1. Before Call To Location Reading Wrapper')
+//	localreadingtuple = await this.locationReadingWrapper()
+//	console.log('2. After Call To Location Reading Wrapper')
+//	console.log('3. Before Call To Firebase Location')
+//	externalreadingtuple = await this.readLocationFromFirebase()
+//	console.log('4. After Call To Firebase Location')
+//	console.log('5. PRINTING RESULTS OF ALL LOCATION CALLS')
+//	console.log("Reading Tuple")
+//	console.log(localreadingtuple)
+//	console.log(localreadingtuple.latread)
+//	console.log(localreadingtuple.longread)
+//	console.log("External Info")
+//	console.log(externalreadingtuple)
+//	console.log(externalreadingtuple.latread)
+//	console.log(externalreadingtuple.longread)
+//	console.log('6. FINISHED PRINTING RESULTS OF ALL LOCATION CALLS')
