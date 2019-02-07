@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions, WebView, Linking, ScrollView} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions, WebView, Linking, ScrollView,StatusBar,SafeAreaView} from 'react-native';
 import { Camera, Permissions, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
@@ -47,7 +47,7 @@ export default class ConsentScreen extends React.Component {
 
 	// Handles The Account Deletion & Pressing Of The Return
   returnHomeandDelete = async() => {
-    
+
     //----------------------------------------------------------------------------------------------------------------------------
     //PROBABLY DONT UNCOMMENT THIS IT NEEDS TO BE FIXED SO ACCOUNTS ARE ONLY CREATED AFTER ACCEPTING INSTEAD OF CREATING THEN DELETING THE ACCOUNT
     //await firebase
@@ -69,16 +69,18 @@ export default class ConsentScreen extends React.Component {
 
 	render() {
 			return (
+        <SafeAreaView style={styles.consentSafearea}>
         <View style = {styles.containerLight}>
+             <StatusBar hidden={true} />
 
-            <View style = {{marginTop : 10}}>
-            <Text 
+            <View style = {styles.consentTopContainer}>
+            <Text
                 style = {styles.consentTopText} >
                 To continue, please read and accept our Privacy Policy:
             </Text>
             </View>
 
-            <ScrollView 
+            <ScrollView
                 style = {styles.consentScrollView}
                 onScroll={ ({nativeEvent}) => {
                     if (isCloseToBottom(nativeEvent)) {
@@ -120,13 +122,13 @@ export default class ConsentScreen extends React.Component {
                         style = {styles.touchableOpacityAccept}
                         onPress = {() => this.props.navigation.navigate('HomeScreen')}
                         >
-                        <Text style = {styles.whiteButtonText}>      Accept     </Text>
+                        <Text style = {styles.whiteButtonText}>     Accept     </Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* Cancel */}
-                <Text 
-                    style = {styles.cancelText} 
+                <Text
+                    style = {styles.cancelText}
                     onPress = {() => this.props.navigation.navigate('LoginScreen')}>
                     Cancel
                 </Text>
@@ -134,6 +136,7 @@ export default class ConsentScreen extends React.Component {
             </View>
 
         </View>
+        </SafeAreaView>
 			);
 	}
 }
