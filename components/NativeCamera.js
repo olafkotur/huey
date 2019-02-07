@@ -147,7 +147,6 @@ export default class NativeCamera extends React.Component {
 	}
 
 	handleRecording = async (action) => {
-		// Capture photo
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
@@ -203,7 +202,6 @@ export default class NativeCamera extends React.Component {
 		Handler = new FileHandler();
 		Handler.uploadMedia(uri, name);
 	}
-
 
 	render() {
 
