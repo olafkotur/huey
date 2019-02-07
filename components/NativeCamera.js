@@ -106,21 +106,38 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 
-	readCurrnetLatLong = async () => {
-		const lat = await firebase.database().ref('/locationcoordinates/lat').once('value')
-		const long = await firebase.database().ref('/locationcoordinates/long').once('value')
-		console({lat,long})
+	readLocationFromFirebase = async () => {
+		let latraw = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+		let longraw = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+		const lat = latraw.val()
+		const long = longraw.val()
 		return {lat,long}
-
 	}
+
+	locationReadingWrapper = async() => {
+		await navigator.geolocation.getCurrentPosition(
+			async (position) => {
+				let longrawreading = await JSON.stringify(position.coords.longitude)
+				let latrawreading = await JSON.stringify(position.coords.latitude)
+				longread = 1//parseFloat(longrawreading)
+				latread = 2//parseFloat(latrawreading)
+				return {latread, longread}
+			});
+			console.log("Returns Here")
+	}
+
 
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
 			console.log(this.state.locationPermission)
 			console.log(this.state.locationValidated)
-			longitude = 9999
-			latitude = 9999
-			executioncounter = 0
+			console.log('1')
+			readingtuple = this.locationReadingWrapper()
+			console.log(readingtuple)
+			console.log(readingtuple.latread)
+			console.log(readingtuple.longread)
+
+
 		// Stop Recording if active
 		try {
 			await navigator.geolocation.getCurrentPosition(
@@ -135,17 +152,20 @@ export default class NativeCamera extends React.Component {
 						longreading = await JSON.stringify(position.coords.longitude);
 						latreading = await JSON.stringify(position.coords.latitude)
 
-						try
-						{
-							lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-							long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
-						}
-						catch(error)
-						{
-							console.log(error)
-							this.dropdown.alertWithType('error', 'Firebase Authentication Failed', 'Secure A Better Connection As Server Is Online')
-						}
+						//const {yo1,yo} = readLocationFromFirebase()
+					//	try
+					//	{
+					//		//Extract Protest Location Information From FB
+					//		lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+					//		long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+					//	}
+					//	catch(error)
+					//	{
+					//		console.log(error)
+					//		this.dropdown.alertWithType('error', 'Firebase Authentication Failed', 'Secure A Better Connection As Server Is Online')
+					//	}
 
+						//Foramting All Local/Remote Location Data Stream to the common Number/Float Format for Comparison
 						ublat = (lat.val() + 1)
 						lblat = (lat.val() - 1)
 						lat = lat.val()
