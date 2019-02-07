@@ -148,7 +148,12 @@ export default class NativeCamera extends React.Component {
 
 	handleRecording = async (action) => {
 		// Capture photo
-		if (action === 'photo' && this.camera) {
+		if (this.state.isRecording === true) {
+			this.camera.stopRecording();
+			this.setState({isRecording: false});
+		}
+
+		else if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
 			try {
 				this.setState({blinkStyle: styles.blinkTrue});
@@ -180,10 +185,6 @@ export default class NativeCamera extends React.Component {
 	}
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
-		if (this.state.isRecording === true) {
-			this.camera.stopRecording();
-			this.setState({isRecording: false});
-		}
 		await this.handleRecording(action)
 	}
 
