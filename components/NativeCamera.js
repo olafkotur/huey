@@ -114,7 +114,7 @@ export default class NativeCamera extends React.Component {
 		return {latread,longread}
 	}
 
-	locationReadingWrapper = async () =>
+	locationReadingWrapper = async (actionpass) =>
 	{
 		let longread = 0
 		let latread = 0
@@ -137,28 +137,18 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.state.locationValidated = true
+						this.handleRecording(actionpass, true)
 					}
 				}
 			},
-				(error) => this.dropdown.alertWithType('error', 'Local Location Information Failed', error),
+				(error) => this.handleRecording(actionpass, false),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF CALL TO READ")
 	}
 
-
-	// Capture video or photo & checks Location Eliggibility @ Capture
-	captureMedia = async (action) => {
-
-		if (this.state.isRecording === true) {
-			this.camera.stopRecording();
-			this.setState({isRecording: false});
-		}
-		await this.LocationReadingWrapper
-		console.log(this.state.locationValidated)
-
+	handleRecording = async (action, eligibility) => {
 		// Capture photo
-		else if (action === 'photo' && this.camera) {
+		if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
 			try {
 				this.setState({blinkStyle: styles.blinkTrue});
@@ -168,7 +158,10 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 					this.saveLocally(file.uri);
-					this.saveInCloud(file.uri, action);
+					if(eligibility == true)
+					{
+						this.saveInCloud(file.uri, action);
+					}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -181,13 +174,25 @@ export default class NativeCamera extends React.Component {
 				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
 					this.saveLocally(file.uri);
-					this.saveInCloud(file.uri);
+					if(eligibility == false)
+					{
+						this.saveInCloud(file.uri);
+					}
 				});
 			} catch (error) {
 				console.log(error.message);
 			}
 		}
-		this.state.locationPermission = true
+	}
+	// Capture video or photo & checks Location Eliggibility @ Capture
+	captureMedia = async (action) => {
+
+		if (this.state.isRecording === true) {
+			this.camera.stopRecording();
+			this.setState({isRecording: false});
+		}
+		await this.locationReadingWrapper(action)
+		//console.log(this.state.locationValidated)
 	}
 
 
