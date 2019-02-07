@@ -186,13 +186,11 @@ export default class NativeCamera extends React.Component {
 	}
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
-
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
 		}
 		await this.locationReadingWrapper(action)
-		//console.log(this.state.locationValidated)
 	}
 
 
@@ -206,8 +204,8 @@ export default class NativeCamera extends React.Component {
 	saveInCloud = (uri, action) => {
 		const extension = (action === 'photo') ? '.png' : '.mp4';
 		const name = Date.now().toString() + extension;
-	//	Handler = new FileHandler();
-	//	Handler.uploadMedia(uri, name);
+		Handler = new FileHandler();
+		Handler.uploadMedia(uri, name);
 	}
 
 
