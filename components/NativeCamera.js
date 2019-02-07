@@ -115,15 +115,20 @@ export default class NativeCamera extends React.Component {
 	}
 
 	locationReadingWrapper = async() => {
+		let longread = 0
+		let latread = 0
 		await navigator.geolocation.getCurrentPosition(
 			async (position) => {
-				let longrawreading = await JSON.stringify(position.coords.longitude)
-				let latrawreading = await JSON.stringify(position.coords.latitude)
-				longread = 1//parseFloat(longrawreading)
-				latread = 2//parseFloat(latrawreading)
-				return {latread, longread}
+				console.log("Running Correctly")
+				console.log(JSON.stringify(position))
+				const longrawreading = await JSON.stringify(position.coords.longitude)
+				const latrawreading = await JSON.stringify(position.coords.latitude)
+				longread = parseFloat(longrawreading)
+				latread = parseFloat(latrawreading)
 			});
-			console.log("Returns Here")
+			console.log("Returns Here 1")
+			return {latread, longread}
+			console.log("Returns Here 2")
 	}
 
 
@@ -190,7 +195,7 @@ export default class NativeCamera extends React.Component {
 						console.log(" " + longreading + "<="  + ublong)
 						console.log(longreading <= ublong)
 
-						executioncounter++
+						//executioncounter++
 
 						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
 						{
@@ -198,7 +203,7 @@ export default class NativeCamera extends React.Component {
 						}
          },
          (error) => alert(error.message),
-         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+         { enableHighAccuracy: true, timeout: 100000, maximumAge: 1000 }
       );
 		}
 		catch(error)
@@ -207,8 +212,8 @@ export default class NativeCamera extends React.Component {
 			this.dropdown.alertWithType('error', 'Location Authentication Failed', 'Improve Connection & Confirm Permissions Granted On Your Device')
 		}
 
-		executioncounter++
-		console.log("Ay = " + executioncounter)
+		//executioncounter++
+		//console.log("Ay = " + executioncounter)
 		console.log(this.state.locationValidated)
 
 		if (this.state.isRecording === true) {
