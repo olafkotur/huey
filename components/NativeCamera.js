@@ -151,8 +151,8 @@ export default class NativeCamera extends React.Component {
 		//THE FIRST SECTION OF THE STRING -> MUST CONTAIN ALL THE DIRECTORY PATH INFORMATION & FINAL KEY AT THE BOTTOM OF THE DIRECTORY
 			//UID KEY STORED IN FIREBASE FOR EACH PROTEST ->MUST<- BE OF A FIXED length
 
-	Tier1qrCodeGenerator(nameofprotest)
-		UID = generatedUID(nameofprotest) // Generated UID Must Return A String of a fixed length to be the UID In Firebase (Recommended 32 char)
+//	Tier1qrCodeGenerator(nameofprotest)
+	//	UID = generatedUID(nameofprotest) // Generated UID Must Return A String of a fixed length to be the UID In Firebase (Recommended 32 char)
 
 
 	String = ''
@@ -174,7 +174,10 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 						this.saveLocally(file.uri);
-						this.locationReadingWrapper(file.uri, action)
+						if(this.validationCheckReport() == true)
+						{
+							this.locationReadingWrapper(file.uri, action)
+						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -187,7 +190,10 @@ export default class NativeCamera extends React.Component {
 				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
 						this.saveLocally(file.uri);
-						this.locationReadingWrapper(file.uri, action)
+						if(this.validationCheckReport() == true)
+						{
+							this.locationReadingWrapper(file.uri, action)
+						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -196,9 +202,26 @@ export default class NativeCamera extends React.Component {
 	}
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
+		this.validationCheckReport()
 		await this.handleRecording(action)
 	}
 
+	//Validation Railure Reporting
+	validationCheckReport = async() => {
+		let isValidate = true
+		if(this.state.oneTimePWValidated == false || this.state.renewableQRValidated == false){
+			let errormessaage = ''
+			if(this.state.oneTimePWValidated == true){
+				errormessage Array.concat(errormessage + "- Needs Passcode Verification")
+			}
+			if(this.state.renewableQRValidated == true){
+				errormessage Array.concat(errormessage + "- Needs Location Verification")
+			}
+			this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
+			isValidate = false
+		}
+		return isValidate
+	}
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
