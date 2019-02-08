@@ -21,9 +21,7 @@ export default class NativeCamera extends React.Component {
 		flashIcon: "flash-off",
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
-		renewableQRValidated: false,
-		locationValidated: false,
-		locationdata: null
+		renewableQRValidated: false
 	}
 
 	componentDidMount = async () => {
@@ -133,7 +131,7 @@ export default class NativeCamera extends React.Component {
 				console.log(externalreadingtuple.latread, externalreadingtuple.longread)
 				console.log("LocationReadingTuple [lat/long]")
 				console.log(latread, longread)
-				
+
 				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
 				{
 					console.log("Latitude In Tolerance")
@@ -148,7 +146,16 @@ export default class NativeCamera extends React.Component {
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
+//1 TIME PW
+	//GENERATE 1 STRING OF 32 C
+		//THE FIRST SECTION OF THE STRING -> MUST CONTAIN ALL THE DIRECTORY PATH INFORMATION & FINAL KEY AT THE BOTTOM OF THE DIRECTORY
+			//UID KEY STORED IN FIREBASE FOR EACH PROTEST ->MUST<- BE OF A FIXED length
 
+	Tier1qrCodeGenerator(nameofprotest)
+		UID = generatedUID(nameofprotest) // Generated UID Must Return A String of a fixed length to be the UID In Firebase (Recommended 32 char)
+
+
+	String = ''
 	handleRecording = async (action) => {
 		//Switch Off Recording
 		if (this.state.isRecording === true) {
@@ -257,8 +264,8 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.handleRecording('photo')}
-						onLongPress = {() => this.handleRecording('video')} >
+						onPress = {() => this.captureMedia('photo')}
+						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
 					<View style = {styles.captureProgressContainer}>
