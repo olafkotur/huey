@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
-import { Camera, Permissions, FileSystem } from 'expo';
+import { Camera, Permissions, Location, FileSystem } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
@@ -41,7 +41,7 @@ export default class NativeCamera extends React.Component {
 
 	processQRCode = async (scanneroutput) =>
 	{
-		//Extract URL From QR Code //Date Form -> NameOfHosst - NumberUID
+		//Extract Critical Data Portion From QR Code //Date Form -> NameOfHosst - NumberUID
 		codeportion = scanneroutput.data
 
 		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
@@ -50,6 +50,7 @@ export default class NativeCamera extends React.Component {
 		output3 = ((codeportion.slice(0,13)))
 		output4 = ((codeportion.slice(13,33)))
 
+		//Terminal Logging Feedback
 		console.log('00')
 		console.log(codeportion)
 		console.log(1)
@@ -61,18 +62,15 @@ export default class NativeCamera extends React.Component {
 		console.log(4)
 		console.log(output4)
 
-		if(output1.val() == output4)
-		{
+		if(output1.val() == output4){
 			this.state.renewableQRValidated = true
 			console.log('FOUND INDIVIDUAL QR CODE')
 		}
-		else if(output2.val() == codeportion)
-		{
+		else if(output2.val() == codeportion){
 			this.state.oneTimePWValidated = true
 			console.log('AUTHORISED BY ' + output3 + "QR")
 		}
-		else
-		{
+		else{
 				console.log("JUNK QR CODE")
 		}
 
@@ -106,97 +104,59 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 
-	readCurrnetLatLong = async () => {
-		const lat = await firebase.database().ref('/locationcoordinates/lat').once('value')
-		const long = await firebase.database().ref('/locationcoordinates/long').once('value')
-		console({lat,long})
-		return {lat,long}
-
+	//Returns The Co-ordinates Of The Protest Rally Point
+	readLocationFromFirebase = async () => {
+		let latraw = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
+		let longraw = await (firebase.database().ref('/locationcoordinates/long').once('value'))
+		const latread = latraw.val()
+		const longread = longraw.val()
+		return {latread,longread}
 	}
 
-	// Capture video or photo & checks Location Eliggibility @ Capture
-	captureMedia = async (action) => {
-			console.log(this.state.locationPermission)
-			console.log(this.state.locationValidated)
-			longitude = 9999
-			latitude = 9999
-			executioncounter = 0
-		// Stop Recording if active
-		try {
-			await navigator.geolocation.getCurrentPosition(
-        async (position) => {
-            const initialPosition = await JSON.stringify(position.coords);
+	//Wraps All Location Data Calls to Firebase & Local Device GPS - Geolocation Calls Are Made Within
+	locationReadingWrapper = async (pathtofile, action) =>
+	{
+		console.log("Before Await getCurrent Position Call")
+		navigator.geolocation.getCurrentPosition(
+			async (position) =>
+			{
+				console.log("Enters getCurrent Position")
+				console.log(JSON.stringify(position))
+				const longrawreading = await JSON.stringify(position.coords.longitude)
+				const latrawreading = await JSON.stringify(position.coords.latitude)
+				const longread = await parseFloat(longrawreading)
+				const latread = await parseFloat(latrawreading)
 
-						let longreading = 9999
-						let latreading = 9999
-						let lat = -9999
-						let long = -9999
+				externalreadingtuple = await this.readLocationFromFirebase()
 
-						longreading = await JSON.stringify(position.coords.longitude);
-						latreading = await JSON.stringify(position.coords.latitude)
+				console.log("ExternalReadingTuple [lat/long]")
+				console.log(externalreadingtuple.latread, externalreadingtuple.longread)
+				console.log("LocationReadingTuple [lat/long]")
+				console.log(latread, longread)
+				
+				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
+				{
+					console.log("Latitude In Tolerance")
+					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
+					{
+						console.log("Longitude In Tolerance")
+						this.saveInCloud(pathtofile, action);
+					}
+				}
+			},
+				(error) => console.log(error),
+				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
+					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
+	}
 
-						try
-						{
-							lat = await (firebase.database().ref('/locationcoordinates/lat').once('value'))
-							long = await (firebase.database().ref('/locationcoordinates/long').once('value'))
-						}
-						catch(error)
-						{
-							console.log(error)
-							this.dropdown.alertWithType('error', 'Firebase Authentication Failed', 'Secure A Better Connection As Server Is Online')
-						}
-
-						ublat = (lat.val() + 1)
-						lblat = (lat.val() - 1)
-						lat = lat.val()
-						latreading = parseFloat(latreading)
-						ublong = (long.val() + 1)
-  					lblong = (long.val() - 1)
-						long = long.val()
-						longreading = parseFloat(longreading)
-
-						console.log(ublat,lblat,lat,latreading)
-						console.log(ublong,lblong,long,longreading)
-						console.log(typeof ublat, typeof lblat, typeof lat, typeof latreading)
-						console.log(typeof ublong, typeof lblong, typeof long,typeof longreading)
-						//console.log(typeof ublat, typeof lblat, typeof lat.val(), typeof parseFloat(latreading))
-						//console.log(typeof ublong, typeof lblong, typeof long.val(),typeof parseFloat(longreading))
-						console.log(" " + lblat + "<=" + latreading)
-						console.log(lblat <= latreading)
-						console.log(" " + latreading + "<=" + ublat)
-						console.log(latreading <= ublat)
-						console.log(" " + lblong + "<=" + longreading)
-						console.log(lblong <= longreading)
-						console.log(" " + longreading + "<="  + ublong)
-						console.log(longreading <= ublong)
-
-						executioncounter++
-
-						if(lblat <= latreading && latreading <= ublat && lblong <= longreading && longreading <= ublong)
-						{
-							this.state.locationValidated = true
-						}
-         },
-         (error) => alert(error.message),
-         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-      );
-		}
-		catch(error)
-		{
-			console.log(error)
-			this.dropdown.alertWithType('error', 'Location Authentication Failed', 'Improve Connection & Confirm Permissions Granted On Your Device')
-		}
-
-		executioncounter++
-		console.log("Ay = " + executioncounter)
-		console.log(this.state.locationValidated)
-
+	handleRecording = async (action) => {
+		//Switch Off Recording
 		if (this.state.isRecording === true) {
 			this.camera.stopRecording();
 			this.setState({isRecording: false});
 		}
 
-		// Capture photo
+		// Capture Photo & Store Locally
 		else if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
 			try {
@@ -206,44 +166,48 @@ export default class NativeCamera extends React.Component {
 					setTimeout(() => {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
-					this.saveLocally(file.uri);
-					this.saveInCloud(file.uri, action);
+						this.saveLocally(file.uri);
+						this.locationReadingWrapper(file.uri, action)
 				});
 			} catch (error) {
 				console.log(error.message);
 			}
 		}
 
-		// Capture video
+		// Capture video & Store Locally
 		else if (action === 'video' && this.state.isRecording === false && this.camera) {
 			try {
 				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
-					this.saveLocally(file.uri);
-					this.saveInCloud(file.uri);
+						this.saveLocally(file.uri);
+						this.locationReadingWrapper(file.uri, action)
 				});
 			} catch (error) {
 				console.log(error.message);
 			}
 		}
-		this.state.locationPermission = true
+	}
+	// Capture video or photo & checks Location Eliggibility @ Capture
+	captureMedia = async (action) => {
+		await this.handleRecording(action)
 	}
 
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
-		// CameraRoll.saveToCameraRoll(uri);
+		console.log("saveLocally")
+		CameraRoll.saveToCameraRoll(uri);
 	}
 
 
 	// Sends to firebase as backup
 	saveInCloud = (uri, action) => {
+		console.log("Cloud Save Push For -> " + action)
 		const extension = (action === 'photo') ? '.png' : '.mp4';
 		const name = Date.now().toString() + extension;
 		Handler = new FileHandler();
 		Handler.uploadMedia(uri, name);
 	}
-
 
 	render() {
 
@@ -293,8 +257,8 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.captureMedia('photo')}
-						onLongPress = {() => this.captureMedia('video')} >
+						onPress = {() => this.handleRecording('photo')}
+						onLongPress = {() => this.handleRecording('video')} >
 					</TouchableOpacity>
 
 					<View style = {styles.captureProgressContainer}>
