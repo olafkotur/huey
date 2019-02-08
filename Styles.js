@@ -313,6 +313,17 @@ export default StyleSheet.create({
 		textAlign: 'center',
 	},
 
+  consentSafearea:{
+  	backgroundColor: '#F6F6F6',
+    flex:1,
+  },
+
+  consentTopContainer:{
+  marginTop:2,
+  top:0,
+  marginBottom:5,
+  },
+
 	consentScrollView: {
 		width: deviceWidth * 0.85,
 		height: deviceHeight * 0.75,
@@ -325,7 +336,7 @@ export default StyleSheet.create({
 
 	consentText: {
 		fontSize: deviceHeight * 0.0225,
-		backgroundColor: '#FFF8',
+		backgroundColor: '#fff8',
 		margin: deviceWidth * 0.05,
 	},
 
@@ -382,8 +393,6 @@ export default StyleSheet.create({
 
 	consentTopText: {
 		color: '#383838',
-		marginTop: deviceHeight * 0.02,
-		marginBottom: deviceHeight * 0.02,
 		textAlign: 'center',
 	},
 
