@@ -129,6 +129,11 @@ export default class NativeCamera extends React.Component {
 
 				externalreadingtuple = await this.readLocationFromFirebase()
 
+				console.log("ExternalReadingTuple [lat/long]")
+				console.log(externalreadingtuple.latread, externalreadingtuple.longread)
+				console.log("LocationReadingTuple [lat/long]")
+				console.log(latread, longread)
+				
 				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
 				{
 					console.log("Latitude In Tolerance")
