@@ -190,6 +190,7 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
+		console.log("saveLocally")
 		CameraRoll.saveToCameraRoll(uri);
 	}
 
