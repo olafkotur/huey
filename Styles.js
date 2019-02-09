@@ -546,7 +546,7 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
-		zIndex: 100,
+		zIndex: 9,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.94,
@@ -665,12 +665,14 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		position: 'absolute',
 		bottom: 0 + (deviceHeight / 15),
+
 	},
 
 	singleGalleryImage: {
 		width: (deviceWidth * 0.3)-4,
 		height: (deviceWidth * 0.3) - 4,
 	    margin:2,
+      left:(((deviceWidth * 0.3) - 4)/3)/2, // the width of the device minus the gallery images width combined divided by 2 to place in the center
   	},
 
   	galleryTabViewContainer: {
