@@ -5,25 +5,32 @@ export default class QRCodeGenerator
   AlphaNumericStringGenerator = (lengthofstring, dictionary) =>
   {
     let path = 'protestpassword'
-    let protestPW = ''
+    let output = ''
     for(let i = 0; i<lengthofstring; i++)
     {
-      protestPW = protestPW.concat(dictionary[Math.floor(Math.random() * (dictionary.length - 1)])
+      output = output.concat(dictionary[Math.floor(Math.random() * (dictionary.length - 1)])
     }
-    console.log(output.length)
-    return {protestPW}
+    console.log("Length of String => " + output.length)
+    console.log("OutputString  => " + output)
+    return output
   }
 
 
-  EncryptString = (stringtoencrypt) =>
+  EncryptString = (stringtoencrypt, dictionary = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') =>
   {
-    encryptionkey = AlphaNumericStringGenerator(64, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    encryptionkey = AlphaNumericStringGenerator(stringtoencrypt.length, dictionary)
     output = ''
+
     for(let i = 0; i<stringofencrypt.length; i++)
     {
-      output = output.concat(stringtoencrypt[i].concat(encryptionkey))
+      output = output.concat(stringtoencrypt[i].concat(encryptionkey[i]))
     }
-    console.log(output.length)
+
+    console.log("Length of EncryptedString => " + output.length)
+    console.log("LengthOfOriginalString => " "+ stringtoencrypt.length)
+    console.log("OriginalString  => " + stringtoencrypt)
+    console.log("EncryptedtString  => " + output)
+
     return output
   }
 
@@ -52,7 +59,8 @@ export default class QRCodeGenerator
     return {organiserIDKeyPath, organiserPassword}
   }
 
-  ProtestPWPasswordPopulator = (numberoforganisers)
+  ProtestPWPasswordPopulator = (numberoforganisers) =>
+  {
     Tier1Triple = Tier1PasscodeGenerator(64, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
     //Firebase Push Statement
@@ -70,6 +78,9 @@ export default class QRCodeGenerator
       PlaceholderFirebasePushCall(referencetospecificprotest + "/organisers", Tier2Tuple)
 
     }
+  }
+
+  //Next Steps
   //QR Code OnScreen Presentation Code Is Committed Above
   //Only Needs Addition Of A Push Statement To Add
 
