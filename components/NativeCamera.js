@@ -155,7 +155,6 @@ export default class NativeCamera extends React.Component {
 	//	UID = generatedUID(nameofprotest) // Generated UID Must Return A String of a fixed length to be the UID In Firebase (Recommended 32 char)
 
 
-	String = ''
 	handleRecording = async (action) => {
 		//Switch Off Recording
 		if (this.state.isRecording === true) {
@@ -176,7 +175,11 @@ export default class NativeCamera extends React.Component {
 						this.saveLocally(file.uri);
 						if(this.validationCheckReport() == true)
 						{
+							console.log
 							this.locationReadingWrapper(file.uri, action)
+						}
+						else {
+							console.log("LACKED PRE VALIDATION")
 						}
 				});
 			} catch (error) {
@@ -194,6 +197,9 @@ export default class NativeCamera extends React.Component {
 						{
 							this.locationReadingWrapper(file.uri, action)
 						}
+						else{
+							console.log("LACKED PRE VALIDATION")
+						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -202,25 +208,29 @@ export default class NativeCamera extends React.Component {
 	}
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
-		this.validationCheckReport()
+		//this.validationCheckReport()
 		await this.handleRecording(action)
 	}
 
 	//Validation Railure Reporting
-	validationCheckReport = async() => {
-		let isValidate = true
+	validationCheckReport = () => {
 		if(this.state.oneTimePWValidated == false || this.state.renewableQRValidated == false){
-			let errormessaage = ''
-			if(this.state.oneTimePWValidated == true){
-				errormessage = (errormessage + "- Needs Passcode Verification")
+			let errormessage = ''
+			if(this.state.oneTimePWValidated == false){
+				errormessage = (errormessage + " - Passcode Verification Needed")
+				console.log("TIER 1 VALIDATION FAIL")
 			}
-			if(this.state.renewableQRValidated == true){
-				errormessage = (errormessage + "- Needs Location Verification")
+			if(this.state.renewableQRValidated == false){
+				errormessage = (errormessage + " - Organiser Verification Needed")
+				console.log("TIER 2 ORGANISER VALIDATION FAIL")
 			}
-			this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
-			isValidate = false
+			//this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
+			console.log(errormessage)
+			console.log("VALIDATION - About to return false")
+			return false
 		}
-		return isValidate
+		console.log("VALIDATION - About to return true")
+		return true
 	}
 
 	// Saves specified uri to the camera roll
