@@ -46,7 +46,7 @@ export default class NativeCamera extends React.Component {
 		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
 		output2original = output2//(0,output2.length)
 		output3 = ((codeportion.slice(0,13)))
-		output4 = ((codeportion.slice(13,33)))
+		output4 = ((codeportion.slice(13,128)))
 
 		//Terminal Logging Feedback
 		console.log('00')
@@ -212,10 +212,10 @@ export default class NativeCamera extends React.Component {
 		if(this.state.oneTimePWValidated == false || this.state.renewableQRValidated == false){
 			let errormessaage = ''
 			if(this.state.oneTimePWValidated == true){
-				errormessage Array.concat(errormessage + "- Needs Passcode Verification")
+				errormessage = (errormessage + "- Needs Passcode Verification")
 			}
 			if(this.state.renewableQRValidated == true){
-				errormessage Array.concat(errormessage + "- Needs Location Verification")
+				errormessage = (errormessage + "- Needs Location Verification")
 			}
 			this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
 			isValidate = false
