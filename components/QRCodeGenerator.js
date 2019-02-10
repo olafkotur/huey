@@ -23,7 +23,7 @@ export default class QRCodeGenerator extends React.Component{
     }
 
     console.log("Length of EncryptedString => " + output.length)
-    console.log("LengthOfOriginalString => " "+ stringtoencrypt.length)
+    console.log("LengthOfOriginalString => " + stringtoencrypt.length)
     console.log("OriginalString  => " + stringtoencrypt)
     console.log("EncryptedtString  => " + output)
 
