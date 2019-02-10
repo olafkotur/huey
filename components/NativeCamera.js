@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
-import { Camera, Permissions, Location, FileSystem } from 'expo';
+import { Camera, Permissions, Location, FileSystem, ImageManipulator } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
@@ -26,9 +26,6 @@ export default class NativeCamera extends React.Component {
 	}
 
 	componentDidMount = async () => {
-		// Orientation Lock
-		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
-
 		// Ask Permissions
 		await Permissions.askAsync(Permissions.AUDIO_RECORDING);
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -126,28 +123,23 @@ export default class NativeCamera extends React.Component {
 	// Toggles front and back cameras
 	toggleCamera = () => {
 		if (this.state.cameraType === Camera.Constants.Type.back) { // Back
-			this.setState({cameraType: Camera.Constants.Type.front})
-			this.setState({flipCameraIcon: "camera-front"})
+			this.setState({cameraType: Camera.Constants.Type.front, flipCameraIcon: "camera-front"})
 		}
 		else {
-			this.setState({cameraType: Camera.Constants.Type.back})
-			this.setState({flipCameraIcon: "camera-rear"})
+			this.setState({cameraType: Camera.Constants.Type.back, flipCameraIcon: "camera-rear"})
 		}
 	}
 
 	// Toggles flash
 	toggleFlash = () => {
 		if (this.state.cameraFlash === Camera.Constants.FlashMode.off) { // Back
-			this.setState({cameraFlash: Camera.Constants.FlashMode.auto})
-			this.setState({flashIcon : "flash-auto"})
+			this.setState({cameraFlash: Camera.Constants.FlashMode.auto, flashIcon : "flash-auto"})
 		}
 		else if (this.state.cameraFlash === Camera.Constants.FlashMode.auto){
-			this.setState({cameraFlash: Camera.Constants.FlashMode.on})
-			this.setState({flashIcon : "flash-on"})
+			this.setState({cameraFlash: Camera.Constants.FlashMode.on, flashIcon : "flash-on"})
 		}
 		else {
-			this.setState({cameraFlash: Camera.Constants.FlashMode.off})
-			this.setState({flashIcon : "flash-off"})
+			this.setState({cameraFlash: Camera.Constants.FlashMode.off, flashIcon : "flash-off"})
 		}
 	}
 
@@ -283,9 +275,9 @@ export default class NativeCamera extends React.Component {
 	}
 
 	// Saves specified uri to the camera roll
-	saveLocally = (uri) => {
-		console.log("saveLocally")
-		CameraRoll.saveToCameraRoll(uri);
+	saveLocally = async (uri) => {
+		let result = await ImageManipulator.manipulateAsync(uri, [{rotate: 0}], {});
+		CameraRoll.saveToCameraRoll(result.uri);
 	}
 
 
