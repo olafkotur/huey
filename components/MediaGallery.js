@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from 'r
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 import styles from "../Styles";
 import ImageList from './ImageList';
@@ -22,13 +21,9 @@ export default class MediaGallery extends React.Component {
    		routes: [
       		{ key: 'first', title: 'Media' },
       		{ key: 'second', title: 'Audio' },
-    	],
-    	gestureName: 'none',
+    	]
 	}
 
-	onSwipeRight(gestureState) {
-		this.props.navigation.navigate('HomeScreen');
-	}
 
 	_menu = null;
 	 
@@ -48,10 +43,7 @@ export default class MediaGallery extends React.Component {
 
 		return (
 
-			<GestureRecognizer
-				onSwipeRight = {(state) => this.onSwipeRight(state)}
-				config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
-				style = {{flex:1, backgroundColor: "#27ae60"}} >
+			<View style = {{flex:1, backgroundColor: "#27ae60"}} >
 
 				<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
 						
@@ -113,7 +105,7 @@ export default class MediaGallery extends React.Component {
 
 				</SafeAreaView>
 
-			</GestureRecognizer>
+			</View>
 		);
 	}
 }
