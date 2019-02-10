@@ -3,9 +3,9 @@ export default class QRCodeGenerator extends React.Component{
   {
     let path = 'protestpassword'
     let output = ''
-    for(let i = 0; i<lengthofstring; i++)
+    for(let i = 0; i<lengthofstring.length; i++)
     {
-      output = output.concat(dictionary[Math.floor(Math.random() * (dictionary.length - 1)])
+      output = output.concat(dictionary[Math.floor(Math.random() * (dictionary.length - 1))])
     }
     console.log("Length of String => " + output.length)
     console.log("OutputString  => " + output)
