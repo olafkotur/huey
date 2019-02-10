@@ -24,7 +24,6 @@ export default class MediaGallery extends React.Component {
     	]
 	}
 
-
 	_menu = null;
 	 
 	setMenuRef = ref => {
