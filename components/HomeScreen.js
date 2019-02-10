@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
+import { ScreenOrientation } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import DropdownAlert from 'react-native-dropdownalert';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
@@ -53,6 +54,9 @@ export default class HomeScreen extends React.Component {
 
 	// Quote of the day
 	componentDidMount = async () => {
+		// Lock orientation
+		ScreenOrientation.allowAsync(ScreenOrientation.Orientation.PORTRAIT);
+
 		// Grab all quotes
 		await firebase.database().ref('messages').once('value', snapshot => {
 			if (snapshot) {

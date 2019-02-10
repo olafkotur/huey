@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
-import { Camera, Permissions, Location, FileSystem } from 'expo';
+import { Camera, Permissions, Location, FileSystem, ImageManipulator } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
@@ -26,9 +26,6 @@ export default class NativeCamera extends React.Component {
 	}
 
 	componentDidMount = async () => {
-		// Orientation Lock
-		Expo.ScreenOrientation.allowAsync(Expo.ScreenOrientation.Orientation.PORTRAIT);
-
 		// Ask Permissions
 		await Permissions.askAsync(Permissions.AUDIO_RECORDING);
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -278,9 +275,9 @@ export default class NativeCamera extends React.Component {
 	}
 
 	// Saves specified uri to the camera roll
-	saveLocally = (uri) => {
-		console.log("saveLocally")
-		CameraRoll.saveToCameraRoll(uri);
+	saveLocally = async (uri) => {
+		let result = await ImageManipulator.manipulateAsync(uri, [{rotate: 0}], {});
+		CameraRoll.saveToCameraRoll(result.uri);
 	}
 
 
