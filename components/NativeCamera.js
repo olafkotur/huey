@@ -101,7 +101,8 @@ export default class NativeCamera extends React.Component {
 		//2.Extract Critical Data To Protest Organiser Password
 		organiserpasswordpathkeyQR = codeportion.slice(0,24)
 		organiserpasswordvalueQR = codeportion.slice(24,152)
-
+		organiserpassworddecrypt = QRCodeGenerator.DecryptKEYString(organiserpasswordvalueQR)
+		
 		firebaseorganiserpassword = (await firebase.database().ref('/' + organiserpasswordpathkeyQR).once('value'))
 
 		if(organiserpasswordvalueQR == firebaseorganiserpassword){
