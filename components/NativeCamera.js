@@ -8,6 +8,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
+import QRCodeGenerator from './QRCodeGenerator'
 
 export default class NativeCamera extends React.Component {
 
@@ -37,13 +38,86 @@ export default class NativeCamera extends React.Component {
 		this.setState({locationPermission: locstatus === 'granted'});
 	}
 
-	processQRCode = async (scanneroutput) =>
+	processQRCodeOld = async (scanneroutput) =>
 	{
 		//Extract Critical Data Portion From QR Code //Date Form -> NameOfHosst - NumberUID
 		codeportion = scanneroutput.data
 
 		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
 		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
+		output2original = output2//(0,output2.length)
+		output3 = ((codeportion.slice(0,13)))
+		output4 = ((codeportion.slice(13,128)))
+
+		//Terminal Logging Feedback
+		console.log('00')
+		console.log(codeportion)
+		console.log(1)
+		console.log(output1.val())
+		console.log(2)
+		console.log(output2original.val())
+		console.log(3)
+		console.log(output3)
+		console.log(4)
+		console.log(output4)
+
+		if(output1.val() == output4){
+			this.state.renewableQRValidated = true
+			console.log('FOUND INDIVIDUAL QR CODE')
+		}
+		else if(output2.val() == codeportion){
+			this.state.oneTimePWValidated = true
+			console.log('AUTHORISED BY ' + output3 + "QR")
+		}
+		else{
+				console.log("JUNK QR CODE")
+		}
+
+	}
+
+	processQRCode = async (scanneroutput) =>
+	{
+
+		codeportion = scanneroutput.data
+		console.log("Code Portion")
+		console.log(codeportion)
+
+		//Extract Critical Data To Process Protest Password
+		protestpasswordpathkeyQR = codeportion.slice(0,15)
+		protestpasswordvalueQR = codeportion.slice(15,143)
+
+		protestpassworddecrypt = ''
+		for(let x = 15; x < protestpasswordvalueQR.length); x + 2)
+		{
+			protestpassworddecrypt = protestpassworddecrypt.concat(protestpasswordvalueQR[x])
+			console.log("Protest Password Decrypt")
+			console.log(protestpassworddecrypt)
+		}
+
+		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
+		//this key will be Null if key is invalid
+		firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
+
+		if(firebaseprotestpassword == protestpasswordvalueQR){
+			this.state.oneTimePWValidated = true
+			console.log('FOUND INDIVIDUAL QR CODE')
+			console.log("Protest Password Identified")
+		}
+
+		//2.Extract Critical Data To Protest Organiser Password
+		organiserpasswordpathkeyQR = codeportion.slice(0,24)
+		organiserpasswordvalueQR = codeportion.slice(24,152)
+
+		firebaseorganiserpassword = (await firebase.database().ref('/' + organiserpasswordpathkeyQR).once('value'))
+
+		if(organiserpasswordvalueQR == firebaseorganiserpassword){
+			this.state.renewableQRValidated = true
+			console.log('FOUND ORGANISER RENEWABLE QR CODE')
+			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
+		}
+
+		//output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
+		//output2 = ((await firebase.database().ref('/protestpassword').once('value')))
 		output2original = output2//(0,output2.length)
 		output3 = ((codeportion.slice(0,13)))
 		output4 = ((codeportion.slice(13,128)))

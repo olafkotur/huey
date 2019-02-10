@@ -34,6 +34,21 @@ export default class QRCodeGenerator
     return output
   }
 
+  DecryptString = (stringtodecrypt) =>
+  {
+    output = ''
+
+    for(let x = 0; x <stringtodecrypt.length; x+2)
+    {
+      output = output.concat(stringtodecrypt[x])
+    }
+    console.log("Length of EncryptedString => " + stringtodecrypt.length)
+    console.log("LengthOf DecryptedString => " "+ output.length)
+    console.log("EncryptedString  => " + stringtodecrypt)
+    console.log("DecryptedtString  => " + output)
+    return output
+  }
+
   //Returns The Protest
   Tier1PasscodeGenerator = (length = 64, dictionary = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') =>
   {
