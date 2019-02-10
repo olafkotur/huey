@@ -96,7 +96,7 @@ export default class QRCodeGenerator extends React.Component{
 
     PlaceholderFirebasePushCall = (referencetospecificprotest + "/" + NameOfChild, PasswordValueForChild)
 
-    for(int i = 0; i < numberoforganisers; i++)
+    for(let i = 0; i < numberoforganisers; i++)
     {
       tier2Tuple = Tier2OrganiserPWGenerator(i)
       childPathKey = Tier2Triple.organiserIDKeyPath
