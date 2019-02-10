@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import { FileSystem, Video } from 'expo';
+import { withNavigation } from 'react-navigation';
 
 import styles from "../Styles";
 import GalleryImage from './GalleryImage';
 import FileHandler from './FileHandler';
 
-export default class ImageList extends React.Component {
+class ImageList extends React.Component {
 
 	state = {
 		refreshing: false,
@@ -53,3 +54,5 @@ export default class ImageList extends React.Component {
 		);
 	}
 }
+
+export default withNavigation(ImageList);
