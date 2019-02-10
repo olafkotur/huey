@@ -8,6 +8,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
+import QRCodeGenerator from './QRCodeGenerator'
 
 export default class NativeCamera extends React.Component {
 
@@ -21,9 +22,7 @@ export default class NativeCamera extends React.Component {
 		flashIcon: "flash-off",
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
-		renewableQRValidated: false,
-		locationValidated: false,
-		locationdata: null
+		renewableQRValidated: false
 	}
 
 	componentDidMount = async () => {
@@ -39,7 +38,7 @@ export default class NativeCamera extends React.Component {
 		this.setState({locationPermission: locstatus === 'granted'});
 	}
 
-	processQRCode = async (scanneroutput) =>
+	processQRCodeOld = async (scanneroutput) =>
 	{
 		//Extract Critical Data Portion From QR Code //Date Form -> NameOfHosst - NumberUID
 		codeportion = scanneroutput.data
@@ -48,7 +47,7 @@ export default class NativeCamera extends React.Component {
 		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
 		output2original = output2//(0,output2.length)
 		output3 = ((codeportion.slice(0,13)))
-		output4 = ((codeportion.slice(13,33)))
+		output4 = ((codeportion.slice(13,128)))
 
 		//Terminal Logging Feedback
 		console.log('00')
@@ -74,6 +73,54 @@ export default class NativeCamera extends React.Component {
 				console.log("JUNK QR CODE")
 		}
 
+	}
+
+	processQRCode = async (scanneroutput) =>
+	{
+
+		codeportion = scanneroutput.data
+		console.log("Code Portion")
+		console.log(codeportion)
+
+		//Extract Critical Data To Process Protest Password
+		//Dependencies are on the path being 15 Characters - This Can However Be Adapted For The Final Schema
+		protestpasswordpathkeyQR = codeportion.slice(0,15)
+		protestpasswordvalueQR = codeportion.slice(15,143)
+		qrCodeInstance = new QRCodeGenerator()
+		protestpassworddecrypt = qrCodeInstance.DecryptKEYString(protestpasswordvalueQR)
+
+		//QR is protestpasswordzeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		//True value is
+		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
+		//this key will be Null if key is invalid
+		//OriginalString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+		//EncryptedtString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		// EncryptedString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		// DecryptedtString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+		firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
+		firebaseprotestpassword = firebaseprotestpassword.val()
+
+		if(firebaseprotestpassword == protestpassworddecrypt){
+			this.state.oneTimePWValidated = true
+			console.log('FOUND INDIVIDUAL QR CODE')
+			console.log("Protest Password Identified")
+		}
+
+		//2.Extract Critical Data To Protest Organiser Password
+		//Dependencies are on the path being 24 Characters - This Can However Be Adapted For The Final Schema
+		organiserpasswordpathkeyQRa = codeportion.slice(0,10)
+		organiserpasswordpathkeyQRb = codeportion.slice(10,24)
+		organiserpasswordvalueQR = codeportion.slice(24,152)
+		organiserpassworddecrypt = qrCodeInstance.DecryptKEYString(organiserpasswordvalueQR)
+
+		firebaseorganiserpassword = (await firebase.database().ref( '/' + organiserpasswordpathkeyQRa + '/' + organiserpasswordpathkeyQRb).once('value'))
+		firebaseorganiserpassword = firebaseorganiserpassword.val()
+
+		if(organiserpassworddecrypt == firebaseorganiserpassword){
+			this.state.renewableQRValidated = true
+			console.log('FOUND ORGANISER RENEWABLE QR CODE')
+			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
+		}
 	}
 
 	// Toggles front and back cameras
@@ -148,6 +195,14 @@ export default class NativeCamera extends React.Component {
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
+//1 TIME PW
+	//GENERATE 1 STRING OF 32 C
+		//THE FIRST SECTION OF THE STRING -> MUST CONTAIN ALL THE DIRECTORY PATH INFORMATION & FINAL KEY AT THE BOTTOM OF THE DIRECTORY
+			//UID KEY STORED IN FIREBASE FOR EACH PROTEST ->MUST<- BE OF A FIXED length
+
+//	Tier1qrCodeGenerator(nameofprotest)
+	//	UID = generatedUID(nameofprotest) // Generated UID Must Return A String of a fixed length to be the UID In Firebase (Recommended 32 char)
+
 
 	handleRecording = async (action) => {
 		//Switch Off Recording
@@ -167,7 +222,14 @@ export default class NativeCamera extends React.Component {
 						this.setState({blinkStyle: styles.blinkFalse});
 					}, 150);
 						this.saveLocally(file.uri);
-						this.locationReadingWrapper(file.uri, action)
+						if(this.validationCheckReport() == true)
+						{
+							console.log
+							this.locationReadingWrapper(file.uri, action)
+						}
+						else {
+							console.log("LACKED PRE VALIDATION")
+						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -180,7 +242,13 @@ export default class NativeCamera extends React.Component {
 				this.setState({isRecording: true});
 				await this.camera.recordAsync().then((file) => {
 						this.saveLocally(file.uri);
-						this.locationReadingWrapper(file.uri, action)
+						if(this.validationCheckReport() == true)
+						{
+							this.locationReadingWrapper(file.uri, action)
+						}
+						else{
+							console.log("LACKED PRE VALIDATION")
+						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -189,9 +257,30 @@ export default class NativeCamera extends React.Component {
 	}
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
+		//this.validationCheckReport()
 		await this.handleRecording(action)
 	}
 
+	//Validation Railure Reporting
+	validationCheckReport = () => {
+		if(this.state.oneTimePWValidated == false || this.state.renewableQRValidated == false){
+			let errormessage = ''
+			if(this.state.oneTimePWValidated == false){
+				errormessage = (errormessage + " - Passcode Verification Needed")
+				console.log("TIER 1 VALIDATION FAIL")
+			}
+			if(this.state.renewableQRValidated == false){
+				errormessage = (errormessage + " - Organiser Verification Needed")
+				console.log("TIER 2 ORGANISER VALIDATION FAIL")
+			}
+			//this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
+			console.log(errormessage)
+			console.log("VALIDATION - About to return false")
+			return false
+		}
+		console.log("VALIDATION - About to return true")
+		return true
+	}
 
 	// Saves specified uri to the camera roll
 	saveLocally = (uri) => {
@@ -257,8 +346,8 @@ export default class NativeCamera extends React.Component {
 
 					<TouchableOpacity
 						style = {styles.captureButton}
-						onPress = {() => this.handleRecording('photo')}
-						onLongPress = {() => this.handleRecording('video')} >
+						onPress = {() => this.captureMedia('photo')}
+						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
 					<View style = {styles.captureProgressContainer}>
