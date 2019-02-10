@@ -1,4 +1,4 @@
-export default class QRCodeGenerator extends React.Component{
+export default class QRCodeGenerator{
   AlphaNumericStringGenerator = (lengthofstring, dictionary) =>
   {
     let path = 'protestpassword'
