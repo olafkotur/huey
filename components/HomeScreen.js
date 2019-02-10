@@ -105,12 +105,12 @@ export default class HomeScreen extends React.Component {
 					<NativeCamera/>
 
 					<DropdownAlert 
-						ref={ref => this.dropdown = ref} 
-						containerStyle = {{backgroundColor: '#27ae60'}} 
+						ref={ref => this.dropdown = ref}
+						containerStyle = {{backgroundColor: '#27ae60'}}
 						activeStatusBarBackgroundColor = {'#27ae60'}
 					/>
 
-				</View> 
+				</View>
 			</GestureRecognizer>
 		);
 	}
