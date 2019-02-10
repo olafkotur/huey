@@ -15,13 +15,12 @@ export default class QRCodeGenerator
     return output
   }
 
-
-  EncryptString = (stringtoencrypt, dictionary = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') =>
+  RedundantEncryption = (stringtoencrypt, dictionary = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') =>
   {
     encryptionkey = AlphaNumericStringGenerator(stringtoencrypt.length, dictionary)
     output = ''
 
-    for(let i = 0; i<stringofencrypt.length; i++)
+    for(let i = 0; i<stringtoencrypt.length; i++)
     {
       output = output.concat(stringtoencrypt[i].concat(encryptionkey[i]))
     }
@@ -34,19 +33,33 @@ export default class QRCodeGenerator
     return output
   }
 
-  DecryptString = (stringtodecrypt) =>
+  DecryptKEYString = (stringtodecrypt) =>
   {
     output = ''
 
-    for(let x = 0; x <stringtodecrypt.length; x+2)
+    for(let x = 0; x <stringtodecrypt.length / 2; x++)
     {
-      output = output.concat(stringtodecrypt[x])
+      output = output.concat(stringtodecrypt[x*2])
     }
     console.log("Length of EncryptedString => " + stringtodecrypt.length)
-    console.log("LengthOf DecryptedString => " "+ output.length)
+    console.log("LengthOf DecryptedString => " + output.length)
     console.log("EncryptedString  => " + stringtodecrypt)
     console.log("DecryptedtString  => " + output)
     return output
+  }
+
+  ApplyVigniereCipher = (vignierestring, stringtoencrypt = '9H6YTM9040LAMAXOTAK') =>
+  {
+    let cipheriterator = vignierestring.length
+
+    for(let x = 0; x < stringtoencrypt.length; x++)
+    {
+      if(cipheriterator < 0){
+        cipheriterator = vignierestring.length
+      }
+      //Implement Substitution
+      cipheriterator--
+    }
   }
 
   //Returns The Protest
@@ -54,7 +67,7 @@ export default class QRCodeGenerator
   {
     const path = 'protestpassword'
     const firebaseTruePassword = AlphaNumericStringGenerator(length, dictionary)
-    const qrStringtoPresentInfo = EncryptString(passwordtobestoredonbase)
+    const qrStringtoPresentInfo = path.concat(RedundantEncryption(firebaseTruePassword))
 
     //Path is the Key/Name of the new Child to be added to the Project Directory Structure
     //FireBase True Password is The Value To Be added to the new child
@@ -66,12 +79,14 @@ export default class QRCodeGenerator
 
   Tier2OrganiserPWGenerator = (numberoforganisercreated) =>
   {
+    //const organiserIDKeyPath = toString(numberoforganisercreated + 1).concat(RedundantEncryption('organiser'))
     const organiserIDKeyPath = 'organiser'.concat(toString(numberoforganisercreated + 1))
-    const organiserPassword = EncryptString(numberoforganisercreated)
+    const organiserPWValue = this.AlphaNumericStringGenerator(64, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    const organiserQRPassword = RedundantEncryption(organiserPWValue)
 
     //Id Key Path Should Be The Name/Key Of The Child Being Added In To To The ORganiser Directory Structure
     //Organiser Password Is The Value Assigned To This New Organiser Child Object In The Organiser Directory
-    return {organiserIDKeyPath, organiserPassword}
+    return {organiserIDKeyPath, organiserPWValue, organiserQRPassword}
   }
 
   ProtestPWPasswordPopulator = (numberoforganisers) =>
@@ -86,9 +101,10 @@ export default class QRCodeGenerator
 
     for(int i = 0; i < numberoforganisers; i++)
     {
-      Tier2Tuple = Tier2OrganiserPWGenerator(i + 1)
-      ChildPathKey = Tier2Tuple.organiserIDKeyPath
-      ValueToAddToKey = Tier2Tuple.organiserPassword
+      tier2Tuple = Tier2OrganiserPWGenerator(i)
+      childPathKey = Tier2Triple.organiserIDKeyPath
+      valueToAddToKey = Tier2Triple.organiserpasswordvalueQR
+      stringForOrganiserQR = Tier2Triple.organiserQRPassword
 
       PlaceholderFirebasePushCall(referencetospecificprotest + "/organisers", Tier2Tuple)
 

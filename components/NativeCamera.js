@@ -86,19 +86,13 @@ export default class NativeCamera extends React.Component {
 		protestpasswordpathkeyQR = codeportion.slice(0,15)
 		protestpasswordvalueQR = codeportion.slice(15,143)
 
-		protestpassworddecrypt = ''
-		for(let x = 15; x < protestpasswordvalueQR.length); x + 2)
-		{
-			protestpassworddecrypt = protestpassworddecrypt.concat(protestpasswordvalueQR[x])
-			console.log("Protest Password Decrypt")
-			console.log(protestpassworddecrypt)
-		}
+		protestpassworddecrypt = QRCodeGenerator.DecryptKEYString(protestpasswordvalueQR)
 
 		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
 		//this key will be Null if key is invalid
 		firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
 
-		if(firebaseprotestpassword == protestpasswordvalueQR){
+		if(firebaseprotestpassword == protestpassworddecrypt){
 			this.state.oneTimePWValidated = true
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
