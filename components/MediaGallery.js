@@ -27,7 +27,9 @@ export default class MediaGallery extends React.Component {
 	}
 
 	onSwipeRight(gestureState) {
-		this.props.navigation.navigate('HomeScreen');
+		if (this.state.index === 0) {
+			this.props.navigation.navigate('HomeScreen');
+		}
 	}
 
 	_menu = null;
