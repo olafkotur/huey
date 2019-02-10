@@ -260,9 +260,11 @@ export default StyleSheet.create({
 		marginTop: deviceHeight * 0.04,
 		justifyContent: 'center',
 		alignItems: 'center',
+		textAlign: 'center',
 		marginLeft: deviceWidth * 0.02,
 		marginRight: deviceWidth * 0.02,
 		borderRadius: 5,
+		fontSize: 5,
 	},
 
 	signupButton: {
