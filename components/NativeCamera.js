@@ -199,6 +199,7 @@ export default class NativeCamera extends React.Component {
 							this.locationReadingWrapper(file.uri, action)
 						}
 						else {
+							this.setState({oneTimePWValidated: true, qrIcon: 'lock-alert', qrInformation: 'Complete Validate for Backup'})
 							console.log("LACKED PRE VALIDATION")
 						}
 				});
@@ -217,7 +218,8 @@ export default class NativeCamera extends React.Component {
 						{
 							this.locationReadingWrapper(file.uri, action)
 						}
-						else{
+						else {
+							this.setState({oneTimePWValidated: true, qrIcon: 'lock-alert', qrInformation: 'Complete Validate for Backup'})
 							console.log("LACKED PRE VALIDATION")
 						}
 				});
