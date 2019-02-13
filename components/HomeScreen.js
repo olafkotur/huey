@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity,  StatusBar, Platform } from 'react-native';
 import { ScreenOrientation } from 'expo';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import DropdownAlert from 'react-native-dropdownalert';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import * as Progress from 'react-native-progress';

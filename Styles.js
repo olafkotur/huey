@@ -527,6 +527,23 @@ export default StyleSheet.create({
 		fontSize: deviceWidth * 0.08,
 	},
 
+	qrCodeButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 9,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.94,
+		left: deviceWidth * 0.15,
+	},
+
+	qrCodeIcon: {
+	    color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.06,
+	},
+
 
 	folderButton: {
 	    width: deviceWidth * 0.08,
