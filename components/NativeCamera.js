@@ -162,7 +162,7 @@ export default class NativeCamera extends React.Component {
 					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event'})
 				}
 			},
-				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}).then(console.log(error)),
+				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
