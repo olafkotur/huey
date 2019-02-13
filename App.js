@@ -41,9 +41,9 @@ const handleCustomTransition = ({ scenes }) => {
 	} else if (prevScene && prevScene.route.routeName === 'MediaGallery' && nextScene.route.routeName === 'HomeScreen'){
 		return fromLeft(500);
 	} else if (prevScene && prevScene.route.routeName === 'HomeScreen' && nextScene.route.routeName === 'NativeAudio'){
-		return fromBottom(500);
+		return fromLeft(500);
 	} else if (prevScene && prevScene.route.routeName === 'NativeAudio' && nextScene.route.routeName === 'HomeScreen'){
-		return fromTop(500);
+		return fromRight(500);
 	} else if (prevScene && (prevScene.route.routeName === 'LoginScreen' || prevScene.route.routeName === 'ConsentScreen') && nextScene.route.routeName === 'HomeScreen'){
 		return fromRight(500);
 	} else if (prevScene && prevScene.route.routeName === 'LoginScreen' && nextScene.route.routeName === 'ConsentScreen'){

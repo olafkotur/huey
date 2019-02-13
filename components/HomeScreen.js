@@ -27,7 +27,6 @@ export default class HomeScreen extends React.Component {
 
 	//Swipe Gesture Control
 	onSwipeUp(gestureState) {
-		this.props.navigation.navigate('NativeAudio');
 	}
 	onSwipeDown(gestureState) {
 		this.props.navigation.navigate('SettingsScreen');
@@ -36,6 +35,7 @@ export default class HomeScreen extends React.Component {
 		this.props.navigation.navigate('MediaGallery');
 	}
 	onSwipeRight(gestureState) {
+		this.props.navigation.navigate('NativeAudio');
 	}
 	onSwipe(gestureName, gestureState) {
 		const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;

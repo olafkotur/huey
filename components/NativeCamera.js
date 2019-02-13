@@ -247,6 +247,7 @@ export default class NativeCamera extends React.Component {
 			}
 		}
 	}
+	
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
 		//this.validationCheckReport()

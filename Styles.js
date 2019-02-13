@@ -523,7 +523,8 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-		left: deviceWidth * 0.30,
+		left: deviceWidth * 0.05,
+		fontSize: deviceWidth * 0.08,
 	},
 
 

@@ -20,7 +20,7 @@ export default class NativeAudio extends React.Component {
     }
 
     //Swipe Gesture Control
-    onSwipeDown(gestureState) {
+    onSwipeLeft(gestureState) {
         this.props.navigation.navigate('HomeScreen');
     }
 
@@ -50,7 +50,7 @@ export default class NativeAudio extends React.Component {
         return (
 
             <GestureRecognizer
-                onSwipeDown={(state) => this.onSwipeDown(state)}
+                onSwipeLeft={(state) => this.onSwipeLeft(state)}
                 config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
                 style = {{flex:1, backgroundColor: "#27ae60"}}
             >
