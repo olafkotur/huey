@@ -77,7 +77,7 @@ export default class NativeCamera extends React.Component {
 
 		if(firebaseprotestpassword == protestpassworddecrypt){
 
-			this.setState({oneTimePWValidated: true, qrIcon: 'cloud-check', qrInformation: 'You\'ve scanned a public QR code.'})
+			this.setState({oneTimePWValidated: true, qrIcon: 'progress-check', qrInformation: 'You\'ve scanned a public QR code.'})
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
 		}
@@ -87,7 +87,7 @@ export default class NativeCamera extends React.Component {
 			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
 		}
 		else{
-			this.setState({qrIcon: 'flag-variant', qrInformation: 'You \'ve scanned an invalid QR Code'})
+			this.setState({qrIcon: 'flag-variant', qrInformation: 'You\'ve scanned an invalid QR Code'})
 			console.log('JUNK QR CODE')
 		}
 	}
@@ -151,8 +151,15 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
+						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated - Backed-Up & Protected'})
 						this.saveInCloud(pathtofile, action);
 					}
+					else{
+						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Location Failed - Are You Close Enough To The Protest?'})
+					}
+				}
+				else{
+					this.setState({oneTimePWValidated: true, qrIcon: 'cloud-check', qrInformation: 'Location Failed - Are You Close Enough To The Protest?'})
 				}
 			},
 				(error) => console.log(error),
