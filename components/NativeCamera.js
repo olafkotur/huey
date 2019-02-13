@@ -162,7 +162,7 @@ export default class NativeCamera extends React.Component {
 					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event'})
 				}
 			},
-				(error) => console.log(error), this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}),
+				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}).then(console.log(error)),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
@@ -245,6 +245,7 @@ export default class NativeCamera extends React.Component {
 					this.setState({qrIcon: 'lock-alert', qrInformation: 'Start Validation to Backup'})
 					console.log("LACKED PRE VALIDATION")
 			}
+
 			//this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
 			console.log(errormessage)
 			console.log("VALIDATION - About to return false")
