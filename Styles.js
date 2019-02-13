@@ -403,7 +403,7 @@ export default StyleSheet.create({
 
 	flipCameraButton: {
 		width: deviceWidth * 0.065,
-		height: deviceWidth * 0.065,
+		height: deviceWidth * 0.01,
 		bottom: deviceHeight * 0.9375,
 		left: deviceWidth * 0.88,
 	},
@@ -456,6 +456,28 @@ export default StyleSheet.create({
   	flashButton: {
   		color: '#fff',
   	},
+
+  	popover: {
+  		backgroundColor: '#fff',
+  		alignContent: 'center',
+  	},
+
+  	qrCodeButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.065,
+		opacity: 0.9,
+		zIndex: 9,
+		alignSelf: 'center',
+		bottom: deviceHeight * 0.94,
+		right: deviceWidth * 0.3,
+		position: 'relative',
+	},
+
+	qrCodeIcon: {
+	    color: '#fff',
+	    backgroundColor: 'transparent',
+	    fontSize: deviceWidth * 0.06,
+	},
 
   	cameraFlash: {
   		width: deviceWidth * 0.065,
@@ -523,13 +545,14 @@ export default StyleSheet.create({
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-		left: deviceWidth * 0.30,
+		left: deviceWidth * 0.05,
+		fontSize: deviceWidth * 0.08,
 	},
 
 
 	folderButton: {
 	    width: deviceWidth * 0.08,
-		height: deviceWidth * 0.065,
+		height: deviceWidth * 0.06,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',

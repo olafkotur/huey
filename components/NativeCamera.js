@@ -2,9 +2,11 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, CameraRoll, Dimensions } from 'react-native';
 import { Camera, Permissions, Location, FileSystem, ImageManipulator } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
 import DropdownAlert from 'react-native-dropdownalert';
+import { Tooltip } from 'react-native-elements';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -22,7 +24,9 @@ export default class NativeCamera extends React.Component {
 		flashIcon: "flash-off",
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
-		renewableQRValidated: false
+		renewableQRValidated: false,
+		qrIcon: 'border-none-variant',
+		qrInformation: 'Please scan a QR code.'
 	}
 
 	componentDidMount = async () => {
@@ -98,7 +102,8 @@ export default class NativeCamera extends React.Component {
 		firebaseprotestpassword = firebaseprotestpassword.val()
 
 		if(firebaseprotestpassword == protestpassworddecrypt){
-			this.state.oneTimePWValidated = true
+
+			this.setState({oneTimePWValidated: true, qrIcon: 'qrcode', qrInformation: 'You\'ve scanned a public QR code.'})
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
 		}
@@ -114,7 +119,7 @@ export default class NativeCamera extends React.Component {
 		firebaseorganiserpassword = firebaseorganiserpassword.val()
 
 		if(organiserpassworddecrypt == firebaseorganiserpassword){
-			this.state.renewableQRValidated = true
+			this.setState({renewableQRValidated: true, qrIcon: 'qrcode-scan', qrInformation: 'You\'ve scanned an organiser QR code.'})
 			console.log('FOUND ORGANISER RENEWABLE QR CODE')
 			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
 		}
@@ -247,6 +252,7 @@ export default class NativeCamera extends React.Component {
 			}
 		}
 	}
+
 	// Capture video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
 		//this.validationCheckReport()
@@ -335,6 +341,16 @@ export default class NativeCamera extends React.Component {
 						</TouchableOpacity>
 					</View>
 
+					<View
+						style = {styles.qrCodeButton} >
+						<Tooltip
+							withOverlay = {false}
+							containerStyle = {styles.popover}
+							pointerColor = {'#fff'}
+							popover={<Text>{this.state.qrInformation}</Text>}>
+							<IconMCI name={this.state.qrIcon} style = {styles.qrCodeIcon}/>
+						</Tooltip>
+					</View>
 
 					<TouchableOpacity
 						style = {styles.captureButton}
