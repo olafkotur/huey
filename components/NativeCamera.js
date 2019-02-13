@@ -151,18 +151,18 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated - Backed-Up & Protected'})
+						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up'})
 						this.saveInCloud(pathtofile, action);
 					}
 					else{
-						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Location Failed - Are You Close Enough To The Protest?'})
+						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: ' Are You Close Enough To The Event?'})
 					}
 				}
 				else{
-					this.setState({oneTimePWValidated: true, qrIcon: 'cloud-check', qrInformation: 'Location Failed - Are You Close Enough To The Protest?'})
+					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event'})
 				}
 			},
-				(error) => console.log(error),
+				(error) => console.log(error), this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
