@@ -6,6 +6,7 @@ import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Progress from 'react-native-progress';
 import * as firebase from "firebase";
 import DropdownAlert from 'react-native-dropdownalert';
+import { Tooltip } from 'react-native-elements';
 
 import styles from "../Styles";
 import FileHandler from './FileHandler';
@@ -24,7 +25,8 @@ export default class NativeCamera extends React.Component {
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
-		qrIcon: ''
+		qrIcon: '',
+		qrInformation: ' '
 	}
 
 	componentDidMount = async () => {
@@ -101,7 +103,7 @@ export default class NativeCamera extends React.Component {
 
 		if(firebaseprotestpassword == protestpassworddecrypt){
 
-			this.setState({oneTimePWValidated: true, qrIcon: 'qrcode'})
+			this.setState({oneTimePWValidated: true, qrIcon: 'qrcode', qrInformation: 'You\'ve scanned a public QR code.'})
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
 		}
@@ -117,7 +119,7 @@ export default class NativeCamera extends React.Component {
 		firebaseorganiserpassword = firebaseorganiserpassword.val()
 
 		if(organiserpassworddecrypt == firebaseorganiserpassword){
-			this.setState({renewableQRValidated: true, qrIcon: 'qrcode-scan'})
+			this.setState({renewableQRValidated: true, qrIcon: 'qrcode-scan', qrInformation: 'You\'ve scanned an organiser QR code.'})
 			console.log('FOUND ORGANISER RENEWABLE QR CODE')
 			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
 		}
@@ -339,11 +341,13 @@ export default class NativeCamera extends React.Component {
 						</TouchableOpacity>
 					</View>
 
-					<TouchableOpacity
+					<View
 						style = {styles.qrCodeButton} >
-						<IconMCI name={this.state.qrIcon} style = {styles.qrCodeIcon}/>
-					</TouchableOpacity>
-
+						<Tooltip
+							popover={<Text>{this.state.qrInformation}</Text>}>
+							<IconMCI name={this.state.qrIcon} style = {styles.qrCodeIcon}/>
+						</Tooltip>
+					</View>
 
 					<TouchableOpacity
 						style = {styles.captureButton}
