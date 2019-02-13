@@ -25,8 +25,8 @@ export default class NativeCamera extends React.Component {
 		flipCameraIcon: "camera-rear",
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
-		qrIcon: '',
-		qrInformation: ' '
+		qrIcon: 'border-none-variant',
+		qrInformation: 'Please scan a QR code.'
 	}
 
 	componentDidMount = async () => {
@@ -344,6 +344,9 @@ export default class NativeCamera extends React.Component {
 					<View
 						style = {styles.qrCodeButton} >
 						<Tooltip
+							withOverlay = {false}
+							containerStyle = {styles.popover}
+							pointerColor = {'#fff'}
 							popover={<Text>{this.state.qrInformation}</Text>}>
 							<IconMCI name={this.state.qrIcon} style = {styles.qrCodeIcon}/>
 						</Tooltip>

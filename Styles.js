@@ -457,6 +457,11 @@ export default StyleSheet.create({
   		color: '#fff',
   	},
 
+  	popover: {
+  		backgroundColor: '#fff',
+  		alignContent: 'center',
+  	},
+
   	qrCodeButton: {
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
