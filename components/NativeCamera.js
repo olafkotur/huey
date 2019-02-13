@@ -77,17 +77,17 @@ export default class NativeCamera extends React.Component {
 
 		if(firebaseprotestpassword == protestpassworddecrypt){
 
-			this.setState({oneTimePWValidated: true, qrIcon: 'computer', qrInformation: 'You\'ve scanned a public QR code.'})
+			this.setState({oneTimePWValidated: true, qrIcon: 'cloud-check', qrInformation: 'You\'ve scanned a public QR code.'})
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
 		}
 		else if(organiserpassworddecrypt == firebaseorganiserpassword){
-			this.setState({renewableQRValidated: true, qrIcon: 'face', qrInformation: 'You\'ve scanned an organiser QR code.'})
+			this.setState({renewableQRValidated: true, qrIcon: 'account-key', qrInformation: 'You\'ve scanned an organiser QR code.'})
 			console.log('FOUND ORGANISER RENEWABLE QR CODE')
 			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
 		}
 		else{
-			this.setState({qrIcon: 'rotate-90-degrees-ccw', qrInformation: 'You \'ve scanned an invalid QR Code'})
+			this.setState({qrIcon: 'flag-variant', qrInformation: 'You \'ve scanned an invalid QR Code'})
 			console.log('JUNK QR CODE')
 		}
 	}
