@@ -90,6 +90,10 @@ export default class NativeCamera extends React.Component {
 			this.setState({qrIcon: 'flag-variant', qrInformation: 'You\'ve scanned an invalid QR Code'})
 			console.log('JUNK QR CODE')
 		}
+		if(renewableQRValidated == true && oneTimePWValidated == true)
+		{
+			this.setState({qrIcon: 'bullseye-arrow', qrInformation: 'Ready for Backup at Location'})
+		}
 	}
 
 	// Toggles front and back cameras
