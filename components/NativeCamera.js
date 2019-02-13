@@ -39,43 +39,6 @@ export default class NativeCamera extends React.Component {
 		this.setState({locationPermission: locstatus === 'granted'});
 	}
 
-	processQRCodeOld = async (scanneroutput) =>
-	{
-		//Extract Critical Data Portion From QR Code //Date Form -> NameOfHosst - NumberUID
-		codeportion = scanneroutput.data
-
-		output1 = ((await firebase.database().ref('/organisers' + '/' + codeportion.slice(0,13)).once('value')))
-		output2 = ((await firebase.database().ref('/protestpassword').once('value')))
-		output2original = output2//(0,output2.length)
-		output3 = ((codeportion.slice(0,13)))
-		output4 = ((codeportion.slice(13,128)))
-
-		//Terminal Logging Feedback
-		console.log('00')
-		console.log(codeportion)
-		console.log(1)
-		console.log(output1.val())
-		console.log(2)
-		console.log(output2original.val())
-		console.log(3)
-		console.log(output3)
-		console.log(4)
-		console.log(output4)
-
-		if(output1.val() == output4){
-			this.state.renewableQRValidated = true
-			console.log('FOUND INDIVIDUAL QR CODE')
-		}
-		else if(output2.val() == codeportion){
-			this.state.oneTimePWValidated = true
-			console.log('AUTHORISED BY ' + output3 + "QR")
-		}
-		else{
-				console.log("JUNK QR CODE")
-		}
-
-	}
-
 	processQRCode = async (scanneroutput) =>
 	{
 
@@ -90,23 +53,8 @@ export default class NativeCamera extends React.Component {
 		qrCodeInstance = new QRCodeGenerator()
 		protestpassworddecrypt = qrCodeInstance.DecryptKEYString(protestpasswordvalueQR)
 
-		//QR is protestpasswordzeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		//True value is
-		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
-		//this key will be Null if key is invalid
-		//OriginalString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
-		//EncryptedtString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		// EncryptedString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		// DecryptedtString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
 		firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
 		firebaseprotestpassword = firebaseprotestpassword.val()
-
-		if(firebaseprotestpassword == protestpassworddecrypt){
-
-			this.setState({oneTimePWValidated: true, qrIcon: 'qrcode', qrInformation: 'You\'ve scanned a public QR code.'})
-			console.log('FOUND INDIVIDUAL QR CODE')
-			console.log("Protest Password Identified")
-		}
 
 		//2.Extract Critical Data To Protest Organiser Password
 		//Dependencies are on the path being 24 Characters - This Can However Be Adapted For The Final Schema
@@ -118,10 +66,29 @@ export default class NativeCamera extends React.Component {
 		firebaseorganiserpassword = (await firebase.database().ref( '/' + organiserpasswordpathkeyQRa + '/' + organiserpasswordpathkeyQRb).once('value'))
 		firebaseorganiserpassword = firebaseorganiserpassword.val()
 
-		if(organiserpassworddecrypt == firebaseorganiserpassword){
-			this.setState({renewableQRValidated: true, qrIcon: 'qrcode-scan', qrInformation: 'You\'ve scanned an organiser QR code.'})
+		//QR is protestpasswordzeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		//True value is
+		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
+		//this key will be Null if key is invalid
+		//OriginalString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+		//EncryptedtString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		// EncryptedString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+		// DecryptedtString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+
+		if(firebaseprotestpassword == protestpassworddecrypt){
+
+			this.setState({oneTimePWValidated: true, qrIcon: 'computer', qrInformation: 'You\'ve scanned a public QR code.'})
+			console.log('FOUND INDIVIDUAL QR CODE')
+			console.log("Protest Password Identified")
+		}
+		else if(organiserpassworddecrypt == firebaseorganiserpassword){
+			this.setState({renewableQRValidated: true, qrIcon: 'face', qrInformation: 'You\'ve scanned an organiser QR code.'})
 			console.log('FOUND ORGANISER RENEWABLE QR CODE')
 			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
+		}
+		else{
+			this.setState({qrIcon: 'rotate-90-degrees-ccw', qrInformation: 'You \'ve scanned an invalid QR Code'})
+			console.log('JUNK QR CODE')
 		}
 	}
 
