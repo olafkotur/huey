@@ -198,10 +198,6 @@ export default class NativeCamera extends React.Component {
 							console.log
 							this.locationReadingWrapper(file.uri, action)
 						}
-						else {
-							this.setState({oneTimePWValidated: true, qrIcon: 'lock-alert', qrInformation: 'Complete Validate for Backup'})
-							console.log("LACKED PRE VALIDATION")
-						}
 				});
 			} catch (error) {
 				console.log(error.message);
@@ -217,10 +213,6 @@ export default class NativeCamera extends React.Component {
 						if(this.validationCheckReport() == true)
 						{
 							this.locationReadingWrapper(file.uri, action)
-						}
-						else {
-							this.setState({oneTimePWValidated: true, qrIcon: 'lock-alert', qrInformation: 'Complete Validate for Backup'})
-							console.log("LACKED PRE VALIDATION")
 						}
 				});
 			} catch (error) {
@@ -240,12 +232,18 @@ export default class NativeCamera extends React.Component {
 		if(this.state.oneTimePWValidated == false || this.state.renewableQRValidated == false){
 			let errormessage = ''
 			if(this.state.oneTimePWValidated == false){
-				errormessage = (errormessage + " - Passcode Verification Needed")
+				this.setState({qrIcon: 'qrcode', qrInformation: 'Protest Password Needed To Backup'})
 				console.log("TIER 1 VALIDATION FAIL")
 			}
 			if(this.state.renewableQRValidated == false){
-				errormessage = (errormessage + " - Organiser Verification Needed")
+				this.setState({qrIcon: 'peace', qrInformation: 'Organiser Validation Needed To Backup'})
 				console.log("TIER 2 ORGANISER VALIDATION FAIL")
+			}
+
+			if(this.state.renewableQRValidated == false && this.state.oneTimePWValidated == false)
+			{
+					this.setState({qrIcon: 'lock-alert', qrInformation: 'Start Validation to Backup'})
+					console.log("LACKED PRE VALIDATION")
 			}
 			//this.dropdown.alertWithType('error',"Validation Needed For External Push", errormessage)
 			console.log(errormessage)
