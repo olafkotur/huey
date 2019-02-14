@@ -85,6 +85,8 @@ export default StyleSheet.create({
 		backgroundColor: '#27AE60',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
+		top: 0,
+		position: 'absolute',
 	},
 
 	navbarGalleryContainer: {
@@ -114,10 +116,9 @@ export default StyleSheet.create({
 	navbarRightContainer: {
 		backgroundColor: 'transparent',
 		flexDirection: 'row-reverse',
-		width: deviceWidth * 0.75,
+		width: "85%",
 		height: deviceWidth * 0.075,
 		top: -deviceHeight * 0.0175,
-		left: deviceWidth * 0.075,
 		backgroundColor: 'transparent',
 	},
 
@@ -129,11 +130,10 @@ export default StyleSheet.create({
 
 	navbarButton: {
 		backgroundColor: "transparent",
-		right: deviceWidth * 0.05,
-		marginRight: 10,
-		marginLeft: 10,
-		height: deviceWidth * 0.075,
-		width: deviceWidth * 0.075,
+		textAlign: 'center',
+		height: "80%",
+		marginLeft: deviceWidth * 0.035,
+		marginTop: -deviceHeight*0.075,
 	},
 
 	navbarIcon: {
@@ -142,10 +142,8 @@ export default StyleSheet.create({
 	},
 
 	navbarBackIcon: {
-		fontSize: deviceHeight * 0.045,
 		color: "#fff",
-		top: deviceHeight * 0.015,
-		right: deviceWidth * 0.025,
+		fontSize: deviceHeight*0.045,
 	},
 
 	doubleButtonContainer: {
@@ -586,14 +584,6 @@ export default StyleSheet.create({
 
 //	6. Settings
 
-	settingsMenuContainer: {
-		flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        top: -deviceHeight * 0.075,
-	},
-
 	settingsRecordingIcon: {
 		color: '#27ae60',
 	    backgroundColor: 'transparent',
@@ -680,6 +670,137 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.12,
 		fontSize: deviceWidth * 0.06,
 		backgroundColor: '#fff',
+	},
+
+	//Settings MVP Implementation styles
+
+	settingsMenuContainer: {
+		flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        marginTop: deviceHeight * 0.075,
+	},
+
+	settingsMenuBtn: {
+		height: 80,
+		margin: 'auto',
+		backgroundColor: 'transparent',
+		width: '100%',
+		borderWidth: 0,
+		borderBottomWidth: 1,
+		borderTopWidth: 1,
+		borderColor: '#F1F1F1',
+		marginBottom: -1,
+		padding: 7.5,
+	},
+
+	settingsMenuBtnText: {
+		fontSize: 20,
+		marginLeft: deviceWidth * 0.2,
+		marginTop: -27.5,
+		color: '#4B4B4B',
+		marginRight: deviceWidth * 0.25,
+
+	},
+
+	settingsMenuBtnIcon: {
+		backgroundColor: 'transparent',
+		width: '3%',
+		color: '#3F3F3F',
+		marginTop: 15,
+		marginLeft: '10%',
+	},
+
+	settingsRArrow: {
+		marginLeft: deviceWidth * 0.8,
+		marginTop: -25,
+		color: '#4B4B4B',
+	},
+
+	textFieldIcon: {
+		marginLeft: -deviceWidth * 0.03,
+		marginRight: deviceWidth * 0.03,
+		marginTop: deviceHeight * 0.03,
+		color: '#a2a2a2',
+	},
+
+	textInput: {
+		marginTop: deviceHeight * 0.04,
+	},
+
+	overlayHeader: {
+		fontSize: deviceHeight * 0.02,
+		fontWeight: 'bold',
+		marginLeft: deviceWidth * 0.02,
+	},
+
+	overlayButton: {
+		marginTop: deviceHeight * 0.075,
+		width: deviceWidth * 0.3,
+		marginLeft: deviceWidth * 0.425,
+		borderColor: '#27AE60',
+	},
+
+	overlayButtonText: {
+		color: '#27ae60',
+	},
+
+	overlay: {
+		height: deviceHeight * 0.5,
+	},
+
+	logoutBtn: {
+		borderColor: '#27AE60',
+		width: '80%',
+		marginTop: deviceHeight * 0.5,
+	},
+
+	logoutBtnText: {
+		color: '#27ae60',
+		textAlign: 'center',
+		width: '100%',
+	},
+
+	delAccountBtn: {
+		backgroundColor: '#e84118',
+		width: '80%',
+		marginTop: deviceHeight * 0.05,
+	},
+
+	delAccountBtnOverlay: {
+		backgroundColor: '#e84118',
+		width: '100%',
+		marginTop: deviceHeight * 0.1,
+	},
+
+	delAccountBtnText: {
+		color: '#fff',
+		textAlign: 'center',
+		width: '100%',
+	},
+
+	overlayDelAccount: {
+		height: deviceHeight * 0.4,
+	},
+
+	overlayDelButton: {
+		marginTop: deviceHeight * 0.02,
+		width: '100%',
+		borderColor: '#4B4B4B',
+	},
+
+	overlayDelButtonText: {
+		color: '#4b4b4b',
+	},
+
+	delOverlayText: {
+		marginTop: deviceHeight * 0.075,
+		fontWeight: 'bold',
+		fontSize: deviceHeight * 0.03,
+		textAlign: 'center',
 	},
 
 // 7. Gallery
