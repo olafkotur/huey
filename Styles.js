@@ -720,9 +720,10 @@ export default StyleSheet.create({
 	},
 
 	textFieldIcon: {
-		marginLeft: -deviceWidth * 0.015,
+		marginLeft: -deviceWidth * 0.03,
 		marginRight: deviceWidth * 0.03,
 		marginTop: deviceHeight * 0.03,
+		color: '#a2a2a2',
 	},
 
 	textInput: {
@@ -736,8 +737,14 @@ export default StyleSheet.create({
 	},
 
 	overlayButton: {
-		backgroundColor: '#27ae60',
-		marginTop: deviceHeight * 0.1,
+		marginTop: deviceHeight * 0.39,
+		width: deviceWidth * 0.3,
+		marginLeft: deviceWidth * 0.425,
+		borderColor: '#27AE60',
+	},
+
+	overlayButtonText: {
+		color: '#27ae60',
 	},
 
 	logoutBtn: {

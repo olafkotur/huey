@@ -22,6 +22,12 @@ export default class SettingsScreen extends React.Component {
 		gestureName: 'none',
 		showChangeEmail: false,
 		showChangePassword: false,
+		passwordVisible1: false,
+		passwordVisible2: false,
+		passwordVisible3: false,
+		passwordIcon1: 'eye',
+		passwordIcon2: 'eye',
+		passwordIcon3: 'eye'
 	}
 
 	_menu = null;
@@ -129,7 +135,9 @@ export default class SettingsScreen extends React.Component {
 								}
 							/>
 							<Button
-								title="Solid Button"
+								title="Submit"
+								type="outline"
+								titleStyle={styles.overlayButtonText}
 								buttonStyle={styles.overlayButton}
 								onPress={() => this.setState({ showChangeEmail: false })}
 							/>
@@ -137,10 +145,103 @@ export default class SettingsScreen extends React.Component {
 
 					</Overlay>
 
-					<Overlay
+<Overlay
 						isVisible={this.state.showChangePassword}
 						onBackdropPress={() => this.setState({ showChangePassword: false })}>
-						<Text> Meme </Text>
+						<View style={styles.textInput}>
+							<Text style={styles.overlayHeader}> Change Password </Text>
+							<Input
+								placeholder='Old Password'
+								inputStyle={styles.textInput}
+								secureTextEntry={this.state.passwordVisible1}
+								leftIcon={
+									<Icon
+										name='lock'
+										size={30}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}/>}
+								rightIcon={
+									<IconMCI
+										name={this.state.passwordIcon1}
+										size={20}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}
+										onPress={() => 
+													{if (this.state.passwordVisible1 === false) {
+														this.setState({passwordVisible1: true, passwordIcon1: 'eye-off-outline'})
+													} else {
+														this.setState({passwordVisible1: false, passwordIcon1: 'eye'})
+													}
+												}
+										}
+									/>
+								}
+							/>
+							<Input
+								placeholder='New Password'
+								inputStyle={styles.textInput}
+								secureTextEntry={this.state.passwordVisible2}
+								leftIcon={
+									<Icon
+										name='lock-outline'
+										size={30}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}/>}
+								rightIcon={
+									<IconMCI
+										name={this.state.passwordIcon2}
+										size={20}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}
+										onPress={() => 
+													{if (this.state.passwordVisible2 === false) {
+														this.setState({passwordVisible2: true, passwordIcon2: 'eye-off-outline'})
+													} else {
+														this.setState({passwordVisible2: false, passwordIcon2: 'eye'})
+													}
+												}
+										}
+									/>
+								}
+							/>
+
+							<Input
+								placeholder='Confirm New Email Address'
+								inputStyle={styles.textInput}
+								secureTextEntry={this.state.passwordVisible3}
+								leftIcon={
+									<Icon
+										name='lock-outline'
+										size={30}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}/>
+								}
+								rightIcon={
+									<IconMCI
+										name={this.state.passwordIcon3}
+										size={20}
+										color='#4B4B4B'
+										style={styles.textFieldIcon}
+										onPress={() => 
+													{if (this.state.passwordVisible3 === false) {
+														this.setState({passwordVisible3: true, passwordIcon3: 'eye-off-outline'})
+													} else {
+														this.setState({passwordVisible3: false, passwordIcon3: 'eye'})
+													}
+												}
+										}
+									/>
+								}
+							/>
+							<Button
+								title="Submit"
+								type="outline"
+								titleStyle={styles.overlayButtonText}
+								buttonStyle={styles.overlayButton}
+								onPress={() => this.setState({ showChangePassword: false })}
+							/>
+						</View>
+
 					</Overlay>
 
 					<View style = {styles.settingsMenuContainer}>
