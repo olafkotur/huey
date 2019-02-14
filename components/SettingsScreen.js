@@ -252,9 +252,28 @@ export default class SettingsScreen extends React.Component {
 {/*-----Delete Account Overlay-----*/}
 					
 					<Overlay
-						isVisible={this.state.showChangeEmail}
-						overlayStyle={styles.overlay}
+						isVisible={this.state.showDelAccount}
+						overlayStyle={styles.overlayDelAccount}
 						onBackdropPress={() => this.setState({ showDelAccount: false })}>
+
+						<Text style={styles.delOverlayText}> Are you sure you want to delete your account? </Text>
+						
+						<Button
+							title="Delete Account"
+							titleStyle={styles.delAccountBtnText}
+							buttonStyle={styles.delAccountBtnOverlay}
+							onPress={() => this.setState({ showDelAccount: false })}
+						/>
+
+						<Button
+							title="Cancel"
+							type="outline"
+							titleStyle={styles.overlayDelButtonText}
+							buttonStyle={styles.overlayDelButton}
+							onPress={() => this.setState({ showDelAccount: false })}
+						/>
+
+						
 					
 					</Overlay>
 

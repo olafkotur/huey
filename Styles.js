@@ -755,7 +755,6 @@ export default StyleSheet.create({
 	logoutBtn: {
 		borderColor: '#27AE60',
 		width: '80%',
-		textAlign: 'center',
 		marginTop: deviceHeight * 0.5,
 	},
 
@@ -768,14 +767,40 @@ export default StyleSheet.create({
 	delAccountBtn: {
 		backgroundColor: '#e84118',
 		width: '80%',
-		textAlign: 'center',
 		marginTop: deviceHeight * 0.05,
+	},
+
+	delAccountBtnOverlay: {
+		backgroundColor: '#e84118',
+		width: '100%',
+		marginTop: deviceHeight * 0.1,
 	},
 
 	delAccountBtnText: {
 		color: '#fff',
 		textAlign: 'center',
 		width: '100%',
+	},
+
+	overlayDelAccount: {
+		height: deviceHeight * 0.4,
+	},
+
+	overlayDelButton: {
+		marginTop: deviceHeight * 0.02,
+		width: '100%',
+		borderColor: '#4B4B4B',
+	},
+
+	overlayDelButtonText: {
+		color: '#4b4b4b',
+	},
+
+	delOverlayText: {
+		marginTop: deviceHeight * 0.075,
+		fontWeight: 'bold',
+		fontSize: deviceHeight * 0.03,
+		textAlign: 'center',
 	},
 
 // 7. Gallery
