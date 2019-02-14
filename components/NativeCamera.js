@@ -186,7 +186,7 @@ export default class NativeCamera extends React.Component {
 			this.setState({isRecording: false});
 		}
 
-		// Capture Photo & Store Locally
+		//  Photo & Store Locally
 		else if (action === 'photo' && this.camera) {
 			let options = {quality: 0.1}
 			try {
@@ -208,7 +208,7 @@ export default class NativeCamera extends React.Component {
 			}
 		}
 
-		// Capture video & Store Locally
+		//  video & Store Locally
 		else if (action === 'video' && this.state.isRecording === false && this.camera) {
 			try {
 				this.setState({isRecording: true});
@@ -225,7 +225,7 @@ export default class NativeCamera extends React.Component {
 		}
 	}
 
-	// Capture video or photo & checks Location Eliggibility @ Capture
+	//  video or photo & checks Location Eliggibility @ Capture
 	captureMedia = async (action) => {
 		//this.validationCheckReport()
 		await this.handleRecording(action)
@@ -339,7 +339,7 @@ export default class NativeCamera extends React.Component {
 
 					<View style = {styles.captureProgressContainer}>
 						<Progress.CircleSnail
-							style = {styles.captureProgressCircle}
+							style = {styles.ProgressCircle}
 							color={['#27ae60']}
 							spinDuration = {1}
 							thickness = {4}
