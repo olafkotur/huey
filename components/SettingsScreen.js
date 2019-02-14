@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import { Overlay, Input, Button } from 'react-native-elements'
 
 import styles from "../Styles";
 
@@ -14,11 +16,12 @@ export default class SettingsScreen extends React.Component {
 	static navigationOptions = {
 		header: null,
 		gesturesEnabled: true,
-		showChangeEmail: false,
 	}
 
 	state = {
 		gestureName: 'none',
+		showChangeEmail: false,
+		showChangePassword: false,
 	}
 
 	_menu = null;
@@ -53,11 +56,11 @@ export default class SettingsScreen extends React.Component {
 					contentContainerStyle = {styles.container}
 					keyboardDismissMode = 'on-drag'
 					keyboardShouldPersistTaps = 'never'
-					scrollEnabled = {false}
+					scrollEnabled = {true}
 					enableAutomaticScroll = {false} >
 
 
-					{/*Navbar*/}
+				{/*Navbar*/}
 					<View style = {styles.navbarContainer}> 
 							<TouchableOpacity
 								style = {styles.navbarButton}
@@ -82,25 +85,82 @@ export default class SettingsScreen extends React.Component {
 						</View>
 					</View>
 
-					{/*-----------------MVP Settings Implementation-----------------*/}
+				{/*-----------------MVP Settings Implementation-----------------*/}
+
+					<Overlay
+						isVisible={this.state.showChangeEmail}
+						onBackdropPress={() => this.setState({ showChangeEmail: false })}>
+						<View style={styles.textInput}>
+							<Text style={styles.overlayHeader}> Change Email </Text>
+							<Input
+								placeholder='Old Email Address'
+								inputStyle={styles.textInput}
+								leftIcon={
+									<Icon
+									name='email'
+									size={30}
+									color='#4B4B4B'
+									style={styles.textFieldIcon}
+									/>
+								}
+							/>
+							<Input
+								placeholder='New Email Address'
+								inputStyle={styles.textInput}
+								leftIcon={
+									<IconMCI
+									name='email-outline'
+									size={30}
+									color='#4B4B4B'
+									style={styles.textFieldIcon}
+									/>
+								}
+							/>
+							<Input
+								placeholder='Confirm New Email Address'
+								inputStyle={styles.textInput}
+								leftIcon={
+									<IconMCI
+									name='email-check-outline'
+									size={30}
+									color='#4B4B4B'
+									style={styles.textFieldIcon}
+									/>
+								}
+							/>
+							<Button
+								title="Solid Button"
+								buttonStyle={styles.overlayButton}
+								onPress={() => this.setState({ showChangeEmail: false })}
+							/>
+						</View>
+
+					</Overlay>
+
+					<Overlay
+						isVisible={this.state.showChangePassword}
+						onBackdropPress={() => this.setState({ showChangePassword: false })}>
+						<Text> Meme </Text>
+					</Overlay>
 
 					<View style = {styles.settingsMenuContainer}>
 
 						{/* Change Email */}
 						<TouchableOpacity
 							style = {styles.settingsMenuBtn}
-							onPress = {() => this.setState({showChangeEmail: 'true'})} >
+							onPress = {() => this.setState({showChangeEmail: true})} >
 							<Icon name="email" style = {styles.settingsMenuBtnIcon} size = {30} />
 							<Text style={styles.settingsMenuBtnText}> Change Email </Text>
+							<Icon name="chevron-right" style={styles.settingsRArrow} size={30}/>
 						</TouchableOpacity>
 
 						{/* Change Password */}
 						<TouchableOpacity
 							style = {styles.settingsMenuBtn}
-							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
+							onPress = {() => this.setState({showChangePassword: true})} >
 							<Icon name="lock" style = {styles.settingsMenuBtnIcon} size = {30} />
 							<Text style={styles.settingsMenuBtnText}> Change Password </Text>
-							<Icon name="chevron-right" style={styles.settingsRightArrow} size={30}/>
+							<Icon name="chevron-right" style={styles.settingsRArrow} size={30}/>
 						</TouchableOpacity>
 
 					</View>

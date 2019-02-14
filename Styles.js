@@ -713,6 +713,33 @@ export default StyleSheet.create({
 		marginLeft: '10%',
 	},
 
+	settingsRArrow: {
+		marginLeft: deviceWidth * 0.8,
+		marginTop: -25,
+		color: '#4B4B4B',
+	},
+
+	textFieldIcon: {
+		marginLeft: -deviceWidth * 0.015,
+		marginRight: deviceWidth * 0.03,
+		marginTop: deviceHeight * 0.03,
+	},
+
+	textInput: {
+		marginTop: deviceHeight * 0.03,
+	},
+
+	overlayHeader: {
+		fontSize: deviceHeight * 0.02,
+		fontWeight: 'bold',
+		marginLeft: deviceWidth * 0.02,
+	},
+
+	overlayButton: {
+		backgroundColor: '#27ae60',
+		marginTop: deviceHeight * 0.1,
+	},
+
 	logoutBtn: {
 
 	},
