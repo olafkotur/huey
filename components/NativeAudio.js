@@ -26,7 +26,6 @@ export default class NativeAudio extends React.Component {
         audioRecordingButtonStyle: styles.audioRecordButton,
         buttonContainerStyle: styles.buttonContainer,
         gestureName: 'none',
-        audioURI: ''
     }
 
     componentDidMount = async () => {
@@ -38,31 +37,30 @@ export default class NativeAudio extends React.Component {
         this.props.navigation.navigate('HomeScreen');
     }
 
+    // Hide and unhide the recording button
+    handleHidden = () => {
+        if (this.state.isHidden) {
+            this.setState({buttonContainerStyle: styles.hide, isHidden: false});
+        }
+        else {
+            this.setState({buttonContainerStyle: styles.buttonContainer, isHidden: true});
+        }
+    }
+
     // Toggle the recoridng button between active and inactive styles
     handleRecording = async () => {
 
-        console.log(this.state.isRecording)
         // Start a new recording
         if (!this.state.isRecording) {
             this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, isRecording: true});
             await this.startRecording();
-            console.log("Starting recording");
         }
         // End current recording
         else {
             this.setState({audioRecordingButtonStyle: styles.audioRecordButton, isRecording: false});
             await this.stopRecording();
-            console.log(this.state.audioURI);
         }
-        // Hide button styling
-        // if (this.state.isHidden) {
-        //     this.setState({buttonContainerStyle: styles.hide});
-        // }
-        // else {
-        //     this.setState({buttonContainerStyle: styles.buttonContainer});
-        // }
     }
-    
 
     // Prepares the recorder and beginds to record audio
     startRecording = async () => {
@@ -88,7 +86,6 @@ export default class NativeAudio extends React.Component {
     stopRecording = async () => {
         try {
             await this.recording.stopAndUnloadAsync();
-            this.setState({audioURI: this.recording.getURI()})
             const uri = this.recording.getURI();
             await this.saveInCloud(uri)
         } catch (error) {  
@@ -124,7 +121,6 @@ export default class NativeAudio extends React.Component {
                     <View style = {this.state.buttonContainerStyle}>
                         <TouchableOpacity
                             style = {this.state.audioRecordingButtonStyle}
-                            // onPress = {async () => this.toggleRecording('recording')}>
                             onPress = {() => this.handleRecording()}>
                             <Icon name="mic" style = {styles.audioRecordButtonMic} />
                         </TouchableOpacity>
@@ -132,8 +128,7 @@ export default class NativeAudio extends React.Component {
 
                     <TouchableOpacity
                         style = {styles.hideButton}
-                        // onPress = {async () => this.toggleRecording('hidden')}>
-                        onPress = {async () => this.stopRecording()}>
+                        onPress = {() => this.handleHidden()}>
                         <Icon name="remove-red-eye" style = {styles.hideButton} />
                     </TouchableOpacity>
 
