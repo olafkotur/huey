@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity,SafeAreaView } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import DropdownAlert from 'react-native-dropdownalert';
 import FileHandler from './FileHandler';
+
 
 export default class NativeAudio extends React.Component {
 
@@ -88,7 +89,7 @@ export default class NativeAudio extends React.Component {
             await this.recording.stopAndUnloadAsync();
             const uri = this.recording.getURI();
             await this.saveInCloud(uri)
-        } catch (error) {  
+        } catch (error) {
             this.dropdown.alertWithType('error', 'Error', 'Something went wrong');
         }
     }
@@ -110,13 +111,34 @@ export default class NativeAudio extends React.Component {
                 config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
                 style = {{flex:1, backgroundColor: "#27ae60"}}>
 
+
+              <SafeAreaView style={{flex: 1, backgroundColor: "#27ae60"}}>
+
                 <View style = {styles.container}>
 
-                    <TouchableOpacity
-                        style = {styles.topLeftButton}
-                        onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-                        <Icon name="chevron-left" style = {styles.topLeftButtonIcon} />
-                    </TouchableOpacity>
+
+
+                    <View style = {styles.AudioNavContainer}>
+        							<TouchableOpacity
+        								style = {styles.AudioNavbarButton}
+        								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+        								<Icon name="chevron-left" style = {styles.navbarAudioBackIcon} />
+        							</TouchableOpacity>
+
+                      <TouchableOpacity
+                          style = {styles.hideButton}
+                          onPress = {() => this.handleHidden()}>
+                          <Icon name="remove-red-eye" style = {styles.hideButton} />
+                      </TouchableOpacity>
+
+
+                    </View>
+
+
+
+
+
+
 
                     <View style = {this.state.buttonContainerStyle}>
                         <TouchableOpacity
@@ -126,17 +148,14 @@ export default class NativeAudio extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity
-                        style = {styles.hideButton}
-                        onPress = {() => this.handleHidden()}>
-                        <Icon name="remove-red-eye" style = {styles.hideButton} />
-                    </TouchableOpacity>
+
+
 
                 </View>
 
-                <DropdownAlert ref={ref => this.dropdown = ref} />
-
-            </GestureRecognizer>
+              </SafeAreaView>
+            <DropdownAlert ref={ref => this.dropdown = ref} />
+        </GestureRecognizer>
         );
     }
 }

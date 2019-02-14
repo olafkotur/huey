@@ -19,6 +19,7 @@ import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 // Device dimension declaration
 var deviceHeight = Dimensions.get('window').height;
 var deviceWidth = Dimensions.get('window').width;
+var HueyGreen = '#27ae60'
 
 export default StyleSheet.create({
 
@@ -962,14 +963,41 @@ export default StyleSheet.create({
 	  alignSelf: 'center',
 	},
 
+  AudioNavContainer:{
+    width: deviceWidth,
+    height: deviceHeight /15,
+    //backgroundColor: '#27AE60',
+    backgroundColor: HueyGreen,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    top: 0,
+    position: 'absolute',
+  },
+
 	hideButton: {
-	  opacity: 0.9,
 	  zIndex: 100,
 	  position: 'absolute',
 	  alignSelf: 'center',
-	  fontSize:deviceHeight/25,
-	  top:deviceHeight/90,
+	  top:deviceHeight/150,
+    color:'#fff',
 	  right:(deviceWidth / 50),
+    fontSize: deviceHeight*0.045,
 	},
+
+  AudioNavbarButton: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top:deviceHeight/150,
+    color: "#fff",
+    left:(deviceWidth / 50),
+    fontSize: deviceHeight*0.045,
+  },
+
+  navbarAudioBackIcon:{
+    color: "#fff",
+    fontSize: deviceHeight*0.045,
+    top:deviceHeight/150,
+
+  },
 
 })
