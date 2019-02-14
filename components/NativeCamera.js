@@ -77,7 +77,7 @@ export default class NativeCamera extends React.Component {
 
 		if(firebaseprotestpassword == protestpassworddecrypt){
 
-			this.setState({oneTimePWValidated: true, qrIcon: 'progress-check', qrInformation: 'You\'ve scanned a public QR code.'})
+			this.setState({oneTimePWd: true, qrIcon: 'progress-check', qrInformation: 'You\'ve scanned a public QR code.'})
 			console.log('FOUND INDIVIDUAL QR CODE')
 			console.log("Protest Password Identified")
 		}
@@ -336,6 +336,12 @@ export default class NativeCamera extends React.Component {
 						onPress = {() => this.captureMedia('photo')}
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
+
+          <TouchableOpacity
+            style = {styles.settingsButton}
+            onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
+            <Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
+          </TouchableOpacity>
 
 					<View style = {styles.captureProgressContainer}>
 						<Progress.CircleSnail

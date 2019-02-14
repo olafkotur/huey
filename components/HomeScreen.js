@@ -94,11 +94,7 @@ export default class HomeScreen extends React.Component {
 						<Icon name="folder" style = {styles.folderIcon} allowFontScaling={false} />
 					</TouchableOpacity>
 
-					<TouchableOpacity
-						style = {styles.settingsButton}
-						onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
-						<Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
-					</TouchableOpacity>
+				
 
 			        <TouchableOpacity
 			          style = {styles.audioButton}
@@ -108,7 +104,7 @@ export default class HomeScreen extends React.Component {
 
 					<NativeCamera/>
 
-					<DropdownAlert 
+					<DropdownAlert
 						ref={ref => this.dropdown = ref}
 						containerStyle = {{backgroundColor: '#27ae60'}}
 						activeStatusBarBackgroundColor = {'#27ae60'}
