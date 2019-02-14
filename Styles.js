@@ -584,15 +584,6 @@ export default StyleSheet.create({
 
 //	6. Settings
 
-	settingsMenuContainer: {
-		flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: -deviceHeight * 0.075,
-        width: '100%',
-	},
-
 	settingsRecordingIcon: {
 		color: '#27ae60',
 	    backgroundColor: 'transparent',
@@ -683,24 +674,43 @@ export default StyleSheet.create({
 
 	//Settings MVP Implementation styles
 
+	settingsMenuContainer: {
+		flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: -deviceHeight * 0.25,
+        width: '100%',
+	},
+
 	settingsMenuBtn: {
-		height: 75,
+		height: 80,
 		margin: 'auto',
-		backgroundColor: 'red',
+		backgroundColor: 'transparent',
 		width: '100%',
+		borderWidth: 0,
+		borderBottomWidth: 1,
+		borderTopWidth: 1,
+		borderColor: '#F1F1F1',
+		marginBottom: -1,
+		padding: 7.5,
 	},
 
 	settingsMenuBtnText: {
-		fontSize: 25,
-		marginLeft: deviceWidth * 0.175,
-		marginTop: 20,
+		fontSize: 20,
+		marginLeft: deviceWidth * 0.2,
+		marginTop: -27.5,
 		color: '#4B4B4B',
 		marginRight: deviceWidth * 0.25,
 
 	},
 
 	settingsMenuBtnIcon: {
-
+		backgroundColor: 'transparent',
+		width: '3%',
+		color: '#3F3F3F',
+		marginTop: 15,
+		marginLeft: '10%',
 	},
 
 	logoutBtn: {

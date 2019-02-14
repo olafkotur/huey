@@ -86,10 +86,11 @@ export default class SettingsScreen extends React.Component {
 
 					<View style = {styles.settingsMenuContainer}>
 
-						{/* Change Password */}
+						{/* Change Email */}
 						<TouchableOpacity
 							style = {styles.settingsMenuBtn}
 							onPress = {() => this.setState({showChangeEmail: 'true'})} >
+							<Icon name="email" style = {styles.settingsMenuBtnIcon} size = {30} />
 							<Text style={styles.settingsMenuBtnText}> Change Email </Text>
 						</TouchableOpacity>
 
@@ -97,7 +98,9 @@ export default class SettingsScreen extends React.Component {
 						<TouchableOpacity
 							style = {styles.settingsMenuBtn}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
+							<Icon name="lock" style = {styles.settingsMenuBtnIcon} size = {30} />
 							<Text style={styles.settingsMenuBtnText}> Change Password </Text>
+							<Icon name="chevron-right" style={styles.settingsRightArrow} size={30}/>
 						</TouchableOpacity>
 
 					</View>
