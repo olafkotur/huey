@@ -55,14 +55,14 @@ export default class SettingsScreen extends React.Component {
 					scrollEnabled = {false}
 					enableAutomaticScroll = {false} >
 
+
+					{/*Navbar*/}
 					<View style = {styles.navbarContainer}> 
-						<View style = {styles.navbarBackContainer}> 
 							<TouchableOpacity
 								style = {styles.navbarButton}
 								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 								<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
 							</TouchableOpacity>
-						</View>
 
 						<View style = {styles.navbarRightContainer}>
 							<Menu
@@ -81,7 +81,14 @@ export default class SettingsScreen extends React.Component {
 						</View>
 					</View>
 
-					{/* Search Bar */}
+					{/*-----------------MVP Settings Implementation-----------------*/}
+
+
+
+
+
+{/* --------------Initial concept settings display--------------(PLease keep this comment far left so the code can be collapsed)
+					{/* Search Bar *
 					<TextInput
 						style = {styles.settingsSearchField}
 						secureTextEntry = {false}
@@ -94,7 +101,7 @@ export default class SettingsScreen extends React.Component {
 
 					<View style = {styles.settingsMenuContainer}>
 
-						{/* Recording Settings */}
+						{/* Recording Settings *
 						<TouchableOpacity
 							style = {styles.settingsMenuButton}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
@@ -104,7 +111,7 @@ export default class SettingsScreen extends React.Component {
 							<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 						</TouchableOpacity>
 
-						{/* Library Settings */}
+						{/* Library Settings *
 						<TouchableOpacity
 							style = {styles.settingsMenuButton}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
@@ -114,7 +121,7 @@ export default class SettingsScreen extends React.Component {
 							<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 						</TouchableOpacity>
 
-						{/* Appearance Settings */}
+						{/* Appearance Settings *
 						<TouchableOpacity
 							style = {styles.settingsMenuButton}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
@@ -124,7 +131,7 @@ export default class SettingsScreen extends React.Component {
 							<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 						</TouchableOpacity>
 
-						{/* Security Settings */}
+						{/* Security Settings *
 						<TouchableOpacity
 							style = {styles.settingsMenuButton}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
@@ -134,7 +141,7 @@ export default class SettingsScreen extends React.Component {
 							<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 						</TouchableOpacity>
 
-						{/* About */}
+						{/* About *
 						<TouchableOpacity
 							style = {styles.settingsMenuButton}
 							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
@@ -144,7 +151,7 @@ export default class SettingsScreen extends React.Component {
 							<Icon name="chevron-right" style = {styles.settingsRightArrow}  size = {30} />
 						</TouchableOpacity>
 
-					</View>
+					</View> */}
 
 				</KeyboardAwareScrollView>
 

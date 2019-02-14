@@ -85,6 +85,8 @@ export default StyleSheet.create({
 		backgroundColor: '#27AE60',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
+		top: 0,
+		position: 'absolute',
 	},
 
 	navbarGalleryContainer: {
@@ -114,10 +116,9 @@ export default StyleSheet.create({
 	navbarRightContainer: {
 		backgroundColor: 'transparent',
 		flexDirection: 'row-reverse',
-		width: deviceWidth * 0.75,
+		width: "85%",
 		height: deviceWidth * 0.075,
 		top: -deviceHeight * 0.0175,
-		left: deviceWidth * 0.075,
 		backgroundColor: 'transparent',
 	},
 
@@ -129,11 +130,10 @@ export default StyleSheet.create({
 
 	navbarButton: {
 		backgroundColor: "transparent",
-		right: deviceWidth * 0.05,
-		marginRight: 10,
-		marginLeft: 10,
-		height: deviceWidth * 0.075,
-		width: deviceWidth * 0.075,
+		textAlign: 'center',
+		height: "80%",
+		marginLeft: deviceWidth * 0.035,
+		marginTop: -deviceHeight*0.075,
 	},
 
 	navbarIcon: {
@@ -142,10 +142,8 @@ export default StyleSheet.create({
 	},
 
 	navbarBackIcon: {
-		fontSize: deviceHeight * 0.045,
 		color: "#fff",
-		top: deviceHeight * 0.015,
-		right: deviceWidth * 0.025,
+		fontSize: deviceHeight*0.045,
 	},
 
 	doubleButtonContainer: {
