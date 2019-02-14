@@ -554,12 +554,12 @@ export default StyleSheet.create({
 
 	folderButton: {
 	    width: deviceWidth * 0.08,
-		height: deviceWidth * 0.06,
+		height: deviceWidth * 0.08,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.03,
+		bottom: deviceHeight * 0.025,
 	    left: deviceWidth * 0.875,
 	},
 
@@ -999,5 +999,7 @@ export default StyleSheet.create({
     top:deviceHeight/150,
 
   },
+
+
 
 })
