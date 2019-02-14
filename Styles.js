@@ -410,7 +410,6 @@ export default StyleSheet.create({
 	    color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
-      height:deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -459,8 +458,7 @@ export default StyleSheet.create({
   	popover: {
   		backgroundColor: '#fff',
   		alignContent: 'center',
-      width:deviceWidth - (deviceWidth/25),
-      left:deviceWidth/50,
+      width:deviceWidth/2
   	},
 
   	qrCodeButton: {
