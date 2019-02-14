@@ -8,6 +8,7 @@ import * as firebase from "firebase";
 import DropdownAlert from 'react-native-dropdownalert';
 import { Tooltip } from 'react-native-elements';
 
+
 import styles from "../Styles";
 import FileHandler from './FileHandler';
 import QRCodeGenerator from './QRCodeGenerator'
@@ -337,11 +338,7 @@ export default class NativeCamera extends React.Component {
 						onLongPress = {() => this.captureMedia('video')} >
 					</TouchableOpacity>
 
-          <TouchableOpacity
-            style = {styles.settingsButton}
-            onPress = {() => this.props.navigation.navigate('SettingsScreen')}>
-            <Icon name="settings" style = {styles.settingsIcon} allowFontScaling={false} />
-          </TouchableOpacity>
+          
 
 					<View style = {styles.captureProgressContainer}>
 						<Progress.CircleSnail
