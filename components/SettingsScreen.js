@@ -14,6 +14,7 @@ export default class SettingsScreen extends React.Component {
 	static navigationOptions = {
 		header: null,
 		gesturesEnabled: true,
+		showChangeEmail: false,
 	}
 
 	state = {
@@ -83,9 +84,23 @@ export default class SettingsScreen extends React.Component {
 
 					{/*-----------------MVP Settings Implementation-----------------*/}
 
+					<View style = {styles.settingsMenuContainer}>
 
+						{/* Change Password */}
+						<TouchableOpacity
+							style = {styles.settingsMenuBtn}
+							onPress = {() => this.setState({showChangeEmail: 'true'})} >
+							<Text style={styles.settingsMenuBtnText}> Change Email </Text>
+						</TouchableOpacity>
 
+						{/* Change Password */}
+						<TouchableOpacity
+							style = {styles.settingsMenuBtn}
+							onPress = {() => this.props.navigation.navigate('SettingsScreen')} >
+							<Text style={styles.settingsMenuBtnText}> Change Password </Text>
+						</TouchableOpacity>
 
+					</View>
 
 {/* --------------Initial concept settings display--------------(PLease keep this comment far left so the code can be collapsed)
 					{/* Search Bar *

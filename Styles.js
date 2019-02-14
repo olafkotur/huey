@@ -588,8 +588,9 @@ export default StyleSheet.create({
 		flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'center',
         top: -deviceHeight * 0.075,
+        width: '100%',
 	},
 
 	settingsRecordingIcon: {
@@ -678,6 +679,36 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.12,
 		fontSize: deviceWidth * 0.06,
 		backgroundColor: '#fff',
+	},
+
+	//Settings MVP Implementation styles
+
+	settingsMenuBtn: {
+		height: 75,
+		margin: 'auto',
+		backgroundColor: 'red',
+		width: '100%',
+	},
+
+	settingsMenuBtnText: {
+		fontSize: 25,
+		marginLeft: deviceWidth * 0.175,
+		marginTop: 20,
+		color: '#4B4B4B',
+		marginRight: deviceWidth * 0.25,
+
+	},
+
+	settingsMenuBtnIcon: {
+
+	},
+
+	logoutBtn: {
+
+	},
+
+	delAccount: {
+
 	},
 
 // 7. Gallery
