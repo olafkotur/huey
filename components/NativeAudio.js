@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import {Recorder, Player} from 'react-native-audio-player-recorder-no-linking';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import DropdownAlert from 'react-native-dropdownalert';
+import FileHandler from './FileHandler';
 
 export default class NativeAudio extends React.Component {
 
@@ -38,29 +39,33 @@ export default class NativeAudio extends React.Component {
     }
 
     // Toggle the recoridng button between active and inactive styles
-    toggleRecording = async (action) => {
-        (action === 'recording') ? await this.setState({isRecording: !this.state.isRecording}) : await this.setState({isHidden: !this.state.isHidden});
-
-        // Record button styling
-        if (this.state.isRecording) {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton});
-            this.stopRecording();
-        }
-        else {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordButton});
-        }
-
-        // Hide button styling
-        if (this.state.isHidden) {
-            this.setState({buttonContainerStyle: styles.hide});
-        }
-        else {
-            this.setState({buttonContainerStyle: styles.buttonContainer});
-        }
-    }
-
-
     handleRecording = async () => {
+
+        console.log(this.state.isRecording)
+        // Start a new recording
+        if (!this.state.isRecording) {
+            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, isRecording: true});
+            await this.startRecording();
+            console.log("Starting recording");
+        }
+        // End current recording
+        else {
+            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, isRecording: false});
+            await this.stopRecording();
+            console.log(this.state.audioURI);
+        }
+        // Hide button styling
+        // if (this.state.isHidden) {
+        //     this.setState({buttonContainerStyle: styles.hide});
+        // }
+        // else {
+        //     this.setState({buttonContainerStyle: styles.buttonContainer});
+        // }
+    }
+    
+
+    // Prepares the recorder and beginds to record audio
+    startRecording = async () => {
         await Audio.setAudioModeAsync({
             allowsRecordingIOS: true,
             interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -77,18 +82,27 @@ export default class NativeAudio extends React.Component {
 
         // Start recording
         await this.recording.startAsync();
-        console.log('Started to record');
     }
 
+    // Attemps to stop the recording if one is in action
     stopRecording = async () => {
         try {
             await this.recording.stopAndUnloadAsync();
-            const uri = this.recording.getURI();
             this.setState({audioURI: this.recording.getURI()})
+            const uri = this.recording.getURI();
+            await this.saveInCloud(uri)
         } catch (error) {  
-            console.log("Nothing to stop");
+            this.dropdown.alertWithType('error', 'Error', 'Something went wrong');
         }
     }
+
+    // Sends to firebase as backup
+	saveInCloud = (uri) => {
+		const extension = '.mp3';
+		const name = Date.now().toString() + extension;
+		Handler = new FileHandler();
+		Handler.uploadMedia(uri, name);
+	}
 
     render() {
 
@@ -124,6 +138,8 @@ export default class NativeAudio extends React.Component {
                     </TouchableOpacity>
 
                 </View>
+
+                <DropdownAlert ref={ref => this.dropdown = ref} />
 
             </GestureRecognizer>
         );

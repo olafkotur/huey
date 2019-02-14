@@ -1,6 +1,5 @@
 import React from 'react';
 import { FileSystem } from 'expo';
-import uuid from 'uuid';
 import * as firebase from "firebase";
 
 export default class FileHandler extends React.Component {
@@ -68,6 +67,8 @@ export default class FileHandler extends React.Component {
 
 	// Uploads URI to firebase
 	uploadMedia = async (uri, name) => {
+		let dest = (name.includes('.mp3')) ? '/audio/' : '/media/';
+		
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -85,8 +86,8 @@ export default class FileHandler extends React.Component {
 
 		// Create references
 		const uid = await firebase.auth().currentUser.uid;
-		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + name);
-		const databaseRef = await firebase.database().ref('users/' + uid + '/media/');
+		const storageRef = await firebase.storage().ref('users/' + uid + dest + name);
+		const databaseRef = await firebase.database().ref('users/' + uid + dest);
 		
 		// Upload image to firebase storage and url to database
 		await storageRef.put(blob).then(async () => {
