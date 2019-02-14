@@ -22,9 +22,10 @@ export default class SettingsScreen extends React.Component {
 		gestureName: 'none',
 		showChangeEmail: false,
 		showChangePassword: false,
-		passwordVisible1: false,
-		passwordVisible2: false,
-		passwordVisible3: false,
+		showDelAccount: false,
+		passwordHidden1: true,
+		passwordHidden2: true,
+		passwordHidden3: true,
 		passwordIcon1: 'eye',
 		passwordIcon2: 'eye',
 		passwordIcon3: 'eye'
@@ -93,8 +94,10 @@ export default class SettingsScreen extends React.Component {
 
 				{/*-----------------MVP Settings Implementation-----------------*/}
 
+{/*-----Change Email Overlay-----*/}
 					<Overlay
 						isVisible={this.state.showChangeEmail}
+						overlayStyle={styles.overlay}
 						onBackdropPress={() => this.setState({ showChangeEmail: false })}>
 						<View style={styles.textInput}>
 							<Text style={styles.overlayHeader}> Change Email </Text>
@@ -145,15 +148,17 @@ export default class SettingsScreen extends React.Component {
 
 					</Overlay>
 
-<Overlay
+{/*-----Change Password Overlay-----*/}
+					<Overlay
 						isVisible={this.state.showChangePassword}
+						overlayStyle={styles.overlay}
 						onBackdropPress={() => this.setState({ showChangePassword: false })}>
 						<View style={styles.textInput}>
 							<Text style={styles.overlayHeader}> Change Password </Text>
 							<Input
 								placeholder='Old Password'
 								inputStyle={styles.textInput}
-								secureTextEntry={this.state.passwordVisible1}
+								secureTextEntry={this.state.passwordHidden1}
 								leftIcon={
 									<Icon
 										name='lock'
@@ -167,10 +172,10 @@ export default class SettingsScreen extends React.Component {
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
 										onPress={() => 
-													{if (this.state.passwordVisible1 === false) {
-														this.setState({passwordVisible1: true, passwordIcon1: 'eye-off-outline'})
+													{if (this.state.passwordHidden1 === false) {
+														this.setState({passwordHidden1: true, passwordIcon1: 'eye-off-outline'})
 													} else {
-														this.setState({passwordVisible1: false, passwordIcon1: 'eye'})
+														this.setState({passwordHidden1: false, passwordIcon1: 'eye'})
 													}
 												}
 										}
@@ -180,7 +185,7 @@ export default class SettingsScreen extends React.Component {
 							<Input
 								placeholder='New Password'
 								inputStyle={styles.textInput}
-								secureTextEntry={this.state.passwordVisible2}
+								secureTextEntry={this.state.passwordHidden2}
 								leftIcon={
 									<Icon
 										name='lock-outline'
@@ -194,10 +199,10 @@ export default class SettingsScreen extends React.Component {
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
 										onPress={() => 
-													{if (this.state.passwordVisible2 === false) {
-														this.setState({passwordVisible2: true, passwordIcon2: 'eye-off-outline'})
+													{if (this.state.passwordHidden2 === false) {
+														this.setState({passwordHidden2: true, passwordIcon2: 'eye-off-outline'})
 													} else {
-														this.setState({passwordVisible2: false, passwordIcon2: 'eye'})
+														this.setState({passwordHidden2: false, passwordIcon2: 'eye'})
 													}
 												}
 										}
@@ -208,7 +213,7 @@ export default class SettingsScreen extends React.Component {
 							<Input
 								placeholder='Confirm New Email Address'
 								inputStyle={styles.textInput}
-								secureTextEntry={this.state.passwordVisible3}
+								secureTextEntry={this.state.passwordHidden3}
 								leftIcon={
 									<Icon
 										name='lock-outline'
@@ -223,10 +228,10 @@ export default class SettingsScreen extends React.Component {
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
 										onPress={() => 
-													{if (this.state.passwordVisible3 === false) {
-														this.setState({passwordVisible3: true, passwordIcon3: 'eye-off-outline'})
+													{if (this.state.passwordHidden3 === false) {
+														this.setState({passwordHidden3: true, passwordIcon3: 'eye-off-outline'})
 													} else {
-														this.setState({passwordVisible3: false, passwordIcon3: 'eye'})
+														this.setState({passwordHidden3: false, passwordIcon3: 'eye'})
 													}
 												}
 										}
@@ -244,6 +249,16 @@ export default class SettingsScreen extends React.Component {
 
 					</Overlay>
 
+{/*-----Delete Account Overlay-----*/}
+					
+					<Overlay
+						isVisible={this.state.showChangeEmail}
+						overlayStyle={styles.overlay}
+						onBackdropPress={() => this.setState({ showDelAccount: false })}>
+					
+					</Overlay>
+
+{/*-----Main Settings list-----*/}
 					<View style = {styles.settingsMenuContainer}>
 
 						{/* Change Email */}
@@ -263,6 +278,21 @@ export default class SettingsScreen extends React.Component {
 							<Text style={styles.settingsMenuBtnText}> Change Password </Text>
 							<Icon name="chevron-right" style={styles.settingsRArrow} size={30}/>
 						</TouchableOpacity>
+
+						<Button
+							title="Log Out"
+							type="outline"
+							titleStyle={styles.logoutBtnText}
+							buttonStyle={styles.logoutBtn}>
+						</Button>
+
+
+						<Button
+							title="DELETE ACCOUNT"
+							titleStyle={styles.delAccountBtnText}
+							buttonStyle={styles.delAccountBtn}
+							onPress = {() => this.setState({showDelAccount: true})} >
+						</Button>
 
 					</View>
 

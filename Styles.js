@@ -679,8 +679,9 @@ export default StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        top: -deviceHeight * 0.25,
         width: '100%',
+        height: '100%',
+        marginTop: deviceHeight * 0.075,
 	},
 
 	settingsMenuBtn: {
@@ -727,7 +728,7 @@ export default StyleSheet.create({
 	},
 
 	textInput: {
-		marginTop: deviceHeight * 0.03,
+		marginTop: deviceHeight * 0.04,
 	},
 
 	overlayHeader: {
@@ -737,7 +738,7 @@ export default StyleSheet.create({
 	},
 
 	overlayButton: {
-		marginTop: deviceHeight * 0.39,
+		marginTop: deviceHeight * 0.075,
 		width: deviceWidth * 0.3,
 		marginLeft: deviceWidth * 0.425,
 		borderColor: '#27AE60',
@@ -747,12 +748,34 @@ export default StyleSheet.create({
 		color: '#27ae60',
 	},
 
-	logoutBtn: {
-
+	overlay: {
+		height: deviceHeight * 0.5,
 	},
 
-	delAccount: {
+	logoutBtn: {
+		borderColor: '#27AE60',
+		width: '80%',
+		textAlign: 'center',
+		marginTop: deviceHeight * 0.5,
+	},
 
+	logoutBtnText: {
+		color: '#27ae60',
+		textAlign: 'center',
+		width: '100%',
+	},
+
+	delAccountBtn: {
+		backgroundColor: '#e84118',
+		width: '80%',
+		textAlign: 'center',
+		marginTop: deviceHeight * 0.05,
+	},
+
+	delAccountBtnText: {
+		color: '#fff',
+		textAlign: 'center',
+		width: '100%',
 	},
 
 // 7. Gallery
