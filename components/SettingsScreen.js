@@ -32,7 +32,7 @@ export default class SettingsScreen extends React.Component {
 	}
 
 	_menu = null;
-	 
+
 	setMenuRef = ref => {
 		this._menu = ref;
 	};
@@ -68,19 +68,24 @@ export default class SettingsScreen extends React.Component {
 
 
 				{/*Navbar*/}
-					<View style = {styles.navbarContainer}> 
+					<View style = {styles.navbarContainer}>
 							<TouchableOpacity
 								style = {styles.navbarButton}
 								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 								<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
 							</TouchableOpacity>
 
+
+
 						<View style = {styles.navbarRightContainer}>
-							<Menu
+
+              <Menu
 									ref={this.setMenuRef}
-									button={ 				
+									/*button={
 											<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
-										}
+									}
+                  Button temporary removed until functionality requires it
+                  */
 									>
 									<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
 									<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
@@ -90,6 +95,7 @@ export default class SettingsScreen extends React.Component {
 							</Menu>
 
 						</View>
+
 					</View>
 
 				{/*-----------------MVP Settings Implementation-----------------*/}
@@ -171,7 +177,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden1 === false) {
 														this.setState({passwordHidden1: true, passwordIcon1: 'eye-off-outline'})
 													} else {
@@ -198,7 +204,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden2 === false) {
 														this.setState({passwordHidden2: true, passwordIcon2: 'eye-off-outline'})
 													} else {
@@ -227,7 +233,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden3 === false) {
 														this.setState({passwordHidden3: true, passwordIcon3: 'eye-off-outline'})
 													} else {
@@ -250,14 +256,14 @@ export default class SettingsScreen extends React.Component {
 					</Overlay>
 
 {/*-----Delete Account Overlay-----*/}
-					
+
 					<Overlay
 						isVisible={this.state.showDelAccount}
 						overlayStyle={styles.overlayDelAccount}
 						onBackdropPress={() => this.setState({ showDelAccount: false })}>
 
 						<Text style={styles.delOverlayText}> Are you sure you want to delete your account? </Text>
-						
+
 						<Button
 							title="Delete Account"
 							titleStyle={styles.delAccountBtnText}
@@ -273,8 +279,8 @@ export default class SettingsScreen extends React.Component {
 							onPress={() => this.setState({ showDelAccount: false })}
 						/>
 
-						
-					
+
+
 					</Overlay>
 
 {/*-----Main Settings list-----*/}
