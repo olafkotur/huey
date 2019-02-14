@@ -92,10 +92,11 @@ export default StyleSheet.create({
 
 	navbarGalleryContainer: {
 		width: deviceWidth,
-		height: deviceHeight * 0.075,
-		backgroundColor: '#27AE60',
+		height: deviceHeight * 0.060,
+		backgroundColor: HueyGreen,
 		flexDirection: 'row',
 		alignItems: 'flex-end',
+
 		//bottom: (deviceHeight * 0.465),
     	zIndex:100,
 	},
@@ -108,33 +109,30 @@ export default StyleSheet.create({
 	},
 
 	navbarBackContainer: {
-		backgroundColor: 'transparent',
+		backgroundColor: HueyGreen,
 		width: deviceWidth * 0.15,
-		height: deviceHeight * 0.075,
-		left: deviceWidth * 0.1,
+		height: "100%",
+		left: 0,
 	},
 
 	navbarRightContainer: {
-		backgroundColor: 'transparent',
+		backgroundColor: HueyGreen,
 		flexDirection: 'row-reverse',
-		width: "85%",
+		width: "80%",
 		height: deviceWidth * 0.075,
-		top: -deviceHeight * 0.0175,
-		backgroundColor: 'transparent',
+		bottom: (deviceWidth * 0.075)/2,
+
 	},
 
 	navbarMenu: {
-		marginRight: 10,
-		marginLeft: 25,
 		color: '#fff',
 	},
 
 	navbarButton: {
-		backgroundColor: "transparent",
+		backgroundColor: HueyGreen,
 		textAlign: 'center',
-		height: "80%",
-		marginLeft: deviceWidth * 0.035,
-		marginTop: -deviceHeight*0.075,
+		height: "100%",
+    top: 0,
 	},
 
 	navbarIcon: {
@@ -145,6 +143,9 @@ export default StyleSheet.create({
 	navbarBackIcon: {
 		color: "#fff",
 		fontSize: deviceHeight*0.045,
+    top: 0,
+    left: deviceWidth/40,
+
 	},
 
 	doubleButtonContainer: {
@@ -911,6 +912,7 @@ export default StyleSheet.create({
 		fontSize: deviceWidth * 0.1,
 		marginTop: deviceHeight * 0.01,
 		marginLeft: deviceWidth * 0.01,
+
 	},
 
 	galleryMenuButton: {
