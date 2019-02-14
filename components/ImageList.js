@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
-import { FileSystem, Video } from 'expo';
+import { View, TouchableOpacity, FlatList } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 import styles from "../Styles";
@@ -21,11 +20,11 @@ class ImageList extends React.Component {
 	fetchData = async () => {
 		this.setState({refreshing: true});
 		Handler = new FileHandler();
-		await Handler.getMedia().then((data) => this.setState({mediaData: data}));
+		await Handler.getMedia('media').then((data) => this.setState({mediaData: data}));
 		this.setState({refreshing: false});
 	}
 
-	renderImage = (item) => {
+	renderItem = (item) => {
 		const fileName = item.url.split('media%2F').pop().split('?')[0];
 		const fileType = fileName.includes('.png') ? 'photo' : 'video';
 
@@ -46,7 +45,7 @@ class ImageList extends React.Component {
 					horiztonal = {false}
 					numColumns = {3}
 					keyExtractor = {(item, index) => index.toString()}
-					renderItem = {({item}) => this.renderImage(item)}
+					renderItem = {({item}) => this.renderItem(item)}
 					refreshing = {this.state.refreshing}
 					onRefresh = {() => this.fetchData()} >
 				</FlatList>
