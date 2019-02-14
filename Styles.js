@@ -761,6 +761,7 @@ export default StyleSheet.create({
 		borderColor: '#27AE60',
 		width: '80%',
 		marginTop: deviceHeight * 0.5,
+    left:"7%",
 	},
 
 	logoutBtnText: {
@@ -773,6 +774,7 @@ export default StyleSheet.create({
 		backgroundColor: '#e84118',
 		width: '80%',
 		marginTop: deviceHeight * 0.05,
+    left:"40%",
 	},
 
 	delAccountBtnOverlay: {
