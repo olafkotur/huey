@@ -34,21 +34,21 @@ export default class AudioList extends React.Component {
 		if (this.state.isPlaying) {
 			console.log('Stopping playback');
 			this.setState({isPlaying: false});
-			this.sound.stopAsync();
+			// this.sound.stopAsync();
 		}
 		else {
 			console.log('Attempting to playback');
 			this.setState({isPlaying: true});
 
-			const sound = new Audio.Sound();
-			try {
-				await sound.loadAsync({uri: url});
-				this.sound = sound;
-				await sound.playAsync();
-				console.log('Sound is playing')
-			} catch (error) {
-				console.log(error.message);
-			}
+			// const sound = new Audio.Sound();
+			// try {
+			// 	await sound.loadAsync({uri: url});
+			// 	this.sound = sound;
+			// 	await sound.playAsync();
+			// 	console.log('Sound is playing')
+			// } catch (error) {
+			// 	console.log(error.message);
+			// }
 		}
 	}
 
