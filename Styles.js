@@ -11,7 +11,7 @@ import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 	Flat Red: 		#e84118
 	Flat Yellow: 	#fbc531
 	Black Text: 	#22292f
-	Dark Grey: 		#4B4B4B
+	Dark Grey: 		#4B4B4Bn
 *
 *
 */
@@ -69,6 +69,7 @@ export default StyleSheet.create({
 			5. HomeScreen
 			6. Settings
       		7. Gallery
+      		8. Audio Recording
 */
 
 
@@ -404,7 +405,6 @@ export default StyleSheet.create({
 		color: '#383838',
 		textAlign: 'center',
 	},
-
 
 //	4. Camera
 
@@ -928,54 +928,61 @@ export default StyleSheet.create({
 // 8. Audio Recording
 
 	buttonContainer: {
-	  width: deviceWidth * 0.4,
-	  height: deviceWidth * 0.4,
-	  opacity: 1,
-	  zIndex: 100,
-	  position: 'absolute',
-	  alignSelf: 'center',
-	  top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
+	  	width: deviceWidth * 0.4,
+	  	height: deviceWidth * 0.4,
+	  	opacity: 1,
+	  	zIndex: 100,
+	  	position: 'absolute',
+	  	alignSelf: 'center',
+	  	top: ((deviceHeight / 2) - ((deviceWidth * 0.4)/2)),
 
 	},
 
 	audioRecordButton: {
-	  width: deviceWidth * 0.4,
-	  height: deviceWidth * 0.4,
-	  opacity: 1,
-	  borderRadius: deviceWidth,
-	  borderWidth: 10,
-	  borderColor: '#4B4B4B',
-	  position: 'absolute',
-	  alignSelf: 'center',
+	  	width: deviceWidth * 0.4,
+	  	height: deviceWidth * 0.4,
+	  	opacity: 1,
+	  	borderRadius: deviceWidth,
+	  	borderWidth: 10,
+	  	borderColor: '#4B4B4B',
+	  	position: 'absolute',
+	  	alignSelf: 'center',
 	},
 
 	audioRecordButtonMic: {
-	  fontSize: deviceWidth /5,
-	  alignSelf: 'center',
-	  top:(deviceWidth / 13),
-	  color: '#2f3640',
+	  	fontSize: deviceWidth /5,
+	  	alignSelf: 'center',
+	  	top:(deviceWidth / 13),
+	  	color: '#2f3640',
 	},
 
 	audioRecordingButton: {
-	  width: deviceWidth * 0.4,
-	  height: deviceWidth * 0.4,
-	  opacity: 1,
-	  borderRadius: deviceWidth,
-	  borderWidth: 10,
-	  borderColor: 'red',
-	  color: 'red',
-	  position: 'absolute',
-	  alignSelf: 'center',
+	  	width: deviceWidth * 0.4,
+	  	height: deviceWidth * 0.4,
+	  	opacity: 1,
+	  	borderRadius: deviceWidth,
+	  	borderWidth: 10,
+	  	borderColor: '#e84118',
+	  	color: '#e84118',
+	  	position: 'absolute',
+	  	alignSelf: 'center',
+	},
+
+	audioRecordingButtonMic: {
+		fontSize: deviceWidth /5,
+		alignSelf: 'center',
+		top:(deviceWidth / 13),
+		color: '#e84118',
 	},
 
 	hideButton: {
-	  opacity: 0.9,
-	  zIndex: 100,
-	  position: 'absolute',
-	  alignSelf: 'center',
-	  fontSize:deviceHeight/25,
-	  top:deviceHeight/90,
-	  right:(deviceWidth / 50),
+	  	opacity: 0.9,
+	  	zIndex: 100,
+	  	position: 'absolute',
+	  	alignSelf: 'center',
+	  	fontSize:deviceHeight/25,
+	  	top:deviceHeight/90,
+	  	right:(deviceWidth / 50),
 	},
 
 })

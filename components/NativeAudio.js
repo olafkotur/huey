@@ -25,6 +25,7 @@ export default class NativeAudio extends React.Component {
         isHidden: false,
         audioRecordingButtonStyle: styles.audioRecordButton,
         buttonContainerStyle: styles.buttonContainer,
+        micButtonStyle: styles.audioRecordButtonMic,
         gestureName: 'none',
     }
 
@@ -52,12 +53,12 @@ export default class NativeAudio extends React.Component {
 
         // Start a new recording
         if (!this.state.isRecording) {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, isRecording: true});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, micButtonStyle: styles.audioRecordingButtonMic, isRecording: true});
             await this.startRecording();
         }
         // End current recording
         else {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, isRecording: false});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, micButtonStyle: styles.audioRecordButtonMic, isRecording: false});
             await this.stopRecording();
         }
     }
@@ -122,7 +123,7 @@ export default class NativeAudio extends React.Component {
                         <TouchableOpacity
                             style = {this.state.audioRecordingButtonStyle}
                             onPress = {() => this.handleRecording()}>
-                            <Icon name="mic" style = {styles.audioRecordButtonMic} />
+                            <Icon name="mic" style = {this.state.micButtonStyle} />
                         </TouchableOpacity>
                     </View>
 
