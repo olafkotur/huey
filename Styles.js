@@ -11,7 +11,7 @@ import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 	Flat Red: 		#e84118
 	Flat Yellow: 	#fbc531
 	Black Text: 	#22292f
-	Dark Grey: 		#4B4B4Bn
+	Dark Grey: 		#4B4B4B
 *
 *
 */
