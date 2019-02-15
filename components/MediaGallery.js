@@ -25,7 +25,7 @@ export default class MediaGallery extends React.Component {
 	}
 
 	_menu = null;
-	 
+
 	setMenuRef = ref => {
 	this._menu = ref;
 	};
@@ -45,7 +45,7 @@ export default class MediaGallery extends React.Component {
 			<View style = {{flex:1, backgroundColor: "#27ae60"}} >
 
 				<SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
-						
+
 					<View style = {styles.navbarGalleryContainer}>
 
 						<View style = {styles.navbarBackContainer}>

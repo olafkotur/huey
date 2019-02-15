@@ -19,6 +19,7 @@ import React, { StyleSheet, Platform, Dimensions } from 'react-native';
 // Device dimension declaration
 var deviceHeight = Dimensions.get('window').height;
 var deviceWidth = Dimensions.get('window').width;
+var HueyGreen = '#27ae60'
 
 export default StyleSheet.create({
 
@@ -82,22 +83,26 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+
+
 	navbarContainer: {
 		width: deviceWidth,
 		height: deviceHeight * 0.075,
-		backgroundColor: '#27AE60',
+		backgroundColor: HueyGreen,
 		flexDirection: 'row',
 		alignItems: 'flex-end',
 		top: 0,
+    zIndex:100,
 		position: 'absolute',
 	},
 
 	navbarGalleryContainer: {
 		width: deviceWidth,
-		height: deviceHeight * 0.075,
-		backgroundColor: '#27AE60',
+		height: deviceHeight * 0.060,
+		backgroundColor: HueyGreen,
 		flexDirection: 'row',
 		alignItems: 'flex-end',
+
 		//bottom: (deviceHeight * 0.465),
     	zIndex:100,
 	},
@@ -110,7 +115,7 @@ export default StyleSheet.create({
 	},
 
 	navbarBackContainer: {
-		backgroundColor: 'transparent',
+		backgroundColor: HueyGreen,
 		width: deviceWidth * 0.15,
 		height: '100%',
 		left: deviceWidth * 0.025,
@@ -118,7 +123,7 @@ export default StyleSheet.create({
 	},
 
 	navbarRightContainer: {
-		backgroundColor: 'transparent',
+		backgroundColor: HueyGreen,
 		flexDirection: 'row-reverse',
 		width: "85%",
 		marginRight: -deviceWidth * 0.025,
@@ -131,7 +136,7 @@ export default StyleSheet.create({
 	},
 
 	navbarButton: {
-		backgroundColor: "transparent",
+		backgroundColor: HueyGreen,
 		textAlign: 'center',
 		height: "80%",
 		margin: deviceWidth * 0.025,
@@ -146,6 +151,9 @@ export default StyleSheet.create({
 	navbarBackIcon: {
 		color: "#fff",
 		fontSize: deviceHeight*0.045,
+    top: 0,
+    left: deviceWidth/40,
+
 	},
 
 	doubleButtonContainer: {
@@ -411,6 +419,7 @@ export default StyleSheet.create({
 	    color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
+      height:deviceWidth * 0.065,
 	},
 
 	cameraContainer: {
@@ -459,6 +468,8 @@ export default StyleSheet.create({
   	popover: {
   		backgroundColor: '#fff',
   		alignContent: 'center',
+      width:deviceWidth - (deviceWidth/25),
+      left:deviceWidth/50,
   	},
 
   	qrCodeButton: {
@@ -551,12 +562,12 @@ export default StyleSheet.create({
 
 	folderButton: {
 	    width: deviceWidth * 0.08,
-		height: deviceWidth * 0.06,
+		height: deviceWidth * 0.08,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.03,
+		bottom: deviceHeight * 0.025,
 	    left: deviceWidth * 0.875,
 	},
 
@@ -682,7 +693,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        marginTop: deviceHeight * 0.075,
+
+        top:0,
+
 	},
 
 	settingsMenuBtn: {
@@ -757,6 +770,7 @@ export default StyleSheet.create({
 		borderColor: '#27AE60',
 		width: '80%',
 		marginTop: deviceHeight * 0.5,
+    left:"7%",
 	},
 
 	logoutBtnText: {
@@ -769,6 +783,7 @@ export default StyleSheet.create({
 		backgroundColor: '#e84118',
 		width: '80%',
 		marginTop: deviceHeight * 0.05,
+    left:"40%",
 	},
 
 	delAccountBtnOverlay: {
@@ -907,6 +922,7 @@ export default StyleSheet.create({
 		fontSize: deviceWidth * 0.1,
 		marginTop: deviceHeight * 0.01,
 		marginLeft: deviceWidth * 0.01,
+
 	},
 
 	galleryMenuButton: {
@@ -923,7 +939,7 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		borderColor: '#efefef',
 		borderWidth: 0,
-		borderBottomWidth: 1,	
+		borderBottomWidth: 1,
 		borderTopWidth: 1,
 		marginBottom: -1,
 		padding: deviceHeight * 0.02,
@@ -938,7 +954,7 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		width: '10%',
 		marginLeft: '90%',
-		bottom: '85%',	
+		bottom: '85%',
 	},
 
 	audioPlayIcon: {
@@ -995,6 +1011,17 @@ export default StyleSheet.create({
 		color: '#e84118',
 	},
 
+  AudioNavContainer:{
+    width: deviceWidth,
+    height: deviceHeight /15,
+    //backgroundColor: '#27AE60',
+    backgroundColor: HueyGreen,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    top: 0,
+    position: 'absolute',
+  },
+
 	hideButton: {
 	  	alignSelf: 'center',
 	  	fontSize: deviceWidth * 0.075,
@@ -1040,5 +1067,23 @@ export default StyleSheet.create({
 		width: 0,
 		height: 0,
 	},
+
+  AudioNavbarButton: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top:deviceHeight/150,
+    color: "#fff",
+    left:(deviceWidth / 50),
+    fontSize: deviceHeight*0.045,
+  },
+
+  navbarAudioBackIcon:{
+    color: "#fff",
+    fontSize: deviceHeight*0.045,
+    top:deviceHeight/150,
+
+  },
+
+
 
 })

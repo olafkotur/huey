@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, } from 'react-native';
+import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -32,7 +32,7 @@ export default class SettingsScreen extends React.Component {
 	}
 
 	_menu = null;
-	 
+
 	setMenuRef = ref => {
 		this._menu = ref;
 	};
@@ -59,6 +59,8 @@ export default class SettingsScreen extends React.Component {
 				config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
 				style = {{flex:1, backgroundColor: "#27ae60"}} >
 
+       	<SafeAreaView style={{flex: 1, backgroundColor: '#27ae60'}}>
+
 				<KeyboardAwareScrollView
 					contentContainerStyle = {styles.container}
 					keyboardDismissMode = 'on-drag'
@@ -77,6 +79,8 @@ export default class SettingsScreen extends React.Component {
 							</TouchableOpacity>
 						</View>
 
+
+
 						<View style = {styles.navbarRightContainer}>
 
 							<Menu
@@ -90,12 +94,14 @@ export default class SettingsScreen extends React.Component {
 								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
 							</Menu>
 						</View>
+
 					</View>
 
 				{/*-----------------MVP Settings Implementation-----------------*/}
 
 {/*-----Change Email Overlay-----*/}
 					<Overlay
+
 						isVisible={this.state.showChangeEmail}
 						overlayStyle={styles.overlay}
 						onBackdropPress={() => this.setState({ showChangeEmail: false })}>
@@ -171,7 +177,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden1 === false) {
 														this.setState({passwordHidden1: true, passwordIcon1: 'eye-off-outline'})
 													} else {
@@ -198,7 +204,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden2 === false) {
 														this.setState({passwordHidden2: true, passwordIcon2: 'eye-off-outline'})
 													} else {
@@ -227,7 +233,7 @@ export default class SettingsScreen extends React.Component {
 										size={20}
 										color='#4B4B4B'
 										style={styles.textFieldIcon}
-										onPress={() => 
+										onPress={() =>
 													{if (this.state.passwordHidden3 === false) {
 														this.setState({passwordHidden3: true, passwordIcon3: 'eye-off-outline'})
 													} else {
@@ -250,14 +256,14 @@ export default class SettingsScreen extends React.Component {
 					</Overlay>
 
 {/*-----Delete Account Overlay-----*/}
-					
+
 					<Overlay
 						isVisible={this.state.showDelAccount}
 						overlayStyle={styles.overlayDelAccount}
 						onBackdropPress={() => this.setState({ showDelAccount: false })}>
 
 						<Text style={styles.delOverlayText}> Are you sure you want to delete your account? </Text>
-						
+
 						<Button
 							title="Delete Account"
 							titleStyle={styles.delAccountBtnText}
@@ -273,8 +279,8 @@ export default class SettingsScreen extends React.Component {
 							onPress={() => this.setState({ showDelAccount: false })}
 						/>
 
-						
-					
+
+
 					</Overlay>
 
 {/*-----Main Settings list-----*/}
@@ -382,7 +388,7 @@ export default class SettingsScreen extends React.Component {
 					</View> */}
 
 				</KeyboardAwareScrollView>
-
+       </SafeAreaView>
 			</GestureRecognizer>
 		);
 	}

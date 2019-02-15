@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, TouchableHighlight } from 'react-native';
+import { View, TouchableOpacity, Text, TouchableHighlight,SafeAreaView } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
@@ -12,7 +12,7 @@ import BlinkView from 'react-native-blink-view'
 
 
 const options = {
-    container: {        
+    container: {
         backgroundColor: 'transparent',
         textAlign: 'center',
         color: 'red',
@@ -22,6 +22,7 @@ const options = {
         color: '#4b4b4b',
     }
 };
+
 
 export default class NativeAudio extends React.Component {
 
@@ -111,7 +112,7 @@ export default class NativeAudio extends React.Component {
             await this.recording.stopAndUnloadAsync();
             const uri = this.recording.getURI();
             await this.saveInCloud(uri)
-        } catch (error) {  
+        } catch (error) {
             this.dropdown.alertWithType('error', 'Error', 'Something went wrong');
         }
     }
@@ -133,24 +134,34 @@ export default class NativeAudio extends React.Component {
                 config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
                 style = {{flex:1, backgroundColor: "#27ae60"}}>
 
+
+              <SafeAreaView style={{flex: 1, backgroundColor: "#27ae60"}}>
+
                 <View style = {styles.container}>
 
-                    <View style = {styles.navbarContainer}>
-                        <View style = {styles.navbarBackContainer}>
-                            <TouchableOpacity
-                                onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-                                <Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
-                            </TouchableOpacity>
-                        </View>
 
-                        <View style = {styles.navbarRightContainer}>
-                            <TouchableOpacity
-                                style = {styles.navbarButton}
-                                onPress = {() => this.handleHidden()}>
-                                <Icon name="remove-red-eye" style = {styles.navbarIcon} size = {30}/>
-                            </TouchableOpacity>
-                        </View>
+
+                    <View style = {styles.AudioNavContainer}>
+        							<TouchableOpacity
+        								style = {styles.AudioNavbarButton}
+        								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+        								<Icon name="chevron-left" style = {styles.navbarAudioBackIcon} />
+        							</TouchableOpacity>
+
+                      <TouchableOpacity
+                          style = {styles.hideButton}
+                          onPress = {() => this.handleHidden()}>
+                          <Icon name="remove-red-eye" style = {styles.hideButton} />
+                      </TouchableOpacity>
+
+
                     </View>
+
+
+
+
+
+
 
                     <View style = {this.state.buttonContainerStyle}>
                         <TouchableOpacity
@@ -161,8 +172,8 @@ export default class NativeAudio extends React.Component {
                     </View>
 
 
-                    <TouchableOpacity 
-                        style={this.state.overlayViewStyle} 
+                    <TouchableOpacity
+                        style={this.state.overlayViewStyle}
                         onLongPress = {() => this.handleHidden()}
                         activeOpacity={0.9}>
                     </TouchableOpacity>
@@ -182,9 +193,12 @@ export default class NativeAudio extends React.Component {
 
                 </View>
 
-                <DropdownAlert ref={ref => this.dropdown = ref} />
 
-            </GestureRecognizer>
+                </View>
+
+              </SafeAreaView>
+            <DropdownAlert ref={ref => this.dropdown = ref} />
+        </GestureRecognizer>
         );
     }
 }
