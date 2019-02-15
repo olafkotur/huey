@@ -1,11 +1,27 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text, TouchableHighlight } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import DropdownAlert from 'react-native-dropdownalert';
 import FileHandler from './FileHandler';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import BlinkView from 'react-native-blink-view'
+
+
+
+const options = {
+    container: {        
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        color: 'red',
+    },
+    text: {
+        fontSize: 30,
+        color: '#4b4b4b',
+    }
+};
 
 export default class NativeAudio extends React.Component {
 
@@ -25,7 +41,12 @@ export default class NativeAudio extends React.Component {
         isHidden: false,
         audioRecordingButtonStyle: styles.audioRecordButton,
         buttonContainerStyle: styles.buttonContainer,
+        micButtonStyle: styles.audioRecordButtonMic,
         gestureName: 'none',
+        stopwatchReset: false,
+        stopwatchStart: false,
+        blinkStyle: styles.blinkingCircleOff,
+        overlayViewStyle: styles.showScreen,
     }
 
     componentDidMount = async () => {
@@ -39,11 +60,13 @@ export default class NativeAudio extends React.Component {
 
     // Hide and unhide the recording button
     handleHidden = () => {
-        if (this.state.isHidden) {
-            this.setState({buttonContainerStyle: styles.hide, isHidden: false});
+        if (this.state.isHidden === true) {
+            this.setState({overlayViewStyle: styles.showScreen, isHidden: false});
+            console.log("MEME");
         }
         else {
-            this.setState({buttonContainerStyle: styles.buttonContainer, isHidden: true});
+            this.setState({overlayViewStyle: styles.hideScreen, isHidden: true});
+            console.log("MEME");
         }
     }
 
@@ -52,12 +75,12 @@ export default class NativeAudio extends React.Component {
 
         // Start a new recording
         if (!this.state.isRecording) {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, isRecording: true});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, micButtonStyle: styles.audioRecordingButtonMic, isRecording: true, stopwatchReset: false, stopwatchStart: true, blinkStyle: styles.blinkingCircleOn});
             await this.startRecording();
         }
         // End current recording
         else {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, isRecording: false});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, micButtonStyle: styles.audioRecordButtonMic, isRecording: false, stopwatchReset: true, stopwatchStart: false, blinkStyle: styles.blinkingCircleOff});
             await this.stopRecording();
         }
     }
@@ -112,25 +135,49 @@ export default class NativeAudio extends React.Component {
 
                 <View style = {styles.container}>
 
-                    <TouchableOpacity
-                        style = {styles.topLeftButton}
-                        onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-                        <Icon name="chevron-left" style = {styles.topLeftButtonIcon} />
-                    </TouchableOpacity>
+                    <View style = {styles.navbarContainer}> 
+                            <TouchableOpacity
+                                style = {styles.navbarButton}
+                                onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+                                <Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+                            </TouchableOpacity>
+
+                        <View style = {styles.navbarRightContainer}>
+                            <TouchableOpacity
+                                style = {styles.hideButton}
+                                onPress = {() => this.handleHidden()}>
+                                <Icon name="remove-red-eye" style = {styles.hideButton} size = {30}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
 
                     <View style = {this.state.buttonContainerStyle}>
                         <TouchableOpacity
                             style = {this.state.audioRecordingButtonStyle}
                             onPress = {() => this.handleRecording()}>
-                            <Icon name="mic" style = {styles.audioRecordButtonMic} />
+                            <Icon name="mic" style = {this.state.micButtonStyle} />
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity
-                        style = {styles.hideButton}
-                        onPress = {() => this.handleHidden()}>
-                        <Icon name="remove-red-eye" style = {styles.hideButton} />
+
+                    <TouchableOpacity 
+                        style={this.state.overlayViewStyle} 
+                        onLongPress = {() => this.handleHidden()}
+                        activeOpacity={0.9}>
                     </TouchableOpacity>
+
+
+
+                    <View>
+                         <View style={styles.recordingStopwatch}>
+                            <Stopwatch  start={this.state.stopwatchStart}
+                                        reset={this.state.stopwatchReset}
+                                        options={options}
+                            />
+                            <BlinkView blinking={true} delay={1000} style = {this.state.blinkStyle}>
+                            </BlinkView>
+                        </View>
+                    </View>
 
                 </View>
 
