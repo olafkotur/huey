@@ -194,7 +194,7 @@ export default class NativeAudio extends React.Component {
                 </View>
 
 
-                </View>
+          
 
               </SafeAreaView>
             <DropdownAlert ref={ref => this.dropdown = ref} />

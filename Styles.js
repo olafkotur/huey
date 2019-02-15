@@ -119,7 +119,7 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.15,
 		height: '100%',
 		left: deviceWidth * 0.025,
-		top: deviceHeight * 0.015,
+		top: 0,
 	},
 
 	navbarRightContainer: {
@@ -127,7 +127,7 @@ export default StyleSheet.create({
 		flexDirection: 'row-reverse',
 		width: "85%",
 		marginRight: -deviceWidth * 0.025,
-		marginTop: deviceHeight * 0.02,
+		marginTop: 0,
 		backgroundColor: 'transparent',
 	},
 
@@ -136,7 +136,7 @@ export default StyleSheet.create({
 	},
 
 	navbarButton: {
-		backgroundColor: HueyGreen,
+		backgroundColor: 'transparent',
 		textAlign: 'center',
 		height: "80%",
 		margin: deviceWidth * 0.025,
