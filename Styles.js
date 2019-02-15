@@ -985,4 +985,28 @@ export default StyleSheet.create({
 	  	right:(deviceWidth / 50),
 	},
 
+	blinkingCircleOn: {
+		backgroundColor: '#e84118',
+		width: 20,
+		height: 20,
+		borderRadius: deviceWidth,
+		marginLeft: deviceWidth * 0.1,
+		marginTop: 10,
+	},
+
+	blinkingCircleOff: {
+		backgroundColor: 'transparent',
+		width: 20,
+		height: 20,
+		borderRadius: deviceWidth,
+		marginLeft: deviceWidth * 0.1,
+		marginTop: 10,
+	},
+
+	recordingStopwatch: {
+		backgroundColor: 'transparent',
+		marginTop: deviceHeight * 0.4,
+
+	}
+
 })

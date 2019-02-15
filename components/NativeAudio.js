@@ -1,11 +1,27 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import DropdownAlert from 'react-native-dropdownalert';
 import FileHandler from './FileHandler';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import BlinkView from 'react-native-blink-view'
+
+
+
+const options = {
+    container: {        
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        color: 'red',
+    },
+    text: {
+        fontSize: 30,
+        color: '#4b4b4b',
+    }
+};
 
 export default class NativeAudio extends React.Component {
 
@@ -27,6 +43,9 @@ export default class NativeAudio extends React.Component {
         buttonContainerStyle: styles.buttonContainer,
         micButtonStyle: styles.audioRecordButtonMic,
         gestureName: 'none',
+        stopwatchReset: false,
+        stopwatchStart: false,
+        blinkStyle: styles.blinkingCircleOff
     }
 
     componentDidMount = async () => {
@@ -53,12 +72,12 @@ export default class NativeAudio extends React.Component {
 
         // Start a new recording
         if (!this.state.isRecording) {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, micButtonStyle: styles.audioRecordingButtonMic, isRecording: true});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordingButton, micButtonStyle: styles.audioRecordingButtonMic, isRecording: true, stopwatchReset: false, stopwatchStart: true, blinkStyle: styles.blinkingCircleOn});
             await this.startRecording();
         }
         // End current recording
         else {
-            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, micButtonStyle: styles.audioRecordButtonMic, isRecording: false});
+            this.setState({audioRecordingButtonStyle: styles.audioRecordButton, micButtonStyle: styles.audioRecordButtonMic, isRecording: false, stopwatchReset: true, stopwatchStart: false, blinkStyle: styles.blinkingCircleOff});
             await this.stopRecording();
         }
     }
@@ -132,6 +151,19 @@ export default class NativeAudio extends React.Component {
                         onPress = {() => this.handleHidden()}>
                         <Icon name="remove-red-eye" style = {styles.hideButton} />
                     </TouchableOpacity>
+
+
+
+                    <View>
+                         <View style={styles.recordingStopwatch}>
+                            <Stopwatch  start={this.state.stopwatchStart}
+                                        reset={this.state.stopwatchReset}
+                                        options={options}
+                            />
+                            <BlinkView blinking={true} delay={1000} style = {this.state.blinkStyle}>
+                            </BlinkView>
+                        </View>
+                    </View>
 
                 </View>
 
