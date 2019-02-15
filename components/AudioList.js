@@ -58,12 +58,12 @@ export default class AudioList extends React.Component {
 		const fileName = item.url.split('audio%2F').pop().split('?')[0].split('.')[0];
 		var options = { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
 		let date = new Date(parseInt(fileName));
-		date = new Intl.DateTimeFormat('en-GB', options).format(date);
+		//date = new Intl.DateTimeFormat('en-GB', options).format(date);
 
 		return (
 			<View
 				style = {styles.audioItemContainer}>
-				<Text>{date}</Text>
+				<Text>{date.toString()}</Text>
 
 				<TouchableOpacity 
 					onPress = {() => this.handlePlayback(item.url)}>
