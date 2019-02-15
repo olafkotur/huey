@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, } from 'react-native';
+import { StyleSheet, Text, View, Image,TouchableOpacity, TextInput, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -59,6 +59,8 @@ export default class SettingsScreen extends React.Component {
 				config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
 				style = {{flex:1, backgroundColor: "#27ae60"}} >
 
+       	<SafeAreaView style={{flex: 1, backgroundColor: '#27ae60'}}>
+
 				<KeyboardAwareScrollView
 					contentContainerStyle = {styles.container}
 					keyboardDismissMode = 'on-drag'
@@ -81,11 +83,11 @@ export default class SettingsScreen extends React.Component {
 
               <Menu
 									ref={this.setMenuRef}
-									/*button={
+									button={
 											<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
 									}
                   Button temporary removed until functionality requires it
-                  */
+
 									>
 									<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
 									<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
@@ -102,6 +104,7 @@ export default class SettingsScreen extends React.Component {
 
 {/*-----Change Email Overlay-----*/}
 					<Overlay
+
 						isVisible={this.state.showChangeEmail}
 						overlayStyle={styles.overlay}
 						onBackdropPress={() => this.setState({ showChangeEmail: false })}>
@@ -388,7 +391,7 @@ export default class SettingsScreen extends React.Component {
 					</View> */}
 
 				</KeyboardAwareScrollView>
-
+       </SafeAreaView>
 			</GestureRecognizer>
 		);
 	}

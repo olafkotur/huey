@@ -80,13 +80,16 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+
+
 	navbarContainer: {
 		width: deviceWidth,
 		height: deviceHeight * 0.075,
-		backgroundColor: '#27AE60',
+		backgroundColor: HueyGreen,
 		flexDirection: 'row',
 		alignItems: 'flex-end',
 		top: 0,
+    zIndex:100,
 		position: 'absolute',
 	},
 
@@ -686,7 +689,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        marginTop: deviceHeight * 0.075,
+        
+        top:0,
+
 	},
 
 	settingsMenuBtn: {
