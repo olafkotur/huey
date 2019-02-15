@@ -411,6 +411,8 @@ export default StyleSheet.create({
 	    color: '#fff',
 	    backgroundColor: 'transparent',
 	    fontSize: deviceWidth * 0.065,
+      height:deviceWidth * 0.065,
+
 	},
 
 	cameraContainer: {
@@ -459,6 +461,8 @@ export default StyleSheet.create({
   	popover: {
   		backgroundColor: '#fff',
   		alignContent: 'center',
+      width:deviceWidth - (deviceWidth/25),
+      left:deviceWidth/50,
   	},
 
   	qrCodeButton: {
@@ -550,14 +554,14 @@ export default StyleSheet.create({
 
 
 	folderButton: {
-	    width: deviceWidth * 0.08,
-		height: deviceWidth * 0.06,
+	  width: deviceWidth * 0.08,
+		height: deviceWidth * 0.08,
 		opacity: 0.9,
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.03,
-	    left: deviceWidth * 0.875,
+	  left: deviceWidth * 0.875,
 	},
 
   	folderIcon: {
@@ -757,6 +761,7 @@ export default StyleSheet.create({
 		borderColor: '#27AE60',
 		width: '80%',
 		marginTop: deviceHeight * 0.5,
+    left:"7%",
 	},
 
 	logoutBtnText: {
@@ -769,6 +774,8 @@ export default StyleSheet.create({
 		backgroundColor: '#e84118',
 		width: '80%',
 		marginTop: deviceHeight * 0.05,
+
+    left:"40%",
 	},
 
 	delAccountBtnOverlay: {
@@ -923,7 +930,7 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		borderColor: '#efefef',
 		borderWidth: 0,
-		borderBottomWidth: 1,	
+		borderBottomWidth: 1,
 		borderTopWidth: 1,
 		marginBottom: -1,
 		padding: deviceHeight * 0.02,
@@ -938,7 +945,7 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		width: '10%',
 		marginLeft: '90%',
-		bottom: '85%',	
+		bottom: '85%',
 	},
 
 	audioPlayIcon: {
