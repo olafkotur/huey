@@ -15,8 +15,9 @@ export default class AudioList extends React.Component {
     state = {
         refreshing: false,
         isPlaying: false,
+        isPlayingURL: '',
         audioData: [],
-        playIcon: 'play'
+        playIcon: 'play',
     }
 
     componentDidMount = async () => {
@@ -35,20 +36,19 @@ export default class AudioList extends React.Component {
     handlePlayback = async (url) => {
         // Stop audio if already playing
         if (this.state.isPlaying) {
-            this.setState({isPlaying: false, playIcon: 'play'});
+            this.setState({isPlaying: false, isPlayingURL: ''});
             await this.sound.stopAsync();
             await this.sound.unloadAsync();
         }
         
         // Play audio if not already playing 
         else {
-            this.setState({isPlaying: true, playIcon: 'pause'});
+            this.setState({isPlaying: true, isPlayingURL: url});
 
-            const sound = new Audio.Sound();
+           this.sound = new Audio.Sound();
             try {
-                await sound.loadAsync({uri: url});
-                this.sound = sound;
-                await sound.playAsync();
+                await this.sound.loadAsync({uri: url});
+                await this.sound.playAsync();
             } catch (error) {
                 console.log(error.message);
             }
@@ -73,7 +73,7 @@ export default class AudioList extends React.Component {
                     <TouchableOpacity 
                         style={styles.audioPlayButton}
                         onPress = {() => this.handlePlayback(item.url)}>
-                        <Icon name={this.state.playIcon} style = {styles.audioPlayIcon} size = {40}/>
+                        <Icon name={(item.url === this.state.isPlayingURL) ? 'pause' : 'play'} style = {styles.audioPlayIcon} size = {40}/>
                     </TouchableOpacity>
 
                 </View>
