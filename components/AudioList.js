@@ -4,6 +4,7 @@ import { Audio } from 'expo';
 import styles from "../Styles";
 import FileHandler from './FileHandler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import moment from 'moment';
 
 export default class AudioList extends React.Component {
 
@@ -44,10 +45,9 @@ export default class AudioList extends React.Component {
         // Play audio if not already playing 
         else {
             this.setState({isPlaying: true, isPlayingURL: url});
-
-           this.sound = new Audio.Sound();
             try {
-                await this.sound.loadAsync({uri: url});
+                this.sound = new Audio.Sound();
+                await this.sound.loadAsync({uri: url})
                 await this.sound.playAsync();
             } catch (error) {
                 console.log(error.message);
@@ -59,16 +59,12 @@ export default class AudioList extends React.Component {
     renderItem = (item) => {
         // Format date DD:MM:YYYY, hh:mm,ss
         const fileName = item.url.split('audio%2F').pop().split('?')[0].split('.')[0];
-        var options = { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
-        let date = new Date(parseInt(fileName));
-        date = new Intl.DateTimeFormat('en-GB', options).format(date);
+        const date = moment.unix(Math.ceil(fileName / 1000)).format('MMMM Do YYYY, h:mm:ss');
 
         return (
                 <View 
                     style = {styles.audioItemContainer}>
                     <Text style = {styles.audioItemTitle}>{date}</Text>
-
-                    <Text>00:00:00/00:02:37</Text>
 
                     <TouchableOpacity 
                         style={styles.audioPlayButton}
