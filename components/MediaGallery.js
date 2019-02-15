@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { View, TouchableOpacity, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';

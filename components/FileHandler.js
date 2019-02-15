@@ -4,7 +4,6 @@ import * as firebase from "firebase";
 
 export default class FileHandler extends React.Component {
 
-
 	state = {
 
 	}
@@ -49,14 +48,15 @@ export default class FileHandler extends React.Component {
 		return uri;
 	}
 
-	// Returns media from firebase
-	getMedia = async () => {
+	// Returns media from firebase, enter param 'media' or 'audio'
+	getMedia = async (destination) => {
+		const dest = (destination === 'audio') ? '/audio/' : '/media/';
 		const uid = await firebase.auth().currentUser.uid;
-		const databaseRef = await firebase.database().ref('users/' + uid + '/media/');
+		const ref = await firebase.database().ref('users/' + uid + dest);
 		let media = [];
 
 		// Get URLs from database
-		await databaseRef.once('value', snapshot => {
+		await ref.once('value', snapshot => {
 			if (snapshot.exists()) {
 				media = Object.values(snapshot.val());
 			}

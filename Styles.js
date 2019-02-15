@@ -43,6 +43,15 @@ export default StyleSheet.create({
 	},
 
 
+	audioItemContainer: {
+		width: deviceWidth,
+		height: 100,
+		backgroundColor: 'red',
+		borderBottomColor: 'black',
+		borderWidth: 1
+	},
+
+
 	/*
 	*
 	*
