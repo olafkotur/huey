@@ -117,12 +117,12 @@ export default class NativeAudio extends React.Component {
     }
 
     // Sends to firebase as backup
-	saveInCloud = (uri) => {
-		const extension = '.mp3';
-		const name = Date.now().toString() + extension;
-		Handler = new FileHandler();
-		Handler.uploadMedia(uri, name);
-	}
+    saveInCloud = (uri) => {
+        const extension = '.mp3';
+        const name = Date.now().toString() + extension;
+        Handler = new FileHandler();
+        Handler.uploadMedia(uri, name);
+    }
 
     render() {
 
