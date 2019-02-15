@@ -50,7 +50,6 @@ export default class MediaGallery extends React.Component {
 
 						<View style = {styles.navbarBackContainer}>
 							<TouchableOpacity
-								style = {styles.navbarButton}
 								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 								<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
 							</TouchableOpacity>
@@ -60,7 +59,7 @@ export default class MediaGallery extends React.Component {
 
 							<Menu
 								ref = {this.setMenuRef}
-								button = {<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />} >
+								button = {<Icon name="more-vert" style={styles.navbarButton} onPress={this.showMenu} size = {30} />} >
 
 								<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
 								{/*<MenuItem onPress={() => { this.fetchData(); this.hideMenu();}}>Refresh</MenuItem>*/}

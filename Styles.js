@@ -43,13 +43,6 @@ export default StyleSheet.create({
 	},
 
 
-	audioItemContainer: {
-		width: deviceWidth,
-		height: 100,
-		backgroundColor: 'red',
-		borderBottomColor: 'black',
-		borderWidth: 1
-	},
 
 
 	/*
@@ -119,22 +112,21 @@ export default StyleSheet.create({
 	navbarBackContainer: {
 		backgroundColor: 'transparent',
 		width: deviceWidth * 0.15,
-		height: deviceHeight * 0.075,
-		left: deviceWidth * 0.1,
+		height: '100%',
+		left: deviceWidth * 0.025,
+		top: deviceHeight * 0.015,
 	},
 
 	navbarRightContainer: {
 		backgroundColor: 'transparent',
 		flexDirection: 'row-reverse',
 		width: "85%",
-		height: deviceWidth * 0.075,
-		top: -deviceHeight * 0.0175,
+		marginRight: -deviceWidth * 0.025,
+		marginTop: deviceHeight * 0.02,
 		backgroundColor: 'transparent',
 	},
 
 	navbarMenu: {
-		marginRight: 10,
-		marginLeft: 25,
 		color: '#fff',
 	},
 
@@ -142,8 +134,8 @@ export default StyleSheet.create({
 		backgroundColor: "transparent",
 		textAlign: 'center',
 		height: "80%",
-		marginLeft: deviceWidth * 0.035,
-		marginTop: -deviceHeight*0.075,
+		margin: deviceWidth * 0.025,
+		color: '#fff',
 	},
 
 	navbarIcon: {
@@ -835,7 +827,6 @@ export default StyleSheet.create({
   		alignSelf: 'center',
   		flexDirection: 'row',
   		alignItems: 'center',
-
   	},
 
 	bottomBar: {
@@ -923,6 +914,16 @@ export default StyleSheet.create({
 		fontSize: deviceWidth * 0.075,
 		marginTop: deviceHeight * 0.0175,
 		marginLeft: deviceWidth * 0.775,
+	},
+
+	audioItemContainer: {
+		width: deviceWidth * 0.9,
+		marginLeft: deviceWidth * 0.05,
+		height: 75,
+		backgroundColor: 'transparent',
+		borderBottomColor: '#f9f9f9',
+		borderWidth: 0,
+		borderBottomWidth: 1,	
 	},
 
 // 8. Audio Recording
