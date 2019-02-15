@@ -977,12 +977,9 @@ export default StyleSheet.create({
 
 	hideButton: {
 	  	opacity: 0.9,
-	  	zIndex: 100,
-	  	position: 'absolute',
 	  	alignSelf: 'center',
 	  	fontSize:deviceHeight/25,
-	  	top:deviceHeight/90,
-	  	right:(deviceWidth / 50),
+	  	right: 0,
 	},
 
 	blinkingCircleOn: {
@@ -1007,6 +1004,20 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent',
 		marginTop: deviceHeight * 0.4,
 
-	}
+	},
+
+	hideScreen: {
+		position: 'absolute',
+		backgroundColor: '#000',
+		width: deviceWidth * 2,
+		height: deviceHeight * 2,
+		zIndex: 9999,
+	},
+
+	showScreen: {
+		backgroundColor: 'transparent',
+		width: 0,
+		height: 0,
+	},
 
 })

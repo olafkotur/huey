@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, TouchableHighlight } from 'react-native';
 import { Permissions, Audio } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from "../Styles";
@@ -45,7 +45,8 @@ export default class NativeAudio extends React.Component {
         gestureName: 'none',
         stopwatchReset: false,
         stopwatchStart: false,
-        blinkStyle: styles.blinkingCircleOff
+        blinkStyle: styles.blinkingCircleOff,
+        overlayViewStyle: styles.showScreen,
     }
 
     componentDidMount = async () => {
@@ -59,11 +60,13 @@ export default class NativeAudio extends React.Component {
 
     // Hide and unhide the recording button
     handleHidden = () => {
-        if (this.state.isHidden) {
-            this.setState({buttonContainerStyle: styles.hide, isHidden: false});
+        if (this.state.isHidden === true) {
+            this.setState({overlayViewStyle: styles.showScreen, isHidden: false});
+            console.log("MEME");
         }
         else {
-            this.setState({buttonContainerStyle: styles.buttonContainer, isHidden: true});
+            this.setState({overlayViewStyle: styles.hideScreen, isHidden: true});
+            console.log("MEME");
         }
     }
 
@@ -150,6 +153,12 @@ export default class NativeAudio extends React.Component {
                         style = {styles.hideButton}
                         onPress = {() => this.handleHidden()}>
                         <Icon name="remove-red-eye" style = {styles.hideButton} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                        style={this.state.overlayViewStyle} 
+                        onLongPress = {() => this.handleHidden()}
+                        activeOpacity={0.9}>
                     </TouchableOpacity>
 
 
