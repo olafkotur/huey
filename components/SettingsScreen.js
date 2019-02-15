@@ -68,27 +68,27 @@ export default class SettingsScreen extends React.Component {
 
 
 				{/*Navbar*/}
-					<View style = {styles.navbarContainer}> 
+					<View style = {styles.navbarGalleryContainer}>
+
+						<View style = {styles.navbarBackContainer}>
 							<TouchableOpacity
-								style = {styles.navbarButton}
 								onPress = {() => this.props.navigation.navigate('HomeScreen')} >
 								<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
 							</TouchableOpacity>
+						</View>
 
 						<View style = {styles.navbarRightContainer}>
-							<Menu
-									ref={this.setMenuRef}
-									button={ 				
-											<Icon name="more-vert" style = {styles.navbarMenu} onPress={this.showMenu} size = {30} />
-										}
-									>
-									<MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
-									<MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
-									<MenuItem onPress={this.hideMenu} disabled>Menu item 3</MenuItem>
-									<MenuDivider />
-									<MenuItem onPress={this.hideMenu}>Help</MenuItem>
-							</Menu>
 
+							<Menu
+								ref = {this.setMenuRef}
+								button = {<Icon name="more-vert" style={styles.navbarButton} onPress={this.showMenu} size = {30} />} >
+
+								<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
+								{/*<MenuItem onPress={() => { this.fetchData(); this.hideMenu();}}>Refresh</MenuItem>*/}
+								<MenuItem onPress={this.hideMenu} disabled>Share</MenuItem>
+								<MenuDivider />
+								<MenuItem onPress={this.hideMenu}>Help</MenuItem>
+							</Menu>
 						</View>
 					</View>
 

@@ -135,18 +135,19 @@ export default class NativeAudio extends React.Component {
 
                 <View style = {styles.container}>
 
-                    <View style = {styles.navbarContainer}> 
+                    <View style = {styles.navbarContainer}>
+                        <View style = {styles.navbarBackContainer}>
                             <TouchableOpacity
-                                style = {styles.navbarButton}
                                 onPress = {() => this.props.navigation.navigate('HomeScreen')} >
                                 <Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
                             </TouchableOpacity>
+                        </View>
 
                         <View style = {styles.navbarRightContainer}>
                             <TouchableOpacity
-                                style = {styles.hideButton}
+                                style = {styles.navbarButton}
                                 onPress = {() => this.handleHidden()}>
-                                <Icon name="remove-red-eye" style = {styles.hideButton} size = {30}/>
+                                <Icon name="remove-red-eye" style = {styles.navbarIcon} size = {30}/>
                             </TouchableOpacity>
                         </View>
                     </View>
