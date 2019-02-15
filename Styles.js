@@ -976,10 +976,11 @@ export default StyleSheet.create({
 	},
 
 	hideButton: {
-	  	opacity: 0.9,
 	  	alignSelf: 'center',
-	  	fontSize:deviceHeight/25,
-	  	right: 0,
+	  	fontSize: deviceWidth * 0.075,
+	  	marginRight: deviceWidth * 0.02,
+	  	color: '#fff',
+
 	},
 
 	blinkingCircleOn: {

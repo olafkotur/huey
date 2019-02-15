@@ -135,11 +135,21 @@ export default class NativeAudio extends React.Component {
 
                 <View style = {styles.container}>
 
-                    <TouchableOpacity
-                        style = {styles.topLeftButton}
-                        onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-                        <Icon name="chevron-left" style = {styles.topLeftButtonIcon} />
-                    </TouchableOpacity>
+                    <View style = {styles.navbarContainer}> 
+                            <TouchableOpacity
+                                style = {styles.navbarButton}
+                                onPress = {() => this.props.navigation.navigate('HomeScreen')} >
+                                <Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+                            </TouchableOpacity>
+
+                        <View style = {styles.navbarRightContainer}>
+                            <TouchableOpacity
+                                style = {styles.hideButton}
+                                onPress = {() => this.handleHidden()}>
+                                <Icon name="remove-red-eye" style = {styles.hideButton} size = {30}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
 
                     <View style = {this.state.buttonContainerStyle}>
                         <TouchableOpacity
@@ -149,11 +159,6 @@ export default class NativeAudio extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity
-                        style = {styles.hideButton}
-                        onPress = {() => this.handleHidden()}>
-                        <Icon name="remove-red-eye" style = {styles.hideButton} />
-                    </TouchableOpacity>
 
                     <TouchableOpacity 
                         style={this.state.overlayViewStyle} 
