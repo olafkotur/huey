@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { Audio } from 'expo';
 import styles from "../Styles";
 import FileHandler from './FileHandler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class AudioList extends React.Component {
 
@@ -14,7 +15,8 @@ export default class AudioList extends React.Component {
 	state = {
 		refreshing: false,
 		isPlaying: false,
-		audioData: []
+		audioData: [],
+		playIcon: 'play'
 	}
 
 	componentDidMount = async () => {
@@ -33,12 +35,12 @@ export default class AudioList extends React.Component {
 	handlePlayback = async (url) => {
 		if (this.state.isPlaying) {
 			console.log('Stopping playback');
-			this.setState({isPlaying: false});
+			this.setState({isPlaying: false, playIcon: 'play'});
 			// this.sound.stopAsync();
 		}
 		else {
 			console.log('Attempting to playback');
-			this.setState({isPlaying: true});
+			this.setState({isPlaying: true, playIcon: 'pause'});
 
 			// const sound = new Audio.Sound();
 			// try {
@@ -61,16 +63,20 @@ export default class AudioList extends React.Component {
 		//date = new Intl.DateTimeFormat('en-GB', options).format(date);
 
 		return (
-			<View
-				style = {styles.audioItemContainer}>
-				<Text>{date.toString()}</Text>
+				<View 
+					style = {styles.audioItemContainer}>
+					<Text style = {styles.audioItemTitle}>{date.toString()}</Text>
 
-				<TouchableOpacity 
-					onPress = {() => this.handlePlayback(item.url)}>
-					<Text>Play/Pause</Text>
-				</TouchableOpacity>
+					<Text>00:00:00/00:02:37</Text>
 
-			</View>
+					<TouchableOpacity 
+						style={styles.audioPlayButton}
+						onPress = {() => this.handlePlayback(item.url)}>
+						<Icon name={this.state.playIcon} style = {styles.audioPlayIcon} size = {40}/>
+					</TouchableOpacity>
+
+
+				</View>
 		);
 	}
 
@@ -78,13 +84,13 @@ export default class AudioList extends React.Component {
 	render() {
 		return (
 			<View style = {styles.galleryTabViewContainer}>	
-				  <FlatList
+				<FlatList
 					data = {this.state.audioData}
 					extraData = {this.state}
 					keyExtractor = {(item, index) => index.toString()}
 					renderItem = {({item}) => this.renderItem(item)}
 					refreshing = {this.state.refreshing}
-					onRefresh = {() => this.fetchData()} >
+					onRefresh = {() => this.fetchData()}>
 				</FlatList>
 			</View>
 		);

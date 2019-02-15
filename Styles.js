@@ -921,9 +921,28 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.05,
 		height: 75,
 		backgroundColor: 'transparent',
-		borderBottomColor: '#f9f9f9',
+		borderColor: '#efefef',
 		borderWidth: 0,
 		borderBottomWidth: 1,	
+		borderTopWidth: 1,
+		marginBottom: -1,
+		padding: deviceHeight * 0.02,
+	},
+
+	audioItemTitle: {
+		fontSize: deviceHeight * 0.02,
+		fontWeight: 'bold',
+	},
+
+	audioPlayButton: {
+		backgroundColor: 'transparent',
+		width: '10%',
+		marginLeft: '90%',
+		bottom: '85%',	
+	},
+
+	audioPlayIcon: {
+		color: '#4b4b4b'
 	},
 
 // 8. Audio Recording
