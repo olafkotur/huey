@@ -27,7 +27,7 @@ export default class NativeCamera extends React.Component {
 		renewableQRValidated: false,
 		qrIcon: 'border-none-variant',
 		qrInformation: 'Please scan a QR code.',
-		locFeedbackIcon:
+		locFeedbackIcon: 'crosshairs-gps'
 	}
 
 	componentDidMount = async () => {
@@ -131,6 +131,9 @@ export default class NativeCamera extends React.Component {
 
 	checkLocationHandler = async() => {
 		this.setState({locFeedbackIcon: 'timer-sand', locFeedbackInfo: 'Testing'})
+		var hours = new Date().getHours(); //Current Hours
+		var min = new Date().getMinutes(); //Current Minutes
+		var sec = new Date().getSeconds(); //Current Seconds
 		navigator.geolocation.getCurrentPosition(
 			async (position) =>
 			{
@@ -140,10 +143,6 @@ export default class NativeCamera extends React.Component {
 				const latread = await parseFloat(latrawreading)
 
 				externalreadingtuple = await this.readLocationFromFirebase()
-
-				var hours = new Date().getHours(); //Current Hours
-				var min = new Date().getMinutes(); //Current Minutes
-				var sec = new Date().getSeconds(); //Current Seconds
 
 				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
 				{
@@ -167,6 +166,9 @@ export default class NativeCamera extends React.Component {
 	locationReadingWrapper = async (pathtofile, action) =>
 	{
 		console.log("Before Await getCurrent Position Call")
+		var hours = new Date().getHours(); //Current Hours
+		var min = new Date().getMinutes(); //Current Minutes
+		var sec = new Date().getSeconds(); //Current Seconds
 		navigator.geolocation.getCurrentPosition(
 			async (position) =>
 			{
@@ -183,10 +185,6 @@ export default class NativeCamera extends React.Component {
 				console.log(externalreadingtuple.latread, externalreadingtuple.longread)
 				console.log("LocationReadingTuple [lat/long]")
 				console.log(latread, longread)
-
-				var hours = new Date().getHours(); //Current Hours
-				var min = new Date().getMinutes(); //Current Minutes
-				var sec = new Date().getSeconds(); //Current Seconds
 
 				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
 				{
@@ -374,7 +372,7 @@ export default class NativeCamera extends React.Component {
           <View style = {styles.locFeedbackButton}>
 						<TouchableOpacity
 							onPress = {() => this.checkLocationHandler()}  >
-							<IconMCI name="mic" style = {styles.flipCamera}  size = {30} />
+							<IconMCI name= {this.state.locFeedbackIcon} style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
 
