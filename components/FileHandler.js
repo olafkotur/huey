@@ -62,7 +62,7 @@ export default class FileHandler extends React.Component {
 	// Uploads URI to firebase
 	uploadMedia = async (uri, name) => {
 		// Choose destination folder, either /audio or /media
-		let dest = (name.includes('.caf')) ? '/audio/' : '/media/';
+		let dest = (name.includes('.mp3')) ? '/audio/' : '/media/';
 	
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {

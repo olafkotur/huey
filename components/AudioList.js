@@ -48,11 +48,15 @@ export default class AudioList extends React.Component {
         
         // Play audio if not already playing 
         else {
+            const fileName = url.split('audio%2F').pop().split('?')[0];
+            const uri = await Handler.getLocalFile(fileName, url);
             this.setState({isPlaying: true, isPlayingURL: url});
+
+            const sound = new Audio.Sound();
             try {
-                const sound = new Audio.Sound();
-                await sound.loadAsync({uri: url}).then(() => sound.playAsync());
+                await sound.loadAsync({uri: url});
                 this.sound = sound;
+                await sound.playAsync();
             } catch (error) {
                 console.log(error.message);
             }
