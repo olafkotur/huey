@@ -224,7 +224,12 @@ export default class SettingsScreen extends React.Component {
                                 title="Delete Account"
                                 titleStyle={styles.delAccountBtnText}
                                 buttonStyle={styles.delAccountBtnOverlay}
-                                onPress={() => this.setState({ showDelAccount: false })}
+                                onPress={() => {
+                                    Firebase.deleteUser().then(async (result) => {
+                                        if (result.error) this.dropdown.alertWithType('error', 'Error', result.error);
+                                        else this.props.navigation.navigate('LoginScreen');
+                                    });
+                                }}
                             />
 
                             <Button

@@ -6,7 +6,7 @@ export const changeUserEmail = async (oldEmail, newEmail, confirmEmail) => {
     let result = {error: null};
     if (oldEmail.includes(user.email)) {
         if (newEmail === confirmEmail) {
-            user.updateEmail(newEmail)
+            await user.updateEmail(newEmail)
             .catch((error) => result.error = error.message);
         }
         else result.error = 'Please ensure your new email matches the confirmation email';
@@ -22,11 +22,23 @@ export const changeUserPassword = async (newPassword, confirmPassword) => {
     const user = firebase.auth().currentUser;
     let result = {error: null};
     if (newPassword === confirmPassword) {
-        user.updatePassword(newPassword)
+        await user.updatePassword(newPassword)
         .catch((error) => result.error = error.message);
         console.log('Pass updated');
     }
     else result.error = 'Please ensure your new password matches the confirmation password';
+
+    return result;
+}
+
+
+// DANGER ZONE: Deletes a user from firebase
+export const deleteUser = async () => {
+    const user = firebase.auth().currentUser;
+    let result = {error: null};
+    // Disabled for the time being, but it works :D 
+    // await user.delete().catch((error) => result.error = error.message);
+    console.log('Deleted user: ' + user.email);
 
     return result;
 }
