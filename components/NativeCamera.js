@@ -184,24 +184,28 @@ export default class NativeCamera extends React.Component {
 				console.log("LocationReadingTuple [lat/long]")
 				console.log(latread, longread)
 
+				var hours = new Date().getHours(); //Current Hours
+				var min = new Date().getMinutes(); //Current Minutes
+				var sec = new Date().getSeconds(); //Current Seconds
+
 				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
 				{
 					console.log("Latitude In Tolerance")
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up'})
+						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up', locFeedbackIcon: 'upload-network-outline', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 						this.saveInCloud(pathtofile, action);
 					}
 					else{
-						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: ' Are You Close Enough To The Event?'})
+						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: ' Are You Close Enough To The Event?', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 					}
 				}
 				else{
-					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event'})
+					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 				}
 			},
-				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}),
+				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec}),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
@@ -369,7 +373,7 @@ export default class NativeCamera extends React.Component {
 
           <View style = {styles.locFeedbackButton}>
 						<TouchableOpacity
-							onPress = {() => this.checkLocationHandler())}  >
+							onPress = {() => this.checkLocationHandler()}  >
 							<IconMCI name="mic" style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
