@@ -332,6 +332,13 @@ export default class NativeCamera extends React.Component {
 						</Tooltip>
 					</View>
 
+          <View style = {styles.locFeedbackButton}>
+						<TouchableOpacity
+							onPress = {() => this.toggleCamera()}  >
+							<Icon name="mic" style = {styles.flipCamera}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
 					<TouchableOpacity
 						style = {styles.captureButton}
 						onPress = {() => this.captureMedia('photo')}

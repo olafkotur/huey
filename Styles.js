@@ -407,6 +407,13 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.88,
 	},
 
+  locFeedbackButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.01,
+		bottom: deviceHeight * 0.9375,
+		left: deviceWidth * 0.88,
+	},
+
 	flipCamera: {
 	    color: '#fff',
 	    backgroundColor: 'transparent',
