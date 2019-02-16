@@ -26,7 +26,8 @@ export default class NativeCamera extends React.Component {
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
 		qrIcon: 'border-none-variant',
-		qrInformation: 'Please scan a QR code.'
+		qrInformation: 'Please scan a QR code.',
+		locFeedbackIcon:
 	}
 
 	componentDidMount = async () => {
@@ -126,6 +127,40 @@ export default class NativeCamera extends React.Component {
 		const latread = latraw.val()
 		const longread = longraw.val()
 		return {latread,longread}
+	}
+
+	checkLocationHandler = async() => {
+		this.setState({locFeedbackIcon: 'timer-sand', locFeedbackInfo: 'Testing'})
+		navigator.geolocation.getCurrentPosition(
+			async (position) =>
+			{
+				const longrawreading = await JSON.stringify(position.coords.longitude)
+				const latrawreading = await JSON.stringify(position.coords.latitude)
+				const longread = await parseFloat(longrawreading)
+				const latread = await parseFloat(latrawreading)
+
+				externalreadingtuple = await this.readLocationFromFirebase()
+
+				var hours = new Date().getHours(); //Current Hours
+				var min = new Date().getMinutes(); //Current Minutes
+				var sec = new Date().getSeconds(); //Current Seconds
+
+				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
+				{
+					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
+					{
+						this.setState({locFeedbackIcon: 'upload-network-outline', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+					}
+					else{
+						this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+					}
+				}
+				else{
+					this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+				}
+			},
+				(error) => this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec}),
+				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 	}
 
 	//Wraps All Location Data Calls to Firebase & Local Device GPS - Geolocation Calls Are Made Within
@@ -334,10 +369,11 @@ export default class NativeCamera extends React.Component {
 
           <View style = {styles.locFeedbackButton}>
 						<TouchableOpacity
-							onPress = {() => this.toggleCamera()}  >
-							<Icon name="mic" style = {styles.flipCamera}  size = {30} />
+							onPress = {() => this.checkLocationHandler())}  >
+							<IconMCI name="mic" style = {styles.flipCamera}  size = {30} />
 						</TouchableOpacity>
 					</View>
+
 
 					<TouchableOpacity
 						style = {styles.captureButton}
