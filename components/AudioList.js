@@ -54,7 +54,7 @@ export default class AudioList extends React.Component {
 
             const sound = new Audio.Sound();
             try {
-                await sound.loadAsync({uri: url});
+                await sound.loadAsync({uri: uri});
                 this.sound = sound;
                 await sound.playAsync();
             } catch (error) {
