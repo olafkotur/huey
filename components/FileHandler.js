@@ -36,14 +36,8 @@ export default class FileHandler extends React.Component {
 
 		// Check if file exists
 		await FileSystem.getInfoAsync(uri).then((information) => {
-			if (information.exists) { 
-				uri = information.uri; // Use existing
-			}
-			else {
-				FileSystem.downloadAsync(url, uri).then((info) => {
-					uri = info.uri; // Download and cache
-				});
-			}
+			if (information.exists) uri = information.uri; // Use existing
+			else FileSystem.downloadAsync(url, uri).then((info) => uri = info.uri); // Download and cache
 		});
 		return uri;
 	}
@@ -68,8 +62,8 @@ export default class FileHandler extends React.Component {
 	// Uploads URI to firebase
 	uploadMedia = async (uri, name) => {
 		// Choose destination folder, either /audio or /media
-		let dest = (name.includes('.mp3')) ? '/audio/' : '/media/';
-		
+		let dest = (name.includes('.caf')) ? '/audio/' : '/media/';
+	
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
