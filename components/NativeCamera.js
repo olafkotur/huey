@@ -148,7 +148,7 @@ export default class NativeCamera extends React.Component {
 				{
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
-						this.setState({locFeedbackIcon: 'upload-network-outline', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+						this.setState({locFeedbackIcon: 'apple-keyboard-caps', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 					}
 					else{
 						this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
@@ -192,7 +192,7 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up', locFeedbackIcon: 'upload-network-outline', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up', locFeedbackIcon: 'apple-keyboard-caps', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 						this.saveInCloud(pathtofile, action);
 					}
 					else{
