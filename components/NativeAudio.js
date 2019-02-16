@@ -33,7 +33,7 @@ export default class NativeAudio extends React.Component {
 
     static navigationOptions = {
         header: null,
-        gesturesEnabled: true,
+        gesturesEnabled: false,
     }
 
     state = {
@@ -53,21 +53,10 @@ export default class NativeAudio extends React.Component {
         await Permissions.askAsync(Permissions.AUDIO_RECORDING);
     }
 
-    //Swipe Gesture Control
-    onSwipeLeft(gestureState) {
-        this.props.navigation.navigate('HomeScreen');
-    }
-
     // Hide and unhide the recording button
     handleHidden = () => {
-        if (this.state.isHidden === true) {
-            this.setState({overlayViewStyle: styles.showScreen, isHidden: false});
-            console.log("MEME");
-        }
-        else {
-            this.setState({overlayViewStyle: styles.hideScreen, isHidden: true});
-            console.log("MEME");
-        }
+        if (this.state.isHidden === true) this.setState({overlayViewStyle: styles.showScreen, isHidden: false});
+        else this.setState({overlayViewStyle: styles.hideScreen, isHidden: true});
     }
 
     // Toggle the recoridng button between active and inactive styles
@@ -118,7 +107,7 @@ export default class NativeAudio extends React.Component {
 
     // Sends to firebase as backup
     saveInCloud = (uri) => {
-        const extension = '.mp3';
+        const extension = '.caf';
         const name = Date.now().toString() + extension;
         Handler = new FileHandler();
         Handler.uploadMedia(uri, name);
@@ -129,7 +118,7 @@ export default class NativeAudio extends React.Component {
         return (
 
             <GestureRecognizer
-                onSwipeLeft={(state) => this.onSwipeLeft(state)}
+                onSwipeLeft={() => this.props.navigation.navigate('HomeScreen')}
                 config = {{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
                 style = {{flex:1, backgroundColor: "#27ae60"}}>
 

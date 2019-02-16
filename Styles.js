@@ -574,7 +574,7 @@ export default StyleSheet.create({
 		width: deviceWidth * 0.065,
 		height: deviceWidth * 0.065,
 		opacity: 0.9,
-		zIndex: 9,
+		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
 		bottom: deviceHeight * 0.94,

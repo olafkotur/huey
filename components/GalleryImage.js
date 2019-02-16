@@ -12,7 +12,7 @@ export default class GalleryImage extends React.Component {
 		isProcessing: true
 	}
 
-	componentWillMount = async () => {
+	componentDidMount = async () => {
 		// Grabs image from local storage
 		Handler = new FileHandler();
 		const fileName = this.props.uri.split('media%2F').pop().split('?')[0];
