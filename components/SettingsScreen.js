@@ -33,7 +33,6 @@ export default class SettingsScreen extends React.Component {
         oldEmail: '',
         newEmail: '',
         confirmEmail: '',
-        oldPassword: '',
         newPassword: '',
         confirmPassword: ''
     }
@@ -120,7 +119,7 @@ export default class SettingsScreen extends React.Component {
                                 type="outline"
                                 titleStyle={styles.overlayButtonText}
                                 buttonStyle={styles.overlayButton}
-                                onPress={async (e) => {
+                                onPress={async () => {
                                     await Firebase.changeUserEmail(this.state.oldEmail, this.state.newEmail, this.state.confirmEmail)
                                     .then((result) => {
                                         if (result.error) this.dropdown.alertWithType('error', 'Error', result.error);
@@ -143,33 +142,6 @@ export default class SettingsScreen extends React.Component {
                         <View style={styles.textInput}>
                             <Text style={styles.overlayHeader}> Change Password </Text>
                             <Input
-                                placeholder='Old Password'
-                                inputStyle={styles.textInput}
-                                secureTextEntry={this.state.passwordHidden1}
-                                onChangeText = {(password) => this.setState({oldPassword: password})}
-                                leftIcon={
-                                    <Icon
-                                        name='lock'
-                                        size={30}
-                                        color='#4B4B4B'
-                                        style={styles.textFieldIcon}/>}
-                                        rightIcon={
-                                            <IconMCI
-                                                name={this.state.passwordIcon1}
-                                                size={20}
-                                                color='#4B4B4B'
-                                                style={styles.textFieldIcon}
-                                                onPress={() => {
-                                                    if (this.state.passwordHidden1 === false) {
-                                                        this.setState({passwordHidden1: true, passwordIcon1: 'eye-off-outline'})
-                                                    } else {
-                                                        this.setState({passwordHidden1: false, passwordIcon1: 'eye'})
-                                                    }
-                                                }}
-                                            />
-                                        }
-                                    />
-                            <Input
                                 placeholder='New Password'
                                 inputStyle={styles.textInput}
                                 secureTextEntry={this.state.passwordHidden2}
@@ -186,12 +158,9 @@ export default class SettingsScreen extends React.Component {
                                                 size={20}
                                                 color='#4B4B4B'
                                                 style={styles.textFieldIcon}
-                                                onPress={() => 
-                                                    {if (this.state.passwordHidden2 === false) {
-                                                        this.setState({passwordHidden2: true, passwordIcon2: 'eye-off-outline'})
-                                                    } else {
-                                                        this.setState({passwordHidden2: false, passwordIcon2: 'eye'})
-                                                    }
+                                                onPress={() => {
+                                                    if (this.state.passwordHidden2 === false) this.setState({passwordHidden2: true, passwordIcon2: 'eye-off-outline'});
+                                                    else this.setState({passwordHidden2: false, passwordIcon2: 'eye'});
                                                 }}
                                             />
                                 }
@@ -215,12 +184,9 @@ export default class SettingsScreen extends React.Component {
                                         size={20}
                                         color='#4B4B4B'
                                         style={styles.textFieldIcon}
-                                        onPress={() => 
-                                            {if (this.state.passwordHidden3 === false) {
-                                                this.setState({passwordHidden3: true, passwordIcon3: 'eye-off-outline'})
-                                            } else {
-                                                this.setState({passwordHidden3: false, passwordIcon3: 'eye'})
-                                            }
+                                        onPress={() => {
+                                            if (this.state.passwordHidden3 === false) this.setState({passwordHidden3: true, passwordIcon3: 'eye-off-outline'});
+                                            else this.setState({passwordHidden3: false, passwordIcon3: 'eye'});
                                         }}
                                     />
                                 }
@@ -230,7 +196,16 @@ export default class SettingsScreen extends React.Component {
                                 type="outline"
                                 titleStyle={styles.overlayButtonText}
                                 buttonStyle={styles.overlayButton}
-                                onPress={() => this.setState({ showChangePassword: false })}
+                                onPress={async () => {
+                                    await Firebase.changeUserPassword(this.state.newPassword, this.state.confirmPassword)
+                                    .then((result) => {
+                                        if (result.error) this.dropdown.alertWithType('error', 'Error', result.error);
+                                        else {
+                                            this.dropdown.alertWithType('success', 'Updated', 'Password has been updated');
+                                            this.setState({showChangePassword: false});
+                                        }
+                                    });
+                                }}
                             />
                         </View>
 
