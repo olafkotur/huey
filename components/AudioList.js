@@ -38,8 +38,12 @@ export default class AudioList extends React.Component {
         // Stop audio if already playing
         if (this.state.isPlaying) {
             this.setState({isPlaying: false, isPlayingURL: ''});
-            await this.sound.stopAsync();
-            await this.sound.unloadAsync();
+            try {
+                await this.sound.stopAsync();
+                await this.sound.unloadAsync();
+            } catch (error) {
+                console.log(error.message);
+            }
         }
         
         // Play audio if not already playing 
@@ -47,8 +51,7 @@ export default class AudioList extends React.Component {
             this.setState({isPlaying: true, isPlayingURL: url});
             try {
                 this.sound = new Audio.Sound();
-                await this.sound.loadAsync({uri: url})
-                await this.sound.playAsync();
+                await this.sound.loadAsync({uri: url}).then(() => this.sound.playAsync());
             } catch (error) {
                 console.log(error.message);
             }

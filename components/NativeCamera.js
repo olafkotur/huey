@@ -261,7 +261,8 @@ export default class NativeCamera extends React.Component {
 
 	// Saves specified uri to the camera roll
 	saveLocally = async (uri) => {
-		let result = await ImageManipulator.manipulateAsync(uri, [{rotate: 0}], {});
+		let result = {uri: uri};
+		if (uri.includes('.png') || uri.includes('.jpg')) result = await ImageManipulator.manipulateAsync(uri, [{rotate: 0}], {});
 		CameraRoll.saveToCameraRoll(result.uri);
 	}
 
