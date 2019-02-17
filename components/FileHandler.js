@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileSystem } from 'expo';
 import * as firebase from "firebase";
+import moment from 'moment';
 
 export default class FileHandler extends React.Component {
 
@@ -14,8 +15,9 @@ export default class FileHandler extends React.Component {
 		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + fileName);
 		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
 
-		const filetimestamp = moment.unix(Math.ceil(fileName / 1000)).format('MMMM Do YYYY, h:mm:ss');
-		const systemtimetstamp = moment.unix()
+		const filetimestamp = moment.unix(Math.ceil(fileName)).format('MMMM Do YYYY, h:mm:ss');
+		console.log("filetimestamp -> " + filetimestamp)
+		const systemtimestamp = moment.unix()
 
 		// Delete from storage and database
 		if(systemtimestamp - filetimestamp > 5259600)
@@ -32,8 +34,9 @@ export default class FileHandler extends React.Component {
 		}
 		else
 		{
-			overtime = 5259600 + filetimestamp
-			return overtime.toString().format('MMMM Do YYYY, h:mm:ss');
+			overtime = String((5259600 + filetimestamp))
+			console.log("OverTime -> " + overtime)
+			return overtime.format('MMMM Do YYYY, h:mm:ss');
 		}
 	}
 
