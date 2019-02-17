@@ -26,7 +26,8 @@ export default class NativeCamera extends React.Component {
 		oneTimePWValidated: false,
 		renewableQRValidated: false,
 		qrIcon: 'border-none-variant',
-		qrInformation: 'Please scan a QR code.'
+		qrInformation: 'Please scan a QR code.',
+		locFeedbackIcon: 'crosshairs-gps'
 	}
 
 	componentDidMount = async () => {
@@ -128,10 +129,46 @@ export default class NativeCamera extends React.Component {
 		return {latread,longread}
 	}
 
+	checkLocationHandler = async() => {
+		this.setState({locFeedbackIcon: 'timer-sand', locFeedbackInfo: 'Testing'})
+		var hours = new Date().getHours(); //Current Hours
+		var min = new Date().getMinutes(); //Current Minutes
+		var sec = new Date().getSeconds(); //Current Seconds
+		navigator.geolocation.getCurrentPosition(
+			async (position) =>
+			{
+				const longrawreading = await JSON.stringify(position.coords.longitude)
+				const latrawreading = await JSON.stringify(position.coords.latitude)
+				const longread = await parseFloat(longrawreading)
+				const latread = await parseFloat(latrawreading)
+
+				externalreadingtuple = await this.readLocationFromFirebase()
+
+				if((latread - 0.5) <= externalreadingtuple.latread && externalreadingtuple.latread <= (latread + 0.5))
+				{
+					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
+					{
+						this.setState({locFeedbackIcon: 'apple-keyboard-caps', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+					}
+					else{
+						this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+					}
+				}
+				else{
+					this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
+				}
+			},
+				(error) => this.setState({locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec}),
+				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
+	}
+
 	//Wraps All Location Data Calls to Firebase & Local Device GPS - Geolocation Calls Are Made Within
 	locationReadingWrapper = async (pathtofile, action) =>
 	{
 		console.log("Before Await getCurrent Position Call")
+		var hours = new Date().getHours(); //Current Hours
+		var min = new Date().getMinutes(); //Current Minutes
+		var sec = new Date().getSeconds(); //Current Seconds
 		navigator.geolocation.getCurrentPosition(
 			async (position) =>
 			{
@@ -155,18 +192,18 @@ export default class NativeCamera extends React.Component {
 					if((longread - 0.5) <=  externalreadingtuple.longread && externalreadingtuple.longread <= (longread + 0.5))
 					{
 						console.log("Longitude In Tolerance")
-						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up'})
+						this.setState({qrIcon: 'cloud-check', qrInformation: 'Validated & Backed Up', locFeedbackIcon: 'apple-keyboard-caps', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 						this.saveInCloud(pathtofile, action);
 					}
 					else{
-						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: ' Are You Close Enough To The Event?'})
+						this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: ' Are You Close Enough To The Event?', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 					}
 				}
 				else{
-					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event'})
+					this.setState({oneTimePWValidated: true, qrIcon: 'map-marker-off', qrInformation: 'Are You Close Enough To The Event', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec})
 				}
 			},
-				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?'}),
+				(error) => this.setState({oneTimePWValidated: true, qrIcon: 'rotate-left', qrInformation: 'Are Location Services On?', locFeedbackIcon: 'radio-handheld', locFeedbackInfo: 'Checked ' + hours + ":" + min + ":" + sec}),
 				{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },	);
 					console.log("REACHED END OF LOCATION WRAPPER - RESPONSIBILITY TRANSFERED TO CALLBACKS")
 	}
@@ -331,6 +368,14 @@ export default class NativeCamera extends React.Component {
 							<IconMCI name={this.state.qrIcon} style = {styles.qrCodeIcon}/>
 						</Tooltip>
 					</View>
+
+          <View style = {styles.locFeedbackButton}>
+						<TouchableOpacity
+							onPress = {() => this.checkLocationHandler()}  >
+							<IconMCI name= {this.state.locFeedbackIcon} style = {styles.flipCamera}  size = {30} />
+						</TouchableOpacity>
+					</View>
+
 
 					<TouchableOpacity
 						style = {styles.captureButton}

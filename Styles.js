@@ -407,6 +407,14 @@ export default StyleSheet.create({
 		left: deviceWidth * 0.88,
 	},
 
+  locFeedbackButton: {
+		width: deviceWidth * 0.065,
+		height: deviceWidth * 0.01,
+		bottom: deviceHeight-(deviceHeight/25),
+		left: (deviceWidth/2)-((deviceWidth * 0.065)/2),
+
+	},
+
 	flipCamera: {
 	    color: '#fff',
 	    backgroundColor: 'transparent',
@@ -577,7 +585,7 @@ export default StyleSheet.create({
 		zIndex: 100,
 		position: 'absolute',
 		alignSelf: 'center',
-		bottom: deviceHeight * 0.94,
+		bottom: deviceHeight * 0.945,
 		left: deviceWidth * 0.04,
 	},
 
