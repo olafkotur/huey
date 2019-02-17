@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { FileSystem, Video } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import DropdownAlert from 'react-native-dropdownalert';
 
 import FileHandler from './FileHandler';
 import styles from "../Styles";
@@ -48,7 +49,12 @@ export default class FocusedImage extends React.Component {
 
 	deleteMedia = () => {
 		const Handler = new FileHandler();
-		Handler.deleteFileDB(this.state.fileName);
+		deletionresult = Handler.deleteFileDB(this.state.fileName);
+		if(deletionresult > 0)
+		{
+			(deletionresult) => {this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', 'Can Be Deleted From ' + deletionresult)}
+		}
+
 		Handler.deleteFileLocal(this.state.fileName);
 		this.props.navigation.navigate('MediaGallery');
 	}
@@ -132,6 +138,7 @@ export default class FocusedImage extends React.Component {
 							<Icon name= "forward-10" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 					</View>
+					<DropdownAlert ref={ref => this.dropdown = ref} />
 				</View>
 			);
 		}

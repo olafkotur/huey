@@ -14,16 +14,27 @@ export default class FileHandler extends React.Component {
 		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + fileName);
 		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
 
+		const filetimestamp = moment.unix(Math.ceil(fileName / 1000)).format('MMMM Do YYYY, h:mm:ss');
+		const systemtimetstamp = moment.unix()
+
 		// Delete from storage and database
-		await databaseRef.once('value', async snapshot => {
-			snapshot.forEach((child) => {
-				if (child.val().url.includes(fileName)) {
-					databaseRef.update({[child.key]: null});
-					storageRef.delete();
-					return true;
-				}
+		if(systemtimestamp - filetimestamp > 5259600)
+		{
+			await databaseRef.once('value', async snapshot => {
+				snapshot.forEach((child) => {
+					if (child.val().url.includes(fileName)) {
+						databaseRef.update({[child.key]: null});
+						storageRef.delete();
+						return 0;
+					}
+				});
 			});
-		});
+		}
+		else
+		{
+			overtime = 5259600 + filetimestamp
+			return overtime.toString().format('MMMM Do YYYY, h:mm:ss');
+		}
 	}
 
 	deleteFileLocal = async (fileName) => {
@@ -63,7 +74,7 @@ export default class FileHandler extends React.Component {
 	uploadMedia = async (uri, name) => {
 		// Choose destination folder, either /audio or /media
 		let dest = (name.includes('.mp3')) ? '/audio/' : '/media/';
-	
+
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -83,7 +94,7 @@ export default class FileHandler extends React.Component {
 		const uid = await firebase.auth().currentUser.uid;
 		const storageRef = await firebase.storage().ref('users/' + uid + dest + name);
 		const databaseRef = await firebase.database().ref('users/' + uid + dest);
-		
+
 		// Upload image to firebase storage and url to database
 		await storageRef.put(blob).then(async () => {
 			await databaseRef.push({
