@@ -48,9 +48,9 @@ export default class FocusedImage extends React.Component {
 		}
 	}
 
-	deleteMedia = () => {
+	deleteMedia = async () => {
 		const Handler = new FileHandler();
-		deletionresult = Handler.deleteFileDB(this.state.fileName);
+		deletionresult = await Handler.deleteFileDB(this.state.fileName);
 		console.log(deletionresult.overtime)
 		console.log("Deletion Result EXPECTED AFTER -> " + deletionresult)
 		if(deletionresult > 0)

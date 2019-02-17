@@ -2,7 +2,6 @@ import React from 'react';
 import { FileSystem } from 'expo';
 import * as firebase from "firebase";
 import moment from 'moment';
-import DropdownAlert from 'react-native-dropdownalert';
 
 export default class FileHandler extends React.Component {
 
@@ -36,9 +35,9 @@ export default class FileHandler extends React.Component {
 		else
 		{
 			//overtime = moment.unix((5259600 + filetimestamp))
-			overtime = (5259600 + filetimestamp)
+			overtime = 5259600 + filetimestamp
 			console.log("OverTime -> " + overtime)
-			return overtime
+			return 5259600 + filetimestamp
 		}
 	}
 
