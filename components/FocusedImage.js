@@ -51,9 +51,14 @@ export default class FocusedImage extends React.Component {
 	deleteMedia = () => {
 		const Handler = new FileHandler();
 		deletionresult = Handler.deleteFileDB(this.state.fileName);
+		console.log(deletionresult.overtime)
 		console.log("Deletion Result EXPECTED AFTER -> " + deletionresult)
 		if(deletionresult > 0)
 		{
+		//	console.log(deletionresult)
+			//console.log(deletionresult.val)
+			//console.log(deletionresult.value())
+			console.log(deletionresult.format('MMMM Do YYYY, h:mm:ss'))
 			console.log("Message Expcted In Alert - > " + deletionresult.format('MMMM Do YYYY, h:mm:ss'))
 			var printout = "Can Be Deleted From"
 			printout = printout.concat(deletionresult.format('MMMM Do YYYY, h:mm:ss'))
@@ -101,6 +106,7 @@ export default class FocusedImage extends React.Component {
 						</TouchableOpacity>
 					</View>
 
+					<DropdownAlert ref={ref => this.dropdown = ref} />
 				</View>
 			);
 		}

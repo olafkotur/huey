@@ -2,6 +2,7 @@ import React from 'react';
 import { FileSystem } from 'expo';
 import * as firebase from "firebase";
 import moment from 'moment';
+import DropdownAlert from 'react-native-dropdownalert';
 
 export default class FileHandler extends React.Component {
 
