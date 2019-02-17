@@ -56,8 +56,8 @@ export default class FocusedImage extends React.Component {
 		{
 			console.log("Message Expcted In Alert - > " + deletionresult.format('MMMM Do YYYY, h:mm:ss'))
 			var printout = "Can Be Deleted From"
-			printout.concat()
-			(deletionresult) => {this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', 'Can Be Deleted From ' +)}
+			printout = printout.concat(deletionresult.format('MMMM Do YYYY, h:mm:ss'))
+			this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', printout)
 		}
 
 		Handler.deleteFileLocal(this.state.fileName);

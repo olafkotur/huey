@@ -34,7 +34,8 @@ export default class FileHandler extends React.Component {
 		}
 		else
 		{
-			overtime = moment.unix((5259600 + filetimestamp)
+			//overtime = moment.unix((5259600 + filetimestamp))
+			overtime = (5259600 + filetimestamp)
 			console.log("OverTime -> " + overtime)
 			return overtime
 		}
