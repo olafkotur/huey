@@ -15,7 +15,7 @@ export default class FileHandler extends React.Component {
 		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + fileName);
 		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
 
-		const filetimestamp = moment.unix(Math.ceil(fileName)).format('MMMM Do YYYY, h:mm:ss');
+		const filetimestamp = moment.unix(Math.ceil(parseFloat(fileName)/1000))
 		console.log("filetimestamp -> " + filetimestamp)
 		const systemtimestamp = moment.unix()
 
@@ -34,9 +34,9 @@ export default class FileHandler extends React.Component {
 		}
 		else
 		{
-			overtime = String((5259600 + filetimestamp))
+			overtime = moment.unix((5259600 + filetimestamp)
 			console.log("OverTime -> " + overtime)
-			return overtime.format('MMMM Do YYYY, h:mm:ss');
+			return overtime
 		}
 	}
 
