@@ -50,23 +50,23 @@ export default class FocusedImage extends React.Component {
 
 	deleteMedia = async () => {
 		const Handler = new FileHandler();
-		deletionresult = await Handler.deleteFileDB(this.state.fileName);
-		console.log(deletionresult.overtime)
+		var deletionresult = await Handler.deleteFileDB(this.state.fileName);
 		console.log("Deletion Result EXPECTED AFTER -> " + deletionresult)
 		if(deletionresult > 0)
 		{
-		//	console.log(deletionresult)
-			//console.log(deletionresult.val)
-			//console.log(deletionresult.value())
-			console.log(deletionresult.format('MMMM Do YYYY, h:mm:ss'))
-			console.log("Message Expcted In Alert - > " + deletionresult.format('MMMM Do YYYY, h:mm:ss'))
-			var printout = "Can Be Deleted From"
-			printout = printout.concat(deletionresult.format('MMMM Do YYYY, h:mm:ss'))
-			this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', printout)
+			console.log(moment.unix(deletionresult).format('MMMM Do YYYY, h:mm:ss'))
+			//console.log("Message Expcted In Alert - > " + moment.unix(deletionresult.format('MMMM Do YYYY, h:mm:ss')))
+			var printout = "Can Be Deleted From "
+			var message = moment.unix(deletionresult).format('MMMM Do YYYY, h:mm:ss')
+			console.log(message.concat(printout))
+			this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', printout.concat(message))
+			Handler.deleteFileLocal(this.state.fileName);
 		}
-
-		Handler.deleteFileLocal(this.state.fileName);
-		this.props.navigation.navigate('MediaGallery');
+		else
+		{
+					Handler.deleteFileLocal(this.state.fileName);
+					this.props.navigation.navigate('MediaGallery');
+		}
 	}
 
 	render() {
