@@ -9,36 +9,32 @@ export default class FileHandler extends React.Component {
 
 	}
 
+
+	// Checks whether an image can be deleted
+	checkDeletionStatus = async (fileName) => {
+		fileName = fileName.split('.')[0];
+		const date = moment.unix(Math.ceil(fileName / 1000));
+		const target = moment(date).add(60, 'days');
+		const result = moment(target, 'day').fromNow();
+		return !result.includes('in');
+	}
+
 	// Deletes media from firebase
 	deleteFileDB = async (fileName) => {
 		const uid = await firebase.auth().currentUser.uid;
 		const storageRef = await firebase.storage().ref('users/' + uid + '/media/' + fileName);
 		let databaseRef = await firebase.database().ref('users/' + uid + '/media');
 
-		const filetimestamp = moment.unix(Math.ceil(parseFloat(fileName)/1000))
-		console.log("filetimestamp -> " + filetimestamp)
-		const systemtimestamp = moment.unix()
-
 		// Delete from storage and database
-		if(systemtimestamp - filetimestamp > 5259600)
-		{
-			await databaseRef.once('value', async snapshot => {
-				snapshot.forEach((child) => {
-					if (child.val().url.includes(fileName)) {
-						databaseRef.update({[child.key]: null});
-						storageRef.delete();
-						return 0;
-					}
-				});
+		await databaseRef.once('value', async snapshot => {
+			snapshot.forEach((child) => {
+				if (child.val().url.includes(fileName)) {
+					databaseRef.update({[child.key]: null});
+					storageRef.delete();
+					return 0;
+				}
 			});
-		}
-		else
-		{
-			//overtime = moment.unix((5259600 + filetimestamp))
-			overtime = 5259600 + filetimestamp
-			console.log("OverTime -> " + overtime)
-			return 5259600 + filetimestamp
-		}
+		});
 	}
 
 	deleteFileLocal = async (fileName) => {

@@ -50,22 +50,15 @@ export default class FocusedImage extends React.Component {
 
 	deleteMedia = async () => {
 		const Handler = new FileHandler();
-		var deletionresult = await Handler.deleteFileDB(this.state.fileName);
-		console.log("Deletion Result EXPECTED AFTER -> " + deletionresult)
-		if(deletionresult > 0)
-		{
-			console.log(moment.unix(deletionresult).format('MMMM Do YYYY, h:mm:ss'))
-			//console.log("Message Expcted In Alert - > " + moment.unix(deletionresult.format('MMMM Do YYYY, h:mm:ss')))
-			var printout = "Can Be Deleted From "
-			var message = moment.unix(deletionresult).format('MMMM Do YYYY, h:mm:ss')
-			console.log(message.concat(printout))
-			this.dropdown.alertWithType('error', 'Content Is Secured For 60 days', printout.concat(message))
-			Handler.deleteFileLocal(this.state.fileName);
+		const shouldDelete = await Handler.checkDeletionStatus(this.state.fileName);
+		if (shouldDelete) {
+			await Handler.deleteFileDB(this.state.fileName);
+			await Handler.deleteFileLocal(this.state.fileName);
+			this.props.navigation.navigate('MediaGallery');
 		}
-		else
-		{
-					Handler.deleteFileLocal(this.state.fileName);
-					this.props.navigation.navigate('MediaGallery');
+		else {
+			await Handler.deleteFileLocal(this.state.fileName);
+			this.dropdown.alertWithType('error', 'Error', 'You can only delete backups 60 days after creation');
 		}
 	}
 
