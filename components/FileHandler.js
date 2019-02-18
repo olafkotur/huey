@@ -1,11 +1,23 @@
 import React from 'react';
 import { FileSystem } from 'expo';
 import * as firebase from "firebase";
+import moment from 'moment';
 
 export default class FileHandler extends React.Component {
 
 	state = {
 
+	}
+
+
+	// Checks whether an image can be deleted
+	checkDeletionStatus = async (fileName) => {
+		fileName = fileName.split('.')[0];
+		const date = moment.unix(Math.ceil(fileName / 1000));
+		const target = moment(date).add(60, 'days');
+		const remaining = moment(target, 'day').fromNow();
+		const result = {shouldDelete: !remaining.includes('in'), remaining: remaining};
+		return result;
 	}
 
 	// Deletes media from firebase
@@ -20,7 +32,7 @@ export default class FileHandler extends React.Component {
 				if (child.val().url.includes(fileName)) {
 					databaseRef.update({[child.key]: null});
 					storageRef.delete();
-					return true;
+					return 0;
 				}
 			});
 		});
@@ -63,7 +75,7 @@ export default class FileHandler extends React.Component {
 	uploadMedia = async (uri, name) => {
 		// Choose destination folder, either /audio or /media
 		let dest = (name.includes('.mp3')) ? '/audio/' : '/media/';
-	
+
 		// Prepare blob
 		const blob = await new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -83,7 +95,7 @@ export default class FileHandler extends React.Component {
 		const uid = await firebase.auth().currentUser.uid;
 		const storageRef = await firebase.storage().ref('users/' + uid + dest + name);
 		const databaseRef = await firebase.database().ref('users/' + uid + dest);
-		
+
 		// Upload image to firebase storage and url to database
 		await storageRef.put(blob).then(async () => {
 			await databaseRef.push({

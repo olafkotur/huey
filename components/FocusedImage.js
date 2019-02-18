@@ -2,9 +2,11 @@ import React from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { FileSystem, Video } from 'expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import DropdownAlert from 'react-native-dropdownalert';
 
 import FileHandler from './FileHandler';
 import styles from "../Styles";
+import moment from 'moment';
 
 export default class FocusedImage extends React.Component {
 
@@ -46,11 +48,18 @@ export default class FocusedImage extends React.Component {
 		}
 	}
 
-	deleteMedia = () => {
+	deleteMedia = async () => {
 		const Handler = new FileHandler();
-		Handler.deleteFileDB(this.state.fileName);
-		Handler.deleteFileLocal(this.state.fileName);
-		this.props.navigation.navigate('MediaGallery');
+		const result = await Handler.checkDeletionStatus(this.state.fileName);
+		if (result.shouldDelete) {
+			await Handler.deleteFileDB(this.state.fileName);
+			await Handler.deleteFileLocal(this.state.fileName);
+			this.props.navigation.navigate('MediaGallery');
+		}
+		else {
+			await Handler.deleteFileLocal(this.state.fileName);
+			this.dropdown.alertWithType('error', 'Error', 'You can delete this backup ' + result.remaining);
+		}
 	}
 
 	render() {
@@ -90,6 +99,7 @@ export default class FocusedImage extends React.Component {
 						</TouchableOpacity>
 					</View>
 
+					<DropdownAlert ref={ref => this.dropdown = ref} />
 				</View>
 			);
 		}
@@ -132,6 +142,7 @@ export default class FocusedImage extends React.Component {
 							<Icon name= "forward-10" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
 					</View>
+					<DropdownAlert ref={ref => this.dropdown = ref} />
 				</View>
 			);
 		}
