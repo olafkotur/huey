@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { fromLeft, fromRight, fromBottom, fromTop } from 'react-navigation-transitions'
 import * as firebase from "firebase";
+import ignoreWarnings from 'react-native-ignore-warnings';
 
 import LoginScreen from './components/LoginScreen';
 import ForgotPassword from './components/ForgotPassword';
@@ -56,10 +57,9 @@ const handleCustomTransition = ({ scenes }) => {
 const AppRouter = createAppContainer(AppStack);
 
 export default class App extends React.Component {
-
 	// Firebase integration
 	componentDidMount = () => {
-		console.ignoredYellowBox = ['Setting a timer'];
+		ignoreWarnings('Setting a timer');
 		var config = {
 			apiKey: "AIzaSyA23wbAZnIDclHiMqF045vKWXXa1LdU-G0",
 			authDomain: "huey-f5674.firebaseapp.com",
