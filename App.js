@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import {fromLeft, fromRight, fromBottom, fromTop, zoomIn,zoomOut, flipX, flipY} from 'react-navigation-transitions'
+import { fromLeft, fromRight, fromBottom, fromTop } from 'react-navigation-transitions'
 import * as firebase from "firebase";
 
-import styles from "./Styles";
 import LoginScreen from './components/LoginScreen';
 import ForgotPassword from './components/ForgotPassword';
 import HomeScreen from './components/HomeScreen';
@@ -61,6 +59,7 @@ export default class App extends React.Component {
 
 	// Firebase integration
 	componentDidMount = () => {
+		console.ignoredYellowBox = ['Setting a timer'];
 		var config = {
 			apiKey: "AIzaSyA23wbAZnIDclHiMqF045vKWXXa1LdU-G0",
 			authDomain: "huey-f5674.firebaseapp.com",
