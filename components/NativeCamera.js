@@ -54,46 +54,50 @@ export default class NativeCamera extends React.Component {
 		qrCodeInstance = new QRCodeGenerator()
 		protestpassworddecrypt = qrCodeInstance.DecryptKEYString(protestpasswordvalueQR)
 
-		firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
-		firebaseprotestpassword = firebaseprotestpassword.val()
+		try {
+			firebaseprotestpassword = (await firebase.database().ref('/' + protestpasswordpathkeyQR).once('value'))
+			firebaseprotestpassword = firebaseprotestpassword.val()
 
-		//2.Extract Critical Data To Protest Organiser Password
-		//Dependencies are on the path being 24 Characters - This Can However Be Adapted For The Final Schema
-		organiserpasswordpathkeyQRa = codeportion.slice(0,10)
-		organiserpasswordpathkeyQRb = codeportion.slice(10,24)
-		organiserpasswordvalueQR = codeportion.slice(24,152)
-		organiserpassworddecrypt = qrCodeInstance.DecryptKEYString(organiserpasswordvalueQR)
+			//2.Extract Critical Data To Protest Organiser Password
+			//Dependencies are on the path being 24 Characters - This Can However Be Adapted For The Final Schema
+			organiserpasswordpathkeyQRa = codeportion.slice(0,10)
+			organiserpasswordpathkeyQRb = codeportion.slice(10,24)
+			organiserpasswordvalueQR = codeportion.slice(24,152)
+			organiserpassworddecrypt = qrCodeInstance.DecryptKEYString(organiserpasswordvalueQR)
 
-		firebaseorganiserpassword = (await firebase.database().ref( '/' + organiserpasswordpathkeyQRa + '/' + organiserpasswordpathkeyQRb).once('value'))
-		firebaseorganiserpassword = firebaseorganiserpassword.val()
+			firebaseorganiserpassword = (await firebase.database().ref( '/' + organiserpasswordpathkeyQRa + '/' + organiserpasswordpathkeyQRb).once('value'))
+			firebaseorganiserpassword = firebaseorganiserpassword.val()
 
-		//QR is protestpasswordzeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		//True value is
-		//Based off the given key offered attempts to read the firebase database at that location and return the value therein
-		//this key will be Null if key is invalid
-		//OriginalString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
-		//EncryptedtString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		// EncryptedString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
-		// DecryptedtString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+			//QR is protestpasswordzeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+			//True value is
+			//Based off the given key offered attempts to read the firebase database at that location and return the value therein
+			//this key will be Null if key is invalid
+			//OriginalString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
+			//EncryptedtString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+			// EncryptedString  => zeV72hhtFLvUr71j0GbKnz8ENPOvquIQwgkpyd6LeCMUI3sGsEzn9sTHMfln8GDkcL8nsqNL1yac5206IrtQ55oNYI9XNhVmfHRJvSwxPO0QJGzcaKMTatU76dI6gdyS
+			// DecryptedtString  => zV2hFvr10bn8NOqIwky6eMIssz9TMl8Dc8sN1a50It5oY9NVfRvwP0JzaMaU6Igy
 
-		if(firebaseprotestpassword == protestpassworddecrypt){
+			if(firebaseprotestpassword == protestpassworddecrypt){
 
-			this.setState({oneTimePWValidated: true, qrIcon: 'progress-check', qrInformation: 'You\'ve scanned a public QR code.'})
-			console.log('FOUND INDIVIDUAL QR CODE')
-			console.log("Protest Password Identified")
-		}
-		else if(organiserpassworddecrypt == firebaseorganiserpassword){
-			this.setState({renewableQRValidated: true, qrIcon: 'account-key', qrInformation: 'You\'ve scanned an organiser QR code.'})
-			console.log('FOUND ORGANISER RENEWABLE QR CODE')
-			console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
-		}
-		else{
-			this.setState({qrIcon: 'flag-variant', qrInformation: 'You\'ve scanned an invalid QR Code'})
-			console.log('JUNK QR CODE')
-		}
-		if(this.state.renewableQRValidated == true && this.state.oneTimePWValidated == true)
-		{
-			this.setState({qrIcon: 'bullseye-arrow', qrInformation: 'Ready for Backup at Location'})
+				this.setState({oneTimePWValidated: true, qrIcon: 'progress-check', qrInformation: 'You\'ve scanned a public QR code.'})
+				console.log('FOUND INDIVIDUAL QR CODE')
+				console.log("Protest Password Identified")
+			}
+			else if(organiserpassworddecrypt == firebaseorganiserpassword){
+				this.setState({renewableQRValidated: true, qrIcon: 'account-key', qrInformation: 'You\'ve scanned an organiser QR code.'})
+				console.log('FOUND ORGANISER RENEWABLE QR CODE')
+				console.log('ORGANISER PROTEST PASSWORD IDENTIFIED')
+			}
+			else{
+				this.setState({qrIcon: 'flag-variant', qrInformation: 'You\'ve scanned an invalid QR Code'})
+				console.log('JUNK QR CODE')
+			}
+			if(this.state.renewableQRValidated == true && this.state.oneTimePWValidated == true)
+			{
+				this.setState({qrIcon: 'bullseye-arrow', qrInformation: 'Ready for Backup at Location'})
+			}
+		} catch (e) {
+			console.log(e.message)
 		}
 	}
 

@@ -59,7 +59,7 @@ export default class App extends React.Component {
 
 	// Firebase integration
 	componentDidMount = () => {
-		console.ignoredYellowBox = ['Setting a timer'];
+		console.ignoredYellowBox = ['Setting a timer', 'Possible Unhandled Promise'];
 		var config = {
 			apiKey: "AIzaSyA23wbAZnIDclHiMqF045vKWXXa1LdU-G0",
 			authDomain: "huey-f5674.firebaseapp.com",
