@@ -15,8 +15,9 @@ export default class FileHandler extends React.Component {
 		fileName = fileName.split('.')[0];
 		const date = moment.unix(Math.ceil(fileName / 1000));
 		const target = moment(date).add(60, 'days');
-		const result = moment(target, 'day').fromNow();
-		return !result.includes('in');
+		const remaining = moment(target, 'day').fromNow();
+		const result = {shouldDelete: !remaining.includes('in'), remaining: remaining};
+		return result;
 	}
 
 	// Deletes media from firebase
