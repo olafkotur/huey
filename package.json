@@ -19,6 +19,7 @@
     "react-native-blink-view": "0.0.6",
     "react-native-dropdownalert": "^3.9.1",
     "react-native-elements": "^1.0.0",
+    "react-native-ignore-warnings": "^0.1.1",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-material-menu": "^0.4.2",
     "react-native-progress": "^3.5.0",
