@@ -907,6 +907,13 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.1,
 	},
 
+  videoDelete: {
+    color: '#fff',
+		fontSize: deviceWidth * 0.075,
+		marginTop: deviceHeight * 0.0175,
+		marginLeft: deviceWidth * 0.775,
+	},
+
 	galleryViewTopButtons: {
 		zIndex: 100,
 		flexDirection: 'row',
