@@ -3,10 +3,10 @@ import { View, TouchableOpacity, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
-
 import styles from "../Styles";
 import ImageList from './ImageList';
 import AudioList from './AudioList';
+import FileHandler from './FileHandler';
 
 
 export default class MediaGallery extends React.Component {
@@ -17,6 +17,8 @@ export default class MediaGallery extends React.Component {
 	}
 
 	state = {
+		mediaData: [],
+		audioData: [],
 		index: 0,
    		routes: [
       		{ key: 'first', title: 'Media' },
@@ -24,10 +26,31 @@ export default class MediaGallery extends React.Component {
     	]
 	}
 
+	componentWillMount = async () => {
+		await this.fetchData();
+	}
+
+	fetchData = async () => {
+		console.log('Fetching')
+		Handler = new FileHandler();
+		await Handler.getMedia('media').then((data) => this.setState({mediaData: data}));
+		await Handler.getMedia('audio').then((data) => this.setState({audioData: data}));
+	}
+
+	renderImageList = () => {
+		console.log(this.state.mediaData);
+		return <ImageList data = {this.state.mediaData}/>
+	}
+
+	renderAudioList = () => {
+		console.log(this.state.audioData);
+		return <AudioList data = {this.state.audioData}/>
+	}
+
 	_menu = null;
 	 
 	setMenuRef = ref => {
-	this._menu = ref;
+		this._menu = ref;
 	};
 
 	hideMenu = () => {
@@ -82,7 +105,7 @@ export default class MediaGallery extends React.Component {
 					</View>
 
 					<TabView
-				        renderScene = {SceneMap({first: ImageList, second: AudioList})}
+				        renderScene = {SceneMap({first: this.renderImageList, second: this.renderImageList})}
 				        navigationState = {this.state}
 				        onIndexChange = {index => this.setState({ index })}
 				        initialLayout = {{ width: 100, height:500}}
