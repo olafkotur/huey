@@ -233,6 +233,10 @@ export default StyleSheet.create({
 		zIndex: -10000,
 	},
 
+	loader: {
+		height: '10%',
+		width: '20%'
+	},
 // 2. Login
 
 	loginLogo: {
