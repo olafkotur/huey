@@ -14,23 +14,10 @@ export default class AudioList extends React.Component {
     }
 
     state = {
-        refreshing: false,
         isPlaying: false,
         isPlayingURL: '',
         audioData: [],
         playIcon: 'play',
-    }
-
-    componentDidMount = async () => {
-        this.fetchData();
-    }
-
-    // Fetches audio data from firebase
-    fetchData = async () => {
-        this.setState({refreshing: true});
-        Handler = new FileHandler();
-        await Handler.getMedia('audio').then((data) => this.setState({audioData: data}));
-        this.setState({refreshing: false});
     }
 
     // Plays back selected audio
@@ -89,12 +76,10 @@ export default class AudioList extends React.Component {
         return (
             <View style = {styles.galleryTabViewContainer}>	
                 <FlatList
-                    data = {this.state.audioData}
+                    data = {this.props.data}
                     extraData = {this.state}
                     keyExtractor = {(item, index) => index.toString()}
-                    renderItem = {({item}) => this.renderItem(item)}
-                    refreshing = {this.state.refreshing}
-                    onRefresh = {() => this.fetchData()}>
+                    renderItem = {({item}) => this.renderItem(item)}>
                 </FlatList>
             </View>
         );
