@@ -79,9 +79,11 @@ export default class FocusedImage extends React.Component {
 							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
 							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
-						</TouchableOpacity>
+
+            <TouchableOpacity
+              onPress =	{() => this.deleteMedia()} >
+              <Icon name = "delete-forever" style = {styles.videoDelete}  size = {30} />
+            </TouchableOpacity>
 					</View>
 
 					<View style = {styles.imageButtonContainer}>
@@ -89,10 +91,7 @@ export default class FocusedImage extends React.Component {
 							<Icon name= "edit" style = {styles.imageControl}  size = {30} />
 						</TouchableOpacity>
 
-						<TouchableOpacity
-							onPress =	{() => this.deleteMedia()} >
-							<Icon name = "delete-forever" style = {styles.imageControl}  size = {30} />
-						</TouchableOpacity>
+
 
 						<TouchableOpacity>
 							<Icon name= "vpn-lock" style = {styles.imageControl} size = {30} />
@@ -125,10 +124,14 @@ export default class FocusedImage extends React.Component {
 							onPress = {() => this.props.navigation.navigate('MediaGallery')}>
 							<Icon name= "chevron-left" style = {styles.galleryBackButton}  size = {30} />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Icon name= "more-vert" style = {styles.galleryMenuButton}  size = {30} />
-						</TouchableOpacity>
+					
+            <TouchableOpacity
+              onPress =	{() => this.deleteMedia()} >
+              <Icon name = "delete-forever" style = {styles.videoDelete}  size = {30} />
+            </TouchableOpacity>
 					</View>
+
+
 
 					<View style = {styles.videoButtonContainer}>
 						<TouchableOpacity>
@@ -138,6 +141,7 @@ export default class FocusedImage extends React.Component {
 							onPress =	{() => this.playPauseVideo()} >
 							<Icon name = {this.state.pausePlayIcon} style = {styles.playPauseButton}  size = {30} />
 						</TouchableOpacity>
+
 						<TouchableOpacity>
 							<Icon name= "forward-10" style = {styles.videoControl}  size = {30} />
 						</TouchableOpacity>
