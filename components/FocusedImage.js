@@ -99,7 +99,7 @@ export default class FocusedImage extends React.Component {
 						</TouchableOpacity>
 					</View>
 
-					<DropdownAlert ref={ref => this.dropdown = ref} />
+					<DropdownAlert zIndex = {100} ref={ref => this.dropdown = ref}  />
 				</View>
 			);
 		}
