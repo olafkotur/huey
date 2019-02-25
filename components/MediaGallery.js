@@ -34,7 +34,7 @@ export default class MediaGallery extends React.Component {
 	fetchData = async () => {
 		this.setState({loading: true})
 		Handler = new FileHandler();
-		await Handler.getMedia('media').then(async(data) => await this.setState({mediaData: data, loading: false}));
+		await Handler.getMedia('media').then(async(data) => await this.setState({mediaData: data}));
 		await Handler.getMedia('audio').then(async (data) => await this.setState({audioData: data, loading: false}));
 	}
 
@@ -43,7 +43,6 @@ export default class MediaGallery extends React.Component {
 	}
 
 	getAudioList = () => {
-		console.log(this.state.audioData);
 		return <AudioList data = {this.state.audioData}/>
 	}
 
@@ -51,14 +50,6 @@ export default class MediaGallery extends React.Component {
 	 
 	setMenuRef = ref => {
 		this._menu = ref;
-	};
-
-	hideMenu = () => {
-		this._menu.hide();
-	};
-
-	showMenu = () => {
-		this._menu.show();
 	};
 
 	render() {
@@ -73,7 +64,7 @@ export default class MediaGallery extends React.Component {
 							<View style = {styles.navbarBackContainer}>
 								<TouchableOpacity
 									onPress = {() => this.props.navigation.navigate('HomeScreen')} >
-									<Icon name="chevron-left" style = {styles.navbarBackIcon}  size = {30} />
+									<Icon name="chevron-left" style = {styles.navbarBackIcon} size = {30} />
 								</TouchableOpacity>
 							</View>
 
@@ -81,23 +72,20 @@ export default class MediaGallery extends React.Component {
 
 								<Menu
 									ref = {this.setMenuRef}
-									button = {<Icon name="more-vert" style={styles.navbarButton} onPress={this.showMenu} size = {30} />} >
+									button = {<Icon name="more-vert" style={styles.navbarButton} onPress={() => this._menu.show()} size = {30} />} >
 
-									<MenuItem onPress={this.hideMenu}>Filter</MenuItem>
-									<MenuItem onPress={this.hideMenu} disabled>Share</MenuItem>
+									<MenuItem onPress={() => this._menu.hide()}>Filter</MenuItem>
+									<MenuItem onPress={() => this._menu.hide()} disabled>Share</MenuItem>
 									<MenuDivider />
-									<MenuItem onPress={this.hideMenu}>Help</MenuItem>
+									<MenuItem onPress={() => this._menu.hide()}>Help</MenuItem>
 								</Menu>
 
 								<TouchableOpacity
-									style = {styles.navbarButton}>
-									<Icon name="info" style = {styles.navbarIcon}  size = {30} />
+									style = {styles.navbarButton}
+									onPress = {() => this.fetchData()}>
+									<Icon name="refresh" style = {styles.navbarIcon}  size = {30} />
 								</TouchableOpacity>
 
-								<TouchableOpacity
-									style = {styles.navbarButton}>
-									<Icon name="sort" style = {styles.navbarIcon}  size = {30} />
-								</TouchableOpacity>
 							</View>
 
 						</View>
