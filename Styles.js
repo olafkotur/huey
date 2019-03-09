@@ -754,12 +754,22 @@ export default StyleSheet.create({
 		marginLeft: deviceWidth * 0.02,
 	},
 
-	overlayButton: {
-		marginTop: deviceHeight * 0.075,
-		width: deviceWidth * 0.3,
-		marginLeft: deviceWidth * 0.425,
+	overlayButtonPassword: {
+		marginTop: deviceHeight * 0.125,
+		width: deviceWidth * 0.6,
+		marginLeft: 'auto',
+		marginRight: 'auto',
 		borderColor: '#27AE60',
 	},
+
+	overlayButtonEmail: {
+		marginTop: deviceHeight * 0.075,
+		width: deviceWidth * 0.6,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		borderColor: '#27AE60',
+	},
+
 
 	overlayButtonText: {
 		color: '#27ae60',
@@ -767,13 +777,16 @@ export default StyleSheet.create({
 
 	overlay: {
 		height: deviceHeight * 0.5,
+		padding: 10,
 	},
 
 	logoutBtn: {
 		borderColor: '#27AE60',
 		width: '80%',
 		marginTop: deviceHeight * 0.5,
-    left:"7%",
+    	marginLeft: 'auto',
+    	marginRight: 'auto',
+    	marginBottom: deviceHeight * 0.025,
 	},
 
 	logoutBtnText: {
@@ -785,9 +798,9 @@ export default StyleSheet.create({
 	delAccountBtn: {
 		backgroundColor: '#e84118',
 		width: '80%',
-		marginTop: deviceHeight * 0.05,
-
-    left:"40%",
+		marginLeft: 'auto',
+    	marginRight: 'auto',
+    	marginBottom: deviceHeight * 0.05,
 	},
 
 	delAccountBtnOverlay: {
