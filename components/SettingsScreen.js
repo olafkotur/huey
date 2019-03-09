@@ -26,9 +26,9 @@ export default class SettingsScreen extends React.Component {
         passwordHidden1: true,
         passwordHidden2: true,
         passwordHidden3: true,
-        passwordIcon1: 'eye',
-        passwordIcon2: 'eye',
-        passwordIcon3: 'eye',
+        passwordIcon1: 'eye-off-outline',
+        passwordIcon2: 'eye-off-outline',
+        passwordIcon3: 'eye-off-outline',
 
         oldEmail: '',
         newEmail: '',
@@ -118,7 +118,7 @@ export default class SettingsScreen extends React.Component {
                                 title="Submit"
                                 type="outline"
                                 titleStyle={styles.overlayButtonText}
-                                buttonStyle={styles.overlayButton}
+                                buttonStyle={styles.overlayButtonEmail}
                                 onPress={async () => {
                                     await Firebase.changeUserEmail(this.state.oldEmail, this.state.newEmail, this.state.confirmEmail)
                                     .then((result) => {
@@ -167,7 +167,7 @@ export default class SettingsScreen extends React.Component {
                             />
 
                             <Input
-                                placeholder='Confirm New Email Address'
+                                placeholder='Confirm New Password'
                                 inputStyle={styles.textInput}
                                 secureTextEntry={this.state.passwordHidden3}
                                 onChangeText = {(password) => this.setState({confirmPassword: password})}
@@ -195,7 +195,7 @@ export default class SettingsScreen extends React.Component {
                                 title="Submit"
                                 type="outline"
                                 titleStyle={styles.overlayButtonText}
-                                buttonStyle={styles.overlayButton}
+                                buttonStyle={styles.overlayButtonPassword}
                                 onPress={async () => {
                                     await Firebase.changeUserPassword(this.state.newPassword, this.state.confirmPassword)
                                     .then((result) => {
