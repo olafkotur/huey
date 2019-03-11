@@ -103,12 +103,12 @@ export default class HomeScreen extends React.Component {
 			        <TouchableOpacity
 			          style = {styles.audioButton}
 			          onPress = {() => this.props.navigation.navigate('NativeAudio')}>
-			          <Icon name="mic" style = {{color: '#fff'}}  size = {30} />
+			          <Icon name="mic" style = {styles.audioIcon}  size = {30} />
 			        </TouchableOpacity>
 
 					<NativeCamera/>
 
-					<DropdownAlert 
+					<DropdownAlert
 						ref={ref => this.dropdown = ref}
 						containerStyle = {{backgroundColor: '#27ae60'}}
 						activeStatusBarBackgroundColor = {'#27ae60'}
