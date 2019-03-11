@@ -216,10 +216,10 @@ export default class SettingsScreen extends React.Component {
                         isVisible={this.state.showDelAccount}
                         overlayStyle={styles.overlayDelAccount}
                         onBackdropPress={() => this.setState({ showDelAccount: false })}>
-                        
+
                         <View>
                             <Text style={styles.delOverlayText}> Are you sure you want to delete your account? </Text>
-                            
+
                             <Button
                                 title="Delete Account"
                                 titleStyle={styles.delAccountBtnText}
@@ -245,10 +245,9 @@ export default class SettingsScreen extends React.Component {
 
                     {/*-----Main Settings list-----*/}
                     <View style = {styles.settingsMenuContainer}>
-
                         {/* Change Email */}
                         <TouchableOpacity
-                            style = {styles.settingsMenuBtn}
+                            style = {styles.settingsMenuBtn1}
                             onPress = {() => this.setState({showChangeEmail: true})} >
                             <Icon name="email" style = {styles.settingsMenuBtnIcon} size = {30} />
                             <Text style={styles.settingsMenuBtnText}> Change Email </Text>
@@ -257,16 +256,18 @@ export default class SettingsScreen extends React.Component {
 
                         {/* Change Password */}
                         <TouchableOpacity
-                            style = {styles.settingsMenuBtn}
+                            style = {styles.settingsMenuBtn2}
                             onPress = {() => this.setState({showChangePassword: true})} >
                             <Icon name="lock" style = {styles.settingsMenuBtnIcon} size = {30} />
                             <Text style={styles.settingsMenuBtnText}> Change Password </Text>
                             <Icon name="chevron-right" style={styles.settingsRArrow} size={30}/>
                         </TouchableOpacity>
+                    </View>
 
                         <Button
                             title="Log Out"
                             type="outline"
+
                             titleStyle={styles.logoutBtnText}
                             buttonStyle={styles.logoutBtn}
                             onPress = {() => this.props.navigation.navigate('LoginScreen')}>
@@ -275,12 +276,13 @@ export default class SettingsScreen extends React.Component {
 
                         <Button
                             title="DELETE ACCOUNT"
+
                             titleStyle={styles.delAccountBtnText}
                             buttonStyle={styles.delAccountBtn}
                             onPress = {() => this.setState({showDelAccount: true})} >
                         </Button>
 
-                    </View>
+
 
 {/* --------------Initial concept settings display--------------(PLease keep this comment far left so the code can be collapsed)
                     {/* Search Bar *
