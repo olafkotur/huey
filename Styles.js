@@ -717,20 +717,34 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    marginTop: deviceHeight * 0.075,
+
   },
 
-  settingsMenuBtn: {
+  settingsMenuBtn1: {
     height: 80,
-    margin: 'auto',
     backgroundColor: 'transparent',
     width: '100%',
     borderWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderColor: '#F1F1F1',
-    marginBottom: -1,
     padding: 7.5,
+    position:'absolute',
+    top:(deviceHeight/20)+1,
+
+  },
+
+  settingsMenuBtn2: {
+    height: 80,
+    backgroundColor: 'transparent',
+    width: '100%',
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: '#F1F1F1',
+    padding: 7.5,
+    position:'absolute',
+    top:(deviceHeight/20)+80,
   },
 
   settingsMenuBtnText: {
@@ -757,9 +771,10 @@ export default StyleSheet.create({
   },
 
   textFieldIcon: {
+    top:deviceHeight * 0.015,
     marginLeft: -deviceWidth * 0.03,
     marginRight: deviceWidth * 0.03,
-    marginTop: deviceHeight * 0.03,
+    marginTop: deviceHeight * 0.01,
     color: '#a2a2a2',
   },
 
@@ -802,7 +817,7 @@ export default StyleSheet.create({
   logoutBtn: {
     borderColor: ThemeColor,
     width: '80%',
-    marginTop: deviceHeight * 0.5,
+
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: deviceHeight * 0.025,
