@@ -1,5 +1,9 @@
 # Huey: React Native
 
+## Pre-setup
+* You must install expo tools before setting up the project, assuming you have `npm` installed
+* `npm install expo-cli --global`
+
 ## Setup
 * Make sure to be in your desired directory
 * `git clone git@github.com:olafkotur/huey.git`
